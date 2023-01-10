@@ -10,8 +10,8 @@ public class PlayerController : MonoBehaviour {
     //public List<TextMeshProUGUI> textScore;
     
     //Parametri di movimento
-    public float movementSpeed;
-    public float jumpForce;
+    public float movementSpeed = 1;
+    public float jumpForce = 1;
 
     private Vector3 velocity;
     private float gravity = -9.81f;
@@ -42,28 +42,37 @@ public class PlayerController : MonoBehaviour {
         float mouseX = Input.GetAxis("Mouse X") * mouseSens * Time.deltaTime;
         float mouseY = Input.GetAxis("Mouse Y") * mouseSens * Time.deltaTime;
 
+
         //definizione del vettore di movimento
-        Vector3 move = new Vector3(horizontalMovement * movementSpeed, 
+        Vector3 move = transform.right * horizontalMovement + transform.forward * verticalMovement + transform.up * jump * jumpForce;
+        /*Vector3 move = new Vector3(horizontalMovement * movementSpeed, 
                                         jump * jumpForce, 
                                         verticalMovement * movementSpeed);
+        */
 
+        move*=movementSpeed;
 
-         if (controller.isGrounded && velocity.y < 0)
-        {
-            velocity.y = -4f;
+         controller.Move(move * Time.deltaTime);
+
+        if (controller.isGrounded) {
+            velocity.y = 0;
+        } 
+        else {
+            velocity.y = gravity * Time.deltaTime;
         }
 
 
-        controller.Move(move);
-        velocity.y += gravity * Time.deltaTime;
-        controller.Move(velocity * Time.deltaTime);
+
+        //controller.Move(move);
+        //velocity.y += gravity * Time.deltaTime;
+        controller.Move(velocity);
+        controller.Move(move * Time.deltaTime);
 
         rotation -= mouseY;
         rotation = Mathf.Clamp(rotation, -90f, 90f);
 
         cameraTransform.localRotation = Quaternion.Euler(rotation, 0f, 0f);
         transform.Rotate(Vector3.up * mouseX);
-
 
         
     }
@@ -83,17 +92,16 @@ public class PlayerController : MonoBehaviour {
         }*/
     }
 
-    private void OnCollisionEnter(Collision collision)
-    {
-        //controllo per poter risaltare
-        if (collision.gameObject.CompareTag("Floor"))
-            canJump = true;
+    private void OnControllerColliderHit(ControllerColliderHit collision){   
+        UnityEngine.Debug.Log("Ho toccato qualcosa");
     }
     
-    private void OnCollisionExit(Collision collision)
-    {
+   /* private void OnControllerColliderHit(ControllerColliderHit collision){
         //controllo per non far saltare più
-        if (collision.gameObject.CompareTag("Floor"))
+        if (collision.gameObject.CompareTag("Floor")){
             canJump = false;
-    }
+            UnityEngine.Debug.Log("Non ho toccato il floor");
+        }
+           
+    }*/
 }
