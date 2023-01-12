@@ -1,3 +1,5 @@
+
+
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -14,11 +16,10 @@ public class PlayerController : MonoBehaviour {
     public float jumpForce = 1;
 
     private Vector3 velocity;
-    private float gravity = -9.81f;
+    public float gravity = -9.81f;
     public float mouseSens = 100f;
     public Transform cameraTransform;
     private float rotation = 0f;
-
 
     
     //Parametri partita
@@ -31,6 +32,8 @@ public class PlayerController : MonoBehaviour {
     void Start()
     {
         controller = GetComponent<CharacterController>();
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
     }
 
     private void Update()
@@ -44,7 +47,7 @@ public class PlayerController : MonoBehaviour {
 
 
         //definizione del vettore di movimento
-        Vector3 move = transform.right * horizontalMovement + transform.forward * verticalMovement + transform.up * jump * jumpForce;
+        Vector3 move = transform.right * horizontalMovement + transform.forward * verticalMovement;
         /*Vector3 move = new Vector3(horizontalMovement * movementSpeed, 
                                         jump * jumpForce, 
                                         verticalMovement * movementSpeed);
@@ -55,10 +58,15 @@ public class PlayerController : MonoBehaviour {
          controller.Move(move * Time.deltaTime);
 
         if (controller.isGrounded) {
-            velocity.y = 0;
+            UnityEngine.Debug.Log("Sto a terra");
+            
+            if(jump>0){
+                velocity.y=jumpForce;
+                controller.Move(velocity);
+            }
         } 
-        else {
-            velocity.y = gravity * Time.deltaTime;
+        else  {
+            velocity.y += gravity*Time.deltaTime;
         }
 
 
@@ -94,6 +102,10 @@ public class PlayerController : MonoBehaviour {
 
     private void OnControllerColliderHit(ControllerColliderHit collision){   
         UnityEngine.Debug.Log("Ho toccato qualcosa");
+       /* if (collision.gameObject.CompareTag("Floor")){
+            canJump=true;
+            UnityEngine.Debug.Log("ho toccato il floor");
+        }*/
     }
     
    /* private void OnControllerColliderHit(ControllerColliderHit collision){
