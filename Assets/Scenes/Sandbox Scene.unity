@@ -378,8 +378,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   movementSpeed: 10
-  jumpForce: 0.4
-  gravity: -2
+  jumpForce: 5
+  gravity: -9.81
   mouseSens: 300
   cameraTransform: {fileID: 1880480780}
 --- !u!136 &2140097727
@@ -454,7 +454,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2140097724}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 7, y: 1.53, z: 13.4}
+  m_LocalPosition: {x: 3.05, y: 1.53, z: 4.66}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
