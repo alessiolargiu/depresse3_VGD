@@ -13,7 +13,8 @@ public class FirstPersonController : MonoBehaviour {
     //public List<TextMeshProUGUI> textScore;
     
     //Parametri di movimento
-    public float movementSpeed = 1;
+    public float movementSpeed = 1f;
+    public float movementRunSpeed = 2f;
     public float jumpForce = 1;
 
     private Vector3 velocity;
@@ -21,6 +22,7 @@ public class FirstPersonController : MonoBehaviour {
     public float mouseSens = 100f;
     public Transform cameraTransform;
     private float rotation = 0f;
+    public Animator anim;
 
     
     //Parametri partita
@@ -43,14 +45,23 @@ public class FirstPersonController : MonoBehaviour {
         float horizontalMovement = Input.GetAxis("Horizontal");
         float verticalMovement = Input.GetAxis("Vertical");
         float jump = Input.GetAxis("Jump"); //adesso non ci serve
+        bool shift = Input.GetKey(KeyCode.LeftShift);
         float mouseX = Input.GetAxis("Mouse X") * mouseSens * Time.deltaTime;
         float mouseY = Input.GetAxis("Mouse Y") * mouseSens * Time.deltaTime;
 
 
+        
+
         //definizione del vettore di movimento;
         Vector3 move = transform.right * horizontalMovement + transform.forward * verticalMovement;
-        move*=movementSpeed;
         
+        if(shift){
+            move*=movementRunSpeed;
+            anim.SetFloat("walking", verticalMovement);
+        } else {
+            move*=movementSpeed;
+            anim.SetFloat("walking", verticalMovement*0.5f);
+        }
 
         if(controller.isGrounded){
             UnityEngine.Debug.Log("isgrounded true");
