@@ -15,9 +15,7 @@ public class NPCTestController : MonoBehaviour {
     public float gravity = -9.81f;
     public float mouseSens = 100f;
     private float rotation = 0f;
-    //Parametri partita
-    private int score = 0;
-    //Flag di controllo
+
     private bool canJump = false;
     public Animator anim;
     private float speedAnim;
@@ -27,6 +25,11 @@ public class NPCTestController : MonoBehaviour {
 
     public float hor=0f;
     public float ver=0f;
+    public float rotX=0f;
+    public float rotY=0f;
+
+
+    private Ray ray;
     
     // Start is called before the first frame update
     void Start()
@@ -34,41 +37,19 @@ public class NPCTestController : MonoBehaviour {
         controller = GetComponent<CharacterController>();
     }
 
-    private void Update()
-    {
+    private void Update(){
+
+        ray = new Ray(transform.position + new Vector3(0f, 1.5f, 0f) , transform.forward);
+        Debug.DrawRay(ray.origin, ray.direction * 10);
+
         
+
         // Input
         float horizontalMovement = hor;
         float verticalMovement = ver;
         //float jump = Input.GetAxis("Jump"); //adesso non ci serve
         bool shift = false;
 
-        //roba prima persona
-        /*
-
-        //definizione del vettore di movimento;
-        Vector3 move = transform.right * horizontalMovement + transform.forward * verticalMovement;
-        move*=movementSpeed;
-        
-
-
-        //gestione salto
-        if(controller.isGrounded){
-            if(jump>0){
-                velocity.y=jumpForce;
-                controller.Move(velocity * Time.deltaTime);
-                controller.Move(move * Time.deltaTime);
-            }
-        } 
-        else  {
-            velocity.y += gravity*Time.deltaTime;
-        }
-
-        //aggiorno il movimento
-        if(horizontalMovement!=0 || verticalMovement!=0){
-                    controller.Move(move * Time.deltaTime);
-        }
-        controller.Move(velocity * Time.deltaTime);
 
 
         //gravita
@@ -77,27 +58,8 @@ public class NPCTestController : MonoBehaviour {
         controller.Move(velocity * Time.deltaTime);
 
         //movimento mouse 
-        float mouseX = Input.GetAxis("Mouse X") * mouseSens * Time.deltaTime;
-        float mouseY = Input.GetAxis("Mouse Y") * mouseSens * Time.deltaTime;
-
-        
-        rotation -= mouseY;
-        rotation = Mathf.Clamp(rotation, -90f, 90f);
-
-        cameraTransform.localRotation = Quaternion.Euler(rotation, 0f, 0f);
-        transform.Rotate(Vector3.up * mouseX);
-       */
-
-
-
-        //gravita
-        Vector3 move;
-        velocity.y += gravity*Time.deltaTime;
-        controller.Move(velocity * Time.deltaTime);
-
-        //movimento mouse 
-        float mouseX = 1;
-        float mouseY = 0;
+        float mouseX = rotX;
+        float mouseY = rotY;
 
         rotation -= mouseY;
         rotation = Mathf.Clamp(rotation, -90f, 90f);
@@ -111,41 +73,55 @@ public class NPCTestController : MonoBehaviour {
         anim.SetFloat("position", horizontalMovement);
 
         //Debug.Log(shift);
+        
+
+        if(UnityEngine.Random.value < 0.0005){
+            transform.Rotate(0f, 90f, 0f);
+        }
+
+
+        RaycastHit hit;
+        if (Physics.Raycast(ray, out hit)){
+            var hitPoint = hit.point;
+            if (hit.collider != null){
+                if(hit.collider.gameObject.tag == "Floor"){
+                    var distance = Vector3.Distance(hitPoint, transform.position);
+                    if(distance<=2.5){
+                        if(randomBoolean()){
+                            transform.Rotate(0f, -90f, 0f);
+                        } else transform.Rotate(0f, 90f, 0f);
+                    } else {
+                        //ver=0.5f;
+                        //rotX = 0.0f;
+                        }
+                    UnityEngine.Debug.Log("tocco qualcosa a distanza " + distance);
+                }   else {
+                    //ver=0.5f;
+                    }
+                }
+            }
     }
 
     void FixedUpdate(){
-
     }
     
-    private void OnTriggerEnter(Collider other)
-    {
-       /* if (other.CompareTag("Collect"))
-        {
-            other.gameObject.SetActive(false);
-            
-            //gestione del punteggio (nel ciclo aggiorniamo tutte le scritte)
-            score++;
-            foreach (var text in textScore)
-            {
-                text.SetText("Punteggio: " + score);
-            }
-        }*/
+    private void OnTriggerEnter(Collider other){
     }
 
     private void OnControllerColliderHit(ControllerColliderHit collision){   
-        //UnityEngine.Debug.Log("Ho toccato qualcosa");
-       /* if (collision.gameObject.CompareTag("Floor")){
-            canJump=true;
-            UnityEngine.Debug.Log("ho toccato il floor");
-        }*/
+       /* if (collision.gameObject.tag == "Wall"){
+            UnityEngine.Debug.Log("tocco qualcosa");
+        } UnityEngine.Debug.Log("non tocco niente");
+    */}
+
+
+    private bool randomBoolean (){
+        if (UnityEngine.Random.value >= 0.5){
+        return true;
     }
+        return false;
+}
+
+
     
-   /* private void OnControllerColliderHit(ControllerColliderHit collision){
-        //controllo per non far saltare più
-        if (collision.gameObject.CompareTag("Floor")){
-            canJump = false;
-            UnityEngine.Debug.Log("Non ho toccato il floor");
-        }
-           
-    }*/
 }

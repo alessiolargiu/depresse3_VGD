@@ -46,6 +46,7 @@ public class PlayerController : MonoBehaviour {
         float verticalMovement = Input.GetAxis("Vertical");
         float jump = Input.GetAxis("Jump"); //adesso non ci serve
         bool shift = Input.GetKey(KeyCode.LeftShift);
+        bool space = Input.GetKey(KeyCode.Space);
 
         //roba prima persona
         /*
@@ -113,6 +114,8 @@ public class PlayerController : MonoBehaviour {
             anim.SetFloat("vertical", verticalMovement);
         } else anim.SetFloat("vertical", verticalMovement*0.5f);
         anim.SetFloat("position", horizontalMovement);
+
+        anim.SetBool("isJumping", space);
 
         Debug.Log(shift);
     }
