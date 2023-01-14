@@ -39,6 +39,10 @@ public class NPCFollowPathController : MonoBehaviour {
 
     private void Update(){
 
+
+        
+
+
         ray = new Ray(transform.position + new Vector3(0f, 1.5f, 0f) , transform.forward);
         Debug.DrawRay(ray.origin, ray.direction * 10);
 
@@ -53,7 +57,6 @@ public class NPCFollowPathController : MonoBehaviour {
 
 
         //gravita
-        Vector3 move;
         velocity.y += gravity*Time.deltaTime;
         controller.Move(velocity * Time.deltaTime);
 
@@ -69,6 +72,8 @@ public class NPCFollowPathController : MonoBehaviour {
 
 
 
+        
+
         // Determine which direction to rotate towards
         Vector3 targetDirection = new Vector3(target.position.x - transform.position.x, 0f, target.position.z - transform.position.z);
         
@@ -83,31 +88,40 @@ public class NPCFollowPathController : MonoBehaviour {
 
 
         // Draw a ray pointing at our target in
-        Ray targetRay = new Ray(transform.position + new Vector3(0f, 2f, 0f) , transform.forward);
+        Ray targetRay = new Ray(transform.position + new Vector3(0f, 1.2f, 0f) , transform.forward);
         Debug.DrawRay(targetRay.origin, targetRay.direction * 10, Color.red);
 
         // Calculate a rotation a step closer to the target and applies rotation to this object
         transform.rotation = Quaternion.LookRotation(newDirection);
 
-
+        float distance;
         anim.SetFloat("vertical", verticalMovement);
         anim.SetFloat("position", horizontalMovement);
-
+        Vector3 moveToJump;
         RaycastHit hit;
         if (Physics.Raycast(targetRay, out hit)){
             var hitPoint = hit.point;
+            distance = Vector3.Distance(hitPoint, transform.position);
+
+            if(distance<distanzaMinima){
+            if (hit.collider!= null && hit.collider.gameObject.tag!=target.gameObject.tag){
+                if(hit.collider.bounds.size.y<=3.6f){
+                            velocity.y=10;
+                            controller.Move(velocity * Time.deltaTime);
+                    }else ver = 0f;  
+                } 
+            } else ver = 1f; 
+
+
             if (hit.collider!= null && hit.collider.gameObject.tag==target.gameObject.tag){
-                var distance = Vector3.Distance(hitPoint, transform.position);
+                distance = Vector3.Distance(hitPoint, transform.position);
                 if(distance<distanzaMinima){ver = 0;}  else if(distance<distanzaMinima+1){ver = 0.5f;}  else ver = 1f;
                 UnityEngine.Debug.Log("distance " + distance);
             }
 
-            if (hit.collider!= null && hit.collider.gameObject.tag!=target.gameObject.tag){
-                var distance = Vector3.Distance(hitPoint, transform.position);
-                if(distance<distanzaMinima){anim.SetBool("isJumping", true); ver=1f;}
-            } else anim.SetBool("isJumping", false);;
-
-
+            UnityEngine.Debug.Log("sizey" + hit.collider.bounds.size.y);
+            
+            }
         }
 
 
@@ -136,7 +150,7 @@ public class NPCFollowPathController : MonoBehaviour {
                 }
             }
         */
-    }
+    
 
     void FixedUpdate(){
     }

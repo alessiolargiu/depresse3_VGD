@@ -30,10 +30,14 @@ public class FirstPersonController : MonoBehaviour {
     
     //Flag di controllo
     private bool canJump = false;
+
+
     
+    int counter = 0;
     // Start is called before the first frame update
     void Start()
     {
+        
         controller = GetComponent<CharacterController>();
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
@@ -41,6 +45,9 @@ public class FirstPersonController : MonoBehaviour {
 
     private void Update()
     {
+
+
+
         // Input
         float horizontalMovement = Input.GetAxis("Horizontal");
         float verticalMovement = Input.GetAxis("Vertical");
