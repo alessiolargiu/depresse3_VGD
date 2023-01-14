@@ -64,9 +64,9 @@ public class FirstPersonController : MonoBehaviour {
         }
 
         if(controller.isGrounded){
-            UnityEngine.Debug.Log("isgrounded true");
+            //UnityEngine.Debug.Log("isgrounded true");
             if(jump>0){
-                UnityEngine.Debug.Log("Sto saltando");
+                //UnityEngine.Debug.Log("Sto saltando");
                 velocity.y=jumpForce;
                 controller.Move(velocity * Time.deltaTime);
                 controller.Move(move * Time.deltaTime);

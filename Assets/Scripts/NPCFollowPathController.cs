@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class NPCTestController : MonoBehaviour {
+public class NPCFollowPathController : MonoBehaviour {
 
     //Component utili
     private CharacterController controller;
@@ -20,16 +20,16 @@ public class NPCTestController : MonoBehaviour {
     public Animator anim;
     private float speedAnim;
 
-
-
-
     public float hor=0f;
     public float ver=0f;
     public float rotX=0f;
     public float rotY=0f;
-
-
     private Ray ray;
+
+    public float distanzaMinima = 4f;
+
+
+    public Transform target;
     
     // Start is called before the first frame update
     void Start()
@@ -67,19 +67,54 @@ public class NPCTestController : MonoBehaviour {
 
         transform.Rotate(Vector3.up * mouseX);
 
-        if(shift){
-            anim.SetFloat("vertical", verticalMovement);
-        } else anim.SetFloat("vertical", verticalMovement*0.5f);
+
+
+        // Determine which direction to rotate towards
+        Vector3 targetDirection = new Vector3(target.position.x - transform.position.x, 0f, target.position.z - transform.position.z);
+        
+        UnityEngine.Debug.Log("target direction" + targetDirection);
+
+        // The step size is equal to speed times frame time.
+        float singleStep = movementSpeed*10 * Time.deltaTime;
+
+        // Rotate the forward vector towards the target direction by one step
+        Vector3 newDirection = Vector3.RotateTowards(transform.forward, targetDirection, singleStep, 0.0f);
+        UnityEngine.Debug.Log("new direction" + targetDirection);
+
+
+        // Draw a ray pointing at our target in
+        Ray targetRay = new Ray(transform.position + new Vector3(0f, 2f, 0f) , transform.forward);
+        Debug.DrawRay(targetRay.origin, targetRay.direction * 10, Color.red);
+
+        // Calculate a rotation a step closer to the target and applies rotation to this object
+        transform.rotation = Quaternion.LookRotation(newDirection);
+
+
+        anim.SetFloat("vertical", verticalMovement);
         anim.SetFloat("position", horizontalMovement);
 
-        //Debug.Log(shift);
-        
+        RaycastHit hit;
+        if (Physics.Raycast(targetRay, out hit)){
+            var hitPoint = hit.point;
+            if (hit.collider!= null && hit.collider.gameObject.tag==target.gameObject.tag){
+                var distance = Vector3.Distance(hitPoint, transform.position);
+                if(distance<distanzaMinima){ver = 0;}  else if(distance<distanzaMinima+1){ver = 0.5f;}  else ver = 1f;
+                UnityEngine.Debug.Log("distance " + distance);
+            }
 
-        if(UnityEngine.Random.value < 0.0005){
-            transform.Rotate(0f, 90f, 0f);
+            if (hit.collider!= null && hit.collider.gameObject.tag!=target.gameObject.tag){
+                var distance = Vector3.Distance(hitPoint, transform.position);
+                if(distance<distanzaMinima){anim.SetBool("isJumping", true); ver=1f;}
+            } else anim.SetBool("isJumping", false);;
+
+
         }
 
 
+
+
+
+        /*
         RaycastHit hit;
         if (Physics.Raycast(ray, out hit)){
             var hitPoint = hit.point;
@@ -100,6 +135,7 @@ public class NPCTestController : MonoBehaviour {
                     }
                 }
             }
+        */
     }
 
     void FixedUpdate(){
