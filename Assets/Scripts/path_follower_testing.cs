@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class path_follower_testing : MonoBehaviour {
+public class NPCFollowPathController : MonoBehaviour {
 
     //Component utili
     private CharacterController controller;
@@ -39,22 +39,10 @@ public class path_follower_testing : MonoBehaviour {
 
     private void Update(){
 
-
-        
-
-
-        ray = new Ray(transform.position + new Vector3(0f, 1.5f, 0f) , transform.forward);
-        Debug.DrawRay(ray.origin, ray.direction * 10);
-
-        
-
         // Input
         float horizontalMovement = hor;
         float verticalMovement = ver;
-        //float jump = Input.GetAxis("Jump"); //adesso non ci serve
         bool shift = false;
-
-
 
         //gravita
         velocity.y += gravity*Time.deltaTime;
@@ -70,9 +58,6 @@ public class path_follower_testing : MonoBehaviour {
 
         transform.Rotate(Vector3.up * mouseX);
 
-
-
-        
 
         // Determine which direction to rotate towards
         Vector3 targetDirection = new Vector3(target.position.x - transform.position.x, 0f, target.position.z - transform.position.z);
@@ -97,59 +82,56 @@ public class path_follower_testing : MonoBehaviour {
         float distance;
         anim.SetFloat("vertical", verticalMovement);
         anim.SetFloat("position", horizontalMovement);
-        Vector3 moveToJump;
+        
+        //Controllo degli ostacoli nel cammino dell'NPC
         RaycastHit hit;
         if (Physics.Raycast(targetRay, out hit)){
             var hitPoint = hit.point;
             distance = Vector3.Distance(hitPoint, transform.position);
+            
 
+            //Faccio tutti i dovuti controlli quando l'NPC è abbastanza vicino a qualcosa
             if(distance<distanzaMinima){
+
+            //Ostacolo alto, salto
             if (hit.collider!= null && hit.collider.gameObject.tag!=target.gameObject.tag){
-                if(hit.collider.bounds.size.y<=3.6f){
+
+                //Mi genero un ray che parte dall'npc
+                ray = new Ray(transform.position + new Vector3(0f, 2f, 0f) , transform.forward);
+                Debug.DrawRay(ray.origin, ray.direction * 10);
+
+                RaycastHit newRayHit;
+                if(Physics.Raycast(ray, out newRayHit)){
+                    var newRatHitPoint = newRayHit.point;
+                    var newDist = Vector3.Distance(newRatHitPoint, transform.position); 
+                    if(newDist<distanzaMinima){
+                    }
+                } else {
+                        velocity.y=10;
+                        controller.Move(velocity * Time.deltaTime);
+                }
+
+
+                /*if(hit.collider.bounds.size.y<=3.6f){
                             velocity.y=10;
                             controller.Move(velocity * Time.deltaTime);
-                    }else ver = 0f;  
+                    }else ver = 0f;  */
                 } 
             } else ver = 1f; 
 
-
+            //L'ostacolo è il target
             if (hit.collider!= null && hit.collider.gameObject.tag==target.gameObject.tag){
                 distance = Vector3.Distance(hitPoint, transform.position);
                 if(distance<distanzaMinima){ver = 0;}  else if(distance<distanzaMinima+1){ver = 0.5f;}  else ver = 1f;
-                UnityEngine.Debug.Log("distance " + distance);
+                //UnityEngine.Debug.Log("distance " + distance);
             }
 
-            UnityEngine.Debug.Log("sizey" + hit.collider.bounds.size.y);
+            //UnityEngine.Debug.Log("sizey" + hit.collider.bounds.size.y);
             
             }
         }
 
 
-
-
-
-        /*
-        RaycastHit hit;
-        if (Physics.Raycast(ray, out hit)){
-            var hitPoint = hit.point;
-            if (hit.collider != null){
-                if(hit.collider.gameObject.tag == "Floor"){
-                    var distance = Vector3.Distance(hitPoint, transform.position);
-                    if(distance<=2.5){
-                        if(randomBoolean()){
-                            transform.Rotate(0f, -90f, 0f);
-                        } else transform.Rotate(0f, 90f, 0f);
-                    } else {
-                        //ver=0.5f;
-                        //rotX = 0.0f;
-                        }
-                    //UnityEngine.Debug.Log("tocco qualcosa a distanza " + distance);
-                }   else {
-                    //ver=0.5f;
-                    }
-                }
-            }
-        */
     
 
     void FixedUpdate(){
@@ -158,11 +140,8 @@ public class path_follower_testing : MonoBehaviour {
     private void OnTriggerEnter(Collider other){
     }
 
-    private void OnControllerColliderHit(ControllerColliderHit collision){   
-       /* if (collision.gameObject.tag == "Wall"){
-            UnityEngine.Debug.Log("tocco qualcosa");
-        } UnityEngine.Debug.Log("non tocco niente");
-    */}
+    private void OnControllerColliderHit(ControllerColliderHit collision){  
+    }
 
 
     private bool randomBoolean (){
@@ -170,7 +149,7 @@ public class path_follower_testing : MonoBehaviour {
         return true;
     }
         return false;
-}
+    }
 
 
     
