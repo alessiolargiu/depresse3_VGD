@@ -102,7 +102,7 @@ public class path_follower_testing : MonoBehaviour {
         if (Physics.Raycast(targetRay, out hit)){
             var hitPoint = hit.point;
             distance = Vector3.Distance(hitPoint, transform.position);
-
+            UnityEngine.Debug.Log("Sono in questa condizione");
             if(distance<distanzaMinima){
             if (hit.collider!= null && hit.collider.gameObject.tag!=target.gameObject.tag){
                 if(hit.collider.bounds.size.y<=3.6f){
