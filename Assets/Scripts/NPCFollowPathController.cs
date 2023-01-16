@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(AudioSource))]
 public class path_follower_testing : MonoBehaviour {
 
     //Component utili
@@ -28,6 +29,8 @@ public class path_follower_testing : MonoBehaviour {
 
     public float distanzaMinima = 4f;
 
+    
+    AudioSource audioData;
 
     public Transform target;
     
@@ -35,11 +38,13 @@ public class path_follower_testing : MonoBehaviour {
     void Start()
     {
         controller = GetComponent<CharacterController>();
+        audioData = GetComponent<AudioSource>();
+
     }
 
     private void Update(){
 
-
+        
         
 
 
@@ -115,7 +120,10 @@ public class path_follower_testing : MonoBehaviour {
 
             if (hit.collider!= null && hit.collider.gameObject.tag==target.gameObject.tag){
                 distance = Vector3.Distance(hitPoint, transform.position);
-                if(distance<distanzaMinima){ver = 0;}  else if(distance<distanzaMinima+1){ver = 0.5f;}  else ver = 1f;
+                if(distance<distanzaMinima){
+                    ver = 0;
+                    
+                }  else if(distance<distanzaMinima+1){ver = 0.5f;}  else ver = 1f;
                 UnityEngine.Debug.Log("distance " + distance);
             }
 

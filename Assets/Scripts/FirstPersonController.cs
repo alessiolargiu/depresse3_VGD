@@ -6,6 +6,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
+[RequireComponent(typeof(AudioSource))]
 public class FirstPersonController : MonoBehaviour {
 
     //Component utili
@@ -31,7 +33,7 @@ public class FirstPersonController : MonoBehaviour {
     //Flag di controllo
     private bool canJump = false;
 
-
+    AudioSource audioData;
     
     int counter = 0;
     // Start is called before the first frame update
@@ -39,6 +41,8 @@ public class FirstPersonController : MonoBehaviour {
     {
         
         controller = GetComponent<CharacterController>();
+        audioData = GetComponent<AudioSource>();
+
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
     }
@@ -47,6 +51,12 @@ public class FirstPersonController : MonoBehaviour {
     {
 
 
+
+        if(Input.GetKey(KeyCode.Space)){
+            //audioData.Play();
+            AudioSource.PlayClipAtPoint(audioData,transform.position);
+            UnityEngine.Debug.Log("started");
+        }
 
         // Input
         float horizontalMovement = Input.GetAxis("Horizontal");
