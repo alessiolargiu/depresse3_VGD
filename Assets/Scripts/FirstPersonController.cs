@@ -54,7 +54,7 @@ public class FirstPersonController : MonoBehaviour {
 
         if(Input.GetKey(KeyCode.Space)){
             //audioData.Play();
-            AudioSource.PlayClipAtPoint(audioData,transform.position);
+           // AudioSource.PlayClipAtPoint(audioData,transform.position);
             UnityEngine.Debug.Log("started");
         }
 
