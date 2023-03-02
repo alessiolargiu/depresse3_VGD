@@ -47,13 +47,14 @@ public class FirstPersonController : MonoBehaviour {
         Cursor.visible = false;
     }
 
-    private void Update(){
+    private void Update()
+    {
 
 
 
         if(Input.GetKey(KeyCode.Space)){
             //audioData.Play();
-            //AudioSource.PlayClipAtPoint(audioData,transform.position);
+            AudioSource.PlayClipAtPoint(audioData,transform.position);
             UnityEngine.Debug.Log("started");
         }
 

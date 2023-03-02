@@ -120,5 +120,8 @@ public class NPCTestController : MonoBehaviour {
         return true;
     }
         return false;
-}    
+}
+
+
+    
 }
