@@ -1,6 +1,3 @@
-
-
-
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -26,6 +23,10 @@ public class FirstPersonController : MonoBehaviour {
     private float rotation = 0f;
     public Animator anim;
 
+    //parametri vita del player
+    public HealthBar healthBar;
+    private int maxHealth = 100;
+    private int currentHealth;
     
     //Parametri partita
     private int score = 0;
@@ -45,12 +46,20 @@ public class FirstPersonController : MonoBehaviour {
 
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
+
+        //imposto la vita iniziale
+        currentHealth = maxHealth;
+        healthBar.SetMaxHealth(maxHealth);
     }
 
     private void Update()
     {
 
-
+        //PROVA BARRA VITA
+        if (Input.GetKeyDown(KeyCode.H))
+        {
+            TakeDamage(20);
+        }
 
         if(Input.GetKey(KeyCode.Space)){
             //audioData.Play();
@@ -105,7 +114,13 @@ public class FirstPersonController : MonoBehaviour {
 
         
     }
-    
+
+    private void TakeDamage(int damage)
+    {
+        currentHealth -= damage;
+        healthBar.SetHealth(currentHealth);
+    }
+
     private void OnTriggerEnter(Collider other)
     {
 
