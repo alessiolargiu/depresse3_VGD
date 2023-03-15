@@ -60,4 +60,9 @@ public class PauseMenu : MonoBehaviour
         SceneManager.LoadScene("MainMenuScene");
     }
 
+    public static void setGameIsPaused(bool pause)
+    {
+        gameIsPaused = pause;
+    }
+
 }

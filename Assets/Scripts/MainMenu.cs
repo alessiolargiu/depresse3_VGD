@@ -7,14 +7,22 @@ public class MainMenu : MonoBehaviour
 {
     public void NewGame()
     {
-        SceneManager.LoadScene("TestAndre");
+        Time.timeScale = 1f;
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
+        PauseMenu.setGameIsPaused(false);
         Debug.Log("Da modificare");
+        SceneManager.LoadScene("TestAndre");
     }
 
     public void LoadGame()
     {
-        SceneManager.LoadScene("TestAndre");
+        Time.timeScale = 1f;
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
+        PauseMenu.setGameIsPaused(false);
         Debug.Log("Da modificare");
+        SceneManager.LoadScene("TestAndre");
     }
 
     public void Options()
