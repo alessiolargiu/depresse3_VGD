@@ -135,7 +135,7 @@ public class FirstPersonController : MonoBehaviour {
     {
         
         if(other.gameObject.CompareTag("Cutscene")){
-            CutSceneScript.cutsceneStart();
+            StartCoroutine(CutSceneScript.cutsceneStart());
         }
     }
 
