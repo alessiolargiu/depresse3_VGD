@@ -27,6 +27,9 @@ public class FirstPersonController : MonoBehaviour {
     public HealthBar healthBar;
     private int maxHealth = 100;
     private int currentHealth;
+
+    //rifermineto per l'inventario
+    private Inventory inventory;
     
     //Parametri partita
     private int score = 0;
@@ -51,6 +54,13 @@ public class FirstPersonController : MonoBehaviour {
         currentHealth = maxHealth;
         healthBar.SetMaxHealth(maxHealth);
     }
+
+
+    private void Awake()
+    {
+        inventory = new Inventory();
+    }
+
 
     private void Update()
     {

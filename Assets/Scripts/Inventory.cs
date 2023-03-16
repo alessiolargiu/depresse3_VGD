@@ -1,120 +1,27 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using UnityEngine;
-using UnityEngine.UI;
 
-public class Inventory : MonoBehaviour
+public class Inventory
 {
 
-    public GameObject helmetBG;
-    public static bool helmetInvIsShowing = false;
-    public GameObject chestBG;
-    public static bool chestInvIsShowing = false;
-    public GameObject shoesBG;
-    public static bool shoesInvIsShowing = false;
-    public GameObject swordBG;
-    public static bool swordInvIsShowing = false;
-    public GameObject shieldBG;
-    public static bool shieldInvIsShowing = false;
-    public GameObject potionBG;
-    public static bool potionInvIsShowing = false;
+    private List<Item> weapons;
+    private List<Item> shields;
+    private List<Item> potions;
+    private List<Item> helmets;
+    private List<Item> chests;
+    private List<Item> shoes;
 
-    public void ShowInventory(GameObject button)
+
+    public Inventory()
     {
-        switch (button.name)
-        {
-            case "Helmet":
-                if (helmetInvIsShowing)
-                {
-                    helmetBG.SetActive(false);
-                }
-                else
-                {
-                    helmetBG.SetActive(true);
-                    chestBG.SetActive(false);
-                    shoesBG.SetActive(false);
-                    swordBG.SetActive(false);
-                    shieldBG.SetActive(false);
-                    potionBG.SetActive(false);
-                }
-                break;
-            case "Chest":
-                if (helmetInvIsShowing)
-                {
-                    chestBG.SetActive(false);
-                }
-                else
-                {
-                    helmetBG.SetActive(false);
-                    chestBG.SetActive(true);
-                    shoesBG.SetActive(false);
-                    swordBG.SetActive(false);
-                    shieldBG.SetActive(false);
-                    potionBG.SetActive(false);
-                }
-                break;
-            case "Shoes":
-                if (helmetInvIsShowing)
-                {
-                    shoesBG.SetActive(false);
-                }
-                else
-                {
-                    helmetBG.SetActive(false);
-                    chestBG.SetActive(false);
-                    shoesBG.SetActive(true);
-                    swordBG.SetActive(false);
-                    shieldBG.SetActive(false);
-                    potionBG.SetActive(false);
-                }
-                break;
-            case "Sword":
-                if (helmetInvIsShowing)
-                {
-                    swordBG.SetActive(false);
-                }
-                else
-                {
-                    helmetBG.SetActive(false);
-                    chestBG.SetActive(false);
-                    shoesBG.SetActive(false);
-                    swordBG.SetActive(true);
-                    shieldBG.SetActive(false);
-                    potionBG.SetActive(false);
-                }
-                break;
-            case "Shield":
-                if (helmetInvIsShowing)
-                {
-                    shieldBG.SetActive(false);
-                }
-                else
-                {
-                    helmetBG.SetActive(false);
-                    chestBG.SetActive(false);
-                    shoesBG.SetActive(false);
-                    swordBG.SetActive(false);
-                    shieldBG.SetActive(true);
-                    potionBG.SetActive(false);
-                }
-                break;
-            case "Potion":
-                if (helmetInvIsShowing)
-                {
-                    potionBG.SetActive(false);
-                }
-                else
-                {
-                    helmetBG.SetActive(false);
-                    chestBG.SetActive(false);
-                    shoesBG.SetActive(false);
-                    swordBG.SetActive(false);
-                    shieldBG.SetActive(false);
-                    potionBG.SetActive(true);
-                }
-                break;
-        }
-
+        weapons = new List<Item>();
+        shields = new List<Item>();
+        potions = new List<Item>();
+        helmets = new List<Item>();
+        chests = new List<Item>();
+        shoes = new List<Item>();
     }
 
 }
