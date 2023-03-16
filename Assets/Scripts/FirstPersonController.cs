@@ -123,7 +123,10 @@ public class FirstPersonController : MonoBehaviour {
 
     private void OnTriggerEnter(Collider other)
     {
-
+        
+        if(other.gameObject.CompareTag("Cutscene")){
+            CutSceneScript.cutsceneStart();
+        }
     }
 
     private void OnControllerColliderHit(ControllerColliderHit collision){   
