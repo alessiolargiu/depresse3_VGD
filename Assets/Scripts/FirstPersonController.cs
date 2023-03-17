@@ -30,6 +30,12 @@ public class FirstPersonController : MonoBehaviour {
 
     //rifermineto per l'inventario
     private Inventory inventory;
+    public HUDInventoryWeapon hudInvWeapon;
+    public HUDInventoryShield hudInvShield;
+    public HUDInventoryPotion hudInvPotion;
+    public HUDInventoryHelmet hudInvHelmet;
+    public HUDInventoryChest hudInvChest;
+    public HUDInventoryShoe hudInvShoe;
     
     //Parametri partita
     private int score = 0;
@@ -59,6 +65,12 @@ public class FirstPersonController : MonoBehaviour {
     private void Awake()
     {
         inventory = new Inventory();
+        hudInvWeapon.SetInventory(inventory);
+        hudInvShield.SetInventory(inventory.GetShields());
+        hudInvPotion.SetInventory(inventory.GetPotions());
+        hudInvHelmet.SetInventory(inventory.GetHelmets());
+        hudInvChest.SetInventory(inventory.GetChests());
+        hudInvShoe.SetInventory(inventory.GetShoes());
     }
 
 
@@ -131,13 +143,19 @@ public class FirstPersonController : MonoBehaviour {
         healthBar.SetHealth(currentHealth);
     }
 
+    public Inventory GetInventory()
+    {
+        return inventory;
+    }
+
+    /*
     private void OnTriggerEnter(Collider other)
     {
         
         if(other.gameObject.CompareTag("Cutscene")){
             StartCoroutine(CutSceneScript.cutsceneStart());
         }
-    }
+    }*/
 
     private void OnControllerColliderHit(ControllerColliderHit collision){   
         //UnityEngine.Debug.Log("Ho toccato qualcosa");

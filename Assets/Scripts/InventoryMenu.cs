@@ -68,7 +68,7 @@ public class InventoryMenu : MonoBehaviour
                     potionBG.SetActive(false);
                 }
                 break;
-            case "Sword":
+            case "Weapon":
                 if (helmetInvIsShowing)
                 {
                     swordBG.SetActive(false);
