@@ -7,7 +7,8 @@ public enum cameras {
     side1,
     side2,
     back1,
-    back2
+    back2,
+    zoom
 }
 public class CutSceneScript : MonoBehaviour
 {
@@ -16,14 +17,12 @@ public class CutSceneScript : MonoBehaviour
     public static GameObject HUD;
     public static GameObject cutscene;
 
-    public static AudioSource char1;
-    public static AudioSource char2;
+    public static AudioSource soundSource;
     public static AudioClip [] audioClips;
     public static cameras [] cameraPosition;
     public static GameObject [] camerasAvailable;
 
-    public AudioSource char1Get;
-    public AudioSource char2Get;
+    public AudioSource soundSourceGet;
     public AudioClip [] audioClipsGet;
     public cameras [] cameraPositionGet;
     public GameObject [] camerasAvailableGet;
@@ -39,8 +38,7 @@ public class CutSceneScript : MonoBehaviour
         HUD = HUDGet;
         cutscene = cutsceneGet;
         camerasAvailable = camerasAvailableGet;
-        char1 = char1Get;
-        char2 = char2Get;
+        soundSource = soundSourceGet;
         audioClips = audioClipsGet;
         cameraPosition = cameraPositionGet;
     }
@@ -51,7 +49,9 @@ public class CutSceneScript : MonoBehaviour
         
     } 
 
-    public static IEnumerator cutsceneStart(){
+    public static IEnumerator cutsceneStart(System.Action<bool> callback){
+
+        
         Debug.Log("stronxo");
         player.SetActive(false);
         HUD.SetActive(false);
@@ -64,16 +64,15 @@ public class CutSceneScript : MonoBehaviour
         }*/
 
         
-                yield return null;
-        
+        int i=0;
+
+        Debug.Log("IL VALORE DI AUDIOCLIPS è " +audioClips.Length);
+
+        while(i<audioClips.Length){
 
 
-
-        for(int i=0; i<audioClips.Length; i++){
-
-            
-            char1.clip = audioClips[i];
-            char1.Play();
+            soundSource.clip = audioClips[i];
+            soundSource.Play();
             Debug.Log("IL VALORE DI I è  : " + i);
 
 
@@ -82,40 +81,21 @@ public class CutSceneScript : MonoBehaviour
                     camerasAvailable[j].SetActive(true);
                 } else camerasAvailable[j].SetActive(false);
             }
-            /*switch((int) cameraPosition[i]){
-                case 0:
-                    side.SetActive(true);
-                    side2.SetActive(false);
-                    back.SetActive(false);
-                    back2.SetActive(false);
-                    break;
-                case 1:
-                    side2.SetActive(true);
-                    side.SetActive(false);
-                    back.SetActive(false);
-                    back2.SetActive(false);
-                    break;
-                case 2:
-                    back.SetActive(true);
-                    side2.SetActive(false);
-                    side.SetActive(false);
-                    back2.SetActive(false);
-                    break;
-                case 3:
-                    back2.SetActive(true);
-                    side2.SetActive(false);
-                    back.SetActive(false);
-                    side.SetActive(false);
-                    break;      
-            }*/
-            yield return new WaitForSeconds(audioClips[i].length);
-            /*
-            while (char1.isPlaying){
+
+            while (soundSource.isPlaying){
                 yield return null;
-            }*/
+            }
+
+            i++;
             
 
         }
+        callback(true);
+        player.SetActive(true);
+        HUD.SetActive(true);
+        cutscene.SetActive(false);
+
+        //yield return "Finito";
 
         
     }

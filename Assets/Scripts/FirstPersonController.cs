@@ -6,7 +6,11 @@ using UnityEngine;
 
 [RequireComponent(typeof(AudioSource))]
 public class FirstPersonController : MonoBehaviour {
+    
 
+    
+
+    public bool isActive = true;
     //Component utili
     private CharacterController controller;
     //public List<TextMeshProUGUI> textScore;
@@ -76,7 +80,7 @@ public class FirstPersonController : MonoBehaviour {
 
     private void Update()
     {
-
+        if(isActive){
         //PROVA BARRA VITA
         if (Input.GetKeyDown(KeyCode.H))
         {
@@ -134,13 +138,17 @@ public class FirstPersonController : MonoBehaviour {
         cameraTransform.localRotation = Quaternion.Euler(rotation, 0f, 0f);
         transform.Rotate(Vector3.up * mouseX);
 
+
+        }
         
     }
 
     private void TakeDamage(int damage)
     {
+        if(isActive){
         currentHealth -= damage;
         healthBar.SetHealth(currentHealth);
+        }
     }
 
     public Inventory GetInventory()
@@ -153,7 +161,10 @@ public class FirstPersonController : MonoBehaviour {
     {
         
         if(other.gameObject.CompareTag("Cutscene")){
-            StartCoroutine(CutSceneScript.cutsceneStart());
+            isActive=false;
+            StartCoroutine(CutSceneScript.cutsceneStart((paolino) => { if(paolino==true){Debug.Log("cacca"); isActive=true;} }));
+
+            //CutSceneScript.cutsceneStart();
         }
     }*/
 
