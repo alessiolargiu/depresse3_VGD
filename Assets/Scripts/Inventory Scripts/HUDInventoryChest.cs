@@ -1,19 +1,26 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class HUDInventoryChest : MonoBehaviour
 {
-    
-    private List<Armor> chests;
-    public Transform itemSlotContainer;
-    public Transform itemSlot;
-    public Sprite itemSprite;
 
-    public void SetInventory(List<Armor> chests)
+    private Inventory inventory;
+    public GameObject invObject1;
+    public Image objectImage1;
+    public TMP_Text objectText1;
+    public GameObject invObject2;
+    public Image objectImage2;
+    public TMP_Text objectText2;
+    public GameObject invObject3;
+    public Image objectImage3;
+    public TMP_Text objectText3;
+
+    public void SetInventory(Inventory inventory)
     {
-        this.chests = chests;
+        this.inventory = inventory;
         RefreshInventoryItems();
     }
 
@@ -21,13 +28,26 @@ public class HUDInventoryChest : MonoBehaviour
     {
 
         int x = 90, y = 0;
-        foreach (Armor chest in chests)
+        foreach (Armor chest in inventory.GetChests())
         {
-            RectTransform itemSlotRectTransform =  Instantiate(itemSlot, itemSlotContainer).GetComponent<RectTransform>();
-            itemSlotRectTransform.gameObject.SetActive(true);
-            itemSlotRectTransform.anchoredPosition = new Vector2(x, y);
-            itemSprite = chest.GetSprite();
-            x += 152;
+            switch (chest.GetIndex())
+            {
+                case 0:
+                    invObject1.SetActive(true);
+                    objectImage1.sprite = chest.GetSprite();
+                    objectText1.text = chest.GetName();
+                    break;
+                case 1:
+                    invObject2.SetActive(true);
+                    objectImage2.sprite = chest.GetSprite();
+                    objectText2.text = chest.GetName();
+                    break;
+                case 2:
+                    invObject3.SetActive(true);
+                    objectImage3.sprite = chest.GetSprite();
+                    objectText3.text = chest.GetName();
+                    break;
+            }
         }
     }
 

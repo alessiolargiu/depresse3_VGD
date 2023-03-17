@@ -5,15 +5,25 @@ using UnityEngine.UI;
 
 public class Potion {
 
-    private string name { get; set; }
-    private Sprite sprite { get; set; }
-    private int cureValue { get; set; }
+    public static int staticIndex;
+
+    private int index;
+    private string name;
+    private Sprite sprite;
+    private int cureValue;
 
     public Potion(string name, Sprite sprite, int cureValue)
     {
+        index = staticIndex;
+        staticIndex++;
         this.name = name;
         this.sprite = sprite;
         this.cureValue = cureValue;
+    }
+
+    public int GetIndex()
+    {
+        return index;
     }
 
     public string GetName()

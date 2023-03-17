@@ -5,16 +5,26 @@ using UnityEngine.UI;
 
 public class Weapon
 {
+    public static int staticIndex;
+
+    private int index;
     private int damage;
     private int stamina;
     private string name;
     private Sprite sprite;
 
     public Weapon(int damage, int stamina, string name, Sprite sprite) {
+        index = staticIndex;
+        staticIndex++;
         this.damage = damage;
         this.stamina = stamina;
         this.name = name;
         this.sprite = sprite;
+    }
+
+    public int GetIndex()
+    {
+        return index;
     }
 
     public int GetDamage()

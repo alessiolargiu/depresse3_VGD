@@ -5,6 +5,9 @@ using UnityEngine.UI;
 
 public class Armor {
 
+    public static int staticIndex;
+
+    private int index;
     private string name;
     private Sprite sprite;
     private int stamina;
@@ -12,10 +15,17 @@ public class Armor {
 
     public Armor(string name, Sprite sprite, int stamina, float armorValue)
     {
+        index = staticIndex;
+        staticIndex++;
         this.name = name;
         this.sprite = sprite;
         this.stamina = stamina;
         this.armorValue = armorValue;
+    }
+
+    public int GetIndex()
+    {
+        return index;
     }
 
     public string GetName()

@@ -5,15 +5,26 @@ using UnityEngine.UI;
 
 public class Shield
 {
-    private string name { get; set; }
-    private Sprite sprite { get; set; }
-    private float shieldValue { get; set; }
+
+    public static int staticIndex;
+
+    private int index;
+    private string name;
+    private Sprite sprite;
+    private float shieldValue;
 
     public Shield(string name, Sprite sprite, float shieldValue)
     {
+        index = staticIndex;
+        staticIndex++;
         this.name = name;
         this.sprite = sprite;
         this.shieldValue = shieldValue;
+    }
+
+    public int GetIndex()
+    {
+        return index;
     }
 
     public string GetName()

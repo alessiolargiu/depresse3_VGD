@@ -66,11 +66,11 @@ public class FirstPersonController : MonoBehaviour {
     {
         inventory = new Inventory();
         hudInvWeapon.SetInventory(inventory);
-        hudInvShield.SetInventory(inventory.GetShields());
-        hudInvPotion.SetInventory(inventory.GetPotions());
-        hudInvHelmet.SetInventory(inventory.GetHelmets());
-        hudInvChest.SetInventory(inventory.GetChests());
-        hudInvShoe.SetInventory(inventory.GetShoes());
+        hudInvShield.SetInventory(inventory);
+        hudInvPotion.SetInventory(inventory);
+        hudInvHelmet.SetInventory(inventory);
+        hudInvChest.SetInventory(inventory);
+        hudInvShoe.SetInventory(inventory);
     }
 
 

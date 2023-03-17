@@ -1,19 +1,26 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class HUDInventoryShoe : MonoBehaviour
 {
-    
-    private List<Armor> shoes; 
-    public Transform itemSlotContainer;
-    public Transform itemSlot;
-    public Sprite itemSprite;
 
-    public void SetInventory(List<Armor> shoes)
+    private Inventory inventory;
+    public GameObject invObject1;
+    public Image objectImage1;
+    public TMP_Text objectText1;
+    public GameObject invObject2;
+    public Image objectImage2;
+    public TMP_Text objectText2;
+    public GameObject invObject3;
+    public Image objectImage3;
+    public TMP_Text objectText3;
+
+    public void SetInventory(Inventory inventory)
     {
-        this.shoes = shoes;
+        this.inventory = inventory;
         RefreshInventoryItems();
     }
 
@@ -21,13 +28,26 @@ public class HUDInventoryShoe : MonoBehaviour
     {
 
         int x = 90, y = 0;
-        foreach (Armor shoe in shoes)
+        foreach (Armor shoe in inventory.GetShoes())
         {
-            RectTransform itemSlotRectTransform =  Instantiate(itemSlot, itemSlotContainer).GetComponent<RectTransform>();
-            itemSlotRectTransform.gameObject.SetActive(true);
-            itemSlotRectTransform.anchoredPosition = new Vector2(x, y);
-            itemSprite = shoe.GetSprite();
-            x += 152;
+            switch (shoe.GetIndex())
+            {
+                case 0:
+                    invObject1.SetActive(true);
+                    objectImage1.sprite = shoe.GetSprite();
+                    objectText1.text = shoe.GetName();
+                    break;
+                case 1:
+                    invObject2.SetActive(true);
+                    objectImage2.sprite = shoe.GetSprite();
+                    objectText2.text = shoe.GetName();
+                    break;
+                case 2:
+                    invObject3.SetActive(true);
+                    objectImage3.sprite = shoe.GetSprite();
+                    objectText3.text = shoe.GetName();
+                    break;
+            }
         }
     }
 

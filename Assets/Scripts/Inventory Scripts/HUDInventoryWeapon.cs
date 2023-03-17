@@ -8,16 +8,15 @@ public class HUDInventoryWeapon : MonoBehaviour
 {
     
     private Inventory inventory;
-    private Transform itemSlotContainer;
-    private Transform itemSlot;
-
-
-    private void Awake()
-    {
-        itemSlotContainer = transform.Find("Inv Container");
-        itemSlot = itemSlotContainer.Find("Inv Object");
-
-    }
+    public GameObject invObject1;
+    public Image objectImage1;
+    public TMP_Text objectText1;
+    public GameObject invObject2;
+    public Image objectImage2;
+    public TMP_Text objectText2;
+    public GameObject invObject3;
+    public Image objectImage3;
+    public TMP_Text objectText3;
 
     public void SetInventory(Inventory inventory)
     {
@@ -31,14 +30,23 @@ public class HUDInventoryWeapon : MonoBehaviour
         int x = 90, y = 0;
         foreach (Weapon weapon in inventory.GetWeapons())
         {
-            Debug.Log(weapon.GetName());
-            RectTransform itemSlotRectTransform =  Instantiate(itemSlot, itemSlotContainer).GetComponent<RectTransform>();
-            itemSlotRectTransform.gameObject.SetActive(true);
-            itemSlotRectTransform.anchoredPosition = new Vector2(x, y);
-            itemSlotRectTransform.Find("Equip Image").GetComponent<Image>().sprite = weapon.GetSprite();
-            itemSlot.GetComponent<Image>().sprite = weapon.GetSprite();
-            itemSlot.GetComponentInChildren<TMP_Text>().text = "PROVAA";
-            x += 152;
+            switch (weapon.GetIndex()) {
+                case 0:
+                    invObject1.SetActive(true);
+                    objectImage1.sprite = weapon.GetSprite();
+                    objectText1.text = weapon.GetName();
+                    break;
+                case 1:
+                    invObject2.SetActive(true);
+                    objectImage2.sprite = weapon.GetSprite();
+                    objectText2.text = weapon.GetName();
+                    break;
+                case 2:
+                    invObject3.SetActive(true);
+                    objectImage3.sprite = weapon.GetSprite();
+                    objectText3.text = weapon.GetName();
+                    break;
+            }
         }
     }
 

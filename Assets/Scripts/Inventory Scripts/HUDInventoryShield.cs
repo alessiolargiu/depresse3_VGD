@@ -1,19 +1,26 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class HUDInventoryShield : MonoBehaviour
 {
-    
-    private List<Shield> shields;
-    public Transform itemSlotContainer;
-    public Transform itemSlot;
-    public Sprite itemSprite;
 
-    public void SetInventory(List<Shield> shields)
+    private Inventory inventory;
+    public GameObject invObject1;
+    public Image objectImage1;
+    public TMP_Text objectText1;
+    public GameObject invObject2;
+    public Image objectImage2;
+    public TMP_Text objectText2;
+    public GameObject invObject3;
+    public Image objectImage3;
+    public TMP_Text objectText3;
+
+    public void SetInventory(Inventory inventory)
     {
-        this.shields = shields;
+        this.inventory = inventory;
         RefreshInventoryItems();
     }
 
@@ -21,13 +28,26 @@ public class HUDInventoryShield : MonoBehaviour
     {
 
         int x = 90, y = 0;
-        foreach (Shield shield in shields)
+        foreach (Shield shield in inventory.GetShields())
         {
-            RectTransform itemSlotRectTransform =  Instantiate(itemSlot, itemSlotContainer).GetComponent<RectTransform>();
-            itemSlotRectTransform.gameObject.SetActive(true);
-            itemSlotRectTransform.anchoredPosition = new Vector2(x, y);
-            itemSprite = shield.GetSprite();
-            x += 152;
+            switch (shield.GetIndex())
+            {
+                case 0:
+                    invObject1.SetActive(true);
+                    objectImage1.sprite = shield.GetSprite();
+                    objectText1.text = shield.GetName();
+                    break;
+                case 1:
+                    invObject2.SetActive(true);
+                    objectImage2.sprite = shield.GetSprite();
+                    objectText2.text = shield.GetName();
+                    break;
+                case 2:
+                    invObject3.SetActive(true);
+                    objectImage3.sprite = shield.GetSprite();
+                    objectText3.text = shield.GetName();
+                    break;
+            }
         }
     }
 

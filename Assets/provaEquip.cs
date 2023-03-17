@@ -13,7 +13,7 @@ public class provaEquip : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        prova = new Weapon(20, 10, "Spada", sprite);
+        
     }
 
     // Update is called once per frame
@@ -25,6 +25,7 @@ public class provaEquip : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         this.gameObject.SetActive(false);
+        prova = new Weapon(20, 10, "Spada", sprite);
         Inventory inv = player.GetInventory();
         inv.AddWeapon(prova);
         hudWeapon.SetInventory(inv);
