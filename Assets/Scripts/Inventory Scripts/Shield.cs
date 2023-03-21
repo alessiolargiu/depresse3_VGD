@@ -12,14 +12,16 @@ public class Shield
     private string name;
     private Sprite sprite;
     private float shieldValue;
+    private int stamina;
 
-    public Shield(string name, Sprite sprite, float shieldValue)
+    public Shield(string name, Sprite sprite, float shieldValue, int stamina)
     {
         index = staticIndex;
         staticIndex++;
         this.name = name;
         this.sprite = sprite;
         this.shieldValue = shieldValue;
+        this.stamina = stamina;
     }
 
     public int GetIndex()
@@ -42,6 +44,11 @@ public class Shield
         return shieldValue;
     }
 
+    public int GetStamina()
+    {
+        return stamina;
+    }
+
     public void SetName(string name) {
         this.name = name;
     }
@@ -54,6 +61,11 @@ public class Shield
     public void SetShieldValue(float shieldValue)
     {
         this.shieldValue = shieldValue;
+    }
+
+    public void SetStamina(int stamina)
+    {
+        this.stamina = stamina;
     }
 
 }

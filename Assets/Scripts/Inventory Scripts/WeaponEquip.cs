@@ -2,32 +2,23 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class provaEquip : MonoBehaviour
+public class WeaponEquip : MonoBehaviour
 {
 
     public FirstPersonController player;
-    private Weapon prova;
+    private Weapon weapon;
+    public string nomeEquip;
+    public int damage;
+    public int stamina;
     public Sprite sprite;
     public HUDInventoryWeapon hudWeapon;
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 
     private void OnTriggerEnter(Collider other)
     {
         this.gameObject.SetActive(false);
-        prova = new Weapon(20, 10, "Spada", sprite);
+        weapon = new Weapon(damage, stamina, nomeEquip, sprite);
         Inventory inv = player.GetInventory();
-        inv.AddWeapon(prova);
+        inv.AddWeapon(weapon);
         hudWeapon.SetInventory(inv);
     }
 

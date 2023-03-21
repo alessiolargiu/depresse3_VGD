@@ -30,7 +30,7 @@ public class HUDInventoryChest : MonoBehaviour
         int x = 90, y = 0;
         foreach (Armor chest in inventory.GetChests())
         {
-            switch (chest.GetIndex())
+            switch (chest.GetIndex(Armor.ArmorType.Chest))
             {
                 case 0:
                     invObject1.SetActive(true);

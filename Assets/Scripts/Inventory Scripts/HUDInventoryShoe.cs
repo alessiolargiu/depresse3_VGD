@@ -30,7 +30,7 @@ public class HUDInventoryShoe : MonoBehaviour
         int x = 90, y = 0;
         foreach (Armor shoe in inventory.GetShoes())
         {
-            switch (shoe.GetIndex())
+            switch (shoe.GetIndex(Armor.ArmorType.Shoe))
             {
                 case 0:
                     invObject1.SetActive(true);

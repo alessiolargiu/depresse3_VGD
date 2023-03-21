@@ -5,27 +5,63 @@ using UnityEngine.UI;
 
 public class Armor {
 
-    public static int staticIndex;
+    public enum ArmorType
+    {
+        Helmet,
+        Chest,
+        Shoe
+    }
 
-    private int index;
+    public static int staticIndexHelmet;
+    public static int staticIndexChest;
+    public static int staticIndexShoe;
+
+
+    private int indexHelmet;
+    private int indexChest;
+    private int indexShoe;
     private string name;
     private Sprite sprite;
     private int stamina;
     private float armorValue;
 
-    public Armor(string name, Sprite sprite, int stamina, float armorValue)
+    public Armor(string name, Sprite sprite, int stamina, float armorValue, ArmorType type)
     {
-        index = staticIndex;
-        staticIndex++;
+        switch (type)
+        {
+            case ArmorType.Helmet:
+                indexHelmet = staticIndexHelmet;
+                staticIndexHelmet++;
+                break;
+            case ArmorType.Chest:
+                indexChest = staticIndexChest;
+                staticIndexChest++;
+                break;
+            case ArmorType.Shoe:
+                indexShoe = staticIndexShoe;
+                staticIndexShoe++;
+                break;
+        }
+
         this.name = name;
         this.sprite = sprite;
         this.stamina = stamina;
         this.armorValue = armorValue;
     }
 
-    public int GetIndex()
+    public int GetIndex(ArmorType type)
     {
-        return index;
+        switch (type)
+        {
+            case ArmorType.Helmet:
+                return indexHelmet;
+            case ArmorType.Chest:
+                return indexChest;
+            case ArmorType.Shoe:
+                return indexShoe;
+            default:
+                return -1;
+        }
     }
 
     public string GetName()

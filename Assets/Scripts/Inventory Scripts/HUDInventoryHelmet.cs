@@ -30,7 +30,7 @@ public class HUDInventoryHelmet : MonoBehaviour
         int x = 90, y = 0;
         foreach (Armor helmet in inventory.GetHelmets())
         {
-            switch (helmet.GetIndex())
+            switch (helmet.GetIndex(Armor.ArmorType.Helmet))
             {
                 case 0:
                     invObject1.SetActive(true);
