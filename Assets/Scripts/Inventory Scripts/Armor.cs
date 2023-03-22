@@ -16,6 +16,9 @@ public class Armor {
     public static int staticIndexChest;
     public static int staticIndexShoe;
 
+    public static int currentHelmet;
+    public static int currentChest;
+    public static int currentShoe;
 
     private int indexHelmet;
     private int indexChest;

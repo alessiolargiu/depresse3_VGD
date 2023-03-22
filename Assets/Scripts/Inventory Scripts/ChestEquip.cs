@@ -22,4 +22,9 @@ public class ChestEquip : MonoBehaviour
         hudChest.SetInventory(inv);
     }
 
+    public Armor GetChest()
+    {
+        return chest;
+    }
+
 }

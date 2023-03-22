@@ -22,4 +22,9 @@ public class HelmetEquip : MonoBehaviour
         hudHelmet.SetInventory(inv);
     }
 
+    public Armor GetHelmet()
+    {
+        return helmet;
+    }
+
 }
