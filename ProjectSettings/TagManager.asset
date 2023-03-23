@@ -9,6 +9,7 @@ TagManager:
   - Wall
   - Cutscene
   - NoEquip
+  - pickup
   layers:
   - Default
   - TransparentFX

@@ -41,7 +41,6 @@ public class FirstPersonController : MonoBehaviour {
     public HUDInventoryChest hudInvChest;
     public HUDInventoryShoe hudInvShoe;
 
-    public Vector3 offset;
     private Vector3 newPos;
     private Vector3 velocitydiocane = Vector3.zero;
     
@@ -58,8 +57,15 @@ public class FirstPersonController : MonoBehaviour {
 
     public AudioSource running;
     public AudioSource salto;
+    public AudioClip altsalto;
+    public AudioClip oldsalto;
     public AudioSource walking;
     public AudioSource waaa;
+    public AudioSource pickupsound;
+    public AudioClip picksoundclip;
+    public AudioSource pugno;
+
+    private bool fastJump;
 
 
 
@@ -106,6 +112,7 @@ public class FirstPersonController : MonoBehaviour {
             //UnityEngine.Debug.Log("started");
         }
 
+
         // Input
         float horizontalMovement = Input.GetAxis("Horizontal");
         float verticalMovement = Input.GetAxis("Vertical");
@@ -116,16 +123,27 @@ public class FirstPersonController : MonoBehaviour {
         float mouseX = Input.GetAxis("Mouse X") * mouseSens * Time.deltaTime;
         float mouseY = Input.GetAxis("Mouse Y") * mouseSens * Time.deltaTime;
 
+
+        if(Input.GetKeyUp(KeyCode.F) || Input.GetKeyUp(KeyCode.JoystickButton2) && controller.isGrounded){
+            anim.SetTrigger("punching");
+            if(pugno.isPlaying!=true){pugno.PlayOneShot(pugno.clip, 1f);}
+            
+        } 
+        
+
         //definizione del vettore di movimento;
         Vector3 move = transform.right * horizontalMovement + transform.forward * verticalMovement;
 
-       if(controller.isGrounded==false){
-        running.enabled=false;
-        walking.enabled=false;
-       } 
-        
-        if((shift || Input.GetKey(KeyCode.JoystickButton1)) && verticalMovement>0.5f){
+        if(controller.isGrounded==false){
+            running.enabled=false;
+            walking.enabled=false;
+            //shift=false;
+        } 
 
+        if((shift || Input.GetKey(KeyCode.JoystickButton1)) && (verticalMovement>0.5f || horizontalMovement!=0)){
+            
+            fastJump=true;
+            Debug.Log("popopopo" + fastJump);
             if(controller.isGrounded){
             running.enabled=true;
             walking.enabled=false;
@@ -137,12 +155,13 @@ public class FirstPersonController : MonoBehaviour {
             move*=movementRunSpeed;
             anim.SetFloat("walking", verticalMovement);
             anim.SetFloat("strafing", horizontalMovement + Time.deltaTime);
+
         } else {
+            fastJump = false;
             running.enabled=false;
              if((horizontalMovement!=0 || verticalMovement!=0) && controller.isGrounded){
                 walking.enabled=true;
             } else walking.enabled=false;
-        
             transform.Rotate(Vector3.up * horizontalMovement*0.1f);
             move*=movementSpeed;
             anim.SetFloat("walking", verticalMovement*0.5f);
@@ -156,13 +175,22 @@ public class FirstPersonController : MonoBehaviour {
             salto.enabled=false;
             //UnityEngine.Debug.Log("isgrounded true");
             if((jump>0 || Input.GetKey(KeyCode.JoystickButton0)) && verticalMovement>0){
+                canJump=false;
+                shift=true;
                 running.enabled=false;
                 walking.enabled=false;
+                float bobbo = UnityEngine.Random.Range(0, 2);
+                Debug.Log("BOBBO è " + bobbo);
+                if(bobbo==0){
+                    salto.clip = altsalto;
+                } else salto.clip = oldsalto;
                 salto.enabled=true;
                 //UnityEngine.Debug.Log("Sto saltando");
                 velocity.y=jumpForce;
                 controller.Move(velocity * Time.deltaTime);
                 controller.Move(move * Time.deltaTime);
+
+                
             } 
         } 
         else  {
@@ -215,14 +243,27 @@ public class FirstPersonController : MonoBehaviour {
 
             //CutSceneScript.cutsceneStart();
         }
+
+        if (other.gameObject.CompareTag("pickup")){
+            Debug.Log("dioc");
+            pickupsound.enabled=true;
+            pickupsound.PlayOneShot(picksoundclip, 0.7F);
+
+        } 
+
     }
 
+    private void onTriggerExit(Collider other){
+        if (other.gameObject.CompareTag("pickup")){
+            Debug.Log("boia");
+            /*pickupsound.enabled=false;
+            pickupsound.PlayOneShot(sound, 0.7F);*/
+        } 
+    }
+
+
     private void OnControllerColliderHit(ControllerColliderHit collision){   
-        //UnityEngine.Debug.Log("Ho toccato qualcosa");
-       /* if (collision.gameObject.CompareTag("Floor")){
-            canJump=true;
-            UnityEngine.Debug.Log("ho toccato il floor");
-        }*/
+
     }
     
    /* private void OnControllerColliderHit(ControllerColliderHit collision){
