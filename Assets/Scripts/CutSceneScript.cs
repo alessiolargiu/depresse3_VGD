@@ -12,21 +12,19 @@ public enum cameras {
 }
 public class CutSceneScript : MonoBehaviour
 {
+    private GameObject player;
+    private GameObject HUD;
+    private GameObject cutscene;
 
-    public static GameObject player;
-    public static GameObject HUD;
-    public static GameObject cutscene;
-
-    public static AudioSource soundSource;
-    public static AudioClip [] audioClips;
-    public static cameras [] cameraPosition;
-    public static GameObject [] camerasAvailable;
+    private AudioSource soundSource;
+    private AudioClip [] audioClips;
+    private cameras [] cameraPosition;
+    private GameObject [] camerasAvailable;
 
     public AudioSource soundSourceGet;
     public AudioClip [] audioClipsGet;
     public cameras [] cameraPositionGet;
     public GameObject [] camerasAvailableGet;
-
     public GameObject playerGet;
     public GameObject HUDGet;
     public GameObject cutsceneGet;
@@ -49,7 +47,7 @@ public class CutSceneScript : MonoBehaviour
         
     } 
 
-    public static IEnumerator cutsceneStart(System.Action<bool> callback){
+    public IEnumerator cutsceneStart(System.Action<bool> callback){
 
         
         Debug.Log("stronxo");
