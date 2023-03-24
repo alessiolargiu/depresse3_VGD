@@ -65,7 +65,14 @@ public class FirstPersonController : MonoBehaviour {
     public AudioClip picksoundclip;
     public AudioSource pugno;
 
+    private float horizontalMovement;
+    private float verticalMovement;
+
     private bool fastJump;
+
+    private bool iJumped;
+
+    private float smooth;
 
 
 
@@ -82,6 +89,7 @@ public class FirstPersonController : MonoBehaviour {
         //imposto la vita iniziale
         currentHealth = maxHealth;
         healthBar.SetMaxHealth(maxHealth);
+        smooth = 0.5f;
     }
 
 
@@ -114,8 +122,14 @@ public class FirstPersonController : MonoBehaviour {
 
 
         // Input
-        float horizontalMovement = Input.GetAxis("Horizontal");
-        float verticalMovement = Input.GetAxis("Vertical");
+
+        
+        
+        
+        horizontalMovement = Input.GetAxis("Horizontal");
+        verticalMovement = Input.GetAxis("Vertical");
+        
+
         //float controllerVisualH = Input.GetAxis("HorizontalJ");
         //float controllerVisualV = Input.GetAxis("VerticalJ");
         float jump = Input.GetAxis("Jump"); //adesso non ci serve
@@ -124,7 +138,8 @@ public class FirstPersonController : MonoBehaviour {
         float mouseY = Input.GetAxis("Mouse Y") * mouseSens * Time.deltaTime;
 
 
-        if(Input.GetKeyUp(KeyCode.F) || Input.GetKeyUp(KeyCode.JoystickButton2) && controller.isGrounded){
+
+        if(Input.GetKeyUp(KeyCode.F) || Input.GetKeyUp(KeyCode.JoystickButton2) && controller.isGrounded && pugno.isPlaying!=true){
             anim.SetTrigger("punching");
             if(pugno.isPlaying!=true){pugno.PlayOneShot(pugno.clip, 1f);}
             
@@ -140,43 +155,59 @@ public class FirstPersonController : MonoBehaviour {
             //shift=false;
         } 
 
-        if((shift || Input.GetKey(KeyCode.JoystickButton1)) && (verticalMovement>0.5f || horizontalMovement!=0)){
+        if((shift || Input.GetKey(KeyCode.JoystickButton1)) && (verticalMovement>0.5f || (horizontalMovement!=0f && verticalMovement>=0.5f))){
+        
             
-            fastJump=true;
-            Debug.Log("popopopo" + fastJump);
-            if(controller.isGrounded){
-            running.enabled=true;
-            walking.enabled=false;
-            }
             if(horizontalMovement+verticalMovement==2 || horizontalMovement+verticalMovement==-2){
                 transform.Rotate(Vector3.up * horizontalMovement*0.6f);
             } else transform.Rotate(Vector3.up * horizontalMovement*1f);
             
-            move*=movementRunSpeed;
-            anim.SetFloat("walking", verticalMovement);
+            
+
+            if(smooth<=1){
+                smooth+=0.005f;
+            } else {
+                if(controller.isGrounded){
+                running.enabled=true;
+                walking.enabled=false;
+            }
+            }
+            move*=movementRunSpeed*smooth;
+            Debug.Log("cacchina freschina " + smooth);
+            anim.SetFloat("walking", smooth);
             anim.SetFloat("strafing", horizontalMovement + Time.deltaTime);
 
         } else {
+            if(smooth>=0.5){
+                smooth-=0.010f;
+            } 
+            Debug.Log("cacchina caldina " + smooth);
+            
             fastJump = false;
             running.enabled=false;
              if((horizontalMovement!=0 || verticalMovement!=0) && controller.isGrounded){
                 walking.enabled=true;
             } else walking.enabled=false;
             transform.Rotate(Vector3.up * horizontalMovement*0.1f);
-            move*=movementSpeed;
-            anim.SetFloat("walking", verticalMovement*0.5f);
+            move*=movementSpeed*smooth;
+            anim.SetFloat("walking", verticalMovement* smooth);
             anim.SetFloat("strafing", horizontalMovement*0.5f);
         }
 
 
 
         if(controller.isGrounded){
+            iJumped=false;
             anim.SetFloat("jumping", 0);
             salto.enabled=false;
             //UnityEngine.Debug.Log("isgrounded true");
             if((jump>0 || Input.GetKey(KeyCode.JoystickButton0)) && verticalMovement>0){
                 canJump=false;
                 shift=true;
+
+                iJumped=true;
+
+                
                 running.enabled=false;
                 walking.enabled=false;
                 float bobbo = UnityEngine.Random.Range(0, 2);
