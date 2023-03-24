@@ -27,10 +27,15 @@ public class path_follower_testing : MonoBehaviour {
     public float rotY=0f;
     private Ray ray;
 
-    public float distanzaMinima = 4f;
+    public float distanzaMinima = 2f;
 
     
     AudioSource audioData;
+    
+    public AudioSource self;
+    public AudioClip pugnoSound;
+
+
 
     public Transform target;
     

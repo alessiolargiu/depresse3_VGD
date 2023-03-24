@@ -76,6 +76,7 @@ public class FirstPersonController : MonoBehaviour {
 
 
 
+
     private float timeSinceJump;
     // Start is called before the first frame update
     void Start()
@@ -248,7 +249,7 @@ public class FirstPersonController : MonoBehaviour {
         
     }
 
-    private void TakeDamage(int damage)
+    public void TakeDamage(int damage)
     {
         if(isActive){
         currentHealth -= damage;
@@ -294,6 +295,21 @@ public class FirstPersonController : MonoBehaviour {
     private void OnControllerColliderHit(ControllerColliderHit collision){   
 
     }
+
+    private void OnCollisionEnter(Collision collision){  
+
+        if(collision.gameObject.CompareTag("enemy")){
+            Debug.Log("so di star toccando il nemico");
+            if(anim.GetCurrentAnimatorStateInfo(0).IsName("punch")){
+                Debug.Log("so di togliere vit al nemico");
+                collision.other.GetComponent<NPCFollowPathController>().TakeDamage(10);
+            }
+        }
+
+    }
+
+
+
     
    /* private void OnControllerColliderHit(ControllerColliderHit collision){
         //controllo per non far saltare più

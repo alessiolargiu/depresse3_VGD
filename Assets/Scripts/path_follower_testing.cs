@@ -26,19 +26,41 @@ public class NPCFollowPathController : MonoBehaviour {
     public float rotY=0f;
     private Ray ray;
 
-    public float distanzaMinima = 4f;
+    public float distanzaMinima = 2f;
+
+    public int ciao;
+    public AudioSource self;
+    public AudioClip pugnoSound;
+    public AudioClip dying;
+    public AudioClip hitsound;
+    public AudioClip runsound;
+
+    private int maxHealth = 100;
+    public int currentHealth = 100;
+
+    private bool loopCollisione;
+    private Collision col;
+
 
 
     public Transform target;
     
     // Start is called before the first frame update
     void Start()
-    {
+    {   
+        loopCollisione=false;
         controller = GetComponent<CharacterController>();
     }
 
     private void Update(){
 
+        if(currentHealth==0){
+            if(self.isPlaying==false && self.clip!=dying && anim.GetCurrentAnimatorStateInfo(0).IsName("death")==false){
+                self.PlayOneShot(dying);
+                anim.SetTrigger("dying");
+            }
+            
+        } else{
         // Input
         float horizontalMovement = hor;
         float verticalMovement = ver;
@@ -122,13 +144,32 @@ public class NPCFollowPathController : MonoBehaviour {
             //L'ostacolo è il target
             if (hit.collider!= null && hit.collider.gameObject.tag==target.gameObject.tag){
                 distance = Vector3.Distance(hitPoint, transform.position);
-                if(distance<distanzaMinima){ver = 0;}  else if(distance<distanzaMinima+1){ver = 0.5f;}  else ver = 1f;
+                if(distance<distanzaMinima){
+                    ver = 0;
+                    
+                    if(self.isPlaying==false && anim.GetCurrentAnimatorStateInfo(0).IsName("punch")==false){
+                        anim.SetTrigger("punching");
+                        
+                    }
+                    
+                    } 
+                    else if(distance<distanzaMinima+1){ver = 0.5f;}  else ver = 1f;
                 //UnityEngine.Debug.Log("distance " + distance);
             }
 
             //UnityEngine.Debug.Log("sizey" + hit.collider.bounds.size.y);
             
             }
+
+            if(loopCollisione){
+            Debug.Log("so di star toccando il player");
+            if(anim.GetCurrentAnimatorStateInfo(0).IsName("punch") && self.isPlaying==false){
+                Debug.Log("so di togliergli vita");
+                self.PlayOneShot(pugnoSound, 1f);
+                col.other.GetComponent<FirstPersonController>().TakeDamage(10);
+            }
+            }
+        }
         }
 
 
@@ -139,8 +180,47 @@ public class NPCFollowPathController : MonoBehaviour {
     
     private void OnTriggerEnter(Collider other){
     }
+    
 
-    private void OnControllerColliderHit(ControllerColliderHit collision){  
+    private void OnCollisionEnter(Collision collision){  
+        
+        if(collision.gameObject.CompareTag("player")){
+            loopCollisione=true;
+            col=collision;
+        }
+        
+
+    }
+
+    private void OnCollisionExit(Collision collision){
+        if(collision.gameObject.CompareTag("player")){
+            loopCollisione=false;
+        }
+    }
+
+
+    public void DeathDetect(string msg){
+        if(msg=="finito"){
+            DestroyObject(gameObject);
+        }
+    }
+
+    public void TakeDamage(int damage)
+    {
+        if(currentHealth>0){
+        anim.SetTrigger("gothit");
+        currentHealth -= damage;
+        ver=-1;
+
+        self.Stop();
+        self.PlayOneShot(hitsound);
+        
+        }
+
+        if(currentHealth<0){
+            anim.SetTrigger("dying");
+            currentHealth=0;
+        }
     }
 
 

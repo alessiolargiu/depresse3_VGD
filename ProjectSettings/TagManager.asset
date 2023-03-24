@@ -10,6 +10,8 @@ TagManager:
   - Cutscene
   - NoEquip
   - pickup
+  - player
+  - enemy
   layers:
   - Default
   - TransparentFX
