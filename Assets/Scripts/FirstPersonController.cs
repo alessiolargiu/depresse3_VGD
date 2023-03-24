@@ -138,10 +138,10 @@ public class FirstPersonController : MonoBehaviour {
         float mouseY = Input.GetAxis("Mouse Y") * mouseSens * Time.deltaTime;
 
 
-
-        if(Input.GetKeyUp(KeyCode.F) || Input.GetKeyUp(KeyCode.JoystickButton2) && controller.isGrounded && pugno.isPlaying!=true){
+        Debug.Log("pugno status " + pugno.isPlaying);
+        if((Input.GetKeyUp(KeyCode.F) && pugno.isPlaying!=true) || Input.GetKeyUp(KeyCode.JoystickButton2) && controller.isGrounded && pugno.isPlaying!=true){
             anim.SetTrigger("punching");
-            if(pugno.isPlaying!=true){pugno.PlayOneShot(pugno.clip, 1f);}
+            pugno.PlayOneShot(pugno.clip, 1f);
             
         } 
         
@@ -155,7 +155,7 @@ public class FirstPersonController : MonoBehaviour {
             //shift=false;
         } 
 
-        if((shift || Input.GetKey(KeyCode.JoystickButton1)) && (verticalMovement>0.5f || (horizontalMovement!=0f && verticalMovement>=0.5f))){
+        if((shift || Input.GetKey(KeyCode.JoystickButton1)) && (verticalMovement>0.5f || (horizontalMovement!=0f || verticalMovement>=0.5f))){
         
             
             if(horizontalMovement+verticalMovement==2 || horizontalMovement+verticalMovement==-2){
@@ -233,8 +233,6 @@ public class FirstPersonController : MonoBehaviour {
         }
         controller.Move(velocity * Time.deltaTime);
 
-
-        
         rotation -= mouseY;
         //rotation -= controllerVisualV;
         //rotation = Mathf.Clamp(rotation, -90f, 90f);
