@@ -27,25 +27,24 @@ public class HUDInventoryHelmet : MonoBehaviour
     private void RefreshInventoryItems()
     {
 
-        int x = 90, y = 0;
-        foreach (Armor helmet in inventory.GetHelmets())
+        foreach (HelmetEquip helmet in inventory.GetHelmets())
         {
-            switch (helmet.GetIndex(Armor.ArmorType.Helmet))
+            switch (helmet.index)
             {
-                case 0:
-                    invObject1.SetActive(true);
-                    objectImage1.sprite = helmet.GetSprite();
-                    objectText1.text = helmet.GetName();
-                    break;
                 case 1:
-                    invObject2.SetActive(true);
-                    objectImage2.sprite = helmet.GetSprite();
-                    objectText2.text = helmet.GetName();
+                    invObject1.SetActive(true);
+                    objectImage1.sprite = helmet.sprite;
+                    objectText1.text = helmet.nomeEquip;
                     break;
                 case 2:
+                    invObject2.SetActive(true);
+                    objectImage2.sprite = helmet.sprite;
+                    objectText2.text = helmet.nomeEquip;
+                    break;
+                case 3:
                     invObject3.SetActive(true);
-                    objectImage3.sprite = helmet.GetSprite();
-                    objectText3.text = helmet.GetName();
+                    objectImage3.sprite = helmet.sprite;
+                    objectText3.text = helmet.nomeEquip;
                     break;
             }
         }

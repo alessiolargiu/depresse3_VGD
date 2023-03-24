@@ -27,24 +27,24 @@ public class HUDInventoryWeapon : MonoBehaviour
     private void RefreshInventoryItems()
     {
 
-        int x = 90, y = 0;
-        foreach (Weapon weapon in inventory.GetWeapons())
+        foreach (WeaponEquip weapon in inventory.GetWeapons())
         {
-            switch (weapon.GetIndex()) {
-                case 0:
-                    invObject1.SetActive(true);
-                    objectImage1.sprite = weapon.GetSprite();
-                    objectText1.text = weapon.GetName();
-                    break;
+            switch (weapon.index)
+            {
                 case 1:
-                    invObject2.SetActive(true);
-                    objectImage2.sprite = weapon.GetSprite();
-                    objectText2.text = weapon.GetName();
+                    invObject1.SetActive(true);
+                    objectImage1.sprite = weapon.sprite;
+                    objectText1.text = weapon.nomeEquip;
                     break;
                 case 2:
+                    invObject2.SetActive(true);
+                    objectImage2.sprite = weapon.sprite;
+                    objectText2.text = weapon.nomeEquip;
+                    break;
+                case 3:
                     invObject3.SetActive(true);
-                    objectImage3.sprite = weapon.GetSprite();
-                    objectText3.text = weapon.GetName();
+                    objectImage3.sprite = weapon.sprite;
+                    objectText3.text = weapon.nomeEquip;
                     break;
             }
         }

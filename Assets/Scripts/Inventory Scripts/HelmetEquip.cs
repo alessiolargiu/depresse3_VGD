@@ -5,26 +5,26 @@ using UnityEngine;
 public class HelmetEquip : MonoBehaviour
 {
 
+    public static int helmetIndex = 1;
     public FirstPersonController player;
-    private Armor helmet;
+    public int index;
     public string nomeEquip;
     public float armorValue;
     public int stamina;
     public Sprite sprite;
     public HUDInventoryHelmet hudHelmet;
+    public Transform parentTrasform;
 
     private void OnTriggerEnter(Collider other)
     {
+        index = helmetIndex;
+        helmetIndex++;
         this.gameObject.SetActive(false);
-        helmet = new Armor(nomeEquip, sprite, stamina, armorValue, Armor.ArmorType.Helmet);
+        this.transform.parent = parentTrasform;
+        this.gameObject.GetComponent<BoxCollider>().isTrigger = false;
         Inventory inv = player.GetInventory();
-        inv.AddHelmet(helmet);
+        inv.AddHelmet(this);
         hudHelmet.SetInventory(inv);
-    }
-
-    public Armor GetHelmet()
-    {
-        return helmet;
     }
 
 }

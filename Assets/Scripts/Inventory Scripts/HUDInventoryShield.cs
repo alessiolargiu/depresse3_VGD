@@ -26,26 +26,24 @@ public class HUDInventoryShield : MonoBehaviour
 
     private void RefreshInventoryItems()
     {
-
-        int x = 90, y = 0;
-        foreach (Shield shield in inventory.GetShields())
+        foreach (ShieldEquip shield in inventory.GetShields())
         {
-            switch (shield.GetIndex())
+            switch (shield.index)
             {
-                case 0:
-                    invObject1.SetActive(true);
-                    objectImage1.sprite = shield.GetSprite();
-                    objectText1.text = shield.GetName();
-                    break;
                 case 1:
-                    invObject2.SetActive(true);
-                    objectImage2.sprite = shield.GetSprite();
-                    objectText2.text = shield.GetName();
+                    invObject1.SetActive(true);
+                    objectImage1.sprite = shield.sprite;
+                    objectText1.text = shield.nomeEquip;
                     break;
                 case 2:
+                    invObject2.SetActive(true);
+                    objectImage2.sprite = shield.sprite;
+                    objectText2.text = shield.nomeEquip;
+                    break;
+                case 3:
                     invObject3.SetActive(true);
-                    objectImage3.sprite = shield.GetSprite();
-                    objectText3.text = shield.GetName();
+                    objectImage3.sprite = shield.sprite;
+                    objectText3.text = shield.nomeEquip;
                     break;
             }
         }

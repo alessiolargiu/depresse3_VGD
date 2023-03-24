@@ -26,25 +26,24 @@ public class HUDInventoryPotion : MonoBehaviour
 
     private void RefreshInventoryItems()
     {
-        int x = 90, y = 0;
-        foreach (Potion potion in inventory.GetPotions())
+        foreach (PotionEquip potion in inventory.GetPotions())
         {
-            switch (potion.GetIndex())
+            switch (potion.index)
             {
-                case 0:
-                    invObject1.SetActive(true);
-                    objectImage1.sprite = potion.GetSprite();
-                    objectText1.text = potion.GetName();
-                    break;
                 case 1:
-                    invObject2.SetActive(true);
-                    objectImage2.sprite = potion.GetSprite();
-                    objectText2.text = potion.GetName();
+                    invObject1.SetActive(true);
+                    objectImage1.sprite = potion.sprite;
+                    objectText1.text = potion.nomeEquip;
                     break;
                 case 2:
+                    invObject2.SetActive(true);
+                    objectImage2.sprite = potion.sprite;
+                    objectText2.text = potion.nomeEquip;
+                    break;
+                case 3:
                     invObject3.SetActive(true);
-                    objectImage3.sprite = potion.GetSprite();
-                    objectText3.text = potion.GetName();
+                    objectImage3.sprite = potion.sprite;
+                    objectText3.text = potion.nomeEquip;
                     break;
             }
         }

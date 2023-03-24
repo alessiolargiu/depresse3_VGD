@@ -27,25 +27,24 @@ public class HUDInventoryChest : MonoBehaviour
     private void RefreshInventoryItems()
     {
 
-        int x = 90, y = 0;
-        foreach (Armor chest in inventory.GetChests())
+        foreach (ChestEquip chest in inventory.GetChests())
         {
-            switch (chest.GetIndex(Armor.ArmorType.Chest))
+            switch (chest.index)
             {
-                case 0:
-                    invObject1.SetActive(true);
-                    objectImage1.sprite = chest.GetSprite();
-                    objectText1.text = chest.GetName();
-                    break;
                 case 1:
-                    invObject2.SetActive(true);
-                    objectImage2.sprite = chest.GetSprite();
-                    objectText2.text = chest.GetName();
+                    invObject1.SetActive(true);
+                    objectImage1.sprite = chest.sprite;
+                    objectText1.text = chest.nomeEquip;
                     break;
                 case 2:
+                    invObject2.SetActive(true);
+                    objectImage2.sprite = chest.sprite;
+                    objectText2.text = chest.nomeEquip;
+                    break;
+                case 3:
                     invObject3.SetActive(true);
-                    objectImage3.sprite = chest.GetSprite();
-                    objectText3.text = chest.GetName();
+                    objectImage3.sprite = chest.sprite;
+                    objectText3.text = chest.nomeEquip;
                     break;
             }
         }

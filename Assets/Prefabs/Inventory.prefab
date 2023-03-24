@@ -133,7 +133,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   equipSlot: {fileID: 0}
   equipName: {fileID: 0}
-  player: {fileID: 0}
 --- !u!1 &2131483198261303167
 GameObject:
   m_ObjectHideFlags: 0
@@ -526,53 +525,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fcde8a5bbc876b44fa417da97cd4a1ec, type: 3}
---- !u!114 &1453895352345776249 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 3843584762822390727, guid: fcde8a5bbc876b44fa417da97cd4a1ec, type: 3}
-  m_PrefabInstance: {fileID: 2412348186401743806}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &4019019337629987753 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1638198863356809239, guid: fcde8a5bbc876b44fa417da97cd4a1ec, type: 3}
-  m_PrefabInstance: {fileID: 2412348186401743806}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!224 &7377001899160235929 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 5123409452914658343, guid: fcde8a5bbc876b44fa417da97cd4a1ec, type: 3}
   m_PrefabInstance: {fileID: 2412348186401743806}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &7698417226671270034 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5452773153203129132, guid: fcde8a5bbc876b44fa417da97cd4a1ec, type: 3}
-  m_PrefabInstance: {fileID: 2412348186401743806}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &559983344876651213
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7698417226671270034}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 51bd92343f5925c40b6f5a403f1452b5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  equipSlot: {fileID: 1453895352345776249}
-  equipName: {fileID: 4019019337629987753}
-  equipSlotIndex: 0
 --- !u!1001 &5016167572519487451
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -711,48 +668,6 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 5123409452914658343, guid: fcde8a5bbc876b44fa417da97cd4a1ec, type: 3}
   m_PrefabInstance: {fileID: 5016167572519487451}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1022639952546893047 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5452773153203129132, guid: fcde8a5bbc876b44fa417da97cd4a1ec, type: 3}
-  m_PrefabInstance: {fileID: 5016167572519487451}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &5203657744985017501
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1022639952546893047}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 51bd92343f5925c40b6f5a403f1452b5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  equipSlot: {fileID: 8127350460076684316}
-  equipName: {fileID: 5990083253100304332}
-  equipSlotIndex: 2
---- !u!114 &5990083253100304332 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1638198863356809239, guid: fcde8a5bbc876b44fa417da97cd4a1ec, type: 3}
-  m_PrefabInstance: {fileID: 5016167572519487451}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &8127350460076684316 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 3843584762822390727, guid: fcde8a5bbc876b44fa417da97cd4a1ec, type: 3}
-  m_PrefabInstance: {fileID: 5016167572519487451}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &7854940740174161672
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -886,53 +801,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fcde8a5bbc876b44fa417da97cd4a1ec, type: 3}
---- !u!1 &2787304541964905508 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5452773153203129132, guid: fcde8a5bbc876b44fa417da97cd4a1ec, type: 3}
-  m_PrefabInstance: {fileID: 7854940740174161672}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &2331094484479885772
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2787304541964905508}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 51bd92343f5925c40b6f5a403f1452b5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  equipSlot: {fileID: 6365131113650902223}
-  equipName: {fileID: 8916660878876079903}
-  equipSlotIndex: 1
 --- !u!224 &3033274666485050159 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 5123409452914658343, guid: fcde8a5bbc876b44fa417da97cd4a1ec, type: 3}
   m_PrefabInstance: {fileID: 7854940740174161672}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &6365131113650902223 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 3843584762822390727, guid: fcde8a5bbc876b44fa417da97cd4a1ec, type: 3}
-  m_PrefabInstance: {fileID: 7854940740174161672}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &8916660878876079903 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1638198863356809239, guid: fcde8a5bbc876b44fa417da97cd4a1ec, type: 3}
-  m_PrefabInstance: {fileID: 7854940740174161672}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &8457521509785484325
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1114,7 +987,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   equipSlot: {fileID: 4613938894446841826}
   equipName: {fileID: 7197643011342855218}
-  equipSlotIndex: 0
+  index: 0
+  player: {fileID: 0}
 --- !u!114 &4613938894446841826 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 3843584762822390727, guid: fcde8a5bbc876b44fa417da97cd4a1ec, type: 3}

@@ -6,70 +6,70 @@ using UnityEngine;
 public class Inventory
 {
 
-    private List<Weapon> weapons;
-    private List<Shield> shields;
-    private List<Potion> potions;
-    private List<Armor> helmets;
-    private List<Armor> chests;
-    private List<Armor> shoes;
+    private List<WeaponEquip> weapons;
+    private List<ShieldEquip> shields;
+    private List<PotionEquip> potions;
+    private List<HelmetEquip> helmets;
+    private List<ChestEquip> chests;
+    private List<ShoesEquip> shoes;
 
 
     public Inventory()
     {
-        weapons = new List<Weapon>();
-        shields = new List<Shield>();
-        potions = new List<Potion>();
-        helmets = new List<Armor>();
-        chests = new List<Armor>();
-        shoes = new List<Armor>();
+        weapons = new List<WeaponEquip>();
+        shields = new List<ShieldEquip>();
+        potions = new List<PotionEquip>();
+        helmets = new List<HelmetEquip>();
+        chests = new List<ChestEquip>();
+        shoes = new List<ShoesEquip>();
     }
 
-    public List<Weapon> GetWeapons()
+    public List<WeaponEquip> GetWeapons()
     {
         return weapons;
     }
-    public List<Shield> GetShields()
+    public List<ShieldEquip> GetShields()
     {
         return shields;
     }
-    public List<Potion> GetPotions()
+    public List<PotionEquip> GetPotions()
     {
         return potions;
     }
-    public List<Armor> GetHelmets()
+    public List<HelmetEquip> GetHelmets()
     {
         return helmets;
     }
-    public List<Armor> GetChests()
+    public List<ChestEquip> GetChests()
     {
         return chests;
     }
-    public List<Armor> GetShoes()
+    public List<ShoesEquip> GetShoes()
     {
         return shoes;
     }
 
-    public void AddWeapon(Weapon item)
+    public void AddWeapon(WeaponEquip item)
     {
         weapons.Add(item);
     }
-    public void AddShield(Shield item)
+    public void AddShield(ShieldEquip item)
     {
         shields.Add(item);
     }
-    public void AddPotion(Potion item)
+    public void AddPotion(PotionEquip item)
     {
         potions.Add(item);
     }
-    public void AddHelmet(Armor item)
+    public void AddHelmet(HelmetEquip item)
     {
         helmets.Add(item);
     }
-    public void AddChest(Armor item)
+    public void AddChest(ChestEquip item)
     {
         chests.Add(item);
     }
-    public void AddShoe(Armor item)
+    public void AddShoe(ShoesEquip item)
     {
         shoes.Add(item);
     }

@@ -5,26 +5,26 @@ using UnityEngine;
 public class ChestEquip : MonoBehaviour
 {
 
+    public static int chestIndex = 1;
     public FirstPersonController player;
-    private Armor chest;
+    public int index;
     public string nomeEquip;
     public float armorValue;
     public int stamina;
     public Sprite sprite;
     public HUDInventoryChest hudChest;
+    public Transform parentTrasform;
 
     private void OnTriggerEnter(Collider other)
     {
+        index = chestIndex;
+        chestIndex++;
         this.gameObject.SetActive(false);
-        chest = new Armor(nomeEquip, sprite, stamina, armorValue, Armor.ArmorType.Chest);
+        this.transform.parent = parentTrasform;
+        this.gameObject.GetComponent<BoxCollider>().isTrigger = false;
         Inventory inv = player.GetInventory();
-        inv.AddChest(chest);
+        inv.AddChest(this);
         hudChest.SetInventory(inv);
-    }
-
-    public Armor GetChest()
-    {
-        return chest;
     }
 
 }

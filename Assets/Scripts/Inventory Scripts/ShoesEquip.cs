@@ -5,20 +5,25 @@ using UnityEngine;
 public class ShoesEquip : MonoBehaviour
 {
 
+    public static int shoeIndex = 1;
     public FirstPersonController player;
-    private Armor shoes;
+    public int index;
     public string nomeEquip;
     public float armorValue;
     public int stamina;
     public Sprite sprite;
     public HUDInventoryShoe hudShoe;
+    public Transform parentTrasform;
 
     private void OnTriggerEnter(Collider other)
     {
+        index = shoeIndex;
+        shoeIndex++;
         this.gameObject.SetActive(false);
-        shoes = new Armor(nomeEquip, sprite, stamina, armorValue, Armor.ArmorType.Shoe);
+        this.transform.parent = parentTrasform;
+        this.gameObject.GetComponent<BoxCollider>().isTrigger = false;
         Inventory inv = player.GetInventory();
-        inv.AddShoe(shoes);
+        inv.AddShoe(this);
         hudShoe.SetInventory(inv);
     }
 

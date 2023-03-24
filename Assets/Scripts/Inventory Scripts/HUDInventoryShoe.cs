@@ -28,24 +28,24 @@ public class HUDInventoryShoe : MonoBehaviour
     {
 
         int x = 90, y = 0;
-        foreach (Armor shoe in inventory.GetShoes())
+        foreach (ShoesEquip shoe in inventory.GetShoes())
         {
-            switch (shoe.GetIndex(Armor.ArmorType.Shoe))
+            switch (shoe.index)
             {
-                case 0:
-                    invObject1.SetActive(true);
-                    objectImage1.sprite = shoe.GetSprite();
-                    objectText1.text = shoe.GetName();
-                    break;
                 case 1:
-                    invObject2.SetActive(true);
-                    objectImage2.sprite = shoe.GetSprite();
-                    objectText2.text = shoe.GetName();
+                    invObject1.SetActive(true);
+                    objectImage1.sprite = shoe.sprite;
+                    objectText1.text = shoe.nomeEquip;
                     break;
                 case 2:
+                    invObject2.SetActive(true);
+                    objectImage2.sprite = shoe.sprite;
+                    objectText2.text = shoe.nomeEquip;
+                    break;
+                case 3:
                     invObject3.SetActive(true);
-                    objectImage3.sprite = shoe.GetSprite();
-                    objectText3.text = shoe.GetName();
+                    objectImage3.sprite = shoe.sprite;
+                    objectText3.text = shoe.nomeEquip;
                     break;
             }
         }

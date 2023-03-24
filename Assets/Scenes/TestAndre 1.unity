@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028305, g: 0.22571313, b: 0.3069213, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028352, g: 0.22571376, b: 0.30692244, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -648,17 +648,22 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 7698417226671270034, guid: b454c26f0e38b5c40b8c55d00eae5fb2, type: 3}
   m_PrefabInstance: {fileID: 1012602232}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &82293319 stripped
+--- !u!114 &82293324
 MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 559983344876651213, guid: b454c26f0e38b5c40b8c55d00eae5fb2, type: 3}
-  m_PrefabInstance: {fileID: 1012602232}
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 82293314}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 51bd92343f5925c40b6f5a403f1452b5, type: 3}
+  m_Script: {fileID: 11500000, guid: f3a48009206bbdd42befaf8031f946ac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  equipSlot: {fileID: 1493509049}
+  equipName: {fileID: 1648637253}
+  index: 1
+  player: {fileID: 759402720}
 --- !u!1 &84863052
 GameObject:
   m_ObjectHideFlags: 0
@@ -1371,7 +1376,7 @@ PrefabInstance:
     - target: {fileID: 2012129974914182282, guid: b454c26f0e38b5c40b8c55d00eae5fb2, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 1292460010}
+      objectReference: {fileID: 1292460015}
     - target: {fileID: 2012129974914182282, guid: b454c26f0e38b5c40b8c55d00eae5fb2, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
       value: 2
@@ -1382,7 +1387,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2012129974914182282, guid: b454c26f0e38b5c40b8c55d00eae5fb2, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: ChangeEquip, Assembly-CSharp
+      value: ChangeWeapon, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 2012129974914182282, guid: b454c26f0e38b5c40b8c55d00eae5fb2, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgument
@@ -1543,7 +1548,7 @@ PrefabInstance:
     - target: {fileID: 3707551722208775257, guid: b454c26f0e38b5c40b8c55d00eae5fb2, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 1221823111}
+      objectReference: {fileID: 1221823116}
     - target: {fileID: 3707551722208775257, guid: b454c26f0e38b5c40b8c55d00eae5fb2, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
       value: 2
@@ -1554,7 +1559,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3707551722208775257, guid: b454c26f0e38b5c40b8c55d00eae5fb2, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: ChangeEquip, Assembly-CSharp
+      value: ChangeWeapon, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 3707551722208775257, guid: b454c26f0e38b5c40b8c55d00eae5fb2, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgument
@@ -1615,7 +1620,7 @@ PrefabInstance:
     - target: {fileID: 6310878528174254140, guid: b454c26f0e38b5c40b8c55d00eae5fb2, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 437672968}
+      objectReference: {fileID: 437672973}
     - target: {fileID: 6310878528174254140, guid: b454c26f0e38b5c40b8c55d00eae5fb2, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
       value: 2
@@ -1626,7 +1631,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6310878528174254140, guid: b454c26f0e38b5c40b8c55d00eae5fb2, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: ChangeEquip, Assembly-CSharp
+      value: ChangeWeapon, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 6310878528174254140, guid: b454c26f0e38b5c40b8c55d00eae5fb2, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgument
@@ -1680,7 +1685,10 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.UI.Image, UnityEngine.UI
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 559983344876651213, guid: b454c26f0e38b5c40b8c55d00eae5fb2, type: 3}
+    - {fileID: 2331094484479885772, guid: b454c26f0e38b5c40b8c55d00eae5fb2, type: 3}
+    - {fileID: 5203657744985017501, guid: b454c26f0e38b5c40b8c55d00eae5fb2, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: b454c26f0e38b5c40b8c55d00eae5fb2, type: 3}
 --- !u!1 &254745526
 GameObject:
@@ -1719,33 +1727,43 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 1022639952546893047, guid: b454c26f0e38b5c40b8c55d00eae5fb2, type: 3}
   m_PrefabInstance: {fileID: 585699411}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &267553100 stripped
+--- !u!114 &267553105
 MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 5203657744985017501, guid: b454c26f0e38b5c40b8c55d00eae5fb2, type: 3}
-  m_PrefabInstance: {fileID: 585699411}
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 267553095}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 51bd92343f5925c40b6f5a403f1452b5, type: 3}
+  m_Script: {fileID: 11500000, guid: 221888ae024b676449611bb166864d70, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  equipSlot: {fileID: 1301272737}
+  equipName: {fileID: 827956514}
+  index: 3
+  player: {fileID: 759402720}
 --- !u!1 &272757894 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1022639952546893047, guid: b454c26f0e38b5c40b8c55d00eae5fb2, type: 3}
   m_PrefabInstance: {fileID: 973326200}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &272757899 stripped
+--- !u!114 &272757904
 MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 5203657744985017501, guid: b454c26f0e38b5c40b8c55d00eae5fb2, type: 3}
-  m_PrefabInstance: {fileID: 973326200}
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 272757894}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 51bd92343f5925c40b6f5a403f1452b5, type: 3}
+  m_Script: {fileID: 11500000, guid: 53fc591c7695d43478e212668a6b2036, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  equipSlot: {fileID: 1675030347}
+  equipName: {fileID: 922459465}
+  index: 3
+  player: {fileID: 759402720}
 --- !u!1 &285709572
 GameObject:
   m_ObjectHideFlags: 0
@@ -2934,17 +2952,22 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 2787304541964905508, guid: b454c26f0e38b5c40b8c55d00eae5fb2, type: 3}
   m_PrefabInstance: {fileID: 973326200}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &389832760 stripped
+--- !u!114 &389832765
 MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 2331094484479885772, guid: b454c26f0e38b5c40b8c55d00eae5fb2, type: 3}
-  m_PrefabInstance: {fileID: 973326200}
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 389832755}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 51bd92343f5925c40b6f5a403f1452b5, type: 3}
+  m_Script: {fileID: 11500000, guid: 53fc591c7695d43478e212668a6b2036, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  equipSlot: {fileID: 784488151}
+  equipName: {fileID: 2059027054}
+  index: 2
+  player: {fileID: 759402720}
 --- !u!114 &399318350 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8916660878876079903, guid: b454c26f0e38b5c40b8c55d00eae5fb2, type: 3}
@@ -2961,17 +2984,22 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 1022639952546893047, guid: b454c26f0e38b5c40b8c55d00eae5fb2, type: 3}
   m_PrefabInstance: {fileID: 1012602232}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &416456344 stripped
+--- !u!114 &416456349
 MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 5203657744985017501, guid: b454c26f0e38b5c40b8c55d00eae5fb2, type: 3}
-  m_PrefabInstance: {fileID: 1012602232}
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 416456339}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 51bd92343f5925c40b6f5a403f1452b5, type: 3}
+  m_Script: {fileID: 11500000, guid: f3a48009206bbdd42befaf8031f946ac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  equipSlot: {fileID: 76123681}
+  equipName: {fileID: 441624647}
+  index: 3
+  player: {fileID: 759402720}
 --- !u!1 &420803392
 GameObject:
   m_ObjectHideFlags: 0
@@ -3484,17 +3512,22 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 7698417226671270034, guid: b454c26f0e38b5c40b8c55d00eae5fb2, type: 3}
   m_PrefabInstance: {fileID: 234574054}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &437672968 stripped
+--- !u!114 &437672973
 MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 559983344876651213, guid: b454c26f0e38b5c40b8c55d00eae5fb2, type: 3}
-  m_PrefabInstance: {fileID: 234574054}
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 437672963}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 51bd92343f5925c40b6f5a403f1452b5, type: 3}
+  m_Script: {fileID: 11500000, guid: 5af65281a30d29e41a98ebacc76b5917, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  equipSlot: {fileID: 1450762583}
+  equipName: {fileID: 460298958}
+  index: 1
+  player: {fileID: 759402720}
 --- !u!1 &440311716
 GameObject:
   m_ObjectHideFlags: 0
@@ -3809,17 +3842,22 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 1022639952546893047, guid: b454c26f0e38b5c40b8c55d00eae5fb2, type: 3}
   m_PrefabInstance: {fileID: 1190994339}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &472879449 stripped
+--- !u!114 &472879454
 MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 5203657744985017501, guid: b454c26f0e38b5c40b8c55d00eae5fb2, type: 3}
-  m_PrefabInstance: {fileID: 1190994339}
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 472879444}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 51bd92343f5925c40b6f5a403f1452b5, type: 3}
+  m_Script: {fileID: 11500000, guid: 1cf16a9173d2ce44792f0d2fb3f647bf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  equipSlot: {fileID: 1569187587}
+  equipName: {fileID: 844168255}
+  index: 3
+  player: {fileID: 759402720}
 --- !u!1 &476475823
 GameObject:
   m_ObjectHideFlags: 0
@@ -3857,17 +3895,22 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 2787304541964905508, guid: b454c26f0e38b5c40b8c55d00eae5fb2, type: 3}
   m_PrefabInstance: {fileID: 1012602232}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &496794822 stripped
+--- !u!114 &496794827
 MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 2331094484479885772, guid: b454c26f0e38b5c40b8c55d00eae5fb2, type: 3}
-  m_PrefabInstance: {fileID: 1012602232}
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 496794817}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 51bd92343f5925c40b6f5a403f1452b5, type: 3}
+  m_Script: {fileID: 11500000, guid: f3a48009206bbdd42befaf8031f946ac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  equipSlot: {fileID: 1601994974}
+  equipName: {fileID: 399318350}
+  index: 2
+  player: {fileID: 759402720}
 --- !u!1 &528037718
 GameObject:
   m_ObjectHideFlags: 0
@@ -4255,8 +4298,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 571996904}
-  m_LocalRotation: {x: 0.09868421, y: -0.0006260563, z: 0.0007632657, w: 0.9951183}
-  m_LocalPosition: {x: 0.002788173, y: 0.6954554, z: -2.4961922}
+  m_LocalRotation: {x: 0.0986842, y: -0.00062605646, z: 0.0007632657, w: 0.9951183}
+  m_LocalPosition: {x: 0.002788173, y: 0.69545543, z: -2.4961922}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -4358,10 +4401,14 @@ PrefabInstance:
     - target: {fileID: 2012129974914182282, guid: b454c26f0e38b5c40b8c55d00eae5fb2, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 1311076799}
+      objectReference: {fileID: 1311076804}
     - target: {fileID: 2012129974914182282, guid: b454c26f0e38b5c40b8c55d00eae5fb2, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: ChangeEquipmentInfo
+      objectReference: {fileID: 0}
+    - target: {fileID: 2012129974914182282, guid: b454c26f0e38b5c40b8c55d00eae5fb2, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: ChangeShoe, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 2060142898591137083, guid: b454c26f0e38b5c40b8c55d00eae5fb2, type: 3}
       propertyPath: m_Name
@@ -4490,10 +4537,14 @@ PrefabInstance:
     - target: {fileID: 3707551722208775257, guid: b454c26f0e38b5c40b8c55d00eae5fb2, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 267553100}
+      objectReference: {fileID: 267553105}
     - target: {fileID: 3707551722208775257, guid: b454c26f0e38b5c40b8c55d00eae5fb2, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: ChangeEquipmentInfo
+      objectReference: {fileID: 0}
+    - target: {fileID: 3707551722208775257, guid: b454c26f0e38b5c40b8c55d00eae5fb2, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: ChangeShoe, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 3763476781043029895, guid: b454c26f0e38b5c40b8c55d00eae5fb2, type: 3}
       propertyPath: m_Sprite
@@ -4526,16 +4577,23 @@ PrefabInstance:
     - target: {fileID: 6310878528174254140, guid: b454c26f0e38b5c40b8c55d00eae5fb2, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 1027085364}
+      objectReference: {fileID: 1027085369}
     - target: {fileID: 6310878528174254140, guid: b454c26f0e38b5c40b8c55d00eae5fb2, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: ChangeEquipmentInfo
+      objectReference: {fileID: 0}
+    - target: {fileID: 6310878528174254140, guid: b454c26f0e38b5c40b8c55d00eae5fb2, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: ChangeShoe, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 6529423566620403451, guid: b454c26f0e38b5c40b8c55d00eae5fb2, type: 3}
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 21300000, guid: eab1e2a57583d0741add33eba1a7d0fb, type: 3}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 559983344876651213, guid: b454c26f0e38b5c40b8c55d00eae5fb2, type: 3}
+    - {fileID: 2331094484479885772, guid: b454c26f0e38b5c40b8c55d00eae5fb2, type: 3}
+    - {fileID: 5203657744985017501, guid: b454c26f0e38b5c40b8c55d00eae5fb2, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: b454c26f0e38b5c40b8c55d00eae5fb2, type: 3}
 --- !u!1 &591476091
 GameObject:
@@ -5310,10 +5368,11 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 2787304541964905508, guid: b454c26f0e38b5c40b8c55d00eae5fb2, type: 3}
   m_PrefabInstance: {fileID: 7171814532780859861}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &674497865 stripped
+--- !u!114 &674497870
 MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 2331094484479885772, guid: b454c26f0e38b5c40b8c55d00eae5fb2, type: 3}
-  m_PrefabInstance: {fileID: 7171814532780859861}
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 674497860}
   m_Enabled: 1
@@ -5321,6 +5380,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51bd92343f5925c40b6f5a403f1452b5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  equipSlot: {fileID: 116104890}
+  equipName: {fileID: 1798089931}
+  index: 2
+  player: {fileID: 759402720}
 --- !u!1 &674932346 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7373319827671091418, guid: 51821c87e28608b4fa0f14e0ed461a70, type: 3}
@@ -6078,7 +6141,7 @@ MonoBehaviour:
   movementRunSpeed: 8
   jumpForce: 5
   gravity: -9.81
-  mouseSens: 200
+  mouseSens: 50
   cameraTransform: {fileID: 1603466337}
   anim: {fileID: 963020501}
   healthBar: {fileID: 343077125}
@@ -6169,13 +6232,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 759402717}
   m_LocalRotation: {x: 0.00094958255, y: 0.0030770241, z: -0.00069935364, w: 0.9999946}
-  m_LocalPosition: {x: 34.08, y: -0.36, z: 51.22}
-  m_LocalScale: {x: 1, y: 1.4379146, z: 1}
+  m_LocalPosition: {x: 34.080017, y: -0.35998535, z: 51.22}
+  m_LocalScale: {x: 1, y: 1.4379145, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1576147719}
   m_Father: {fileID: 0}
-  m_RootOrder: 20
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0.109, y: 0.353, z: -0.08}
 --- !u!1 &766254461
 GameObject:
@@ -8233,8 +8296,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 956463801}
-  m_LocalRotation: {x: 0.09963052, y: 0.00236621, z: -0.00023692622, w: 0.99502164}
-  m_LocalPosition: {x: 34.068836, y: 0.6447502, z: 48.72574}
+  m_LocalRotation: {x: 0.09963052, y: 0.00236621, z: -0.00023692622, w: 0.9950217}
+  m_LocalPosition: {x: 34.06885, y: 0.64476496, z: 48.72574}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -8294,10 +8357,14 @@ PrefabInstance:
     - target: {fileID: 2012129974914182282, guid: b454c26f0e38b5c40b8c55d00eae5fb2, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 389832760}
+      objectReference: {fileID: 389832765}
     - target: {fileID: 2012129974914182282, guid: b454c26f0e38b5c40b8c55d00eae5fb2, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: ChangeEquipmentInfo
+      objectReference: {fileID: 0}
+    - target: {fileID: 2012129974914182282, guid: b454c26f0e38b5c40b8c55d00eae5fb2, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: ChangeShield, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 2060142898591137083, guid: b454c26f0e38b5c40b8c55d00eae5fb2, type: 3}
       propertyPath: m_Name
@@ -8426,10 +8493,14 @@ PrefabInstance:
     - target: {fileID: 3707551722208775257, guid: b454c26f0e38b5c40b8c55d00eae5fb2, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 272757899}
+      objectReference: {fileID: 272757904}
     - target: {fileID: 3707551722208775257, guid: b454c26f0e38b5c40b8c55d00eae5fb2, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: ChangeEquipmentInfo
+      objectReference: {fileID: 0}
+    - target: {fileID: 3707551722208775257, guid: b454c26f0e38b5c40b8c55d00eae5fb2, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: ChangeShield, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 3763476781043029895, guid: b454c26f0e38b5c40b8c55d00eae5fb2, type: 3}
       propertyPath: m_Sprite
@@ -8447,6 +8518,14 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5203657744985017501, guid: b454c26f0e38b5c40b8c55d00eae5fb2, type: 3}
+      propertyPath: equipName
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 5203657744985017501, guid: b454c26f0e38b5c40b8c55d00eae5fb2, type: 3}
+      propertyPath: equipSlot
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 5386742218794233708, guid: b454c26f0e38b5c40b8c55d00eae5fb2, type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -8462,10 +8541,14 @@ PrefabInstance:
     - target: {fileID: 6310878528174254140, guid: b454c26f0e38b5c40b8c55d00eae5fb2, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 1304652728}
+      objectReference: {fileID: 1304652733}
     - target: {fileID: 6310878528174254140, guid: b454c26f0e38b5c40b8c55d00eae5fb2, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: ChangeEquipmentInfo
+      objectReference: {fileID: 0}
+    - target: {fileID: 6310878528174254140, guid: b454c26f0e38b5c40b8c55d00eae5fb2, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: ChangeShield, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 6529423566620403451, guid: b454c26f0e38b5c40b8c55d00eae5fb2, type: 3}
       propertyPath: m_Sprite
@@ -8503,7 +8586,10 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.UI.Image, UnityEngine.UI
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 559983344876651213, guid: b454c26f0e38b5c40b8c55d00eae5fb2, type: 3}
+    - {fileID: 2331094484479885772, guid: b454c26f0e38b5c40b8c55d00eae5fb2, type: 3}
+    - {fileID: 5203657744985017501, guid: b454c26f0e38b5c40b8c55d00eae5fb2, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: b454c26f0e38b5c40b8c55d00eae5fb2, type: 3}
 --- !u!1 &973569071
 GameObject:
@@ -8634,7 +8720,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 11
+  m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &981353552
 MonoBehaviour:
@@ -8773,7 +8859,7 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: bed957ad300bc5c4b99819c9d0b33a47, type: 2}
     - target: {fileID: -8679921383154817045, guid: 14bc0d2782b0f1d43aa804c8a100da81, type: 3}
       propertyPath: m_RootOrder
-      value: 19
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 14bc0d2782b0f1d43aa804c8a100da81, type: 3}
       propertyPath: m_LocalScale.x
@@ -8859,10 +8945,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 759402720}
+  index: 0
   nomeEquip: Pozione piccola
   cureValue: 15
   sprite: {fileID: 21300000, guid: 82259db9e617ea34887a2b6d13ea8018, type: 3}
   hudPotion: {fileID: 2137011173}
+  parentTrasform: {fileID: 1379174171}
 --- !u!65 &1007046498
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -8886,10 +8974,14 @@ PrefabInstance:
     - target: {fileID: 2012129974914182282, guid: b454c26f0e38b5c40b8c55d00eae5fb2, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 496794822}
+      objectReference: {fileID: 496794827}
     - target: {fileID: 2012129974914182282, guid: b454c26f0e38b5c40b8c55d00eae5fb2, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: ChangeEquipmentInfo
+      objectReference: {fileID: 0}
+    - target: {fileID: 2012129974914182282, guid: b454c26f0e38b5c40b8c55d00eae5fb2, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: ChangePotion, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 2060142898591137083, guid: b454c26f0e38b5c40b8c55d00eae5fb2, type: 3}
       propertyPath: m_Name
@@ -9018,10 +9110,14 @@ PrefabInstance:
     - target: {fileID: 3707551722208775257, guid: b454c26f0e38b5c40b8c55d00eae5fb2, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 416456344}
+      objectReference: {fileID: 416456349}
     - target: {fileID: 3707551722208775257, guid: b454c26f0e38b5c40b8c55d00eae5fb2, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: ChangeEquipmentInfo
+      objectReference: {fileID: 0}
+    - target: {fileID: 3707551722208775257, guid: b454c26f0e38b5c40b8c55d00eae5fb2, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: ChangePotion, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 3763476781043029895, guid: b454c26f0e38b5c40b8c55d00eae5fb2, type: 3}
       propertyPath: m_Sprite
@@ -9058,10 +9154,14 @@ PrefabInstance:
     - target: {fileID: 6310878528174254140, guid: b454c26f0e38b5c40b8c55d00eae5fb2, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 82293319}
+      objectReference: {fileID: 82293324}
     - target: {fileID: 6310878528174254140, guid: b454c26f0e38b5c40b8c55d00eae5fb2, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: ChangeEquipmentInfo
+      objectReference: {fileID: 0}
+    - target: {fileID: 6310878528174254140, guid: b454c26f0e38b5c40b8c55d00eae5fb2, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: ChangePotion, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 6529423566620403451, guid: b454c26f0e38b5c40b8c55d00eae5fb2, type: 3}
       propertyPath: m_Sprite
@@ -9099,7 +9199,10 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.UI.Image, UnityEngine.UI
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 559983344876651213, guid: b454c26f0e38b5c40b8c55d00eae5fb2, type: 3}
+    - {fileID: 2331094484479885772, guid: b454c26f0e38b5c40b8c55d00eae5fb2, type: 3}
+    - {fileID: 5203657744985017501, guid: b454c26f0e38b5c40b8c55d00eae5fb2, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: b454c26f0e38b5c40b8c55d00eae5fb2, type: 3}
 --- !u!1 &1013559071 stripped
 GameObject:
@@ -9143,33 +9246,43 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 7698417226671270034, guid: b454c26f0e38b5c40b8c55d00eae5fb2, type: 3}
   m_PrefabInstance: {fileID: 585699411}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1027085364 stripped
+--- !u!114 &1027085369
 MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 559983344876651213, guid: b454c26f0e38b5c40b8c55d00eae5fb2, type: 3}
-  m_PrefabInstance: {fileID: 585699411}
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1027085359}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 51bd92343f5925c40b6f5a403f1452b5, type: 3}
+  m_Script: {fileID: 11500000, guid: 221888ae024b676449611bb166864d70, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  equipSlot: {fileID: 1048744470}
+  equipName: {fileID: 1102969601}
+  index: 1
+  player: {fileID: 759402720}
 --- !u!1 &1043968276 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2787304541964905508, guid: b454c26f0e38b5c40b8c55d00eae5fb2, type: 3}
   m_PrefabInstance: {fileID: 1190994339}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1043968281 stripped
+--- !u!114 &1043968286
 MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 2331094484479885772, guid: b454c26f0e38b5c40b8c55d00eae5fb2, type: 3}
-  m_PrefabInstance: {fileID: 1190994339}
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1043968276}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 51bd92343f5925c40b6f5a403f1452b5, type: 3}
+  m_Script: {fileID: 11500000, guid: 1cf16a9173d2ce44792f0d2fb3f647bf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  equipSlot: {fileID: 1274438181}
+  equipName: {fileID: 699082746}
+  index: 2
+  player: {fileID: 759402720}
 --- !u!114 &1048744470 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1453895352345776249, guid: b454c26f0e38b5c40b8c55d00eae5fb2, type: 3}
@@ -9571,7 +9684,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 3c02cd885cb94a748a8a52ce0eb7f443, type: 3}
       propertyPath: m_RootOrder
-      value: 16
+      value: 17
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 3c02cd885cb94a748a8a52ce0eb7f443, type: 3}
       propertyPath: m_LocalScale.x
@@ -9669,11 +9782,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 759402720}
+  index: 0
   nomeEquip: Spada Corta
   damage: 20
   stamina: 10
   sprite: {fileID: 21300000, guid: 6d6e2c55b40e4d74fa15cbe10fc73fe0, type: 3}
   hudWeapon: {fileID: 360545013}
+  parentTrasform: {fileID: 1379174171}
 --- !u!65 &1086972227
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -10022,7 +10137,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 4fb89ad2a89eb744dade0b634fb00a0e, type: 3}
       propertyPath: m_RootOrder
-      value: 13
+      value: 14
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 4fb89ad2a89eb744dade0b634fb00a0e, type: 3}
       propertyPath: m_LocalScale.x
@@ -10116,11 +10231,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 759402720}
+  index: 0
   nomeEquip: Elmo Centurione
   armorValue: 30
   stamina: 0
   sprite: {fileID: 21300000, guid: 44163ca3bda2fc24395835b13357294f, type: 3}
   hudHelmet: {fileID: 1109566833}
+  parentTrasform: {fileID: 1379174171}
 --- !u!65 &1130106031
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -10698,10 +10815,14 @@ PrefabInstance:
     - target: {fileID: 2012129974914182282, guid: b454c26f0e38b5c40b8c55d00eae5fb2, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 1043968281}
+      objectReference: {fileID: 1043968286}
     - target: {fileID: 2012129974914182282, guid: b454c26f0e38b5c40b8c55d00eae5fb2, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: ChangeEquipmentInfo
+      objectReference: {fileID: 0}
+    - target: {fileID: 2012129974914182282, guid: b454c26f0e38b5c40b8c55d00eae5fb2, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: ChangeChest, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 2060142898591137083, guid: b454c26f0e38b5c40b8c55d00eae5fb2, type: 3}
       propertyPath: m_Name
@@ -10830,10 +10951,14 @@ PrefabInstance:
     - target: {fileID: 3707551722208775257, guid: b454c26f0e38b5c40b8c55d00eae5fb2, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 472879449}
+      objectReference: {fileID: 472879454}
     - target: {fileID: 3707551722208775257, guid: b454c26f0e38b5c40b8c55d00eae5fb2, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: ChangeEquipmentInfo
+      objectReference: {fileID: 0}
+    - target: {fileID: 3707551722208775257, guid: b454c26f0e38b5c40b8c55d00eae5fb2, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: ChangeChest, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 3763476781043029895, guid: b454c26f0e38b5c40b8c55d00eae5fb2, type: 3}
       propertyPath: m_Sprite
@@ -10866,16 +10991,23 @@ PrefabInstance:
     - target: {fileID: 6310878528174254140, guid: b454c26f0e38b5c40b8c55d00eae5fb2, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 2058789346}
+      objectReference: {fileID: 2058789351}
     - target: {fileID: 6310878528174254140, guid: b454c26f0e38b5c40b8c55d00eae5fb2, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: ChangeEquipmentInfo
+      objectReference: {fileID: 0}
+    - target: {fileID: 6310878528174254140, guid: b454c26f0e38b5c40b8c55d00eae5fb2, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: ChangeChest, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 6529423566620403451, guid: b454c26f0e38b5c40b8c55d00eae5fb2, type: 3}
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 21300000, guid: 8a5ac5e70063da14d90a116dc2929a6f, type: 3}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 559983344876651213, guid: b454c26f0e38b5c40b8c55d00eae5fb2, type: 3}
+    - {fileID: 2331094484479885772, guid: b454c26f0e38b5c40b8c55d00eae5fb2, type: 3}
+    - {fileID: 5203657744985017501, guid: b454c26f0e38b5c40b8c55d00eae5fb2, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: b454c26f0e38b5c40b8c55d00eae5fb2, type: 3}
 --- !u!1 &1199553121
 GameObject:
@@ -11124,17 +11256,22 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 1022639952546893047, guid: b454c26f0e38b5c40b8c55d00eae5fb2, type: 3}
   m_PrefabInstance: {fileID: 234574054}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1221823111 stripped
+--- !u!114 &1221823116
 MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 5203657744985017501, guid: b454c26f0e38b5c40b8c55d00eae5fb2, type: 3}
-  m_PrefabInstance: {fileID: 234574054}
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1221823106}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 51bd92343f5925c40b6f5a403f1452b5, type: 3}
+  m_Script: {fileID: 11500000, guid: 5af65281a30d29e41a98ebacc76b5917, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  equipSlot: {fileID: 2096604583}
+  equipName: {fileID: 1320797989}
+  index: 3
+  player: {fileID: 759402720}
 --- !u!1 &1222885930
 GameObject:
   m_ObjectHideFlags: 0
@@ -11261,7 +11398,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 6b3e79ec9a89a4e4b8ed93b828ab3159, type: 3}
       propertyPath: m_RootOrder
-      value: 12
+      value: 13
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 6b3e79ec9a89a4e4b8ed93b828ab3159, type: 3}
       propertyPath: m_LocalScale.x
@@ -11351,11 +11488,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 759402720}
+  index: 0
   nomeEquip: Gambali Centurione
   armorValue: 25
   stamina: 0
   sprite: {fileID: 21300000, guid: eab1e2a57583d0741add33eba1a7d0fb, type: 3}
   hudShoe: {fileID: 62884347}
+  parentTrasform: {fileID: 1379174171}
 --- !u!65 &1276126825
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -11442,17 +11581,22 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 2787304541964905508, guid: b454c26f0e38b5c40b8c55d00eae5fb2, type: 3}
   m_PrefabInstance: {fileID: 234574054}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1292460010 stripped
+--- !u!114 &1292460015
 MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 2331094484479885772, guid: b454c26f0e38b5c40b8c55d00eae5fb2, type: 3}
-  m_PrefabInstance: {fileID: 234574054}
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1292460005}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 51bd92343f5925c40b6f5a403f1452b5, type: 3}
+  m_Script: {fileID: 11500000, guid: 5af65281a30d29e41a98ebacc76b5917, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  equipSlot: {fileID: 164135496}
+  equipName: {fileID: 1213451366}
+  index: 2
+  player: {fileID: 759402720}
 --- !u!114 &1301272737 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8127350460076684316, guid: b454c26f0e38b5c40b8c55d00eae5fb2, type: 3}
@@ -11469,17 +11613,22 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 7698417226671270034, guid: b454c26f0e38b5c40b8c55d00eae5fb2, type: 3}
   m_PrefabInstance: {fileID: 973326200}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1304652728 stripped
+--- !u!114 &1304652733
 MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 559983344876651213, guid: b454c26f0e38b5c40b8c55d00eae5fb2, type: 3}
-  m_PrefabInstance: {fileID: 973326200}
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1304652723}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 51bd92343f5925c40b6f5a403f1452b5, type: 3}
+  m_Script: {fileID: 11500000, guid: 53fc591c7695d43478e212668a6b2036, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  equipSlot: {fileID: 66413640}
+  equipName: {fileID: 1069410716}
+  index: 1
+  player: {fileID: 759402720}
 --- !u!1 &1305752751
 GameObject:
   m_ObjectHideFlags: 0
@@ -11561,17 +11710,22 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 2787304541964905508, guid: b454c26f0e38b5c40b8c55d00eae5fb2, type: 3}
   m_PrefabInstance: {fileID: 585699411}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1311076799 stripped
+--- !u!114 &1311076804
 MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 2331094484479885772, guid: b454c26f0e38b5c40b8c55d00eae5fb2, type: 3}
-  m_PrefabInstance: {fileID: 585699411}
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1311076794}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 51bd92343f5925c40b6f5a403f1452b5, type: 3}
+  m_Script: {fileID: 11500000, guid: 221888ae024b676449611bb166864d70, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  equipSlot: {fileID: 1095221502}
+  equipName: {fileID: 1916773638}
+  index: 2
+  player: {fileID: 759402720}
 --- !u!1001 &1312502449
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -11581,7 +11735,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 532fe2a0f094ebc43a2389b8aa161457, type: 3}
       propertyPath: m_RootOrder
-      value: 15
+      value: 16
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 532fe2a0f094ebc43a2389b8aa161457, type: 3}
       propertyPath: m_LocalScale.x
@@ -11663,11 +11817,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 759402720}
+  index: 0
   nomeEquip: Elmo Base
   armorValue: 15
   stamina: 0
   sprite: {fileID: 21300000, guid: 44163ca3bda2fc24395835b13357294f, type: 3}
   hudHelmet: {fileID: 1109566833}
+  parentTrasform: {fileID: 1379174171}
 --- !u!65 &1312502452
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -12023,10 +12179,11 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 1022639952546893047, guid: b454c26f0e38b5c40b8c55d00eae5fb2, type: 3}
   m_PrefabInstance: {fileID: 7171814532780859861}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1344357909 stripped
+--- !u!114 &1344357914
 MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 5203657744985017501, guid: b454c26f0e38b5c40b8c55d00eae5fb2, type: 3}
-  m_PrefabInstance: {fileID: 7171814532780859861}
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1344357904}
   m_Enabled: 1
@@ -12034,6 +12191,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51bd92343f5925c40b6f5a403f1452b5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  equipSlot: {fileID: 2034404627}
+  equipName: {fileID: 734137997}
+  index: 3
+  player: {fileID: 759402720}
 --- !u!1 &1361372785
 GameObject:
   m_ObjectHideFlags: 0
@@ -12098,6 +12259,37 @@ Transform:
   m_Father: {fileID: 2091922081}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1379174170
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1379174171}
+  m_Layer: 0
+  m_Name: Equip Container
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1379174171
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1379174170}
+  m_LocalRotation: {x: -0, y: -0, z: 1.978151e-11, w: 1}
+  m_LocalPosition: {x: -13.947001, y: 0.0000000027526814, z: 0.0000011851662}
+  m_LocalScale: {x: 0.99999994, y: 0.99999994, z: 1.0000001}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1576147719}
+  m_RootOrder: 9
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1379419250
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -12111,7 +12303,7 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: 3f7b9a348cdfff343a52b4156a593d80, type: 2}
     - target: {fileID: -8679921383154817045, guid: cd283f8b0c349aa419e1079052604cce, type: 3}
       propertyPath: m_RootOrder
-      value: 14
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: cd283f8b0c349aa419e1079052604cce, type: 3}
       propertyPath: m_LocalScale.x
@@ -12229,11 +12421,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 759402720}
+  index: 0
   nomeEquip: Armatura Centurione
   armorValue: 40
   stamina: 0
   sprite: {fileID: 21300000, guid: 8a5ac5e70063da14d90a116dc2929a6f, type: 3}
   hudChest: {fileID: 767634453}
+  parentTrasform: {fileID: 1379174171}
 --- !u!65 &1379419253
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -12944,7 +13138,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 43bfa83e745cab347a3d31eed4b7bd26, type: 3}
       propertyPath: m_RootOrder
-      value: 18
+      value: 19
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 43bfa83e745cab347a3d31eed4b7bd26, type: 3}
       propertyPath: m_LocalScale.x
@@ -13030,11 +13224,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 759402720}
+  index: 0
   nomeEquip: Scudo Base
   shieldValue: 0.2
   stamina: 20
   sprite: {fileID: 21300000, guid: e52ca4d413e6dac49bda0ecc6699b35e, type: 3}
   hudShield: {fileID: 2133045436}
+  parentTrasform: {fileID: 1379174171}
 --- !u!65 &1519960295
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -13333,6 +13529,7 @@ Transform:
   - {fileID: 955639946}
   - {fileID: 188976807}
   - {fileID: 571996905}
+  - {fileID: 1379174171}
   m_Father: {fileID: 759402724}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -15506,7 +15703,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 3fbc8b6af4dfea747884bc98c9d7a6bb, type: 3}
       propertyPath: m_RootOrder
-      value: 17
+      value: 18
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 3fbc8b6af4dfea747884bc98c9d7a6bb, type: 3}
       propertyPath: m_LocalScale.x
@@ -15588,11 +15785,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 759402720}
+  index: 0
   nomeEquip: Spada Lunga
   damage: 45
   stamina: 30
   sprite: {fileID: 21300000, guid: 6d6e2c55b40e4d74fa15cbe10fc73fe0, type: 3}
   hudWeapon: {fileID: 360545013}
+  parentTrasform: {fileID: 1379174171}
 --- !u!65 &1934382913
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -16103,10 +16302,11 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 7698417226671270034, guid: b454c26f0e38b5c40b8c55d00eae5fb2, type: 3}
   m_PrefabInstance: {fileID: 7171814532780859861}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &2025323858 stripped
+--- !u!114 &2025323863
 MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 559983344876651213, guid: b454c26f0e38b5c40b8c55d00eae5fb2, type: 3}
-  m_PrefabInstance: {fileID: 7171814532780859861}
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2025323853}
   m_Enabled: 1
@@ -16114,6 +16314,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51bd92343f5925c40b6f5a403f1452b5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  equipSlot: {fileID: 2092235353}
+  equipName: {fileID: 653311601}
+  index: 1
+  player: {fileID: 759402720}
 --- !u!1 &2028981870
 GameObject:
   m_ObjectHideFlags: 0
@@ -16347,17 +16551,22 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 7698417226671270034, guid: b454c26f0e38b5c40b8c55d00eae5fb2, type: 3}
   m_PrefabInstance: {fileID: 1190994339}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &2058789346 stripped
+--- !u!114 &2058789351
 MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 559983344876651213, guid: b454c26f0e38b5c40b8c55d00eae5fb2, type: 3}
-  m_PrefabInstance: {fileID: 1190994339}
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2058789341}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 51bd92343f5925c40b6f5a403f1452b5, type: 3}
+  m_Script: {fileID: 11500000, guid: 1cf16a9173d2ce44792f0d2fb3f647bf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  equipSlot: {fileID: 910311776}
+  equipName: {fileID: 1314768334}
+  index: 1
+  player: {fileID: 759402720}
 --- !u!114 &2059027054 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8916660878876079903, guid: b454c26f0e38b5c40b8c55d00eae5fb2, type: 3}
@@ -17328,9 +17537,17 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 0}
     - target: {fileID: 559983344876651213, guid: b454c26f0e38b5c40b8c55d00eae5fb2, type: 3}
+      propertyPath: index
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 559983344876651213, guid: b454c26f0e38b5c40b8c55d00eae5fb2, type: 3}
       propertyPath: equip1
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 559983344876651213, guid: b454c26f0e38b5c40b8c55d00eae5fb2, type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 759402720}
     - target: {fileID: 1022639952546893047, guid: b454c26f0e38b5c40b8c55d00eae5fb2, type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -17376,10 +17593,14 @@ PrefabInstance:
     - target: {fileID: 2012129974914182282, guid: b454c26f0e38b5c40b8c55d00eae5fb2, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 674497865}
+      objectReference: {fileID: 674497870}
     - target: {fileID: 2012129974914182282, guid: b454c26f0e38b5c40b8c55d00eae5fb2, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: ChangeEquipmentInfo
+      objectReference: {fileID: 0}
+    - target: {fileID: 2012129974914182282, guid: b454c26f0e38b5c40b8c55d00eae5fb2, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: ChangeHelmet, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 2021018905113412498, guid: b454c26f0e38b5c40b8c55d00eae5fb2, type: 3}
       propertyPath: m_text
@@ -17395,6 +17616,14 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2331094484479885772, guid: b454c26f0e38b5c40b8c55d00eae5fb2, type: 3}
+      propertyPath: index
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2331094484479885772, guid: b454c26f0e38b5c40b8c55d00eae5fb2, type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 759402720}
     - target: {fileID: 2622836141483449872, guid: b454c26f0e38b5c40b8c55d00eae5fb2, type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -17518,10 +17747,14 @@ PrefabInstance:
     - target: {fileID: 3707551722208775257, guid: b454c26f0e38b5c40b8c55d00eae5fb2, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 1344357909}
+      objectReference: {fileID: 1344357914}
     - target: {fileID: 3707551722208775257, guid: b454c26f0e38b5c40b8c55d00eae5fb2, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: ChangeEquipmentInfo
+      objectReference: {fileID: 0}
+    - target: {fileID: 3707551722208775257, guid: b454c26f0e38b5c40b8c55d00eae5fb2, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: ChangeHelmet, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 3763476781043029895, guid: b454c26f0e38b5c40b8c55d00eae5fb2, type: 3}
       propertyPath: m_Sprite
@@ -17539,6 +17772,14 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5203657744985017501, guid: b454c26f0e38b5c40b8c55d00eae5fb2, type: 3}
+      propertyPath: index
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5203657744985017501, guid: b454c26f0e38b5c40b8c55d00eae5fb2, type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 759402720}
     - target: {fileID: 5386742218794233708, guid: b454c26f0e38b5c40b8c55d00eae5fb2, type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -17566,7 +17807,7 @@ PrefabInstance:
     - target: {fileID: 6310878528174254140, guid: b454c26f0e38b5c40b8c55d00eae5fb2, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 2025323858}
+      objectReference: {fileID: 2025323863}
     - target: {fileID: 6310878528174254140, guid: b454c26f0e38b5c40b8c55d00eae5fb2, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
       value: 2
@@ -17574,6 +17815,10 @@ PrefabInstance:
     - target: {fileID: 6310878528174254140, guid: b454c26f0e38b5c40b8c55d00eae5fb2, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: ChangeEquipmentInfo
+      objectReference: {fileID: 0}
+    - target: {fileID: 6310878528174254140, guid: b454c26f0e38b5c40b8c55d00eae5fb2, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: ChangeHelmet, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 6310878528174254140, guid: b454c26f0e38b5c40b8c55d00eae5fb2, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
