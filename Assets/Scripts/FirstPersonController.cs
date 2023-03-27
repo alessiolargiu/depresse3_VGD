@@ -79,7 +79,7 @@ public class FirstPersonController : MonoBehaviour {
 
     private float momentum;
 
-
+    public Transform playerModel;
 
 
     private float timeSinceJump;
@@ -114,7 +114,7 @@ public class FirstPersonController : MonoBehaviour {
 
     private void Update()
     {
-
+        Debug.Log(playerModel.GetComponent<FistCollisonCheck>().getDamage());
         if(isActive){
         //momentum=0;
         //PROVA BARRA VITA
@@ -168,7 +168,7 @@ public class FirstPersonController : MonoBehaviour {
             momentum=0;
         }
 
-        if((shift || Input.GetKey(KeyCode.JoystickButton1)) && (verticalMovement>0.5f || (horizontalMovement!=0f || verticalMovement>=0.5f)) && controller.isGrounded || momentum!=0f){
+        if((shift || Input.GetKey(KeyCode.JoystickButton1)) && (verticalMovement!=0f || horizontalMovement!=0f) && controller.isGrounded || momentum!=0f){
         
             
             if(horizontalMovement+verticalMovement==2 || horizontalMovement+verticalMovement==-2){
@@ -210,7 +210,8 @@ public class FirstPersonController : MonoBehaviour {
         
 
         if(verticalMovement!=0){
-            transform.Rotate(Vector3.up * rightHorizontal*1f);
+            transform.Rotate(Vector3.up * rightHorizontal*verticalMovement);
+            transform.Rotate(Vector3.up * mouseX*verticalMovement);
         }
         
 
@@ -379,7 +380,7 @@ public class FirstPersonController : MonoBehaviour {
 
         if(collision.gameObject.CompareTag("enemy")){
             Debug.Log("so di star toccando il nemico");
-            if(anim.GetCurrentAnimatorStateInfo(0).IsName("punch")){
+            if(playerModel.GetComponent<FistCollisonCheck>().getDamage()/*anim.GetCurrentAnimatorStateInfo(0).IsName("punch")*/){
                 Debug.Log("so di togliere vit al nemico");
                 collision.other.GetComponent<NPCFollowPathController>().TakeDamage(10);
             }

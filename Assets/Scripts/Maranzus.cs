@@ -7,6 +7,8 @@ public class Maranzus : MonoBehaviour
 {
     public NavMeshAgent agent;
 
+    public Animator anim;
+
     public Transform player;
 
     public LayerMask whatIsGround, whatIsPlayer;
@@ -35,6 +37,8 @@ public class Maranzus : MonoBehaviour
 
     private void Update()
     {
+        agent.SetDestination(player.position);
+        /*
         //Check for sight and attack range
         playerInSightRange = Physics.CheckSphere(transform.position, sightRange, whatIsPlayer);
         playerInAttackRange = Physics.CheckSphere(transform.position, attackRange, whatIsPlayer);
@@ -42,6 +46,7 @@ public class Maranzus : MonoBehaviour
         if (!playerInSightRange && !playerInAttackRange) Patroling();
         if (playerInSightRange && !playerInAttackRange) ChasePlayer();
         if (playerInAttackRange && playerInSightRange) AttackPlayer();
+        */
     }
 
     private void Patroling()

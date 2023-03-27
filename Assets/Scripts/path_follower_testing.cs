@@ -145,7 +145,7 @@ public class NPCFollowPathController : MonoBehaviour {
                 distance = Vector3.Distance(hitPoint, transform.position);
                 if(distance<distanzaMinima){
 
-                    if(currentHealth<oldHealth ){
+                    if(currentHealth<oldHealth && currentHealth!=0){
                         ver = -1f;
                     } else ver = 0f;
                     
