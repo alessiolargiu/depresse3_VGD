@@ -114,7 +114,11 @@ public class FirstPersonController : MonoBehaviour {
 
     private void Update()
     {
+
         Debug.Log(playerModel.GetComponent<FistCollisonCheck>().getDamage());
+
+        Debug.Log("POSIZIONE CUBO PLAYER: X " + followTransform.rotation.x + " Y " + followTransform.rotation.y + " Z " + followTransform.rotation.z);
+         Debug.Log("POSIZIONE CUBO PLAYER: X " + (transform.rotation.x - followTransform.rotation.x) + " Y " + (transform.rotation.y - followTransform.rotation.y) + " Z " + (transform.rotation.z - followTransform.rotation.z));
         if(isActive){
         //momentum=0;
         //PROVA BARRA VITA
@@ -137,6 +141,18 @@ public class FirstPersonController : MonoBehaviour {
         
         horizontalMovement = Input.GetAxis("Horizontal");
         verticalMovement = Input.GetAxis("Vertical");
+
+
+        //transform.Rotate(Vector3.up * followTransform);
+
+
+        Vector3 eulerRotation = new Vector3(transform.eulerAngles.x, followTransform.eulerAngles.y, transform.eulerAngles.z);
+        Vector3 oldRotation = new Vector3(transform.eulerAngles.x, transform.eulerAngles.y, transform.eulerAngles.z);
+
+        if(eulerRotation!=oldRotation && verticalMovement!=0 || horizontalMovement!=0){
+            transform.rotation = Quaternion.Euler(eulerRotation);
+        }
+        
         
 
         //float controllerVisualH = Input.GetAxis("HorizontalJ");
