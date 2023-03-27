@@ -75,6 +75,11 @@ public class FirstPersonController : MonoBehaviour {
     private float smooth;
 
 
+    public Transform followTransform;
+
+    private float momentum;
+
+
 
 
     private float timeSinceJump;
@@ -91,6 +96,7 @@ public class FirstPersonController : MonoBehaviour {
         currentHealth = maxHealth;
         healthBar.SetMaxHealth(maxHealth);
         smooth = 0.5f;
+        fastJump=false;
     }
 
 
@@ -108,7 +114,9 @@ public class FirstPersonController : MonoBehaviour {
 
     private void Update()
     {
+
         if(isActive){
+        //momentum=0;
         //PROVA BARRA VITA
         if (Input.GetKeyDown(KeyCode.H))
         {
@@ -137,6 +145,8 @@ public class FirstPersonController : MonoBehaviour {
         bool shift = Input.GetKey(KeyCode.LeftShift);
         float mouseX = Input.GetAxis("Mouse X") * mouseSens * Time.deltaTime;
         float mouseY = Input.GetAxis("Mouse Y") * mouseSens * Time.deltaTime;
+        float rightHorizontal = Input.GetAxis("RightStickHorizontal");
+        float rightVertical = Input.GetAxis("RightStickVertical");
 
 
         Debug.Log("pugno status " + pugno.isPlaying);
@@ -154,16 +164,18 @@ public class FirstPersonController : MonoBehaviour {
             running.enabled=false;
             walking.enabled=false;
             //shift=false;
-        } 
+        }  else {
+            momentum=0;
+        }
 
-        if((shift || Input.GetKey(KeyCode.JoystickButton1)) && (verticalMovement>0.5f || (horizontalMovement!=0f || verticalMovement>=0.5f))){
+        if((shift || Input.GetKey(KeyCode.JoystickButton1)) && (verticalMovement>0.5f || (horizontalMovement!=0f || verticalMovement>=0.5f)) && controller.isGrounded || momentum!=0f){
         
             
             if(horizontalMovement+verticalMovement==2 || horizontalMovement+verticalMovement==-2){
                 transform.Rotate(Vector3.up * horizontalMovement*0.6f);
             } else transform.Rotate(Vector3.up * horizontalMovement*1f);
             
-            
+            fastJump=true;
 
             if(smooth<=1){
                 smooth+=0.005f;
@@ -182,6 +194,7 @@ public class FirstPersonController : MonoBehaviour {
             if(smooth>=0.5){
                 smooth-=0.010f;
             } 
+            
             Debug.Log("cacchina caldina " + smooth);
             
             fastJump = false;
@@ -194,20 +207,31 @@ public class FirstPersonController : MonoBehaviour {
             anim.SetFloat("walking", verticalMovement* smooth);
             anim.SetFloat("strafing", horizontalMovement*0.5f);
         }
+        
+
+        if(verticalMovement!=0){
+            transform.Rotate(Vector3.up * rightHorizontal*1f);
+        }
+        
+
+        Debug.Log("cacchina media " + smooth);
+
+
 
 
 
         if(controller.isGrounded){
-            iJumped=false;
+
+            fastJump=false;
             anim.SetFloat("jumping", 0);
             salto.enabled=false;
             //UnityEngine.Debug.Log("isgrounded true");
-            if((jump>0 || Input.GetKey(KeyCode.JoystickButton0)) && verticalMovement>0){
+            if((jump>0 || Input.GetKey(KeyCode.JoystickButton0)) && verticalMovement>0 && (!anim.GetCurrentAnimatorStateInfo(0).IsName("landing") && !anim.GetCurrentAnimatorStateInfo(0).IsName("jump"))){
                 canJump=false;
                 shift=true;
 
                 iJumped=true;
-
+                momentum=1f;
                 
                 running.enabled=false;
                 walking.enabled=false;
@@ -221,29 +245,84 @@ public class FirstPersonController : MonoBehaviour {
                 velocity.y=jumpForce;
                 controller.Move(velocity * Time.deltaTime);
                 controller.Move(move * Time.deltaTime);
-
-                
             } 
+
+            if((jump>0 || Input.GetKey(KeyCode.JoystickButton0)) && verticalMovement>0 && (!anim.GetCurrentAnimatorStateInfo(0).IsName("landing") && !anim.GetCurrentAnimatorStateInfo(0).IsName("jump")) && !(shift || Input.GetKey(KeyCode.JoystickButton1))){
+                canJump=false;
+                shift=true;
+
+                iJumped=true;
+
+                momentum = 0f;
+                running.enabled=false;
+                walking.enabled=false;
+                float bobbo = UnityEngine.Random.Range(0, 2);
+                Debug.Log("BOBBO è " + bobbo);
+                if(bobbo==0){
+                    salto.clip = altsalto;
+                } else salto.clip = oldsalto;
+                salto.enabled=true;
+                //UnityEngine.Debug.Log("Sto saltando");
+                velocity.y=jumpForce;
+                controller.Move(velocity * Time.deltaTime);
+                controller.Move(move * Time.deltaTime);
+            } 
+
+
+
+
         } 
         else  {
             anim.SetFloat("jumping", 1);
             velocity.y += gravity*Time.deltaTime;
+
+            if(momentum>0){
+                /*
+                move *=  movementRunSpeed * momentum;
+                momentum -= 0.1f;
+                verticalMovement=1f*momentum;
+                controller.Move(move *  Time.deltaTime);
+                */
+            }
+            
         }
+       
         if(horizontalMovement!=0 || verticalMovement!=0){
                     controller.Move(move * Time.deltaTime);
         }
         controller.Move(velocity * Time.deltaTime);
 
-        rotation -= mouseY;
+        //DISABILITO PER ORA rotation -= mouseY;
         //rotation -= controllerVisualV;
         //rotation = Mathf.Clamp(rotation, -90f, 90f);
         rotation = Mathf.Clamp(rotation, -30f, 15f);
 
-        cameraTransform.localRotation = Quaternion.Euler(rotation, 0f, 0f);
-        transform.Rotate(Vector3.up * mouseX);
-        //transform.Rotate(Vector3.up * controllerVisualH);
 
         
+        cameraTransform.localRotation = Quaternion.Euler(rotation, 0f, 0f);
+        //DISABILITO PER ORA transform.Rotate(Vector3.up * mouseX);
+        //transform.Rotate(Vector3.up * controllerVisualH);
+
+        /*
+        followTransform.transform.rotation *= Quaternion.AngleAxis(mouseX * 100f, Vector3.up);
+
+        followTransform.transform.rotation *= Quaternion.AngleAxis(mouseY * 100f , Vector3.right);
+
+        var angles = followTransform.transform.localEulerAngles;
+        angles.z=0;
+
+        var angle = followTransform.transform.localEulerAngles.x;
+
+        if(angle> 180 && angle <340){
+            angles.x=340;
+        } else if(angle<180 && angle > 40){angles.x=40;}
+
+        followTransform.transform.localEulerAngles = angles;
+
+        transform.rotation = Quaternion.Euler(0, followTransform.transform.rotation.eulerAngles.y, 0);
+
+        followTransform.transform.localEulerAngles = new Vector3(angles.x, 0,0);
+        */
 
         }
         
@@ -307,6 +386,8 @@ public class FirstPersonController : MonoBehaviour {
         }
 
     }
+
+    
 
 
 

@@ -36,6 +36,7 @@ public class NPCFollowPathController : MonoBehaviour {
     public AudioClip runsound;
 
     private int maxHealth = 100;
+    private int oldHealth;
     public int currentHealth = 100;
 
     private bool loopCollisione;
@@ -50,6 +51,7 @@ public class NPCFollowPathController : MonoBehaviour {
     {   
         loopCollisione=false;
         controller = GetComponent<CharacterController>();
+        oldHealth=currentHealth;
     }
 
     private void Update(){
@@ -102,9 +104,6 @@ public class NPCFollowPathController : MonoBehaviour {
         transform.rotation = Quaternion.LookRotation(newDirection);
 
         float distance;
-        anim.SetFloat("vertical", verticalMovement);
-        anim.SetFloat("position", horizontalMovement);
-        
         //Controllo degli ostacoli nel cammino dell'NPC
         RaycastHit hit;
         if (Physics.Raycast(targetRay, out hit)){
@@ -139,24 +138,38 @@ public class NPCFollowPathController : MonoBehaviour {
                             controller.Move(velocity * Time.deltaTime);
                     }else ver = 0f;  */
                 } 
-            } else ver = 1f; 
+            } //else ver = 1f; 
 
             //L'ostacolo è il target
             if (hit.collider!= null && hit.collider.gameObject.tag==target.gameObject.tag){
                 distance = Vector3.Distance(hitPoint, transform.position);
                 if(distance<distanzaMinima){
-                    ver = 0;
+
+                    if(currentHealth<oldHealth ){
+                        ver = -1f;
+                    } else ver = 0f;
                     
                     if(self.isPlaying==false && anim.GetCurrentAnimatorStateInfo(0).IsName("punch")==false){
                         anim.SetTrigger("punching");
-                        
                     }
                     
                     } 
-                    else if(distance<distanzaMinima+1){ver = 0.5f;}  else ver = 1f;
-                //UnityEngine.Debug.Log("distance " + distance);
-            }
+                    else{
+                        if(distance>=distanzaMinima+2f){
+                            ver=1f;
+                            oldHealth=currentHealth;
+                        }
+                        
+                    }
 
+                
+                //UnityEngine.Debug.Log("distance " + distance);
+            } 
+
+
+            anim.SetFloat("vertical", verticalMovement);
+            anim.SetFloat("position", horizontalMovement);
+        
             //UnityEngine.Debug.Log("sizey" + hit.collider.bounds.size.y);
             
             }
@@ -210,8 +223,6 @@ public class NPCFollowPathController : MonoBehaviour {
         if(currentHealth>0){
         anim.SetTrigger("gothit");
         currentHealth -= damage;
-        ver=-1;
-
         self.Stop();
         self.PlayOneShot(hitsound);
         
