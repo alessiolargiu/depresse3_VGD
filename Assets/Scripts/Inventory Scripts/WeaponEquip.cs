@@ -14,17 +14,15 @@ public class WeaponEquip : MonoBehaviour
     public int stamina;
     public Sprite sprite;
     public HUDInventoryWeapon hudWeapon;
-    public Transform parentTrasform;
+    public WeaponEquip weaponInPlayer;
 
     private void OnTriggerEnter(Collider other)
     {
-        index = weaponIndex;
+        weaponInPlayer.index = weaponIndex;
         weaponIndex++;
         this.gameObject.SetActive(false);
-        this.transform.parent = parentTrasform;
-        this.gameObject.GetComponent<BoxCollider>().isTrigger = false;
         Inventory inv = player.GetInventory();
-        inv.AddWeapon(this);
+        inv.AddWeapon(weaponInPlayer);
         hudWeapon.SetInventory(inv);
     }
 

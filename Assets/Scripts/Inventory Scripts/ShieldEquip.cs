@@ -13,17 +13,15 @@ public class ShieldEquip : MonoBehaviour
     public int stamina;
     public Sprite sprite;
     public HUDInventoryShield hudShield;
-    public Transform parentTrasform;
+    public ShieldEquip shieldInPlayer;
 
     private void OnTriggerEnter(Collider other)
     {
-        index = shieldIndex;
+        shieldInPlayer.index = shieldIndex;
         shieldIndex++;
         this.gameObject.SetActive(false);
-        this.transform.parent = parentTrasform;
-        this.gameObject.GetComponent<BoxCollider>().isTrigger = false;
         Inventory inv = player.GetInventory();
-        inv.AddShield(this);
+        inv.AddShield(shieldInPlayer);
         hudShield.SetInventory(inv);
     }
 

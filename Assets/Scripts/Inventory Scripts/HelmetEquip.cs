@@ -17,7 +17,7 @@ public class HelmetEquip : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        index = helmetIndex;
+        helmetInPlayer.index = helmetIndex;
         helmetIndex++;
         this.gameObject.SetActive(false);
         Inventory inv = player.GetInventory();
