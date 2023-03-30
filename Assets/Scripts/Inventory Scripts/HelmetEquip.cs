@@ -13,17 +13,15 @@ public class HelmetEquip : MonoBehaviour
     public int stamina;
     public Sprite sprite;
     public HUDInventoryHelmet hudHelmet;
-    public Transform parentTrasform;
+    public HelmetEquip helmetInPlayer;
 
     private void OnTriggerEnter(Collider other)
     {
         index = helmetIndex;
         helmetIndex++;
         this.gameObject.SetActive(false);
-        this.transform.parent = parentTrasform;
-        this.gameObject.GetComponent<BoxCollider>().isTrigger = false;
         Inventory inv = player.GetInventory();
-        inv.AddHelmet(this);
+        inv.AddHelmet(helmetInPlayer);
         hudHelmet.SetInventory(inv);
     }
 
