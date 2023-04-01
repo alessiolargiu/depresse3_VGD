@@ -13,17 +13,15 @@ public class ChestEquip : MonoBehaviour
     public int stamina;
     public Sprite sprite;
     public HUDInventoryChest hudChest;
-    public Transform parentTrasform;
+    public ChestEquip chestInPlayer;
 
     private void OnTriggerEnter(Collider other)
     {
-        index = chestIndex;
+        chestInPlayer.index = chestIndex;
         chestIndex++;
         this.gameObject.SetActive(false);
-        this.transform.parent = parentTrasform;
-        this.gameObject.GetComponent<BoxCollider>().isTrigger = false;
         Inventory inv = player.GetInventory();
-        inv.AddChest(this);
+        inv.AddChest(chestInPlayer);
         hudChest.SetInventory(inv);
     }
 
