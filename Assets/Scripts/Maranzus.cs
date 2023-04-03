@@ -15,6 +15,11 @@ public class Maranzus : MonoBehaviour
 
     public float health;
 
+    public AudioSource self;
+    public AudioClip pugnoSound;
+    public AudioClip hitSound;
+    public AudioClip deathSound;
+
     //Patroling
     public Vector3 walkPoint;
     bool walkPointSet;
@@ -29,32 +34,43 @@ public class Maranzus : MonoBehaviour
     public float sightRange, attackRange;
     public bool playerInSightRange, playerInAttackRange;
 
+
     private void Awake()
     {
         player = GameObject.Find("Player (1)").transform;
         agent = GetComponent<NavMeshAgent>();
+        alreadyAttacked=randomBoolean();
+        if(alreadyAttacked==true) Invoke(nameof(ResetAttack), timeBetweenAttacks);
     }
 
     private void Update()
     {
-        agent.SetDestination(player.position);
-        /*
+
+        
+        //agent.SetDestination(player.position);
         //Check for sight and attack range
         playerInSightRange = Physics.CheckSphere(transform.position, sightRange, whatIsPlayer);
         playerInAttackRange = Physics.CheckSphere(transform.position, attackRange, whatIsPlayer);
-
-        if (!playerInSightRange && !playerInAttackRange) Patroling();
-        if (playerInSightRange && !playerInAttackRange) ChasePlayer();
-        if (playerInAttackRange && playerInSightRange) AttackPlayer();
-        */
+        
+        if(health>0){
+            if (!playerInSightRange && !playerInAttackRange) Patroling();
+            if (playerInSightRange && !playerInAttackRange) ChasePlayer();
+            if (playerInAttackRange && playerInSightRange) AttackPlayer();
+        }  else if (health <= 0 && health!=-652.3f) { 
+            health = -652.3f;
+            DestroyEnemy(); }
     }
 
     private void Patroling()
     {
+
+        agent.speed=3f;
         if (!walkPointSet) SearchWalkPoint();
 
-        if (walkPointSet)
+        if (walkPointSet){
             agent.SetDestination(walkPoint);
+            anim.SetFloat("vertical", 0.5f);
+        }
 
         Vector3 distanceToWalkPoint = transform.position - walkPoint;
 
@@ -75,23 +91,37 @@ public class Maranzus : MonoBehaviour
     }
 
     private void ChasePlayer()
-    {
+    {   
+        agent.speed = 6f;
+        float dist = Vector3.Distance(player.position, transform.position);
+        anim.SetFloat("vertical", 1,  1f, Time.deltaTime * 10f );
+        Vector3 targetDirection = player.position - transform.position;
+        float singleStep = 1 * Time.deltaTime;
+        Vector3 newDirection = Vector3.RotateTowards(transform.forward, targetDirection, singleStep, 0.0f);
+        transform.rotation = Quaternion.LookRotation(newDirection);
         agent.SetDestination(player.position);
+
     }
 
     private void AttackPlayer()
     {
         //Make sure enemy doesn't move
+        anim.SetFloat("vertical", 0,  1f, Time.deltaTime * 10f);
         agent.SetDestination(transform.position);
+        Vector3 targetDirection = player.position - transform.position;
+        float singleStep = 1 * Time.deltaTime;
+        Vector3 newDirection = Vector3.RotateTowards(transform.forward, targetDirection, singleStep, 0.0f);
+        transform.rotation = Quaternion.LookRotation(newDirection);
+        //transform.LookAt(player);
+        Debug.Log("devo attaccare fuori if " + alreadyAttacked);
 
-        transform.LookAt(player);
-
-        if (!alreadyAttacked)
+        if (alreadyAttacked==false)
         {
+            Debug.Log("devo attaccare dentro if " + alreadyAttacked);
             ///Attack code here
-            
-
-            
+            anim.SetTrigger("punching");
+            player.GetComponent<FirstPersonController>().TakeDamage(10);
+            self.PlayOneShot(pugnoSound, 1f);
             ///End of attack code
 
             alreadyAttacked = true;
@@ -103,15 +133,32 @@ public class Maranzus : MonoBehaviour
         alreadyAttacked = false;
     }
 
-    public void TakeDamage(int damage)
-    {
-        health -= damage;
+    public void TakeDamage(int damage){
+        
+        
+        bool isHeDead; 
 
-        if (health <= 0) Invoke(nameof(DestroyEnemy), 0.5f);
+        if(health>0){
+            anim.SetTrigger("gothit");
+            self.Stop();
+            self.PlayOneShot(hitSound);
+            health -= damage;
+        }
+
+        if (health <= 0) { DestroyEnemy(); }
     }
-    private void DestroyEnemy()
-    {
-        Destroy(gameObject);
+
+
+    private void DestroyEnemy(){
+        self.Stop();
+        self.PlayOneShot(hitSound);
+        anim.SetTrigger("dying");
+    }
+
+    public void DeathDetect(string msg){
+        if(msg=="finito"){
+            DestroyObject(gameObject);
+        }
     }
 
     private void OnDrawGizmosSelected()
@@ -121,4 +168,14 @@ public class Maranzus : MonoBehaviour
         Gizmos.color = Color.yellow;
         Gizmos.DrawWireSphere(transform.position, sightRange);
     }
+
+
+    private bool randomBoolean(){
+    if (Random.value >= 0.5){
+        return true;
+    }
+    return false;
+    }
+
+    
 }

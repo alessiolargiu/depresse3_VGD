@@ -23,12 +23,18 @@ public class PlayerTarget : MonoBehaviour
 
     private Quaternion lockedRotation;
 
+     bool isMovingForwards;
+    bool isMovingSideways;
+
     void Start()
     {
         Vector3 angles = transform.eulerAngles;
         x = angles.y;
         y = angles.x;
         prevPos = transform.position;
+
+        isMovingForwards=false;
+        isMovingSideways=false;
     }
 
     void LateUpdate(){
@@ -37,8 +43,8 @@ public class PlayerTarget : MonoBehaviour
         //horizontalMovement = Input.GetAxis("Horizontal");
         //verticalMovement = Input.GetAxis("Vertical");
 
-        bool isMovingForwards = Input.GetAxisRaw("Vertical") != 0;
-        bool isMovingSideways = Input.GetAxisRaw("Horizontal") != 0;
+        isMovingForwards = Input.GetAxisRaw("Vertical") != 0;
+        isMovingSideways = Input.GetAxisRaw("Horizontal") != 0;
 
         float rightHorizontal = Input.GetAxis("RightStickHorizontal");
         float rightVertical = Input.GetAxis("RightStickVertical");
@@ -62,7 +68,7 @@ public class PlayerTarget : MonoBehaviour
             Debug.Log("X " + rotation.x + "Y " + rotation.y);
 
             // Update the distance from the player based on the mouse scrollwheel input
-            distance = Mathf.Clamp(distance - Input.GetAxis("Mouse ScrollWheel") * 5, distanceMin, distanceMax);
+            distance = Mathf.Clamp(distance , distanceMin, distanceMax);
 
             // Set the new camera position and smooth the follow if necessary
             Vector3 negDistance = new Vector3(0.0f, 0.0f, -distance);
@@ -140,6 +146,8 @@ public class PlayerTarget : MonoBehaviour
         }
         return Mathf.Clamp(angle, min, max);
     }
+
+    
 }
 
 
@@ -186,3 +194,4 @@ void LateUpdate()
         }
     }
 }*/
+

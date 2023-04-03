@@ -64,6 +64,9 @@ public class FirstPersonController : MonoBehaviour {
     public AudioSource pickupsound;
     public AudioClip picksoundclip;
     public AudioSource pugno;
+    public AudioSource pugnoAir;
+    public AudioClip airleft;
+    public AudioClip airright;
 
     private float horizontalMovement;
     private float verticalMovement;
@@ -82,7 +85,24 @@ public class FirstPersonController : MonoBehaviour {
     public Transform playerModel;
 
 
+
     private float timeSinceJump;
+
+    private bool doDamage;
+
+    public Transform rightHand;
+    public Transform leftHand;
+    public float attackRange = 0.5f;
+
+    public LayerMask enemyLayers;
+
+    private Collider prevCol;
+
+    private Transform currentEnemy;
+
+    private bool altPunching = false;
+
+
     // Start is called before the first frame update
     void Start()
     {   
@@ -109,13 +129,14 @@ public class FirstPersonController : MonoBehaviour {
         hudInvHelmet.SetInventory(inventory);
         hudInvChest.SetInventory(inventory);
         hudInvShoe.SetInventory(inventory);
+        verticalMovement=1;
     }
 
 
     private void Update()
     {
 
-        Debug.Log(playerModel.GetComponent<FistCollisonCheck>().getDamage());
+        //Debug.Log(playerModel.GetComponent<FistCollisonCheck>().getDamage());
 
         Debug.Log("POSIZIONE CUBO PLAYER: X " + followTransform.rotation.x + " Y " + followTransform.rotation.y + " Z " + followTransform.rotation.z);
          Debug.Log("POSIZIONE CUBO PLAYER: X " + (transform.rotation.x - followTransform.rotation.x) + " Y " + (transform.rotation.y - followTransform.rotation.y) + " Z " + (transform.rotation.z - followTransform.rotation.z));
@@ -149,9 +170,9 @@ public class FirstPersonController : MonoBehaviour {
         Vector3 eulerRotation = new Vector3(transform.eulerAngles.x, followTransform.eulerAngles.y, transform.eulerAngles.z);
         Vector3 oldRotation = new Vector3(transform.eulerAngles.x, transform.eulerAngles.y, transform.eulerAngles.z);
 
-        if(eulerRotation!=oldRotation && verticalMovement!=0 || horizontalMovement!=0){
-            transform.rotation = Quaternion.Euler(eulerRotation);
-        }
+        if(eulerRotation!=oldRotation && verticalMovement!=0 || horizontalMovement!=0 || (Input.GetKeyUp(KeyCode.F)|| Input.GetKeyUp(KeyCode.JoystickButton2))){
+            transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.Euler(eulerRotation), 1);
+        } 
         
         
 
@@ -165,11 +186,17 @@ public class FirstPersonController : MonoBehaviour {
         float rightVertical = Input.GetAxis("RightStickVertical");
 
 
-        Debug.Log("pugno status " + pugno.isPlaying);
-        if((Input.GetKeyUp(KeyCode.F) && pugno.isPlaying!=true) || Input.GetKeyUp(KeyCode.JoystickButton2) && controller.isGrounded && pugno.isPlaying!=true){
+        if((Input.GetKeyUp(KeyCode.F) && pugnoAir.isPlaying!=true) || Input.GetKeyUp(KeyCode.JoystickButton2) && controller.isGrounded && pugnoAir.isPlaying!=true){
+            if(altPunching==false){
+                pugnoAir.PlayOneShot(airleft, 1f);
+                Attack(leftHand);
+            } else {
+                Attack(rightHand);
+                pugnoAir.PlayOneShot(airright, 1f);
+            }
+            altPunching = !altPunching;
+            anim.SetBool("altPunching", altPunching);
             anim.SetTrigger("punching");
-            pugno.PlayOneShot(pugno.clip, 1f);
-            
         } 
         
 
@@ -185,7 +212,8 @@ public class FirstPersonController : MonoBehaviour {
         }
 
         if((shift || Input.GetKey(KeyCode.JoystickButton1)) && (verticalMovement!=0f || horizontalMovement!=0f) && controller.isGrounded || momentum!=0f){
-        
+            
+            
             
             if(horizontalMovement+verticalMovement==2 || horizontalMovement+verticalMovement==-2){
                 transform.Rotate(Vector3.up * horizontalMovement*0.6f);
@@ -204,7 +232,9 @@ public class FirstPersonController : MonoBehaviour {
             move*=movementRunSpeed*smooth;
             Debug.Log("cacchina freschina " + smooth);
             anim.SetFloat("walking", smooth);
-            anim.SetFloat("strafing", horizontalMovement + Time.deltaTime);
+            anim.SetFloat("strafing", horizontalMovement, 1f, Time.deltaTime * 10f );
+
+
 
         } else {
             if(smooth>=0.5){
@@ -221,7 +251,7 @@ public class FirstPersonController : MonoBehaviour {
             transform.Rotate(Vector3.up * horizontalMovement*0.1f);
             move*=movementSpeed*smooth;
             anim.SetFloat("walking", verticalMovement* smooth);
-            anim.SetFloat("strafing", horizontalMovement*0.5f);
+            anim.SetFloat("strafing", horizontalMovement*0.5f,  1f, Time.deltaTime * 10f );
         }
         
 
@@ -241,9 +271,8 @@ public class FirstPersonController : MonoBehaviour {
 
             fastJump=false;
             anim.SetFloat("jumping", 0);
-            salto.enabled=false;
             //UnityEngine.Debug.Log("isgrounded true");
-            if((jump>0 || Input.GetKey(KeyCode.JoystickButton0)) && verticalMovement>0 && (!anim.GetCurrentAnimatorStateInfo(0).IsName("landing") && !anim.GetCurrentAnimatorStateInfo(0).IsName("jump"))){
+            if((jump>0 || Input.GetKey(KeyCode.JoystickButton0)) && verticalMovement==1 && (!anim.GetCurrentAnimatorStateInfo(0).IsName("landing") && !anim.GetCurrentAnimatorStateInfo(0).IsName("fall"))){
                 canJump=false;
                 shift=true;
 
@@ -257,14 +286,15 @@ public class FirstPersonController : MonoBehaviour {
                 if(bobbo==0){
                     salto.clip = altsalto;
                 } else salto.clip = oldsalto;
-                salto.enabled=true;
+                salto.PlayOneShot(salto.clip, 1f);
                 //UnityEngine.Debug.Log("Sto saltando");
                 velocity.y=jumpForce;
                 controller.Move(velocity * Time.deltaTime);
                 controller.Move(move * Time.deltaTime);
+                anim.SetTrigger("jumpTrigger");
             } 
 
-            if((jump>0 || Input.GetKey(KeyCode.JoystickButton0)) && verticalMovement>0 && (!anim.GetCurrentAnimatorStateInfo(0).IsName("landing") && !anim.GetCurrentAnimatorStateInfo(0).IsName("jump")) && !(shift || Input.GetKey(KeyCode.JoystickButton1))){
+            if((jump>0 || Input.GetKey(KeyCode.JoystickButton0)) && verticalMovement==1 && (!anim.GetCurrentAnimatorStateInfo(0).IsName("landing") && !anim.GetCurrentAnimatorStateInfo(0).IsName("fall")) && !(shift || Input.GetKey(KeyCode.JoystickButton1))){
                 canJump=false;
                 shift=true;
 
@@ -278,19 +308,22 @@ public class FirstPersonController : MonoBehaviour {
                 if(bobbo==0){
                     salto.clip = altsalto;
                 } else salto.clip = oldsalto;
-                salto.enabled=true;
+                salto.PlayOneShot(salto.clip, 1f);
                 //UnityEngine.Debug.Log("Sto saltando");
                 velocity.y=jumpForce;
                 controller.Move(velocity * Time.deltaTime);
                 controller.Move(move * Time.deltaTime);
+                anim.SetTrigger("jumpTrigger");
             } 
 
-
+            if(jump>0){
+                
+            }
 
 
         } 
         else  {
-            anim.SetFloat("jumping", 1);
+            anim.SetFloat("jumping", 1, 1f, Time.deltaTime * 10f);
             velocity.y += gravity*Time.deltaTime;
 
             if(momentum>0){
@@ -349,6 +382,7 @@ public class FirstPersonController : MonoBehaviour {
     {
         if(isActive){
         currentHealth -= damage;
+        anim.SetTrigger("gothit");
         healthBar.SetHealth(currentHealth);
         }
     }
@@ -392,16 +426,52 @@ public class FirstPersonController : MonoBehaviour {
 
     }
 
-    private void OnCollisionEnter(Collision collision){  
+    private void OnCollisionStay(Collision collision){  
 
-        if(collision.gameObject.CompareTag("enemy")){
+        /*if(collision.gameObject.CompareTag("enemy")){
             Debug.Log("so di star toccando il nemico");
-            if(playerModel.GetComponent<FistCollisonCheck>().getDamage()/*anim.GetCurrentAnimatorStateInfo(0).IsName("punch")*/){
+            if(playerModel.GetComponent<FistCollisonCheck>().getDamage()){
                 Debug.Log("so di togliere vit al nemico");
-                collision.other.GetComponent<NPCFollowPathController>().TakeDamage(10);
+                collision.other.GetComponent<Maranzus>().TakeDamage(10);
             }
+        }*/
+
+    }
+
+
+    void Attack(Transform attackPoint){
+        
+        Collider[] hitEnemies = Physics.OverlapSphere(attackPoint.position, attackRange, enemyLayers);
+        foreach(Collider enemy in hitEnemies){
+
+            currentEnemy = enemy.transform;
+
+            /*var lookPos = currentEnemy.position - transform.position;
+            lookPos.y = 0;
+            //var rotation = Quaternion.LookRotation(lookPos);
+            //transform.rotation = Quaternion.Slerp(transform.rotation, rotation, 1f);
+            
+
+            Vector3 eulerRotation = new Vector3(transform.eulerAngles.x, -currentEnemy.eulerAngles.y, transform.eulerAngles.z);
+
+            transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.Euler(eulerRotation), 1);
+            */
+
+            //transform.LookAt(currentEnemy + new Vector3(0,currentEnemy.eulerAngles.y, 0));
+
+
+
+            enemy.GetComponent<Maranzus>().TakeDamage(10);
+            pugno.PlayOneShot(pugno.clip, 1f);
+
         }
 
+    }
+
+    void onDrawGizmosSelected(){
+
+        /*f(attackPoint==null) return;
+        Gizmos.DrawWireSphere(attackPoint.position, attackRange);*/
     }
 
     
