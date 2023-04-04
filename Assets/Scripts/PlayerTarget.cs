@@ -52,11 +52,11 @@ public class PlayerTarget : MonoBehaviour
         if (!isMovingForwards && !isMovingSideways){
 
             // Update the camera position based on the mouse input
-            x += Input.GetAxis("Mouse X") * xSpeed * distance * Time.deltaTime;
+            x += Input.GetAxis("Mouse X") * xSpeed * 1 * Time.deltaTime;
             y -= Input.GetAxis("Mouse Y") * ySpeed * Time.deltaTime;
 
 
-            x += rightHorizontal * xSpeed * distance * Time.deltaTime;
+            x += rightHorizontal * xSpeed * 1 * Time.deltaTime;
             y -= rightVertical * ySpeed * Time.deltaTime;
 
 

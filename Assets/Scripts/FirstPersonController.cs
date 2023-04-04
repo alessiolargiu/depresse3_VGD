@@ -72,6 +72,7 @@ public class FirstPersonController : MonoBehaviour {
     private float verticalMovement;
 
     private bool fastJump;
+    private bool slowJump;
 
     private bool iJumped;
 
@@ -117,6 +118,7 @@ public class FirstPersonController : MonoBehaviour {
         healthBar.SetMaxHealth(maxHealth);
         smooth = 0.5f;
         fastJump=false;
+        slowJump=false;
     }
 
 
@@ -158,10 +160,15 @@ public class FirstPersonController : MonoBehaviour {
         // Input
 
         
-        
+        Debug.Log("Il valore di fastjump è " + fastJump);        
         
         horizontalMovement = Input.GetAxis("Horizontal");
-        verticalMovement = Input.GetAxis("Vertical");
+        if(fastJump==true){
+            verticalMovement=1f;
+        } else if(slowJump==true){
+            verticalMovement=0.5f;
+        } else verticalMovement = Input.GetAxis("Vertical");
+
 
 
         //transform.Rotate(Vector3.up * followTransform);
@@ -219,7 +226,6 @@ public class FirstPersonController : MonoBehaviour {
                 transform.Rotate(Vector3.up * horizontalMovement*0.6f);
             } else transform.Rotate(Vector3.up * horizontalMovement*1f);
             
-            fastJump=true;
 
             if(smooth<=1){
                 smooth+=0.005f;
@@ -231,7 +237,7 @@ public class FirstPersonController : MonoBehaviour {
             }
             move*=movementRunSpeed*smooth;
             Debug.Log("cacchina freschina " + smooth);
-            anim.SetFloat("walking", smooth);
+            anim.SetFloat("walking", verticalMovement, 1f, Time.deltaTime * 10f );
             anim.SetFloat("strafing", horizontalMovement, 1f, Time.deltaTime * 10f );
 
 
@@ -243,7 +249,7 @@ public class FirstPersonController : MonoBehaviour {
             
             Debug.Log("cacchina caldina " + smooth);
             
-            fastJump = false;
+            //fastJump = false;
             running.enabled=false;
              if((horizontalMovement!=0 || verticalMovement!=0) && controller.isGrounded){
                 walking.enabled=true;
@@ -270,12 +276,13 @@ public class FirstPersonController : MonoBehaviour {
         if(controller.isGrounded){
 
             fastJump=false;
+            slowJump=false;
             anim.SetFloat("jumping", 0);
             //UnityEngine.Debug.Log("isgrounded true");
             if((jump>0 || Input.GetKey(KeyCode.JoystickButton0)) && verticalMovement==1 && (!anim.GetCurrentAnimatorStateInfo(0).IsName("landing") && !anim.GetCurrentAnimatorStateInfo(0).IsName("fall"))){
                 canJump=false;
                 shift=true;
-
+                fastJump=true;
                 iJumped=true;
                 momentum=1f;
                 
@@ -294,12 +301,11 @@ public class FirstPersonController : MonoBehaviour {
                 anim.SetTrigger("jumpTrigger");
             } 
 
-            if((jump>0 || Input.GetKey(KeyCode.JoystickButton0)) && verticalMovement==1 && (!anim.GetCurrentAnimatorStateInfo(0).IsName("landing") && !anim.GetCurrentAnimatorStateInfo(0).IsName("fall")) && !(shift || Input.GetKey(KeyCode.JoystickButton1))){
+            if((jump>0 || Input.GetKey(KeyCode.JoystickButton0)) && verticalMovement==1 && (!anim.GetCurrentAnimatorStateInfo(0).IsName("landing") && !anim.GetCurrentAnimatorStateInfo(0).IsName("fall")) && (shift && Input.GetKey(KeyCode.JoystickButton1)==false)){
                 canJump=false;
                 shift=true;
-
+                slowJump=true;
                 iJumped=true;
-
                 momentum = 0f;
                 running.enabled=false;
                 walking.enabled=false;
@@ -316,7 +322,7 @@ public class FirstPersonController : MonoBehaviour {
                 anim.SetTrigger("jumpTrigger");
             } 
 
-            if(jump>0){
+            if(jump>0 || Input.GetKey(KeyCode.JoystickButton0)){
                 
             }
 
@@ -325,7 +331,6 @@ public class FirstPersonController : MonoBehaviour {
         else  {
             anim.SetFloat("jumping", 1, 1f, Time.deltaTime * 10f);
             velocity.y += gravity*Time.deltaTime;
-
             if(momentum>0){
                 /*
                 move *=  movementRunSpeed * momentum;

@@ -34,18 +34,21 @@ public class Maranzus : MonoBehaviour
     public float sightRange, attackRange;
     public bool playerInSightRange, playerInAttackRange;
 
+    private bool isDead;
+
 
     private void Awake()
     {
-        player = GameObject.Find("Player (1)").transform;
+        player = GameObject.Find("PlayerProtagonista").transform;
         agent = GetComponent<NavMeshAgent>();
         alreadyAttacked=randomBoolean();
         if(alreadyAttacked==true) Invoke(nameof(ResetAttack), timeBetweenAttacks);
+        isDead=false;
     }
 
     private void Update()
     {
-
+        
         
         //agent.SetDestination(player.position);
         //Check for sight and attack range
@@ -56,9 +59,10 @@ public class Maranzus : MonoBehaviour
             if (!playerInSightRange && !playerInAttackRange) Patroling();
             if (playerInSightRange && !playerInAttackRange) ChasePlayer();
             if (playerInAttackRange && playerInSightRange) AttackPlayer();
-        }  else if (health <= 0 && health!=-652.3f) { 
-            health = -652.3f;
-            DestroyEnemy(); }
+        } else if (health <= 0 && isDead==false){ 
+            DestroyEnemy(); 
+            isDead=true;
+        }
     }
 
     private void Patroling()
@@ -134,9 +138,6 @@ public class Maranzus : MonoBehaviour
     }
 
     public void TakeDamage(int damage){
-        
-        
-        bool isHeDead; 
 
         if(health>0){
             anim.SetTrigger("gothit");
@@ -144,8 +145,6 @@ public class Maranzus : MonoBehaviour
             self.PlayOneShot(hitSound);
             health -= damage;
         }
-
-        if (health <= 0) { DestroyEnemy(); }
     }
 
 
@@ -156,7 +155,16 @@ public class Maranzus : MonoBehaviour
     }
 
     public void DeathDetect(string msg){
+        Debug.Log("Dovrei star morendo");
         if(msg=="finito"){
+            
+            DestroyObject(gameObject);
+        }
+    }
+
+    public void Morte(int msg){
+        Debug.Log("Dovrei star morendo budino");
+        if(msg==1){
             DestroyObject(gameObject);
         }
     }
