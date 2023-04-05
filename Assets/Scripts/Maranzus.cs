@@ -35,7 +35,7 @@ public class Maranzus : MonoBehaviour
     public bool playerInSightRange, playerInAttackRange;
 
     private bool isDead;
-
+    private bool outOfReach;
 
     public GameObject marker;
     private Renderer markerColor;
@@ -50,6 +50,7 @@ public class Maranzus : MonoBehaviour
         alreadyAttacked=randomBoolean();
         if(alreadyAttacked==true) Invoke(nameof(ResetAttack), timeBetweenAttacks);
         isDead=false;
+        outOfReach=true;
     }
 
     private void Update()
@@ -69,11 +70,14 @@ public class Maranzus : MonoBehaviour
             DestroyEnemy(); 
             isDead=true;
         }
+
+        Debug.Log("il valore di outofreach DENTRO MARANZUS è "+ outOfReach);
     }
 
     private void Patroling()
     {
 
+        outOfReach=true;
         agent.speed=3f;
         marker.SetActive(false);
         if (!walkPointSet) SearchWalkPoint();
@@ -103,7 +107,7 @@ public class Maranzus : MonoBehaviour
 
     private void ChasePlayer()
     {   
-
+        outOfReach=false;
         marker.SetActive(true);
         agent.speed = 6f;
         float dist = Vector3.Distance(player.position, transform.position);
@@ -147,7 +151,7 @@ public class Maranzus : MonoBehaviour
         alreadyAttacked = false;
     }
 
-    public void TakeDamage(int damage){
+    public float TakeDamage(int damage){
 
         if(health>0){
             anim.SetTrigger("gothit");
@@ -163,6 +167,8 @@ public class Maranzus : MonoBehaviour
         } else if(health>0 && health<40){
             markerColor.material.SetColor("_Color", Color.green);
         }
+
+        return health;
     }
 
 
@@ -201,6 +207,10 @@ public class Maranzus : MonoBehaviour
         return true;
     }
     return false;
+    }
+
+    public bool OutOfReach(){
+        return outOfReach;
     }
 
     

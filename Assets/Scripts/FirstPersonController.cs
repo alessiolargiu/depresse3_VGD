@@ -104,6 +104,8 @@ public class FirstPersonController : MonoBehaviour {
 
     private bool altPunching = false;
 
+    private bool outOfReach = true;
+    private Collider lastEnemy;
 
 
 
@@ -189,7 +191,7 @@ public class FirstPersonController : MonoBehaviour {
         Vector3 eulerRotation = new Vector3(transform.eulerAngles.x, followTransform.eulerAngles.y, transform.eulerAngles.z);
         Vector3 oldRotation = new Vector3(transform.eulerAngles.x, transform.eulerAngles.y, transform.eulerAngles.z);
 
-        if(eulerRotation!=oldRotation && verticalMovement!=0 || horizontalMovement!=0 || (Input.GetKeyUp(KeyCode.F)|| Input.GetKeyUp(KeyCode.JoystickButton2))){
+        if(eulerRotation!=oldRotation && verticalMovement!=0 || horizontalMovement!=0 /*|| (Input.GetKeyUp(KeyCode.F)|| Input.GetKeyUp(KeyCode.JoystickButton2))*/){
             transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.Euler(eulerRotation), 1);
         } 
         
@@ -276,6 +278,12 @@ public class FirstPersonController : MonoBehaviour {
         if(verticalMovement!=0){
             transform.Rotate(Vector3.up * rightHorizontal*verticalMovement);
             transform.Rotate(Vector3.up * mouseX*verticalMovement);
+            if(lastEnemy!=null){
+            if(lastEnemy.GetComponent<Maranzus>().OutOfReach()){
+                lastEnemy=null;
+                followTransform.GetComponent<PlayerTarget>().SetAttackMode(false, null);
+            }
+        }
         }
         
 
@@ -312,7 +320,7 @@ public class FirstPersonController : MonoBehaviour {
                 controller.Move(velocity * Time.deltaTime);
                 controller.Move(move * Time.deltaTime);
                 anim.SetTrigger("jumpTrigger");
-            } else if((jump>0 || Input.GetKey(KeyCode.JoystickButton0))  && (!anim.GetCurrentAnimatorStateInfo(0).IsName("landing") && !anim.GetCurrentAnimatorStateInfo(0).IsName("fall")) ){
+            } else if((jump>0 || Input.GetKey(KeyCode.JoystickButton0)) && verticalMovement!=-1 && !(horizontalMovement!=0 && verticalMovement==0)  && (!anim.GetCurrentAnimatorStateInfo(0).IsName("landing") && !anim.GetCurrentAnimatorStateInfo(0).IsName("fall")) ){
                 canJump=false;
                 shift=true;
                 fastJump=false;
@@ -393,6 +401,17 @@ public class FirstPersonController : MonoBehaviour {
 
         }
         
+        /*if(lastEnemy!=null){
+            if(lastEnemy.GetComponent<Maranzus>().OutOfReach()){
+                followTransform.GetComponent<PlayerTarget>().SetAttackMode(false, null);
+            } else if(lastEnemy.GetComponent<Maranzus>().OutOfReach()==false) {
+                followTransform.GetComponent<PlayerTarget>().SetAttackMode(true, lastEnemy.transform);
+            }
+        }*/
+        
+
+        Debug.Log("il valore di outofreach è "+ outOfReach);
+
     }
 
     public void TakeDamage(int damage)
@@ -457,22 +476,31 @@ public class FirstPersonController : MonoBehaviour {
 
 
     void Attack(Transform attackPoint){
-        Debug.Log("sono in attack");
         Collider[] hitEnemies = Physics.OverlapSphere(attackPoint.position, attackRange, enemyLayers);
         foreach(Collider enemy in hitEnemies){
-            Debug.Log("sono nel foreach " + enemy.name);
-            currentEnemy = enemy.transform;
+            float singleStep = 1 * Time.deltaTime;
 
+            lastEnemy=enemy;
 
             Debug.Log("Dovrebbe succedere qualcosa");
 
 
-            enemy.GetComponent<Maranzus>().TakeDamage(10);
+            float health = enemy.GetComponent<Maranzus>().TakeDamage(10);
+            
+            if(health>0){
+                followTransform.GetComponent<PlayerTarget>().SetAttackMode(true, enemy.transform);
+            } else if(health<=0){
+                lastEnemy=null;
+                followTransform.GetComponent<PlayerTarget>().SetAttackMode(false, null);
+            }
+            
             pugno.PlayOneShot(pugno.clip, 1f);
 
         }
 
+
     }
+    
 
     void onDrawGizmosSelected(){
 

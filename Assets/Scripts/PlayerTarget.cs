@@ -26,6 +26,9 @@ public class PlayerTarget : MonoBehaviour
      bool isMovingForwards;
     bool isMovingSideways;
 
+    public bool playerAttack;
+    private Transform enemy;
+
     void Start()
     {
         Vector3 angles = transform.eulerAngles;
@@ -106,6 +109,21 @@ public class PlayerTarget : MonoBehaviour
             transform.rotation = Quaternion.LookRotation(-target.forward, target.up);*/
         }
 
+        if(playerAttack){
+            Vector3 playerForward = target.forward;
+            playerForward = -playerForward + enemy.forward;
+
+            Vector3 offset = new Vector3(0, 0, -distance);
+            Vector3 position = transform.position + playerForward * offset.z + target.up * offset.y;
+            correctPosition = position;
+            transform.position = position;
+            transform.rotation = Quaternion.LookRotation(-playerForward, target.up);
+            x=0;
+            y=0;
+            lockedRotation = transform.rotation;
+            Debug.Log("X2 " + transform.rotation.x + "Y2 " + transform.rotation.y);
+        }
+
 
         /*
             // Update the camera position based on the mouse input
@@ -145,6 +163,11 @@ public class PlayerTarget : MonoBehaviour
             angle -= 360f;
         }
         return Mathf.Clamp(angle, min, max);
+    }
+
+    public void SetAttackMode(bool atck, Transform enemyT){
+        playerAttack=atck;
+        enemy=enemyT;
     }
 
     
