@@ -5239,7 +5239,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: ed9c549ebe2114b6ab77bb26d6a1a5ad, type: 3}
       propertyPath: m_RootOrder
-      value: 15
+      value: 17
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: ed9c549ebe2114b6ab77bb26d6a1a5ad, type: 3}
       propertyPath: m_LocalScale.x
@@ -6930,7 +6930,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   health: 100
-  self: {fileID: 1418309748}
+  self: {fileID: 605822394}
   pugnoSound: {fileID: 8300000, guid: f2c675df2f8ee4dc08c4edf0cc819925, type: 3}
   hitSound: {fileID: 8300000, guid: a7b3c7393a1964d5d9b613cece5ccdaa, type: 3}
   deathSound: {fileID: 8300000, guid: 4aa64eaf9477d4cc686c2c72f6383215, type: 3}
@@ -8842,7 +8842,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: ed9c549ebe2114b6ab77bb26d6a1a5ad, type: 3}
       propertyPath: m_RootOrder
-      value: 16
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: ed9c549ebe2114b6ab77bb26d6a1a5ad, type: 3}
       propertyPath: m_LocalScale.x
@@ -9458,6 +9458,7 @@ MonoBehaviour:
   mouseSens: 200
   cameraTransform: {fileID: 1603466337}
   anim: {fileID: 8756318637019589333}
+  pugnoAnim: {fileID: 0}
   healthBar: {fileID: 343077125}
   hudInvWeapon: {fileID: 360545013}
   hudInvShield: {fileID: 2133045436}
@@ -9485,6 +9486,8 @@ MonoBehaviour:
   enemyLayers:
     serializedVersion: 2
     m_Bits: 128
+  legL: {fileID: 0}
+  legR: {fileID: 0}
 --- !u!23 &759402722
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -10033,6 +10036,7 @@ MonoBehaviour:
   mouseSens: 600
   cameraTransform: {fileID: 155198846}
   anim: {fileID: 182241357}
+  pugnoAnim: {fileID: 0}
   healthBar: {fileID: 343077125}
   hudInvWeapon: {fileID: 360545013}
   hudInvShield: {fileID: 2133045436}
@@ -10060,6 +10064,8 @@ MonoBehaviour:
   enemyLayers:
     serializedVersion: 2
     m_Bits: 0
+  legL: {fileID: 0}
+  legR: {fileID: 0}
 --- !u!136 &810938789
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -11129,9 +11135,9 @@ Transform:
   - {fileID: 2089979442}
   - {fileID: 1517396495}
   - {fileID: 1238439407}
-  - {fileID: 1418309745}
   - {fileID: 1761300200}
   - {fileID: 1178920892}
+  - {fileID: 1418309745}
   - {fileID: 605822391}
   m_Father: {fileID: 0}
   m_RootOrder: 6
@@ -12134,6 +12140,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: caece525e51e1477796de1323fa672e1, type: 3}
       propertyPath: m_Name
       value: raggi
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: caece525e51e1477796de1323fa672e1, type: 3}
+      propertyPath: m_TagString
+      value: enemy
       objectReference: {fileID: 0}
     - target: {fileID: 5866666021909216657, guid: caece525e51e1477796de1323fa672e1, type: 3}
       propertyPath: m_Controller
@@ -16370,7 +16380,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: ed9c549ebe2114b6ab77bb26d6a1a5ad, type: 3}
       propertyPath: m_RootOrder
-      value: 17
+      value: 16
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: ed9c549ebe2114b6ab77bb26d6a1a5ad, type: 3}
       propertyPath: m_LocalScale.x

@@ -26,6 +26,7 @@ public class FirstPersonController : MonoBehaviour {
     public Transform cameraTransform;
     private float rotation = 0f;
     public Animator anim;
+    public Animation pugnoAnim;
 
     //parametri vita del player
     public HealthBar healthBar;
@@ -104,6 +105,15 @@ public class FirstPersonController : MonoBehaviour {
     private bool altPunching = false;
 
 
+
+
+
+    public Transform legL;
+    public Transform legR;
+
+
+
+
     // Start is called before the first frame update
     void Start()
     {   
@@ -164,9 +174,11 @@ public class FirstPersonController : MonoBehaviour {
         
         horizontalMovement = Input.GetAxis("Horizontal");
         if(fastJump==true){
+            Debug.Log("Sono in fastjump");
             verticalMovement=1f;
         } else if(slowJump==true){
-            verticalMovement=0.5f;
+            Debug.Log("Sono in slowjump");
+            verticalMovement=1.2f;
         } else verticalMovement = Input.GetAxis("Vertical");
 
 
@@ -279,9 +291,10 @@ public class FirstPersonController : MonoBehaviour {
             slowJump=false;
             anim.SetFloat("jumping", 0);
             //UnityEngine.Debug.Log("isgrounded true");
-            if((jump>0 || Input.GetKey(KeyCode.JoystickButton0)) && verticalMovement==1 && (!anim.GetCurrentAnimatorStateInfo(0).IsName("landing") && !anim.GetCurrentAnimatorStateInfo(0).IsName("fall"))){
+            if((jump>0 || Input.GetKey(KeyCode.JoystickButton0)) && verticalMovement==1 && (!anim.GetCurrentAnimatorStateInfo(0).IsName("landing") && !anim.GetCurrentAnimatorStateInfo(0).IsName("fall")) && (shift || Input.GetKey(KeyCode.JoystickButton1)==true)){
                 canJump=false;
                 shift=true;
+                slowJump=false;
                 fastJump=true;
                 iJumped=true;
                 momentum=1f;
@@ -299,11 +312,10 @@ public class FirstPersonController : MonoBehaviour {
                 controller.Move(velocity * Time.deltaTime);
                 controller.Move(move * Time.deltaTime);
                 anim.SetTrigger("jumpTrigger");
-            } 
-
-            if((jump>0 || Input.GetKey(KeyCode.JoystickButton0)) && verticalMovement==1 && (!anim.GetCurrentAnimatorStateInfo(0).IsName("landing") && !anim.GetCurrentAnimatorStateInfo(0).IsName("fall")) && (shift && Input.GetKey(KeyCode.JoystickButton1)==false)){
+            } else if((jump>0 || Input.GetKey(KeyCode.JoystickButton0))  && (!anim.GetCurrentAnimatorStateInfo(0).IsName("landing") && !anim.GetCurrentAnimatorStateInfo(0).IsName("fall")) ){
                 canJump=false;
                 shift=true;
+                fastJump=false;
                 slowJump=true;
                 iJumped=true;
                 momentum = 0f;
@@ -316,7 +328,7 @@ public class FirstPersonController : MonoBehaviour {
                 } else salto.clip = oldsalto;
                 salto.PlayOneShot(salto.clip, 1f);
                 //UnityEngine.Debug.Log("Sto saltando");
-                velocity.y=jumpForce;
+                velocity.y=jumpForce*0.8f;
                 controller.Move(velocity * Time.deltaTime);
                 controller.Move(move * Time.deltaTime);
                 anim.SetTrigger("jumpTrigger");
@@ -445,7 +457,7 @@ public class FirstPersonController : MonoBehaviour {
 
 
     void Attack(Transform attackPoint){
-        
+
         Collider[] hitEnemies = Physics.OverlapSphere(attackPoint.position, attackRange, enemyLayers);
         foreach(Collider enemy in hitEnemies){
 
@@ -464,6 +476,7 @@ public class FirstPersonController : MonoBehaviour {
 
             //transform.LookAt(currentEnemy + new Vector3(0,currentEnemy.eulerAngles.y, 0));
 
+            Debug.Log("Dovrebbe succedere qualcosa");
 
 
             enemy.GetComponent<Maranzus>().TakeDamage(10);
@@ -478,6 +491,7 @@ public class FirstPersonController : MonoBehaviour {
         /*f(attackPoint==null) return;
         Gizmos.DrawWireSphere(attackPoint.position, attackRange);*/
     }
+    
 
     
 
