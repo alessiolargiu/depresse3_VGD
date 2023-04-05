@@ -37,9 +37,15 @@ public class Maranzus : MonoBehaviour
     private bool isDead;
 
 
+    public GameObject marker;
+    private Renderer markerColor;
+
+
     private void Awake()
     {
         player = GameObject.Find("PlayerProtagonista").transform;
+        markerColor = marker.GetComponent<Renderer>();
+        markerColor.material.SetColor("_Color", Color.red);
         agent = GetComponent<NavMeshAgent>();
         alreadyAttacked=randomBoolean();
         if(alreadyAttacked==true) Invoke(nameof(ResetAttack), timeBetweenAttacks);
@@ -69,6 +75,7 @@ public class Maranzus : MonoBehaviour
     {
 
         agent.speed=3f;
+        marker.SetActive(false);
         if (!walkPointSet) SearchWalkPoint();
 
         if (walkPointSet){
@@ -96,6 +103,8 @@ public class Maranzus : MonoBehaviour
 
     private void ChasePlayer()
     {   
+
+        marker.SetActive(true);
         agent.speed = 6f;
         float dist = Vector3.Distance(player.position, transform.position);
         anim.SetFloat("vertical", 1,  1f, Time.deltaTime * 10f );
@@ -109,6 +118,7 @@ public class Maranzus : MonoBehaviour
 
     private void AttackPlayer()
     {
+        marker.SetActive(true);
         //Make sure enemy doesn't move
         anim.SetFloat("vertical", 0,  1f, Time.deltaTime * 10f);
         agent.SetDestination(transform.position);
@@ -144,6 +154,14 @@ public class Maranzus : MonoBehaviour
             self.Stop();
             self.PlayOneShot(hitSound);
             health -= damage;
+        }
+
+        if(health>70 && health<100){
+            markerColor.material.SetColor("_Color", Color.red);
+        } else if(health>40 && health<70){
+            markerColor.material.SetColor("_Color", Color.yellow);
+        } else if(health>0 && health<40){
+            markerColor.material.SetColor("_Color", Color.green);
         }
     }
 

@@ -457,24 +457,12 @@ public class FirstPersonController : MonoBehaviour {
 
 
     void Attack(Transform attackPoint){
-
+        Debug.Log("sono in attack");
         Collider[] hitEnemies = Physics.OverlapSphere(attackPoint.position, attackRange, enemyLayers);
         foreach(Collider enemy in hitEnemies){
-
+            Debug.Log("sono nel foreach " + enemy.name);
             currentEnemy = enemy.transform;
 
-            /*var lookPos = currentEnemy.position - transform.position;
-            lookPos.y = 0;
-            //var rotation = Quaternion.LookRotation(lookPos);
-            //transform.rotation = Quaternion.Slerp(transform.rotation, rotation, 1f);
-            
-
-            Vector3 eulerRotation = new Vector3(transform.eulerAngles.x, -currentEnemy.eulerAngles.y, transform.eulerAngles.z);
-
-            transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.Euler(eulerRotation), 1);
-            */
-
-            //transform.LookAt(currentEnemy + new Vector3(0,currentEnemy.eulerAngles.y, 0));
 
             Debug.Log("Dovrebbe succedere qualcosa");
 
