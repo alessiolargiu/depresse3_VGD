@@ -2055,7 +2055,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh32442
+  m_Name: pb_Mesh45340
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -15002,6 +15002,7 @@ MonoBehaviour:
   distanceMax: 15
   smoothFollow: 1
   smoothTime: 10
+  playerAttack: 0
 --- !u!23 &174260654
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -20736,6 +20737,7 @@ MonoBehaviour:
   attackRange: 0
   playerInSightRange: 0
   playerInAttackRange: 0
+  marker: {fileID: 0}
 --- !u!195 &293101057
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -83893,6 +83895,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -2864823657164792247, guid: 54be7eb8ba80d7149a1844ea27c45c4f, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 848c01cfea3ba4e4abcda6fa5c88dc20, type: 2}
     - target: {fileID: -645539856023611204, guid: 54be7eb8ba80d7149a1844ea27c45c4f, type: 3}
       propertyPath: m_LocalScale.x
       value: 0.6357453
@@ -90089,6 +90095,7 @@ MonoBehaviour:
   distanceMax: 15
   smoothFollow: 1
   smoothTime: 10
+  playerAttack: 0
 --- !u!23 &1973592075
 MeshRenderer:
   m_ObjectHideFlags: 0
