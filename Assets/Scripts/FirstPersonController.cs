@@ -113,15 +113,17 @@ public class FirstPersonController : MonoBehaviour {
     public Transform legL;
     public Transform legR;
 
+    private int noWeaponCycle = 0;
+
+
+    public GameObject bangFX;
+
 
 
 
     // Start is called before the first frame update
-    void Start()
-    {   
+    void Start(){   
         controller = GetComponent<CharacterController>();
-        //audioData = GetComponent<AudioSource>();
-
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
 
@@ -131,6 +133,7 @@ public class FirstPersonController : MonoBehaviour {
         smooth = 0.5f;
         fastJump=false;
         slowJump=false;
+        bangFX.SetActive(false);
     }
 
 
@@ -207,19 +210,60 @@ public class FirstPersonController : MonoBehaviour {
         float rightVertical = Input.GetAxis("RightStickVertical");
 
 
-        if((Input.GetKeyUp(KeyCode.F) && pugnoAir.isPlaying!=true) || Input.GetKeyUp(KeyCode.JoystickButton2) && controller.isGrounded && pugnoAir.isPlaying!=true){
-            if(altPunching==false){
+        if((Input.GetKeyUp(KeyCode.F) && (pugnoAir.isPlaying==false)) || Input.GetKeyUp(KeyCode.JoystickButton2) && controller.isGrounded && (anim.GetCurrentAnimatorStateInfo(0).IsName("kick")==false)){
+
+            Debug.Log("il valore dell variabile nowepcycle è " + noWeaponCycle);
+            switch(noWeaponCycle){
+                case 0:
+                pugnoAir.PlayOneShot(airleft, 1f);
+                StartCoroutine(Attack(leftHand, 10, 0.1f));
+                anim.SetBool("altPunching", true);
+                anim.SetTrigger("punching");
+                noWeaponCycle++;
+                break;
+                
+                case 1:
+                pugnoAir.PlayOneShot(airright, 1f);
+                StartCoroutine(Attack(rightHand, 10, 0.1f));
+                anim.SetBool("altPunching", false);
+                anim.SetTrigger("punching");
+                noWeaponCycle++;
+                break;
+
+                case 2:
+                pugnoAir.PlayOneShot(airleft, 1f);
+                int rand = UnityEngine.Random.Range(0, 2);
+                if(rand==1){
+                    anim.SetBool("altPunching", false);
+                    StartCoroutine(Attack(legR, 20, 0.5f));
+                } else {
+                    anim.SetBool("altPunching", true);
+                    StartCoroutine(Attack(legL, 20, 0.5f));
+                }
+                anim.SetTrigger("kicking");
+                noWeaponCycle=0;
+                break;
+
+                case 3:
+                pugnoAir.PlayOneShot(airright, 1f);
+                //Attack(legR, 20);
+                anim.SetBool("altPunching", false);
+                anim.SetTrigger("kicking");
+                noWeaponCycle=0;
+                break;
+            
+            }
+
+            
+            /*if(altPunching==false){
                 pugnoAir.PlayOneShot(airleft, 1f);
                 Attack(leftHand);
             } else {
                 Attack(rightHand);
                 pugnoAir.PlayOneShot(airright, 1f);
-            }
-            altPunching = !altPunching;
-            shift=true;
-            verticalMovement=1;
-            anim.SetBool("altPunching", altPunching);
-            anim.SetTrigger("punching");
+            }*/
+
+            
         } 
 
         
@@ -283,6 +327,7 @@ public class FirstPersonController : MonoBehaviour {
             if(lastEnemy.GetComponent<Maranzus>().OutOfReach()){
                 lastEnemy=null;
                 lastEnemy.GetComponent<Maranzus>().setActiveEnemy(false);
+                noWeaponCycle=0;
                 followTransform.GetComponent<PlayerTarget>().SetAttackMode(false, null);
             }
         }
@@ -377,29 +422,7 @@ public class FirstPersonController : MonoBehaviour {
 
         
         cameraTransform.localRotation = Quaternion.Euler(rotation, 0f, 0f);
-        //DISABILITO PER ORA transform.Rotate(Vector3.up * mouseX);
-        //transform.Rotate(Vector3.up * controllerVisualH);
 
-        /*
-        followTransform.transform.rotation *= Quaternion.AngleAxis(mouseX * 100f, Vector3.up);
-
-        followTransform.transform.rotation *= Quaternion.AngleAxis(mouseY * 100f , Vector3.right);
-
-        var angles = followTransform.transform.localEulerAngles;
-        angles.z=0;
-
-        var angle = followTransform.transform.localEulerAngles.x;
-
-        if(angle> 180 && angle <340){
-            angles.x=340;
-        } else if(angle<180 && angle > 40){angles.x=40;}
-
-        followTransform.transform.localEulerAngles = angles;
-
-        transform.rotation = Quaternion.Euler(0, followTransform.transform.rotation.eulerAngles.y, 0);
-
-        followTransform.transform.localEulerAngles = new Vector3(angles.x, 0,0);
-        */
 
         }
         
@@ -427,14 +450,12 @@ public class FirstPersonController : MonoBehaviour {
         }
     }
 
-    public Inventory GetInventory()
-    {
+    public Inventory GetInventory(){
         return inventory;
     }
 
 
-    private void OnTriggerEnter(Collider other)
-    {
+    private void OnTriggerEnter(Collider other){
         
         if(other.gameObject.CompareTag("Cutscene")){
             isActive=false;
@@ -468,18 +489,14 @@ public class FirstPersonController : MonoBehaviour {
 
     private void OnCollisionStay(Collision collision){  
 
-        /*if(collision.gameObject.CompareTag("enemy")){
-            Debug.Log("so di star toccando il nemico");
-            if(playerModel.GetComponent<FistCollisonCheck>().getDamage()){
-                Debug.Log("so di togliere vit al nemico");
-                collision.other.GetComponent<Maranzus>().TakeDamage(10);
-            }
-        }*/
-
     }
 
 
-    void Attack(Transform attackPoint){
+    IEnumerator Attack(Transform attackPoint, int dmg, float time){
+        verticalMovement=0;
+        Debug.Log("sto in attack");
+        yield return new WaitForSeconds(time);
+        Debug.Log("sto in attack dopo 5 sec");
         Collider[] hitEnemies = Physics.OverlapSphere(attackPoint.position, attackRange, enemyLayers);
         foreach(Collider enemy in hitEnemies){
             float singleStep = 1 * Time.deltaTime;
@@ -488,8 +505,8 @@ public class FirstPersonController : MonoBehaviour {
 
             Debug.Log("Dovrebbe succedere qualcosa");
 
-
-            float health = enemy.GetComponent<Maranzus>().TakeDamage(10);
+            
+            float health = enemy.GetComponent<Maranzus>().TakeDamage(dmg);
             
             if(health>0){
                 followTransform.GetComponent<PlayerTarget>().SetAttackMode(true, enemy.transform);
@@ -502,35 +519,15 @@ public class FirstPersonController : MonoBehaviour {
             
             pugno.PlayOneShot(pugno.clip, 1f);
 
+            bangFX.SetActive(true);
+            bangFX.transform.position=attackPoint.position;
+            yield return new WaitForSeconds(2f);
+            bangFX.SetActive(false);
+
+
         }
 
 
     }
     
-
-    void onDrawGizmosSelected(){
-
-        /*f(attackPoint==null) return;
-        Gizmos.DrawWireSphere(attackPoint.position, attackRange);*/
-    }
-    
-
-    
-
-
-
-    
-   /* private void OnControllerColliderHit(ControllerColliderHit collision){
-        //controllo per non far saltare più
-        if (collision.gameObject.CompareTag("Floor")){
-            canJump = false;
-            UnityEngine.Debug.Log("Non ho toccato il floor");
-        }
-           
-    }*/
-
-
-
-
-
 }
