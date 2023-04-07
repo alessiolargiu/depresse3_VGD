@@ -94,6 +94,10 @@ public class FirstPersonController : MonoBehaviour {
 
     public Transform rightHand;
     public Transform leftHand;
+
+    public GameObject sword;
+
+
     public float attackRange = 0.5f;
 
     public LayerMask enemyLayers;
@@ -106,6 +110,7 @@ public class FirstPersonController : MonoBehaviour {
 
     private bool outOfReach = true;
     private Collider lastEnemy;
+
 
 
 
@@ -134,6 +139,7 @@ public class FirstPersonController : MonoBehaviour {
         fastJump=false;
         slowJump=false;
         bangFX.SetActive(false);
+        sword.SetActive(false);
     }
 
 
@@ -216,7 +222,7 @@ public class FirstPersonController : MonoBehaviour {
             switch(noWeaponCycle){
                 case 0:
                 pugnoAir.PlayOneShot(airleft, 1f);
-                StartCoroutine(Attack(leftHand, 10, 0.1f));
+                StartCoroutine(Attack(leftHand, 20, 0.1f));
                 anim.SetBool("altPunching", true);
                 anim.SetTrigger("punching");
                 noWeaponCycle++;
@@ -224,7 +230,7 @@ public class FirstPersonController : MonoBehaviour {
                 
                 case 1:
                 pugnoAir.PlayOneShot(airright, 1f);
-                StartCoroutine(Attack(rightHand, 10, 0.1f));
+                StartCoroutine(Attack(rightHand, 20, 0.1f));
                 anim.SetBool("altPunching", false);
                 anim.SetTrigger("punching");
                 noWeaponCycle++;
@@ -235,35 +241,26 @@ public class FirstPersonController : MonoBehaviour {
                 int rand = UnityEngine.Random.Range(0, 2);
                 if(rand==1){
                     anim.SetBool("altPunching", false);
-                    StartCoroutine(Attack(legR, 20, 0.5f));
+                    StartCoroutine(Attack(legR, 40, 0.5f));
                 } else {
                     anim.SetBool("altPunching", true);
-                    StartCoroutine(Attack(legL, 20, 0.5f));
+                    StartCoroutine(Attack(legL, 40, 0.5f));
                 }
-                anim.SetTrigger("kicking");
-                noWeaponCycle=0;
-                break;
-
-                case 3:
-                pugnoAir.PlayOneShot(airright, 1f);
-                //Attack(legR, 20);
-                anim.SetBool("altPunching", false);
                 anim.SetTrigger("kicking");
                 noWeaponCycle=0;
                 break;
             
             }
-
             
-            /*if(altPunching==false){
-                pugnoAir.PlayOneShot(airleft, 1f);
-                Attack(leftHand);
-            } else {
-                Attack(rightHand);
-                pugnoAir.PlayOneShot(airright, 1f);
-            }*/
+        }
 
-            
+        if((Input.GetKeyUp(KeyCode.G) && (pugnoAir.isPlaying==false)) || Input.GetKeyUp(KeyCode.JoystickButton3) && controller.isGrounded && (anim.GetCurrentAnimatorStateInfo(0).IsName("sword")==false)){
+            sword.SetActive(true);
+            //pugnoAir.PlayOneShot(airleft, 1f);
+            StartCoroutine(Attack(sword.transform, 60, 1f));
+            //anim.SetBool("altPunching", true);
+            anim.SetTrigger("swording");
+
         } 
 
         
@@ -521,13 +518,12 @@ public class FirstPersonController : MonoBehaviour {
 
             bangFX.SetActive(true);
             bangFX.transform.position=attackPoint.position;
-            yield return new WaitForSeconds(2f);
+            yield return new WaitForSeconds(4f);
             bangFX.SetActive(false);
-
 
         }
 
-
+        sword.SetActive(false);
     }
     
 }
