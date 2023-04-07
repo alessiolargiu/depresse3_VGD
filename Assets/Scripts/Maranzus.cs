@@ -20,6 +20,10 @@ public class Maranzus : MonoBehaviour
     public AudioClip hitSound;
     public AudioClip deathSound;
 
+    public static string whoIsAttacking = null;
+    private string myself;
+
+
     //Patroling
     public Vector3 walkPoint;
     bool walkPointSet;
@@ -40,6 +44,8 @@ public class Maranzus : MonoBehaviour
     public GameObject marker;
     private Renderer markerColor;
 
+    private bool imActive;
+
 
     private void Awake()
     {
@@ -51,21 +57,33 @@ public class Maranzus : MonoBehaviour
         if(alreadyAttacked==true) Invoke(nameof(ResetAttack), timeBetweenAttacks);
         isDead=false;
         outOfReach=true;
+        imActive=true;
+        myself = GetInstanceID().ToString();
     }
 
     private void Update()
     {
-        
-        
+        if(imActive==false){
+            marker.SetActive(false);
+        }
         //agent.SetDestination(player.position);
         //Check for sight and attack range
         playerInSightRange = Physics.CheckSphere(transform.position, sightRange, whatIsPlayer);
         playerInAttackRange = Physics.CheckSphere(transform.position, attackRange, whatIsPlayer);
         
         if(health>0){
-            if (!playerInSightRange && !playerInAttackRange) Patroling();
-            if (playerInSightRange && !playerInAttackRange) ChasePlayer();
-            if (playerInAttackRange && playerInSightRange) AttackPlayer();
+            if (!playerInSightRange && !playerInAttackRange) {
+                if(whoIsAttacking==myself){
+                    whoIsAttacking=null;
+                }
+                Patroling();
+            }
+            if (playerInSightRange && !playerInAttackRange && (whoIsAttacking==null || whoIsAttacking==myself) ) {
+                whoIsAttacking=myself;
+                ChasePlayer();
+            }
+            if (playerInAttackRange && playerInSightRange && (whoIsAttacking==myself)) AttackPlayer();
+
         } else if (health <= 0 && isDead==false){ 
             DestroyEnemy(); 
             isDead=true;
@@ -108,7 +126,7 @@ public class Maranzus : MonoBehaviour
     private void ChasePlayer()
     {   
         outOfReach=false;
-        marker.SetActive(true);
+        if(imActive) marker.SetActive(true);
         agent.speed = 6f;
         float dist = Vector3.Distance(player.position, transform.position);
         anim.SetFloat("vertical", 1,  1f, Time.deltaTime * 10f );
@@ -122,7 +140,7 @@ public class Maranzus : MonoBehaviour
 
     private void AttackPlayer()
     {
-        marker.SetActive(true);
+        if(imActive) marker.SetActive(true);
         //Make sure enemy doesn't move
         anim.SetFloat("vertical", 0,  1f, Time.deltaTime * 10f);
         agent.SetDestination(transform.position);
@@ -138,7 +156,7 @@ public class Maranzus : MonoBehaviour
             Debug.Log("devo attaccare dentro if " + alreadyAttacked);
             ///Attack code here
             anim.SetTrigger("punching");
-            player.GetComponent<FirstPersonController>().TakeDamage(10);
+            player.GetComponent<FirstPersonController>().TakeDamage(5, transform);
             self.PlayOneShot(pugnoSound, 1f);
             ///End of attack code
 
@@ -165,7 +183,7 @@ public class Maranzus : MonoBehaviour
         } else if(health>40 && health<70){
             markerColor.material.SetColor("_Color", Color.yellow);
         } else if(health>0 && health<40){
-            markerColor.material.SetColor("_Color", Color.green);
+            markerColor.material.SetColor("_Color", Color.black);
         }
 
         return health;
@@ -174,6 +192,7 @@ public class Maranzus : MonoBehaviour
 
     private void DestroyEnemy(){
         self.Stop();
+        whoIsAttacking=null;
         self.PlayOneShot(hitSound);
         anim.SetTrigger("dying");
     }
@@ -181,7 +200,6 @@ public class Maranzus : MonoBehaviour
     public void DeathDetect(string msg){
         Debug.Log("Dovrei star morendo");
         if(msg=="finito"){
-            
             DestroyObject(gameObject);
         }
     }
@@ -211,6 +229,10 @@ public class Maranzus : MonoBehaviour
 
     public bool OutOfReach(){
         return outOfReach;
+    }
+
+    public void setActiveEnemy(bool act){
+        imActive=act;
     }
 
     

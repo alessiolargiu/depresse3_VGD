@@ -179,7 +179,7 @@ public class NPCFollowPathController : MonoBehaviour {
             if(anim.GetCurrentAnimatorStateInfo(0).IsName("punch") && self.isPlaying==false){
                 Debug.Log("so di togliergli vita");
                 self.PlayOneShot(pugnoSound, 1f);
-                col.other.GetComponent<FirstPersonController>().TakeDamage(10);
+                //col.other.GetComponent<FirstPersonController>().TakeDamage(10);
             }
             }
         }
@@ -217,6 +217,7 @@ public class NPCFollowPathController : MonoBehaviour {
             DestroyObject(gameObject);
         }
     }
+
 
     public void TakeDamage(int damage)
     {

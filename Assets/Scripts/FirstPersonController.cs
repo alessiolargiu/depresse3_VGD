@@ -159,7 +159,7 @@ public class FirstPersonController : MonoBehaviour {
         //PROVA BARRA VITA
         if (Input.GetKeyDown(KeyCode.H))
         {
-            TakeDamage(20);
+            //TakeDamage(20);
         }
 
         if(Input.GetKey(KeyCode.Space)){
@@ -216,9 +216,12 @@ public class FirstPersonController : MonoBehaviour {
                 pugnoAir.PlayOneShot(airright, 1f);
             }
             altPunching = !altPunching;
+            shift=true;
+            verticalMovement=1;
             anim.SetBool("altPunching", altPunching);
             anim.SetTrigger("punching");
         } 
+
         
 
         //definizione del vettore di movimento;
@@ -233,8 +236,6 @@ public class FirstPersonController : MonoBehaviour {
         }
 
         if((shift || Input.GetKey(KeyCode.JoystickButton1)) && (verticalMovement!=0f || horizontalMovement!=0f) && controller.isGrounded || momentum!=0f){
-            
-            
             
             if(horizontalMovement+verticalMovement==2 || horizontalMovement+verticalMovement==-2){
                 transform.Rotate(Vector3.up * horizontalMovement*0.6f);
@@ -281,6 +282,7 @@ public class FirstPersonController : MonoBehaviour {
             if(lastEnemy!=null){
             if(lastEnemy.GetComponent<Maranzus>().OutOfReach()){
                 lastEnemy=null;
+                lastEnemy.GetComponent<Maranzus>().setActiveEnemy(false);
                 followTransform.GetComponent<PlayerTarget>().SetAttackMode(false, null);
             }
         }
@@ -414,9 +416,11 @@ public class FirstPersonController : MonoBehaviour {
 
     }
 
-    public void TakeDamage(int damage)
+    public void TakeDamage(int damage, Transform enemyCurrent)
     {
         if(isActive){
+        followTransform.GetComponent<PlayerTarget>().SetAttackMode(true, enemyCurrent);
+        enemyCurrent.GetComponent<Maranzus>().setActiveEnemy(true);
         currentHealth -= damage;
         anim.SetTrigger("gothit");
         healthBar.SetHealth(currentHealth);
@@ -489,9 +493,11 @@ public class FirstPersonController : MonoBehaviour {
             
             if(health>0){
                 followTransform.GetComponent<PlayerTarget>().SetAttackMode(true, enemy.transform);
+                enemy.GetComponent<Maranzus>().setActiveEnemy(true);
             } else if(health<=0){
                 lastEnemy=null;
                 followTransform.GetComponent<PlayerTarget>().SetAttackMode(false, null);
+                enemy.GetComponent<Maranzus>().setActiveEnemy(false);
             }
             
             pugno.PlayOneShot(pugno.clip, 1f);

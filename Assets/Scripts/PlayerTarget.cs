@@ -109,12 +109,12 @@ public class PlayerTarget : MonoBehaviour
             transform.rotation = Quaternion.LookRotation(-target.forward, target.up);*/
         }
 
-        if(playerAttack){
+        if(playerAttack && enemy.GetComponent<Maranzus>().OutOfReach()==false){
             Vector3 playerForward = target.forward;
             playerForward = -playerForward + enemy.forward;
 
             Vector3 offset = new Vector3(0, 0, -distance);
-            Vector3 position = transform.position + playerForward * offset.z + target.up * offset.y;
+            Vector3 position = transform.position + playerForward * offset.z  + target.up * offset.y * Time.deltaTime;
             correctPosition = position;
             transform.position = position;
             transform.rotation = Quaternion.LookRotation(-playerForward, target.up);
@@ -122,6 +122,12 @@ public class PlayerTarget : MonoBehaviour
             y=0;
             lockedRotation = transform.rotation;
             Debug.Log("X2 " + transform.rotation.x + "Y2 " + transform.rotation.y);
+        }
+
+        if(enemy!=null){
+            if(enemy.GetComponent<Maranzus>().OutOfReach()==true){
+                playerAttack=false;
+            }   
         }
 
 
