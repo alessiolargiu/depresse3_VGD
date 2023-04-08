@@ -221,7 +221,7 @@ public class FirstPersonController : MonoBehaviour {
             Debug.Log("il valore dell variabile nowepcycle è " + noWeaponCycle);
             switch(noWeaponCycle){
                 case 0:
-                pugnoAir.PlayOneShot(airleft, 1f);
+                StartCoroutine(OnTimeSound(pugnoAir, airleft, 1f, 0f));
                 StartCoroutine(Attack(leftHand, 20, 0.1f));
                 anim.SetBool("altPunching", true);
                 anim.SetTrigger("punching");
@@ -229,7 +229,7 @@ public class FirstPersonController : MonoBehaviour {
                 break;
                 
                 case 1:
-                pugnoAir.PlayOneShot(airright, 1f);
+                StartCoroutine(OnTimeSound(pugnoAir, airright, 1f, 0f));
                 StartCoroutine(Attack(rightHand, 20, 0.1f));
                 anim.SetBool("altPunching", false);
                 anim.SetTrigger("punching");
@@ -237,7 +237,7 @@ public class FirstPersonController : MonoBehaviour {
                 break;
 
                 case 2:
-                pugnoAir.PlayOneShot(airleft, 1f);
+                StartCoroutine(OnTimeSound(pugnoAir, airleft, 1f, 0.5f));
                 int rand = UnityEngine.Random.Range(0, 2);
                 if(rand==1){
                     anim.SetBool("altPunching", false);
@@ -257,6 +257,7 @@ public class FirstPersonController : MonoBehaviour {
         if((Input.GetKeyUp(KeyCode.G) && (pugnoAir.isPlaying==false)) || Input.GetKeyUp(KeyCode.JoystickButton3) && controller.isGrounded && (anim.GetCurrentAnimatorStateInfo(0).IsName("sword")==false)){
             sword.SetActive(true);
             //pugnoAir.PlayOneShot(airleft, 1f);
+            StartCoroutine(OnTimeSound(pugnoAir, airleft, 1f, 0.5f));
             StartCoroutine(Attack(sword.transform, 60, 1f));
             //anim.SetBool("altPunching", true);
             anim.SetTrigger("swording");
@@ -524,6 +525,11 @@ public class FirstPersonController : MonoBehaviour {
         }
 
         sword.SetActive(false);
+    }
+
+    IEnumerator OnTimeSound(AudioSource src, AudioClip clp, float volume, float delay){
+        yield return new WaitForSeconds(delay);
+        src.PlayOneShot(clp, volume);
     }
     
 }
