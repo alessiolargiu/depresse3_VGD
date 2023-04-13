@@ -166,11 +166,17 @@ public class FirstPersonController : MonoBehaviour {
         if(isActive){
         //momentum=0;
         //PROVA BARRA VITA
-        if (Input.GetKeyDown(KeyCode.H))
-        {
-            //TakeDamage(20);
+        if(Input.anyKeyDown || Input.GetAxis("Horizontal")>0 || Input.GetAxis("Vertical")>0){
+            if (Input.GetKey(KeyCode.H) || Input.GetKey(KeyCode.JoystickButton10)){
+                if(anim.GetBool("crouching")){
+                    anim.SetBool("crouching", false);
+                } else anim.SetBool("crouching", true);
+            } else {
+                anim.SetBool("crouching", false);
+            }
         }
 
+        
         if(Input.GetKey(KeyCode.Space)){
             //audioData.Play();
             //AudioSource.PlayClipAtPoint(audioData,transform.position);
@@ -190,7 +196,9 @@ public class FirstPersonController : MonoBehaviour {
         } else if(slowJump==true){
             Debug.Log("Sono in slowjump");
             verticalMovement=1.2f;
-        } else verticalMovement = Input.GetAxis("Vertical");
+        } else if(anim.GetBool("crouching")==false){
+            verticalMovement = Input.GetAxis("Vertical");
+        } else verticalMovement = 0;
 
 
 
@@ -200,9 +208,10 @@ public class FirstPersonController : MonoBehaviour {
         Vector3 eulerRotation = new Vector3(transform.eulerAngles.x, followTransform.eulerAngles.y, transform.eulerAngles.z);
         Vector3 oldRotation = new Vector3(transform.eulerAngles.x, transform.eulerAngles.y, transform.eulerAngles.z);
 
-        if(eulerRotation!=oldRotation && verticalMovement!=0 || horizontalMovement!=0 /*|| (Input.GetKeyUp(KeyCode.F)|| Input.GetKeyUp(KeyCode.JoystickButton2))*/){
-            transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.Euler(eulerRotation), 1);
-        } 
+        if(eulerRotation!=oldRotation && verticalMovement!=0 || horizontalMovement!=0){
+            Debug.Log("uuuuuh");
+            transform.rotation = Quaternion.Euler(eulerRotation);
+        }
         
         
 

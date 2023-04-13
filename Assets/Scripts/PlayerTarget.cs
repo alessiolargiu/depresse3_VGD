@@ -36,11 +36,11 @@ public class PlayerTarget : MonoBehaviour
         y = angles.x;
         prevPos = transform.position;
 
-        isMovingForwards=false;
-        isMovingSideways=false;
+        isMovingForwards=true;
+        isMovingSideways=true;
     }
 
-    void Update(){
+    void LateUpdate(){
         if (target){
 
         //horizontalMovement = Input.GetAxis("Horizontal");
@@ -88,7 +88,7 @@ public class PlayerTarget : MonoBehaviour
             prevPos = transform.position;
         } else {
             // Reset the camera position to its default position
-
+        
 
             Vector3 playerForward = target.forward;
             playerForward = -playerForward;
