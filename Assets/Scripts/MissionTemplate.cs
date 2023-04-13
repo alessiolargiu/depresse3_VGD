@@ -1,21 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
-public class QuestMarker : MonoBehaviour
+public class MissionTemplate : MonoBehaviour
 {
-
-    public Sprite icon;
-    public Image image;
-    public Vector2 position { 
-        get { return new Vector2(transform.position.x, transform.position.z); } 
-    }
-
     // Start is called before the first frame update
+
+    public GameObject player;
+    public static bool onMission;
+    
     void Start()
     {
-        
+        onMission=false;
     }
 
     // Update is called once per frame
@@ -23,5 +19,4 @@ public class QuestMarker : MonoBehaviour
     {
         
     }
-    
 }

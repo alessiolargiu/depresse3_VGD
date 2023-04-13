@@ -40,7 +40,7 @@ public class PlayerTarget : MonoBehaviour
         isMovingSideways=false;
     }
 
-    void LateUpdate(){
+    void Update(){
         if (target){
 
         //horizontalMovement = Input.GetAxis("Horizontal");

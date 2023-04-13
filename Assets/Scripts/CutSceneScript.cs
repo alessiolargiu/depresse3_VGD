@@ -15,6 +15,7 @@ public class CutSceneScript : MonoBehaviour
     private GameObject player;
     private GameObject HUD;
     private GameObject cutscene;
+    private GameObject mission;
 
     private AudioSource soundSource;
     private AudioClip [] audioClips;
@@ -28,6 +29,7 @@ public class CutSceneScript : MonoBehaviour
     public GameObject playerGet;
     public GameObject HUDGet;
     public GameObject cutsceneGet;
+    public GameObject missionGet;
 
     // Start is called before the first frame update
     void Start()
@@ -39,6 +41,7 @@ public class CutSceneScript : MonoBehaviour
         soundSource = soundSourceGet;
         audioClips = audioClipsGet;
         cameraPosition = cameraPositionGet;
+        mission=missionGet;
     }
 
     // Update is called once per frame
@@ -64,7 +67,8 @@ public class CutSceneScript : MonoBehaviour
         
         int i=0;
 
-        Debug.Log("IL VALORE DI AUDIOCLIPS è " +audioClips.Length);
+        Debug.Log("cutscene: IL VALORE DI AUDIOCLIPS è " +audioClips.Length);
+        Debug.Log("cutscene: IL VALORE DI I è " +audioClips.Length);
 
         while(i<audioClips.Length){
 
@@ -91,6 +95,7 @@ public class CutSceneScript : MonoBehaviour
         callback(true);
         player.SetActive(true);
         HUD.SetActive(true);
+        mission.SetActive(true);
         cutscene.SetActive(false);
 
         //yield return "Finito";

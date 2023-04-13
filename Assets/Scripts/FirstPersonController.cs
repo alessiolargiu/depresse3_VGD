@@ -216,7 +216,7 @@ public class FirstPersonController : MonoBehaviour {
         float rightVertical = Input.GetAxis("RightStickVertical");
 
 
-        if((Input.GetKeyUp(KeyCode.F) && (pugnoAir.isPlaying==false)) || Input.GetKeyUp(KeyCode.JoystickButton2) && controller.isGrounded && (anim.GetCurrentAnimatorStateInfo(0).IsName("kick")==false)){
+        if(((Input.GetKeyUp(KeyCode.F) || Input.GetKeyUp(KeyCode.JoystickButton2)) && pugnoAir.isPlaying==false) && controller.isGrounded && (anim.GetCurrentAnimatorStateInfo(0).IsName("kick")==false)){
 
             Debug.Log("il valore dell variabile nowepcycle è " + noWeaponCycle);
             switch(noWeaponCycle){
