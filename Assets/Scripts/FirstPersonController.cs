@@ -101,12 +101,21 @@ public class FirstPersonController : MonoBehaviour {
     public GameObject bangFX;
 
     private Vector3 move;
-    float jump;
+
+
+    //userflag
+    public bool usingController;
+
+    //inputs
+    bool jump;
     bool shift;
     float mouseX;
     float mouseY;
     float rightHorizontal;
     float rightVertical;
+    bool punchingKey;
+    bool swordKey;
+    bool crouchKey;
 
     void Start(){   
         controller = GetComponent<CharacterController>();
@@ -151,8 +160,7 @@ public class FirstPersonController : MonoBehaviour {
 
     }
 
-    public void TakeDamage(int damage, Transform enemyCurrent)
-    {
+    public void TakeDamage(int damage, Transform enemyCurrent){
         if(isActive){
         followTransform.GetComponent<PlayerTarget>().SetAttackMode(true, enemyCurrent);
         enemyCurrent.GetComponent<Maranzus>().setActiveEnemy(true);
@@ -193,8 +201,6 @@ public class FirstPersonController : MonoBehaviour {
 
     private void EnemyRangeCheck(){
         if(verticalMovement!=0){
-            transform.Rotate(Vector3.up * rightHorizontal*verticalMovement);
-            transform.Rotate(Vector3.up * mouseX*verticalMovement);
             if(lastEnemy!=null){
             if(lastEnemy.GetComponent<Maranzus>().OutOfReach()){
                 lastEnemy=null;
@@ -216,19 +222,30 @@ public class FirstPersonController : MonoBehaviour {
             verticalMovement = Input.GetAxis("Vertical");
         } else verticalMovement = 0;
 
-
-        jump = Input.GetAxis("Jump"); //adesso non ci serve
-        shift = Input.GetKey(KeyCode.LeftShift);
         mouseX = Input.GetAxis("Mouse X") * mouseSens * Time.deltaTime;
         mouseY = Input.GetAxis("Mouse Y") * mouseSens * Time.deltaTime;
         rightHorizontal = Input.GetAxis("RightStickHorizontal");
         rightVertical = Input.GetAxis("RightStickVertical");
-    }
 
+        if(usingController){
+            jump = Input.GetKeyUp(KeyCode.JoystickButton0);
+            shift = Input.GetKey(KeyCode.JoystickButton1);
+            punchingKey = Input.GetKeyUp(KeyCode.JoystickButton2);
+            swordKey = Input.GetKeyUp(KeyCode.JoystickButton3);
+            crouchKey = Input.GetKey(KeyCode.JoystickButton10);
+        } else {
+            shift = Input.GetKey(KeyCode.LeftShift);
+            jump = Input.GetKeyUp(KeyCode.Space); 
+            punchingKey = Input.GetKeyUp(KeyCode.F);
+            crouchKey = Input.GetKey(KeyCode.H);
+            swordKey = Input.GetKeyUp(KeyCode.G);
+        }
+
+    }
 
     private void CrouchCheck(){
         if(Input.anyKeyDown || Input.GetAxis("Horizontal")>0 || Input.GetAxis("Vertical")>0){
-            if (Input.GetKey(KeyCode.H) || Input.GetKey(KeyCode.JoystickButton10)){
+            if (crouchKey){
                 if(anim.GetBool("crouching")){
                     anim.SetBool("crouching", false);
                 } else anim.SetBool("crouching", true);
@@ -241,7 +258,7 @@ public class FirstPersonController : MonoBehaviour {
     private void Movement(){
         //definizione del vettore di movimento;
         move = transform.right * horizontalMovement + transform.forward * verticalMovement;
-        if((shift || Input.GetKey(KeyCode.JoystickButton1)) && (verticalMovement!=0f || horizontalMovement!=0f) && controller.isGrounded || momentum!=0f){
+        if((shift) && (verticalMovement!=0f || horizontalMovement!=0f) && controller.isGrounded || momentum!=0f){
             
             if(horizontalMovement+verticalMovement==2 || horizontalMovement+verticalMovement==-2){
                 transform.Rotate(Vector3.up * horizontalMovement*0.6f);
@@ -278,7 +295,9 @@ public class FirstPersonController : MonoBehaviour {
         }
 
         if(horizontalMovement!=0 || verticalMovement!=0){
-                    controller.Move(move * Time.deltaTime);
+            transform.Rotate(Vector3.up * rightHorizontal*verticalMovement);
+            transform.Rotate(Vector3.up * mouseX*verticalMovement);
+            controller.Move(move * Time.deltaTime);
         }
         controller.Move(velocity * Time.deltaTime);
         rotation = Mathf.Clamp(rotation, -30f, 15f);
@@ -289,7 +308,7 @@ public class FirstPersonController : MonoBehaviour {
             fastJump=false;
             slowJump=false;
             anim.SetFloat("jumping", 0);
-            if((jump>0 || Input.GetKey(KeyCode.JoystickButton0)) && verticalMovement==1 && (!anim.GetCurrentAnimatorStateInfo(0).IsName("landing") && !anim.GetCurrentAnimatorStateInfo(0).IsName("fall")) && (shift || Input.GetKey(KeyCode.JoystickButton1)==true)){
+            if(jump && verticalMovement==1 && (!anim.GetCurrentAnimatorStateInfo(0).IsName("landing") && !anim.GetCurrentAnimatorStateInfo(0).IsName("fall")) && shift==true){
                 shift=true;
                 slowJump=false;
                 fastJump=true;
@@ -306,7 +325,7 @@ public class FirstPersonController : MonoBehaviour {
                 controller.Move(velocity * Time.deltaTime);
                 controller.Move(move * Time.deltaTime);
                 anim.SetTrigger("jumpTrigger");
-            } else if((jump>0 || Input.GetKey(KeyCode.JoystickButton0)) && verticalMovement!=-1 && !(horizontalMovement!=0 && verticalMovement==0)  && (!anim.GetCurrentAnimatorStateInfo(0).IsName("landing") && !anim.GetCurrentAnimatorStateInfo(0).IsName("fall")) ){
+            } else if(jump && verticalMovement!=-1 && !(horizontalMovement!=0 && verticalMovement==0)  && (!anim.GetCurrentAnimatorStateInfo(0).IsName("landing") && !anim.GetCurrentAnimatorStateInfo(0).IsName("fall")) ){
                 shift=true;
                 fastJump=false;
                 slowJump=true;
@@ -324,11 +343,6 @@ public class FirstPersonController : MonoBehaviour {
                 anim.SetTrigger("jumpTrigger");
             } 
 
-            if(jump>0 || Input.GetKey(KeyCode.JoystickButton0)){
-                
-            }
-
-
         } 
         else  {
             anim.SetFloat("jumping", 1, 1f, Time.deltaTime * 10f);
@@ -337,7 +351,7 @@ public class FirstPersonController : MonoBehaviour {
     }
 
     private void AttackType(){
-        if(((Input.GetKeyUp(KeyCode.F) || Input.GetKeyUp(KeyCode.JoystickButton2)) && pugnoAir.isPlaying==false) && controller.isGrounded && (anim.GetCurrentAnimatorStateInfo(0).IsName("kick")==false)){
+        if(((punchingKey) && pugnoAir.isPlaying==false) && controller.isGrounded && (anim.GetCurrentAnimatorStateInfo(0).IsName("kick")==false)){
             switch(noWeaponCycle){
                 case 0:
                 StartCoroutine(OnTimeSound(pugnoAir, airleft, 1f, 0f));
@@ -373,7 +387,7 @@ public class FirstPersonController : MonoBehaviour {
             
         }
 
-        if((Input.GetKeyUp(KeyCode.G) && (pugnoAir.isPlaying==false)) || Input.GetKeyUp(KeyCode.JoystickButton3) && controller.isGrounded && (anim.GetCurrentAnimatorStateInfo(0).IsName("sword")==false)){
+        if(((swordKey) && pugnoAir.isPlaying==false) && controller.isGrounded && (anim.GetCurrentAnimatorStateInfo(0).IsName("swording")==false)){
             sword.SetActive(true);
             StartCoroutine(OnTimeSound(pugnoAir, airleft, 1f, 0.5f));
             StartCoroutine(Attack(sword.transform, 60, 1f));
