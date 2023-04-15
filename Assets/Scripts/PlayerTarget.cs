@@ -68,8 +68,6 @@ public class PlayerTarget : MonoBehaviour
             y = ClampAngle(y, yMinLimit, yMaxLimit);
             Quaternion rotation = lockedRotation * Quaternion.Euler(y, x, 0);
 
-            Debug.Log("X " + rotation.x + "Y " + rotation.y);
-
             // Update the distance from the player based on the mouse scrollwheel input
             distance = Mathf.Clamp(distance , distanceMin, distanceMax);
 
@@ -101,7 +99,6 @@ public class PlayerTarget : MonoBehaviour
             x=0;
             y=0;
             lockedRotation = transform.rotation;
-            Debug.Log("X2 " + transform.rotation.x + "Y2 " + transform.rotation.y);
 
             
             /*
@@ -121,7 +118,6 @@ public class PlayerTarget : MonoBehaviour
             x=0;
             y=0;
             lockedRotation = transform.rotation;
-            Debug.Log("X2 " + transform.rotation.x + "Y2 " + transform.rotation.y);
         }
 
         if(enemy!=null){

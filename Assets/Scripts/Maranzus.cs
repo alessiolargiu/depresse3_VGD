@@ -88,8 +88,6 @@ public class Maranzus : MonoBehaviour
             DestroyEnemy(); 
             isDead=true;
         }
-
-        Debug.Log("il valore di outofreach DENTRO MARANZUS è "+ outOfReach);
     }
 
     private void Patroling()
@@ -149,11 +147,9 @@ public class Maranzus : MonoBehaviour
         Vector3 newDirection = Vector3.RotateTowards(transform.forward, targetDirection, singleStep, 0.0f);
         transform.rotation = Quaternion.LookRotation(newDirection);
         //transform.LookAt(player);
-        Debug.Log("devo attaccare fuori if " + alreadyAttacked);
 
         if (alreadyAttacked==false)
         {
-            Debug.Log("devo attaccare dentro if " + alreadyAttacked);
             ///Attack code here
             anim.SetTrigger("punching");
             player.GetComponent<FirstPersonController>().TakeDamage(5, transform);
@@ -198,14 +194,12 @@ public class Maranzus : MonoBehaviour
     }
 
     public void DeathDetect(string msg){
-        Debug.Log("Dovrei star morendo");
         if(msg=="finito"){
             DestroyObject(gameObject);
         }
     }
 
     public void Morte(int msg){
-        Debug.Log("Dovrei star morendo budino");
         if(msg==1){
             DestroyObject(gameObject);
         }

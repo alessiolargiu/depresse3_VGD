@@ -52,8 +52,6 @@ public class CutSceneScript : MonoBehaviour
 
     public IEnumerator cutsceneStart(System.Action<bool> callback){
 
-        
-        Debug.Log("stronxo");
         player.SetActive(false);
         HUD.SetActive(false);
         cutscene.SetActive(true);
@@ -67,15 +65,11 @@ public class CutSceneScript : MonoBehaviour
         
         int i=0;
 
-        Debug.Log("cutscene: IL VALORE DI AUDIOCLIPS è " +audioClips.Length);
-        Debug.Log("cutscene: IL VALORE DI I è " +audioClips.Length);
-
         while(i<audioClips.Length){
 
 
             soundSource.clip = audioClips[i];
             soundSource.Play();
-            Debug.Log("IL VALORE DI I è  : " + i);
 
 
             for(int j=0;j<4;j++){
