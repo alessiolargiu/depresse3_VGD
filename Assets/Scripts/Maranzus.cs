@@ -47,8 +47,7 @@ public class Maranzus : MonoBehaviour
     private bool imActive;
 
 
-    private void Awake()
-    {
+    private void Awake(){
         player = GameObject.Find("PlayerProtagonista").transform;
         markerColor = marker.GetComponent<Renderer>();
         markerColor.material.SetColor("_Color", Color.red);
@@ -61,13 +60,11 @@ public class Maranzus : MonoBehaviour
         myself = GetInstanceID().ToString();
     }
 
-    private void Update()
-    {
+    private void Update(){
         if(imActive==false){
             marker.SetActive(false);
         }
-        //agent.SetDestination(player.position);
-        //Check for sight and attack range
+
         playerInSightRange = Physics.CheckSphere(transform.position, sightRange, whatIsPlayer);
         playerInAttackRange = Physics.CheckSphere(transform.position, attackRange, whatIsPlayer);
         
@@ -90,8 +87,7 @@ public class Maranzus : MonoBehaviour
         }
     }
 
-    private void Patroling()
-    {
+    private void Patroling(){
 
         outOfReach=true;
         agent.speed=3f;
@@ -109,8 +105,8 @@ public class Maranzus : MonoBehaviour
         if (distanceToWalkPoint.magnitude < 1f)
             walkPointSet = false;
     }
-    private void SearchWalkPoint()
-    {
+
+    private void SearchWalkPoint(){
         //Calculate random point in range
         float randomZ = Random.Range(-walkPointRange, walkPointRange);
         float randomX = Random.Range(-walkPointRange, walkPointRange);
@@ -121,8 +117,7 @@ public class Maranzus : MonoBehaviour
             walkPointSet = true;
     }
 
-    private void ChasePlayer()
-    {   
+    private void ChasePlayer(){   
         outOfReach=false;
         if(imActive) marker.SetActive(true);
         agent.speed = 6f;
@@ -136,8 +131,7 @@ public class Maranzus : MonoBehaviour
 
     }
 
-    private void AttackPlayer()
-    {
+    private void AttackPlayer(){
         if(imActive) marker.SetActive(true);
         //Make sure enemy doesn't move
         anim.SetFloat("vertical", 0,  1f, Time.deltaTime * 10f);
@@ -160,14 +154,13 @@ public class Maranzus : MonoBehaviour
             Invoke(nameof(ResetAttack), timeBetweenAttacks);
         }
     }
-    private void ResetAttack()
-    {
+
+    private void ResetAttack(){
         alreadyAttacked = false;
     }
 
     public float TakeDamage(int damage){
-
-        if(health>0){
+       if(health>0){
             anim.SetTrigger("gothit");
             self.Stop();
             self.PlayOneShot(hitSound);
@@ -184,7 +177,6 @@ public class Maranzus : MonoBehaviour
 
         return health;
     }
-
 
     private void DestroyEnemy(){
         self.Stop();
@@ -205,20 +197,18 @@ public class Maranzus : MonoBehaviour
         }
     }
 
-    private void OnDrawGizmosSelected()
-    {
+    private void OnDrawGizmosSelected(){
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, attackRange);
         Gizmos.color = Color.yellow;
         Gizmos.DrawWireSphere(transform.position, sightRange);
     }
 
-
     private bool randomBoolean(){
-    if (Random.value >= 0.5){
-        return true;
-    }
-    return false;
+        if (Random.value >= 0.5){
+            return true;
+        }
+        return false;
     }
 
     public bool OutOfReach(){
@@ -228,6 +218,5 @@ public class Maranzus : MonoBehaviour
     public void setActiveEnemy(bool act){
         imActive=act;
     }
-
     
 }

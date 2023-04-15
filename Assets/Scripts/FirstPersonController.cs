@@ -82,6 +82,7 @@ public class FirstPersonController : MonoBehaviour {
     public float attackRange = 0.5f;
 
     public LayerMask enemyLayers;
+    public LayerMask cittadinoLayers;
 
     private Collider prevCol;
 
@@ -133,9 +134,7 @@ public class FirstPersonController : MonoBehaviour {
         verticalMovement=1;
     }
 
-
-    private void Awake()
-    {
+    private void Awake(){
         inventory = new Inventory();
         hudInvWeapon.SetInventory(inventory);
         hudInvShield.SetInventory(inventory);
@@ -144,7 +143,6 @@ public class FirstPersonController : MonoBehaviour {
         hudInvChest.SetInventory(inventory);
         hudInvShoe.SetInventory(inventory);
     }
-
 
     private void Update(){
         if(isActive){
@@ -173,7 +171,6 @@ public class FirstPersonController : MonoBehaviour {
     public Inventory GetInventory(){
         return inventory;
     }
-
 
     private void OnTriggerEnter(Collider other){
         
@@ -410,6 +407,7 @@ public class FirstPersonController : MonoBehaviour {
         verticalMovement=0;
         yield return new WaitForSeconds(time);
         Collider[] hitEnemies = Physics.OverlapSphere(attackPoint.position, attackRange, enemyLayers);
+        Collider[] hitCittadino = Physics.OverlapSphere(attackPoint.position, attackRange, cittadinoLayers);
         foreach(Collider enemy in hitEnemies){
             float singleStep = 1 * Time.deltaTime;
 
@@ -433,6 +431,10 @@ public class FirstPersonController : MonoBehaviour {
             yield return new WaitForSeconds(4f);
             bangFX.SetActive(false);
 
+        }
+
+        foreach(Collider cittadino in hitCittadino){
+            cittadino.GetComponent<Cittadino>().StopIt();
         }
 
         sword.SetActive(false);
