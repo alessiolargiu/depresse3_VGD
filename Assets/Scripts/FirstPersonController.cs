@@ -38,7 +38,6 @@ public class FirstPersonController : MonoBehaviour {
     public HUDInventoryPotion hudInvPotion;
     public HUDInventoryHelmet hudInvHelmet;
     public HUDInventoryChest hudInvChest;
-    public HUDInventoryShoe hudInvShoe;
 
     
     //Parametri partita
@@ -136,12 +135,13 @@ public class FirstPersonController : MonoBehaviour {
 
     private void Awake(){
         inventory = new Inventory();
+        inventory.player = this;
         hudInvWeapon.SetInventory(inventory);
         hudInvShield.SetInventory(inventory);
         hudInvPotion.SetInventory(inventory);
         hudInvHelmet.SetInventory(inventory);
         hudInvChest.SetInventory(inventory);
-        hudInvShoe.SetInventory(inventory);
+        verticalMovement=1;
     }
 
     private void Update(){

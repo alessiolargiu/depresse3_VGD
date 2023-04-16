@@ -19,10 +19,11 @@ public class HelmetEquip : MonoBehaviour
     {
         helmetInPlayer.index = helmetIndex;
         helmetIndex++;
-        this.gameObject.SetActive(false);
+        
         Inventory inv = player.GetInventory();
         inv.AddHelmet(helmetInPlayer);
         hudHelmet.SetInventory(inv);
+        this.gameObject.SetActive(false);
     }
 
 }

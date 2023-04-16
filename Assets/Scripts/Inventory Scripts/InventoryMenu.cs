@@ -10,8 +10,6 @@ public class InventoryMenu : MonoBehaviour
     public static bool helmetInvIsShowing = false;
     public GameObject chestBG;
     public static bool chestInvIsShowing = false;
-    public GameObject shoesBG;
-    public static bool shoesInvIsShowing = false;
     public GameObject swordBG;
     public static bool swordInvIsShowing = false;
     public GameObject shieldBG;
@@ -32,7 +30,6 @@ public class InventoryMenu : MonoBehaviour
                 {
                     helmetBG.SetActive(true);
                     chestBG.SetActive(false);
-                    shoesBG.SetActive(false);
                     swordBG.SetActive(false);
                     shieldBG.SetActive(false);
                     potionBG.SetActive(false);
@@ -47,22 +44,6 @@ public class InventoryMenu : MonoBehaviour
                 {
                     helmetBG.SetActive(false);
                     chestBG.SetActive(true);
-                    shoesBG.SetActive(false);
-                    swordBG.SetActive(false);
-                    shieldBG.SetActive(false);
-                    potionBG.SetActive(false);
-                }
-                break;
-            case "Shoes":
-                if (helmetInvIsShowing)
-                {
-                    shoesBG.SetActive(false);
-                }
-                else
-                {
-                    helmetBG.SetActive(false);
-                    chestBG.SetActive(false);
-                    shoesBG.SetActive(true);
                     swordBG.SetActive(false);
                     shieldBG.SetActive(false);
                     potionBG.SetActive(false);
@@ -77,7 +58,6 @@ public class InventoryMenu : MonoBehaviour
                 {
                     helmetBG.SetActive(false);
                     chestBG.SetActive(false);
-                    shoesBG.SetActive(false);
                     swordBG.SetActive(true);
                     shieldBG.SetActive(false);
                     potionBG.SetActive(false);
@@ -92,7 +72,6 @@ public class InventoryMenu : MonoBehaviour
                 {
                     helmetBG.SetActive(false);
                     chestBG.SetActive(false);
-                    shoesBG.SetActive(false);
                     swordBG.SetActive(false);
                     shieldBG.SetActive(true);
                     potionBG.SetActive(false);
@@ -107,7 +86,6 @@ public class InventoryMenu : MonoBehaviour
                 {
                     helmetBG.SetActive(false);
                     chestBG.SetActive(false);
-                    shoesBG.SetActive(false);
                     swordBG.SetActive(false);
                     shieldBG.SetActive(false);
                     potionBG.SetActive(true);

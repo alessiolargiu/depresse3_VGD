@@ -40,7 +40,6 @@ public class oldFirstPersonController : MonoBehaviour {
     public HUDInventoryPotion hudInvPotion;
     public HUDInventoryHelmet hudInvHelmet;
     public HUDInventoryChest hudInvChest;
-    public HUDInventoryShoe hudInvShoe;
 
     private Vector3 newPos;
     private Vector3 velocitydiocane = Vector3.zero;
@@ -151,7 +150,6 @@ public class oldFirstPersonController : MonoBehaviour {
         hudInvPotion.SetInventory(inventory);
         hudInvHelmet.SetInventory(inventory);
         hudInvChest.SetInventory(inventory);
-        hudInvShoe.SetInventory(inventory);
         verticalMovement=1;
     }
 

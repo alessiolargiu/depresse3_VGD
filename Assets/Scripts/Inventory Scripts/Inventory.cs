@@ -5,13 +5,12 @@ using UnityEngine;
 
 public class Inventory
 {
-
+    public FirstPersonController player;
     private List<WeaponEquip> weapons;
     private List<ShieldEquip> shields;
     private List<PotionEquip> potions;
     private List<HelmetEquip> helmets;
     private List<ChestEquip> chests;
-    private List<ShoesEquip> shoes;
 
 
     public Inventory()
@@ -21,7 +20,6 @@ public class Inventory
         potions = new List<PotionEquip>();
         helmets = new List<HelmetEquip>();
         chests = new List<ChestEquip>();
-        shoes = new List<ShoesEquip>();
     }
 
     public List<WeaponEquip> GetWeapons()
@@ -44,10 +42,6 @@ public class Inventory
     {
         return chests;
     }
-    public List<ShoesEquip> GetShoes()
-    {
-        return shoes;
-    }
 
     public void AddWeapon(WeaponEquip item)
     {
@@ -57,9 +51,21 @@ public class Inventory
     {
         shields.Add(item);
     }
-    public void AddPotion(PotionEquip item)
+    public object AddPotion(PotionEquip item)
     {
+        foreach(PotionEquip potion in player.GetInventory().GetPotions())
+        {
+            if(potion.nomeEquip == item.nomeEquip)
+            {
+                potion.potionNumber++;
+                return null;
+            }
+        }
+        item.index = PotionEquip.potionIndex;
+        PotionEquip.potionIndex++;
+        item.potionNumber = 1;
         potions.Add(item);
+        return null;
     }
     public void AddHelmet(HelmetEquip item)
     {
@@ -68,10 +74,6 @@ public class Inventory
     public void AddChest(ChestEquip item)
     {
         chests.Add(item);
-    }
-    public void AddShoe(ShoesEquip item)
-    {
-        shoes.Add(item);
     }
 
 }

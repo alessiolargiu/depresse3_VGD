@@ -10,17 +10,14 @@ public class PotionEquip : MonoBehaviour
     public int index;
     public string nomeEquip;
     public int cureValue;
+    public int potionNumber;
+    public bool isEquiped = false;
     public Sprite sprite;
     public HUDInventoryPotion hudPotion;
-    public Transform parentTrasform;
 
     private void OnTriggerEnter(Collider other)
     {
-        index = potionIndex;
-        potionIndex++;
         this.gameObject.SetActive(false);
-        this.transform.parent = parentTrasform;
-        this.gameObject.GetComponent<BoxCollider>().isTrigger = false;
         Inventory inv = player.GetInventory();
         inv.AddPotion(this);
         hudPotion.SetInventory(inv);

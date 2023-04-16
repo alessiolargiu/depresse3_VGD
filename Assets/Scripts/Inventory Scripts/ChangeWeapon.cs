@@ -17,9 +17,20 @@ public class ChangeWeapon : MonoBehaviour
         equip.ChangeEquipment(equipSlot, equipName);
         foreach (WeaponEquip weapon in player.GetInventory().GetWeapons())
         {
-            if (weapon.index == index)
+            if(index == 0)
             {
-                weapon.gameObject.SetActive(true);
+                weapon.gameObject.SetActive(false);
+            }
+            else
+            {
+                if (weapon.index == index)
+                {
+                    weapon.gameObject.SetActive(true);
+                }
+                else
+                {
+                    weapon.gameObject.SetActive(false);
+                }
             }
         }
     }
