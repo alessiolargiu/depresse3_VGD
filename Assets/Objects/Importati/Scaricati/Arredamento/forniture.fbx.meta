@@ -3,7 +3,22 @@ guid: 9e4763dadb8dbfe46b4a81287e2c1c86
 ModelImporter:
   serializedVersion: 21300
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: M_Amphora
+    second: {fileID: 2100000, guid: ad9b6b6a0153d4597800bbdccbcc137d, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: M_Lux
+    second: {fileID: 2100000, guid: f2cac718169c44a6aab77097366f3223, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: M_Mensa
+    second: {fileID: 2100000, guid: 290cc64880ecc45fbb57e9d263a6002b, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0

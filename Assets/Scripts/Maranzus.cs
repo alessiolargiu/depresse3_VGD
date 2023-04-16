@@ -13,8 +13,6 @@ public class Maranzus : MonoBehaviour
 
     public LayerMask whatIsGround, whatIsPlayer;
 
-    public float health;
-
     public AudioSource self;
     public AudioClip pugnoSound;
     public AudioClip hitSound;
@@ -32,7 +30,6 @@ public class Maranzus : MonoBehaviour
     //Attacking
     public float timeBetweenAttacks;
     bool alreadyAttacked;
-    public GameObject projectile;
 
     //States
     public float sightRange, attackRange;
@@ -46,6 +43,26 @@ public class Maranzus : MonoBehaviour
 
     private bool imActive;
 
+    [Header("Caratteristiche Maranza")]
+    //se è un bastardo ti attacca pure se qualcun altro ti sta attaccando
+    public bool bastardo;
+    public float health;
+    public int dmg;
+
+    [Header("Gestione Sandalo")]
+    public AudioClip sandaloSound;
+    public bool isASandaloThrower;
+    public Transform attackPoint;
+    public float throwForce;
+    private float throwForceAbs;
+    public float throwUpwardForce;
+    public GameObject objectToThrow;
+    public float throwCooldown;
+    bool readyToThrow;
+
+
+
+
 
     private void Awake(){
         player = GameObject.Find("PlayerProtagonista").transform;
@@ -57,6 +74,8 @@ public class Maranzus : MonoBehaviour
         isDead=false;
         outOfReach=true;
         imActive=true;
+        readyToThrow=true;
+        //attackPoint=transform;
         myself = GetInstanceID().ToString();
     }
 
@@ -69,17 +88,28 @@ public class Maranzus : MonoBehaviour
         playerInAttackRange = Physics.CheckSphere(transform.position, attackRange, whatIsPlayer);
         
         if(health>0){
-            if (!playerInSightRange && !playerInAttackRange) {
-                if(whoIsAttacking==myself){
-                    whoIsAttacking=null;
+
+            if(bastardo){
+                if (!playerInSightRange && !playerInAttackRange) {
+                    Patroling();
                 }
-                Patroling();
+                if (playerInSightRange && !playerInAttackRange) {
+                    ChasePlayer();
+                }
+                if (playerInAttackRange && playerInSightRange) AttackPlayer();
+            } else {
+                if (!playerInSightRange && !playerInAttackRange) {
+                    if(whoIsAttacking==myself){
+                        whoIsAttacking=null;
+                    }
+                    Patroling();
+                }
+                if (playerInSightRange && !playerInAttackRange && (whoIsAttacking==null || whoIsAttacking==myself) ) {
+                    whoIsAttacking=myself;
+                    ChasePlayer();
+                }
+                if (playerInAttackRange && playerInSightRange && (whoIsAttacking==myself)) AttackPlayer();
             }
-            if (playerInSightRange && !playerInAttackRange && (whoIsAttacking==null || whoIsAttacking==myself) ) {
-                whoIsAttacking=myself;
-                ChasePlayer();
-            }
-            if (playerInAttackRange && playerInSightRange && (whoIsAttacking==myself)) AttackPlayer();
 
         } else if (health <= 0 && isDead==false){ 
             DestroyEnemy(); 
@@ -128,6 +158,9 @@ public class Maranzus : MonoBehaviour
         Vector3 newDirection = Vector3.RotateTowards(transform.forward, targetDirection, singleStep, 0.0f);
         transform.rotation = Quaternion.LookRotation(newDirection);
         agent.SetDestination(player.position);
+        if(randomBoolean() && readyToThrow && isASandaloThrower){
+            ThrowSandalo();
+        }
 
     }
 
@@ -146,7 +179,7 @@ public class Maranzus : MonoBehaviour
         {
             ///Attack code here
             anim.SetTrigger("punching");
-            player.GetComponent<FirstPersonController>().TakeDamage(5, transform);
+            player.GetComponent<FirstPersonController>().TakeDamage(dmg, transform, 1);
             self.PlayOneShot(pugnoSound, 1f);
             ///End of attack code
 
@@ -176,6 +209,42 @@ public class Maranzus : MonoBehaviour
         }
 
         return health;
+    }
+
+    private void ThrowSandalo(){
+
+        self.PlayOneShot(sandaloSound, 1f);
+        readyToThrow = false;
+
+        // instantiate object to throw
+        GameObject projectile = Instantiate(objectToThrow, attackPoint.position, transform.rotation);
+
+        // get rigidbody component
+        Rigidbody projectileRb = projectile.GetComponent<Rigidbody>();
+
+        // calculate direction
+        Vector3 forceDirection = transform.forward;
+
+        RaycastHit hit;
+
+        if(Physics.Raycast(transform.position, transform.forward, out hit, 500f))
+        {
+            forceDirection = (hit.point - attackPoint.position).normalized;
+        }
+
+        // add force
+        Vector3 forceToAdd = forceDirection * throwForce + transform.up * throwUpwardForce;
+
+        projectileRb.AddForce(forceToAdd, ForceMode.Impulse);
+
+        projectile.GetComponent<SandaloScript>().beenUsed=true;
+
+        // implement throwCooldown
+        Invoke(nameof(ResetThrow), throwCooldown);
+    }
+
+    private void ResetThrow(){
+        readyToThrow = true;
     }
 
     private void DestroyEnemy(){

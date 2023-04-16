@@ -3,7 +3,42 @@ guid: c876b6279216d4e47815f6ac56e047c2
 ModelImporter:
   serializedVersion: 21300
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Base_baked
+    second: {fileID: 2100000, guid: 27aa56abd0dbd40d8837693c3d62eecc, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Buttons_Baked
+    second: {fileID: 2100000, guid: 3e8dadedb1bc84d66ba61553cd08fdf1, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Eagles_Baked
+    second: {fileID: 2100000, guid: a05502723b0df40018fd07b6f0d08e34, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Leather_Back_Baked
+    second: {fileID: 2100000, guid: 5a7801006c5ec4293b9b970ddaf1a78e, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Leather_Seat_Baked
+    second: {fileID: 2100000, guid: f2bc89a6a9fca419b87f29be26859b7b, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Seat_Bars_Baked
+    second: {fileID: 2100000, guid: 772877531499c4854bea189da7f3256e, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: armrests_bake
+    second: {fileID: 2100000, guid: 9cd7d7843a5ed4cd682dbe236961cd1f, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0

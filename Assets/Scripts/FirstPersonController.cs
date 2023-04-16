@@ -158,13 +158,23 @@ public class FirstPersonController : MonoBehaviour {
 
     }
 
-    public void TakeDamage(int damage, Transform enemyCurrent){
+    public void TakeDamage(int damage, Transform enemyCurrent, int whoIs){
         if(isActive){
-        followTransform.GetComponent<PlayerTarget>().SetAttackMode(true, enemyCurrent);
-        enemyCurrent.GetComponent<Maranzus>().setActiveEnemy(true);
-        currentHealth -= damage;
-        anim.SetTrigger("gothit");
-        healthBar.SetHealth(currentHealth);
+        switch(whoIs){
+            case 1:
+                followTransform.GetComponent<PlayerTarget>().SetAttackMode(true, enemyCurrent);
+                enemyCurrent.GetComponent<Maranzus>().setActiveEnemy(true);
+                currentHealth -= damage;
+                anim.SetTrigger("gothit");
+                healthBar.SetHealth(currentHealth);
+                break;
+            case 2:
+                currentHealth -= damage;
+                anim.SetTrigger("gothit");
+                healthBar.SetHealth(currentHealth);
+                break;
+        }
+
         }
     }
 
@@ -305,7 +315,7 @@ public class FirstPersonController : MonoBehaviour {
             fastJump=false;
             slowJump=false;
             anim.SetFloat("jumping", 0);
-            if(jump && verticalMovement==1 && (!anim.GetCurrentAnimatorStateInfo(0).IsName("landing") && !anim.GetCurrentAnimatorStateInfo(0).IsName("fall")) && shift==true){
+            if(jump /*&& verticalMovement==1*/  && verticalMovement>0 && (!anim.GetCurrentAnimatorStateInfo(0).IsName("landing") && !anim.GetCurrentAnimatorStateInfo(0).IsName("fall")) && shift==true){
                 shift=true;
                 slowJump=false;
                 fastJump=true;
@@ -322,7 +332,10 @@ public class FirstPersonController : MonoBehaviour {
                 controller.Move(velocity * Time.deltaTime);
                 controller.Move(move * Time.deltaTime);
                 anim.SetTrigger("jumpTrigger");
-            } else if(jump && verticalMovement!=-1 && !(horizontalMovement!=0 && verticalMovement==0)  && (!anim.GetCurrentAnimatorStateInfo(0).IsName("landing") && !anim.GetCurrentAnimatorStateInfo(0).IsName("fall")) ){
+
+
+
+            } else if(jump /*&& verticalMovement!=-1 && !(horizontalMovement!=0 && verticalMovement==0) */  && verticalMovement>=0 && (!anim.GetCurrentAnimatorStateInfo(0).IsName("landing") && !anim.GetCurrentAnimatorStateInfo(0).IsName("fall")) ){
                 shift=true;
                 fastJump=false;
                 slowJump=true;

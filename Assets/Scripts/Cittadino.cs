@@ -29,7 +29,7 @@ public class Cittadino : MonoBehaviour
     }
 
     private void Patroling(){
-        agent.speed=3f;
+        agent.speed=1.5f;
         if (!walkPointSet) SearchWalkPoint();
 
         if (walkPointSet){
