@@ -81,6 +81,7 @@ public class FirstPersonController : MonoBehaviour {
     public float attackRange = 0.5f;
 
     public LayerMask enemyLayers;
+    public LayerMask enemyGiganteLayers;
     public LayerMask cittadinoLayers;
 
     private Collider prevCol;
@@ -169,6 +170,11 @@ public class FirstPersonController : MonoBehaviour {
                 healthBar.SetHealth(currentHealth);
                 break;
             case 2:
+                currentHealth -= damage;
+                anim.SetTrigger("gothit");
+                healthBar.SetHealth(currentHealth);
+                break;
+            case 3:
                 currentHealth -= damage;
                 anim.SetTrigger("gothit");
                 healthBar.SetHealth(currentHealth);
@@ -283,7 +289,6 @@ public class FirstPersonController : MonoBehaviour {
             move*=movementRunSpeed*smooth;
             anim.SetFloat("walking", verticalMovement, 1f, Time.deltaTime * 10f );
             anim.SetFloat("strafing", horizontalMovement, 1f, Time.deltaTime * 10f );
-
 
 
         } else {
@@ -420,7 +425,10 @@ public class FirstPersonController : MonoBehaviour {
         verticalMovement=0;
         yield return new WaitForSeconds(time);
         Collider[] hitEnemies = Physics.OverlapSphere(attackPoint.position, attackRange, enemyLayers);
+        Collider[] hitGigante = Physics.OverlapSphere(attackPoint.position, attackRange*3, enemyGiganteLayers);
         Collider[] hitCittadino = Physics.OverlapSphere(attackPoint.position, attackRange, cittadinoLayers);
+
+
         foreach(Collider enemy in hitEnemies){
             float singleStep = 1 * Time.deltaTime;
 
@@ -441,6 +449,20 @@ public class FirstPersonController : MonoBehaviour {
 
             bangFX.SetActive(true);
             bangFX.transform.position=attackPoint.position;
+            yield return new WaitForSeconds(4f);
+            bangFX.SetActive(false);
+
+        }
+
+        foreach(Collider gigante in hitGigante){
+            float singleStep = 1 * Time.deltaTime;
+
+            
+            float health = gigante.GetComponent<MaranzusGigante>().TakeDamage(dmg);
+            
+            pugno.PlayOneShot(pugno.clip, 1f);
+
+            bangFX.SetActive(true);
             yield return new WaitForSeconds(4f);
             bangFX.SetActive(false);
 

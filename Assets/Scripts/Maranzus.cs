@@ -61,6 +61,8 @@ public class Maranzus : MonoBehaviour
     bool readyToThrow;
 
 
+    private bool stop;
+
 
 
 
@@ -152,7 +154,12 @@ public class Maranzus : MonoBehaviour
         if(imActive) marker.SetActive(true);
         agent.speed = 6f;
         float dist = Vector3.Distance(player.position, transform.position);
-        anim.SetFloat("vertical", 1,  1f, Time.deltaTime * 10f );
+
+        if(stop!=true){
+            anim.SetFloat("vertical", 1,  1f, Time.deltaTime * 10f );  
+        } else anim.SetFloat("vertical", 0,  1f, Time.deltaTime * 10f );
+
+        
         Vector3 targetDirection = player.position - transform.position;
         float singleStep = 1 * Time.deltaTime;
         Vector3 newDirection = Vector3.RotateTowards(transform.forward, targetDirection, singleStep, 0.0f);
@@ -286,6 +293,13 @@ public class Maranzus : MonoBehaviour
 
     public void setActiveEnemy(bool act){
         imActive=act;
+    }
+
+    void OnCollisionEnter(Collision collision) {
+        if((collision.gameObject.tag!="player" || collision.gameObject.tag!="ground" )){
+            anim.SetFloat("vertical", 0f);
+            stop = true;
+        } else stop = false;
     }
     
 }
