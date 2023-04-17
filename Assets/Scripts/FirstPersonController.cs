@@ -459,7 +459,7 @@ public class FirstPersonController : MonoBehaviour {
 
             
             float health = gigante.GetComponent<MaranzusGigante>().TakeDamage(dmg);
-            
+
             pugno.PlayOneShot(pugno.clip, 1f);
 
             bangFX.SetActive(true);

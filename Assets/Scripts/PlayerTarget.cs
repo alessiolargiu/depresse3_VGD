@@ -29,8 +29,11 @@ public class PlayerTarget : MonoBehaviour
     public bool playerAttack;
     private Transform enemy;
 
-    void Start()
-    {
+    [Header("Gestione gigante")]
+    public bool isThereGigante;
+    public Transform gigante;
+
+    void Start(){
         Vector3 angles = transform.eulerAngles;
         x = angles.y;
         y = angles.x;
@@ -106,6 +109,20 @@ public class PlayerTarget : MonoBehaviour
             transform.rotation = Quaternion.LookRotation(-target.forward, target.up);*/
         }
 
+        if(isThereGigante && gigante!=null){
+            Vector3 playerForward = target.forward;
+            playerForward = -playerForward + gigante.forward;
+
+            Vector3 offset = new Vector3(0, 0, -distance);
+            Vector3 position = transform.position + playerForward * offset.z  + target.up * offset.y * Time.deltaTime;
+            correctPosition = position;
+            transform.position = position;
+            transform.rotation = Quaternion.LookRotation(-playerForward, target.up);
+            x=0;
+            y=0;
+            lockedRotation = transform.rotation;
+        }
+
         if(playerAttack && enemy.GetComponent<Maranzus>().OutOfReach()==false){
             Vector3 playerForward = target.forward;
             playerForward = -playerForward + enemy.forward;
@@ -126,6 +143,10 @@ public class PlayerTarget : MonoBehaviour
             }   
         }
 
+        if(isThereGigante && gigante.GetComponent<MaranzusGigante>().health==0){
+            isThereGigante=false;
+            gigante=null;
+        }
 
         /*
             // Update the camera position based on the mouse input

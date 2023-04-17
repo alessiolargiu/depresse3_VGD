@@ -155,9 +155,7 @@ public class Maranzus : MonoBehaviour
         agent.speed = 6f;
         float dist = Vector3.Distance(player.position, transform.position);
 
-        if(stop!=true){
-            anim.SetFloat("vertical", 1,  1f, Time.deltaTime * 10f );  
-        } else anim.SetFloat("vertical", 0,  1f, Time.deltaTime * 10f );
+        anim.SetFloat("vertical", 1,  1f, Time.deltaTime * 10f );  
 
         
         Vector3 targetDirection = player.position - transform.position;
@@ -296,10 +294,11 @@ public class Maranzus : MonoBehaviour
     }
 
     void OnCollisionEnter(Collision collision) {
-        if((collision.gameObject.tag!="player" || collision.gameObject.tag!="ground" )){
+        /*if((collision.gameObject.tag!="player" || collision.gameObject.tag!="ground" )){
             anim.SetFloat("vertical", 0f);
             stop = true;
-        } else stop = false;
+        } else */ 
+        //stop = false;
     }
     
 }
