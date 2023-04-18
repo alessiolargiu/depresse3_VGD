@@ -15,17 +15,25 @@ public class ChangePotion : MonoBehaviour
 
     public void ChangeEquipmentInfo(Equipment equip)
     {
-        equip.ChangeEquipmentPotion(equipSlot, equipName, potionNumber);
         foreach (PotionEquip potion in player.GetInventory().GetPotions())
         {
-            if (potion.index == index)
-            {
-                potion.isEquiped = true;
-            }
-            else
+            if(index == 0)
             {
                 potion.isEquiped = false;
             }
+            else
+            {
+                if (potion.index == index)
+                {
+                    potion.isEquiped = true;
+                }
+                else
+                {
+                    potion.isEquiped = false;
+                }
+            }
+            
         }
+        equip.ChangeEquipmentPotion(equipSlot, equipName, potionNumber);
     }
 }

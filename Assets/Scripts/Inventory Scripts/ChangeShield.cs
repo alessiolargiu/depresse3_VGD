@@ -18,7 +18,7 @@ public class ChangeShield : MonoBehaviour
         equip.ChangeEquipment(equipSlot, equipName);
         foreach (ShieldEquip shield in player.GetInventory().GetShields())
         {
-            if(index == 0)
+            if (index == 0)
             {
                 shield.gameObject.SetActive(false);
             }
@@ -33,7 +33,7 @@ public class ChangeShield : MonoBehaviour
                     shield.gameObject.SetActive(false);
                 }
             }
-            
+
         }
     }
 
