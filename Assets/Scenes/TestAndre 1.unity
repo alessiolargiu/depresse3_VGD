@@ -304,8 +304,7 @@ MonoBehaviour:
   player: {fileID: 1895729727}
   index: 0
   nomeEquip: Elmo Base
-  armorValue: 15
-  stamina: 0
+  armorValue: 0.15
   sprite: {fileID: 21300000, guid: 44163ca3bda2fc24395835b13357294f, type: 3}
   hudHelmet: {fileID: 1078616590}
   helmetInPlayer: {fileID: 0}
@@ -4128,8 +4127,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 8, y: 1, z: 1}
+  m_Center: {x: -0.7, y: 0, z: -0.27}
 --- !u!1 &276593946
 GameObject:
   m_ObjectHideFlags: 0
@@ -7529,8 +7528,7 @@ MonoBehaviour:
   player: {fileID: 1895729727}
   index: 0
   nomeEquip: Elmo Avanzato
-  armorValue: 15
-  stamina: 0
+  armorValue: 0.3
   sprite: {fileID: 21300000, guid: 44163ca3bda2fc24395835b13357294f, type: 3}
   hudHelmet: {fileID: 1078616590}
   helmetInPlayer: {fileID: 0}
@@ -7908,8 +7906,7 @@ MonoBehaviour:
   player: {fileID: 1895729727}
   index: 0
   nomeEquip: Elmo Centurione
-  armorValue: 30
-  stamina: 0
+  armorValue: 0.45
   sprite: {fileID: 21300000, guid: 44163ca3bda2fc24395835b13357294f, type: 3}
   hudHelmet: {fileID: 1078616590}
   helmetInPlayer: {fileID: 0}
@@ -14836,7 +14833,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
+  m_Size: {x: 0.4, y: 0.4, z: 0.4}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &943233656 stripped
 GameObject:
@@ -15036,8 +15033,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 1, y: 2, z: 1}
+  m_Center: {x: 0, y: -1, z: 0}
 --- !u!1 &956463801
 GameObject:
   m_ObjectHideFlags: 0
@@ -16847,7 +16844,7 @@ MonoBehaviour:
   player: {fileID: 1895729727}
   index: 0
   nomeEquip: Spada Corta
-  damage: 20
+  damage: 25
   stamina: 10
   sprite: {fileID: 21300000, guid: 6d6e2c55b40e4d74fa15cbe10fc73fe0, type: 3}
   hudWeapon: {fileID: 1092316022}
@@ -16863,7 +16860,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.02, y: 0.02, z: 0.02}
+  m_Size: {x: 0.02, y: 0.01, z: 0.02}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1092096963
 GameObject:
@@ -17590,8 +17587,7 @@ MonoBehaviour:
   player: {fileID: 1895729727}
   index: 0
   nomeEquip: Elmo Centurione
-  armorValue: 45
-  stamina: 0
+  armorValue: 0.45
   sprite: {fileID: 21300000, guid: 44163ca3bda2fc24395835b13357294f, type: 3}
   hudHelmet: {fileID: 1078616590}
   helmetInPlayer: {fileID: 536478763}
@@ -18408,8 +18404,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 0.3, y: 0.3, z: 0.3}
+  m_Center: {x: 0, y: -0.15, z: 0}
 --- !u!114 &1176949375
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -20386,7 +20382,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
+  m_Size: {x: 0.03, y: 0.03, z: 0.03}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1292613982
 GameObject:
@@ -20744,8 +20740,7 @@ MonoBehaviour:
   player: {fileID: 1895729727}
   index: 0
   nomeEquip: Elmo Avanzato
-  armorValue: 30
-  stamina: 0
+  armorValue: 0.3
   sprite: {fileID: 21300000, guid: 44163ca3bda2fc24395835b13357294f, type: 3}
   hudHelmet: {fileID: 1078616590}
   helmetInPlayer: {fileID: 513920862}
@@ -21134,7 +21129,7 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: 3f7b9a348cdfff343a52b4156a593d80, type: 2}
     - target: {fileID: -8679921383154817045, guid: cd283f8b0c349aa419e1079052604cce, type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: cd283f8b0c349aa419e1079052604cce, type: 3}
       propertyPath: m_LocalScale.x
@@ -21146,47 +21141,47 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: cd283f8b0c349aa419e1079052604cce, type: 3}
       propertyPath: m_LocalScale.z
-      value: 1.15
+      value: 1.2
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: cd283f8b0c349aa419e1079052604cce, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 0.00006
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: cd283f8b0c349aa419e1079052604cce, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.00442
+      value: -0.00456
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: cd283f8b0c349aa419e1079052604cce, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.00067
+      value: -0.00063
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: cd283f8b0c349aa419e1079052604cce, type: 3}
       propertyPath: m_LocalRotation.w
-      value: -0.017452264
+      value: 0.014088602
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: cd283f8b0c349aa419e1079052604cce, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.99984777
+      value: 0.99982023
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: cd283f8b0c349aa419e1079052604cce, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0
+      value: 0.012526482
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: cd283f8b0c349aa419e1079052604cce, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0
+      value: 0.0019982255
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: cd283f8b0c349aa419e1079052604cce, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
-      value: 182
+      value: 178.389
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: cd283f8b0c349aa419e1079052604cce, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
+      value: -0.24899292
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: cd283f8b0c349aa419e1079052604cce, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
+      value: -1.4389954
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: cd283f8b0c349aa419e1079052604cce, type: 3}
       propertyPath: m_ConstrainProportionsScale
@@ -21263,8 +21258,7 @@ MonoBehaviour:
   player: {fileID: 1895729727}
   index: 0
   nomeEquip: Armatura Centurione
-  armorValue: 40
-  stamina: 0
+  armorValue: 0.4
   sprite: {fileID: 21300000, guid: 8a5ac5e70063da14d90a116dc2929a6f, type: 3}
   hudChest: {fileID: 88715097}
   chestInPlayer: {fileID: 0}
@@ -21664,8 +21658,7 @@ MonoBehaviour:
   player: {fileID: 1895729727}
   index: 0
   nomeEquip: Armatura Centurione
-  armorValue: 40
-  stamina: 0
+  armorValue: 0.4
   sprite: {fileID: 21300000, guid: 8a5ac5e70063da14d90a116dc2929a6f, type: 3}
   hudChest: {fileID: 88715097}
   chestInPlayer: {fileID: 1329169473}
@@ -21680,8 +21673,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.009, y: 0.012, z: 0.007}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 0.007, y: 0.01, z: 0.007}
+  m_Center: {x: 0, y: -0.0045, z: 0}
 --- !u!1 &1381085822
 GameObject:
   m_ObjectHideFlags: 0
@@ -29257,8 +29250,7 @@ MonoBehaviour:
   player: {fileID: 1895729727}
   index: 0
   nomeEquip: Elmo Base
-  armorValue: 15
-  stamina: 0
+  armorValue: 0.15
   sprite: {fileID: 21300000, guid: 44163ca3bda2fc24395835b13357294f, type: 3}
   hudHelmet: {fileID: 1078616590}
   helmetInPlayer: {fileID: 19520141}
@@ -29273,7 +29265,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
+  m_Size: {x: 0.6, y: 0.6, z: 0.6}
   m_Center: {x: 0, y: -1.5, z: 0}
 --- !u!1001 &1604162331
 PrefabInstance:
@@ -29589,7 +29581,7 @@ MonoBehaviour:
   player: {fileID: 1895729727}
   index: 0
   nomeEquip: Spada Corta
-  damage: 20
+  damage: 25
   stamina: 10
   sprite: {fileID: 21300000, guid: 6d6e2c55b40e4d74fa15cbe10fc73fe0, type: 3}
   hudWeapon: {fileID: 1092316022}
@@ -34738,7 +34730,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.0025, y: 0.0025, z: 0.01}
+  m_Size: {x: 0.001, y: 0.001, z: 0.01}
   m_Center: {x: 0, y: 0, z: 0.003}
 --- !u!1 &1942792500
 GameObject:

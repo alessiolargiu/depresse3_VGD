@@ -10,10 +10,18 @@ public class ChestEquip : MonoBehaviour
     public int index;
     public string nomeEquip;
     public float armorValue;
-    public int stamina;
     public Sprite sprite;
     public HUDInventoryChest hudChest;
     public ChestEquip chestInPlayer;
+
+    public ChestEquip() { }
+
+    public ChestEquip(int index, string nomeEquip, float armorValue)
+    {
+        this.index = index;
+        this.nomeEquip = nomeEquip;
+        this.armorValue = armorValue;
+    }
 
     private void OnTriggerEnter(Collider other)
     {

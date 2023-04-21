@@ -116,6 +116,7 @@ public class FirstPersonController : MonoBehaviour {
     float rightVertical;
     bool punchingKey;
     bool swordKey;
+    bool potionKey;
     bool crouchKey;
 
     void Start(){   
@@ -137,11 +138,18 @@ public class FirstPersonController : MonoBehaviour {
     private void Awake(){
         inventory = new Inventory();
         inventory.player = this;
+        //inserisco gli elementi di base dell'inventario
+        inventory.AddHelmet(new HelmetEquip(0, "NoEquip", 0));
+        inventory.AddChest(new ChestEquip(0, "NoEquip", 0));
+
+        //imposto l'HUD per l'inventario
         hudInvWeapon.SetInventory(inventory);
         hudInvShield.SetInventory(inventory);
         hudInvPotion.SetInventory(inventory);
         hudInvHelmet.SetInventory(inventory);
         hudInvChest.SetInventory(inventory);
+        
+
         verticalMovement=1;
     }
 
@@ -151,6 +159,7 @@ public class FirstPersonController : MonoBehaviour {
             AdjustCamera();
             CrouchCheck();  
             AttackType();
+            UsePotion();
             AudioEnvCheck();
             EnemyRangeCheck();
             Movement();
@@ -159,27 +168,65 @@ public class FirstPersonController : MonoBehaviour {
 
     }
 
-    public void TakeDamage(int damage, Transform enemyCurrent, int whoIs){
-        if(isActive){
-        switch(whoIs){
-            case 1:
-                followTransform.GetComponent<PlayerTarget>().SetAttackMode(true, enemyCurrent);
-                enemyCurrent.GetComponent<Maranzus>().setActiveEnemy(true);
-                currentHealth -= damage;
-                anim.SetTrigger("gothit");
-                healthBar.SetHealth(currentHealth);
-                break;
-            case 2:
-                currentHealth -= damage;
-                anim.SetTrigger("gothit");
-                healthBar.SetHealth(currentHealth);
-                break;
-            case 3:
-                currentHealth -= damage;
-                anim.SetTrigger("gothit");
-                healthBar.SetHealth(currentHealth);
-                break;
+    public int DamageCalculation(int initialDamage)
+    {
+        int damage = 0;
+        //seleziono i componenti dell'armatura correntemente equipaggiati
+        HelmetEquip currentHelmet = new HelmetEquip();
+        ChestEquip currentChest = new ChestEquip();
+
+        foreach (HelmetEquip helmet in inventory.GetHelmets())
+        {
+            if (helmet.gameObject.activeSelf)
+            {
+                currentHelmet = helmet;
+            }
         }
+        foreach (ChestEquip chest in inventory.GetChests())
+        {
+            if (chest.gameObject.activeSelf)
+            {
+                currentChest = chest;
+            }
+        }
+
+        if (currentHelmet.armorValue >= currentChest.armorValue)
+        {
+            int intermediateDamage = (int)(initialDamage - initialDamage * currentHelmet.armorValue);
+            damage = (int)(intermediateDamage - intermediateDamage * currentChest.armorValue);
+        }
+        else
+        {
+            int intermediateDamage = (int)(initialDamage - initialDamage * currentChest.armorValue);
+            damage = (int)(intermediateDamage - intermediateDamage * currentHelmet.armorValue);
+        }
+
+        return damage;
+    }
+
+    public void TakeDamage(int damage, Transform enemyCurrent, int whoIs){
+
+        
+        if (isActive){
+            switch(whoIs){
+                case 1:
+                    followTransform.GetComponent<PlayerTarget>().SetAttackMode(true, enemyCurrent);
+                    enemyCurrent.GetComponent<Maranzus>().setActiveEnemy(true);
+                    currentHealth -= DamageCalculation(damage);
+                    anim.SetTrigger("gothit");
+                    healthBar.SetHealth(currentHealth);
+                    break;
+                case 2:
+                    currentHealth -= DamageCalculation(damage);
+                    anim.SetTrigger("gothit");
+                    healthBar.SetHealth(currentHealth);
+                    break;
+                case 3:
+                    currentHealth -= DamageCalculation(damage);
+                    anim.SetTrigger("gothit");
+                    healthBar.SetHealth(currentHealth);
+                    break;
+            }
 
         }
     }
@@ -252,8 +299,32 @@ public class FirstPersonController : MonoBehaviour {
             punchingKey = Input.GetKeyUp(KeyCode.F);
             crouchKey = Input.GetKey(KeyCode.H);
             swordKey = Input.GetKeyUp(KeyCode.G);
+            potionKey = Input.GetKeyUp(KeyCode.Q);
         }
 
+    }
+
+    //Funzione che permette di curarsi usando una pozione
+    private void UsePotion()
+    {
+        if(potionKey && controller.isGrounded)
+        {
+            if(inventory.GetPotions().Count > 0)
+            {
+                foreach(PotionEquip potion in inventory.GetPotions())
+                {
+                    if(potion.isEquiped && potion.potionNumber > 0 && currentHealth < 100)
+                    {
+                        currentHealth += potion.cureValue;
+                        if(currentHealth > 100) { 
+                            currentHealth = 100; 
+                        }
+                        healthBar.SetHealth(currentHealth);
+                        potion.potionNumber--;
+                    }              
+                }
+            }
+        }
     }
 
     private void CrouchCheck(){

@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class HelmetEquip : MonoBehaviour
@@ -10,10 +11,18 @@ public class HelmetEquip : MonoBehaviour
     public int index;
     public string nomeEquip;
     public float armorValue;
-    public int stamina;
     public Sprite sprite;
     public HUDInventoryHelmet hudHelmet;
     public HelmetEquip helmetInPlayer;
+
+    public HelmetEquip(){}
+
+    public HelmetEquip(int index, string nomeEquip, float armorValue)
+    {
+        this.index = index;
+        this.nomeEquip = nomeEquip;
+        this.armorValue = armorValue;
+    }
 
     private void OnTriggerEnter(Collider other)
     {
