@@ -169,22 +169,22 @@ public class FirstPersonController : MonoBehaviour {
     }
 
     public int DamageCalculation(int initialDamage)
-    {
+    { 
+        /*
         int damage = 0;
         //seleziono i componenti dell'armatura correntemente equipaggiati
         HelmetEquip currentHelmet = new HelmetEquip();
         ChestEquip currentChest = new ChestEquip();
-
         foreach (HelmetEquip helmet in inventory.GetHelmets())
         {
-            if (helmet.gameObject.activeSelf)
+            if (helmet!=null && helmet.gameObject.activeSelf)
             {
                 currentHelmet = helmet;
             }
         }
         foreach (ChestEquip chest in inventory.GetChests())
         {
-            if (chest.gameObject.activeSelf)
+        if (chest!=null && chest.gameObject.activeSelf)
             {
                 currentChest = chest;
             }
@@ -199,14 +199,13 @@ public class FirstPersonController : MonoBehaviour {
         {
             int intermediateDamage = (int)(initialDamage - initialDamage * currentChest.armorValue);
             damage = (int)(intermediateDamage - intermediateDamage * currentHelmet.armorValue);
-        }
+        }*/
+        int damage=initialDamage;
 
         return damage;
     }
 
-    public void TakeDamage(int damage, Transform enemyCurrent, int whoIs){
-
-        
+    public void TakeDamage(int damage, Transform enemyCurrent, int whoIs){ 
         if (isActive){
             switch(whoIs){
                 case 1:
@@ -528,7 +527,7 @@ public class FirstPersonController : MonoBehaviour {
         foreach(Collider gigante in hitGigante){
             float singleStep = 1 * Time.deltaTime;
 
-            
+            Debug.Log("sto picchiando il gigante");
             float health = gigante.GetComponent<MaranzusGigante>().TakeDamage(dmg);
 
             pugno.PlayOneShot(pugno.clip, 1f);

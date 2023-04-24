@@ -62,7 +62,10 @@ public class Maranzus : MonoBehaviour
 
 
     private bool stop;
+    public float fistRange;
+    public Transform fist;
 
+    public LayerMask playerLayer;
 
 
 
@@ -184,12 +187,24 @@ public class Maranzus : MonoBehaviour
         {
             ///Attack code here
             anim.SetTrigger("punching");
-            player.GetComponent<FirstPersonController>().TakeDamage(dmg, transform, 1);
+            //player.GetComponent<FirstPersonController>().TakeDamage(dmg, transform, 1);
             self.PlayOneShot(pugnoSound, 1f);
+            StartCoroutine(Attack(fist, 0.35f));
             ///End of attack code
 
             alreadyAttacked = true;
             Invoke(nameof(ResetAttack), timeBetweenAttacks);
+        }
+    }
+
+    IEnumerator Attack(Transform point, float time){
+        yield return new WaitForSeconds(time);
+        Collider[] hitPlayer = Physics.OverlapSphere(point.position, fistRange, playerLayer);
+
+        foreach(Collider playerIt in hitPlayer){
+            float singleStep = 1 * Time.deltaTime;
+            
+            playerIt.GetComponentInParent<FirstPersonController>().TakeDamage(dmg, transform, 1);
         }
     }
 

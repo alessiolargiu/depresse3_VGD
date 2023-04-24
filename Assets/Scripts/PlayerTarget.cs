@@ -123,7 +123,7 @@ public class PlayerTarget : MonoBehaviour
             lockedRotation = transform.rotation;
         }
 
-        if(playerAttack && enemy.GetComponent<Maranzus>().OutOfReach()==false){
+        if(enemy!=null && playerAttack && enemy.GetComponent<Maranzus>().OutOfReach()==false){
             Vector3 playerForward = target.forward;
             playerForward = -playerForward + enemy.forward;
 

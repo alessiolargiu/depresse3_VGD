@@ -67,6 +67,10 @@ public class MaranzusGigante : MonoBehaviour{
 
 
     private bool stop;
+    public float fistRange;
+    public Transform leg;
+
+    public LayerMask playerLayer;
 
 
 
@@ -165,11 +169,11 @@ public class MaranzusGigante : MonoBehaviour{
             anim.SetFloat("vertical", 1,  1f, Time.deltaTime * 10f );  
         } else anim.SetFloat("vertical", 0,  1f, Time.deltaTime * 10f );
 
-        
+        /*
         Vector3 targetDirection = player.position - transform.position;
         float singleStep = 1 * Time.deltaTime;
         Vector3 newDirection = Vector3.RotateTowards(transform.forward, targetDirection, singleStep, 0.0f);
-        transform.rotation = Quaternion.LookRotation(newDirection);
+        transform.rotation = Quaternion.LookRotation(newDirection);*/
         agent.SetDestination(player.position);
         if(randomBoolean() && readyToThrow && isASandaloThrower){
             ThrowSandalo();
@@ -184,8 +188,9 @@ public class MaranzusGigante : MonoBehaviour{
         agent.SetDestination(transform.position);
         Vector3 targetDirection = player.position - transform.position;
         float singleStep = 1 * Time.deltaTime;
-        Vector3 newDirection = Vector3.RotateTowards(transform.forward, targetDirection, singleStep, 0.0f);
-        transform.rotation = Quaternion.LookRotation(newDirection);
+        //Vector3 newDirection = Vector3.RotateTowards(transform.forward, targetDirection, singleStep, 0.0f);
+        //transform.rotation = Quaternion.LookRotation(newDirection);
+        //NO QUESTO NO
         //transform.LookAt(player);
 
         if (alreadyAttacked==false)
@@ -195,7 +200,7 @@ public class MaranzusGigante : MonoBehaviour{
             anim.SetTrigger("punching");
 
             ///End of attack code
-            StartCoroutine(Attack(1.5f));
+            StartCoroutine(Attack(leg, 1.5f));
             alreadyAttacked = true;
             //Invoke(nameof(ResetAttack), timeBetweenAttacks);
         }
@@ -206,6 +211,7 @@ public class MaranzusGigante : MonoBehaviour{
     }
 
     public float TakeDamage(int damage){
+        Debug.Log("Sto subendo danno e sono il gigante");
        if(health>0){
             anim.SetTrigger("gothit");
             self.Stop();
@@ -302,14 +308,21 @@ public class MaranzusGigante : MonoBehaviour{
         imActive=act;
     }
 
-    IEnumerator Attack(float time){
+    IEnumerator Attack(Transform point, float time){
         yield return new WaitForSeconds(time);
         shake.ShakeCamera(shakeIntns, shakeTime);
-        player.GetComponent<FirstPersonController>().TakeDamage(dmg, transform, 3);
+        Collider[] hitPlayer = Physics.OverlapSphere(point.position, fistRange, playerLayer);
+
+        foreach(Collider playerIt in hitPlayer){
+            float singleStep = 1 * Time.deltaTime;
+            
+            playerIt.GetComponentInParent<FirstPersonController>().TakeDamage(dmg, transform, 3);
+        }
         self.PlayOneShot(pugnoSound, 1f);
         yield return new WaitForSeconds(timeBetweenAttacks);
         ResetAttack();
     }
+
 
     IEnumerator shakeRun(float ints, float timeshk, float time){
         yield return new WaitForSeconds(time);
