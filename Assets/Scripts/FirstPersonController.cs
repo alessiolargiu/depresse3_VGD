@@ -168,18 +168,14 @@ public class FirstPersonController : MonoBehaviour {
     }
 
     public int DamageCalculation(int initialDamage)
-    {
-
-        Debug.Log(inventory.GetHelmets().Count);
-        Debug.Log(inventory.GetChests().Count);
-
+    { 
+        
         int damage = 0;
         //seleziono i componenti dell'armatura correntemente equipaggiati
         HelmetEquip currentHelmet = new HelmetEquip();
         ChestEquip currentChest = new ChestEquip();
         foreach (HelmetEquip helmet in inventory.GetHelmets())
         {
-            Debug.Log("Elmo corrente" + helmet.gameObject.activeSelf);
             if (helmet.gameObject.activeSelf)
             {
                 currentHelmet = helmet;
@@ -187,8 +183,7 @@ public class FirstPersonController : MonoBehaviour {
         }
         foreach (ChestEquip chest in inventory.GetChests())
         {
-            Debug.Log("Chest corrente" + chest.gameObject.activeSelf);
-            if (chest.gameObject.activeSelf)
+        if (chest.gameObject.activeSelf)
             {
                 currentChest = chest;
             }
