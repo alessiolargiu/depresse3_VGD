@@ -92,7 +92,7 @@ public class Maranzus : MonoBehaviour
         playerInSightRange = Physics.CheckSphere(transform.position, sightRange, whatIsPlayer);
         playerInAttackRange = Physics.CheckSphere(transform.position, attackRange, whatIsPlayer);
         
-        if(health>0){
+        if(health>0 && player.GetComponentInParent<FirstPersonController>().GetActiveInternal() == true){
 
             if(bastardo){
                 if (!playerInSightRange && !playerInAttackRange) {

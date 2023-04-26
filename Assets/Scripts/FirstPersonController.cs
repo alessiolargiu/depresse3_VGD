@@ -238,7 +238,7 @@ public class FirstPersonController : MonoBehaviour {
         
         if(other.gameObject.CompareTag("Cutscene")){
             isActive=false;
-            StartCoroutine(other.GetComponent<CutSceneScript>().cutsceneStart((paolino) => { if(paolino==true){isActive=true;}}));
+            StartCoroutine(other.GetComponent<CutSceneScript>().cutsceneStart((paolino) => {}));
         }
 
         if (other.gameObject.CompareTag("pickup")){
@@ -548,6 +548,14 @@ public class FirstPersonController : MonoBehaviour {
     IEnumerator OnTimeSound(AudioSource src, AudioClip clp, float volume, float delay){
         yield return new WaitForSeconds(delay);
         src.PlayOneShot(clp, volume);
+    }
+
+    public void SetActiveInternal(bool what){
+        isActive=what;
+    }
+
+    public bool GetActiveInternal(){
+        return isActive;
     }
     
 }
