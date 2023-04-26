@@ -29,8 +29,11 @@ public class FirstPersonController : MonoBehaviour {
 
     //parametri vita del player
     public HealthBar healthBar;
+    public StaminaBar staminaBar;
     private int maxHealth = 100;
     private int currentHealth;
+    private float maxStamina = 100;
+    private float currentStamina;
 
     //rifermineto per l'inventario
     private Inventory inventory;
@@ -107,6 +110,7 @@ public class FirstPersonController : MonoBehaviour {
 
     //userflag
     public bool usingController;
+    public bool infiniteStamina = false;
 
     //inputs
     bool jump;
@@ -128,6 +132,8 @@ public class FirstPersonController : MonoBehaviour {
         //imposto la vita iniziale
         currentHealth = maxHealth;
         healthBar.SetMaxHealth(maxHealth);
+        currentStamina = maxStamina;
+        staminaBar.SetMaxStamina(maxStamina);
         smooth = 0.5f;
         fastJump=false;
         slowJump=false;
@@ -163,6 +169,21 @@ public class FirstPersonController : MonoBehaviour {
             EnemyRangeCheck();
             Movement();
             Jumping();
+
+            if (!infiniteStamina)
+            {
+                if (currentStamina < maxStamina)
+                {
+                    currentStamina += 6 * Time.deltaTime;
+                }
+                if (currentStamina > maxStamina)
+                {
+                    currentStamina = maxStamina;
+                }
+
+                staminaBar.SetStamina(currentStamina);
+            }
+
         }
 
     }
@@ -363,6 +384,11 @@ public class FirstPersonController : MonoBehaviour {
             anim.SetFloat("walking", verticalMovement, 1f, Time.deltaTime * 10f );
             anim.SetFloat("strafing", horizontalMovement, 1f, Time.deltaTime * 10f );
 
+            if (!infiniteStamina)
+            {
+                currentStamina -= 10 * Time.deltaTime;
+                staminaBar.SetStamina(currentStamina);
+            }
 
         } else {
             if(smooth>=0.5){
@@ -410,7 +436,11 @@ public class FirstPersonController : MonoBehaviour {
                 controller.Move(velocity * Time.deltaTime);
                 controller.Move(move * Time.deltaTime);
                 anim.SetTrigger("jumpTrigger");
-
+                if (!infiniteStamina)
+                {
+                    currentStamina -= 20;
+                    staminaBar.SetStamina(currentStamina);
+                }
 
 
             } else if(jump /*&& verticalMovement!=-1 && !(horizontalMovement!=0 && verticalMovement==0) */  && verticalMovement>=0 && (!anim.GetCurrentAnimatorStateInfo(0).IsName("landing") && !anim.GetCurrentAnimatorStateInfo(0).IsName("fall")) ){
@@ -429,6 +459,12 @@ public class FirstPersonController : MonoBehaviour {
                 controller.Move(velocity * Time.deltaTime);
                 controller.Move(move * Time.deltaTime);
                 anim.SetTrigger("jumpTrigger");
+                if (!infiniteStamina)
+                {
+                    currentStamina -= 20;
+                    staminaBar.SetStamina(currentStamina);
+                }
+
             } 
 
         } 

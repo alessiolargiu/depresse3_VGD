@@ -31,10 +31,7 @@ public class HelmetEquip : MonoBehaviour
         Inventory inv = player.GetInventory();
         inv.AddHelmet(helmetInPlayer);
         hudHelmet.SetInventory(inv);
-        
         helmetIndex++;
-
-        Debug.Log("helmetindex: " + helmetIndex);
     }
 
 }

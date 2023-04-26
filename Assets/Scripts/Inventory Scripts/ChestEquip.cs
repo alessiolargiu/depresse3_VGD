@@ -31,8 +31,6 @@ public class ChestEquip : MonoBehaviour
         inv.AddChest(chestInPlayer);
         hudChest.SetInventory(inv);
         chestIndex++;
-
-        Debug.Log("chestindex: " + chestIndex);
     }
 
 }
