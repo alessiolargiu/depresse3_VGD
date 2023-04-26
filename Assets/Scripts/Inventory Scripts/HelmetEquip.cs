@@ -6,7 +6,7 @@ using UnityEngine;
 public class HelmetEquip : MonoBehaviour
 {
 
-    public static int helmetIndex = 1;
+    public static int helmetIndex = 0;
     public FirstPersonController player;
     public int index;
     public string nomeEquip;
@@ -15,24 +15,26 @@ public class HelmetEquip : MonoBehaviour
     public HUDInventoryHelmet hudHelmet;
     public HelmetEquip helmetInPlayer;
 
-    public HelmetEquip(){}
-
-    public HelmetEquip(int index, string nomeEquip, float armorValue)
-    {
-        this.index = index;
-        this.nomeEquip = nomeEquip;
-        this.armorValue = armorValue;
-    }
-
     private void OnTriggerEnter(Collider other)
     {
         helmetInPlayer.index = helmetIndex;
-        helmetIndex++;
-        
+
+        if (helmetIndex != 0)
+        {
+            this.gameObject.SetActive(false);
+            
+        }
+        else
+        {
+            this.GetComponent<BoxCollider>().isTrigger = false;
+        }
         Inventory inv = player.GetInventory();
         inv.AddHelmet(helmetInPlayer);
         hudHelmet.SetInventory(inv);
-        this.gameObject.SetActive(false);
+        
+        helmetIndex++;
+
+        Debug.Log("helmetindex: " + helmetIndex);
     }
 
 }

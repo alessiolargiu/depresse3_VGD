@@ -17,21 +17,15 @@ public class ChangeChest : MonoBehaviour
         equip.ChangeEquipment(equipSlot, equipName);
         foreach (ChestEquip chest in player.GetInventory().GetChests())
         {
-            if (index == 0)
+            if (chest.index == index)
             {
-                chest.gameObject.SetActive(false);
+                chest.gameObject.SetActive(true);
             }
             else
             {
-                if (chest.index == index)
-                {
-                    chest.gameObject.SetActive(true);
-                }
-                else
-                {
-                    chest.gameObject.SetActive(false);
-                }
+                chest.gameObject.SetActive(false);
             }
+            
             
         }
     }

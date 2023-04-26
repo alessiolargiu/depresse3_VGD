@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 
@@ -139,8 +140,6 @@ public class FirstPersonController : MonoBehaviour {
         inventory = new Inventory();
         inventory.player = this;
         //inserisco gli elementi di base dell'inventario
-        inventory.AddHelmet(new HelmetEquip(0, "NoEquip", 0));
-        inventory.AddChest(new ChestEquip(0, "NoEquip", 0));
 
         //imposto l'HUD per l'inventario
         hudInvWeapon.SetInventory(inventory);
@@ -169,22 +168,27 @@ public class FirstPersonController : MonoBehaviour {
     }
 
     public int DamageCalculation(int initialDamage)
-    { 
-        /*
+    {
+
+        Debug.Log(inventory.GetHelmets().Count);
+        Debug.Log(inventory.GetChests().Count);
+
         int damage = 0;
         //seleziono i componenti dell'armatura correntemente equipaggiati
         HelmetEquip currentHelmet = new HelmetEquip();
         ChestEquip currentChest = new ChestEquip();
         foreach (HelmetEquip helmet in inventory.GetHelmets())
         {
-            if (helmet!=null && helmet.gameObject.activeSelf)
+            Debug.Log("Elmo corrente" + helmet.gameObject.activeSelf);
+            if (helmet.gameObject.activeSelf)
             {
                 currentHelmet = helmet;
             }
         }
         foreach (ChestEquip chest in inventory.GetChests())
         {
-        if (chest!=null && chest.gameObject.activeSelf)
+            Debug.Log("Chest corrente" + chest.gameObject.activeSelf);
+            if (chest.gameObject.activeSelf)
             {
                 currentChest = chest;
             }
@@ -199,8 +203,7 @@ public class FirstPersonController : MonoBehaviour {
         {
             int intermediateDamage = (int)(initialDamage - initialDamage * currentChest.armorValue);
             damage = (int)(intermediateDamage - intermediateDamage * currentHelmet.armorValue);
-        }*/
-        int damage=initialDamage;
+        }
 
         return damage;
     }

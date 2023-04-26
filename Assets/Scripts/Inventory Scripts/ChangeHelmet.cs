@@ -18,22 +18,14 @@ public class ChangeHelmet : MonoBehaviour
         equip.ChangeEquipment(equipSlot, equipName);
         foreach(HelmetEquip helmet in player.GetInventory().GetHelmets())
         {
-            if(index == 0)
+            if (helmet.index == index)
             {
-                helmet.gameObject.SetActive(false);
+                helmet.gameObject.SetActive(true);
             }
             else
             {
-                if (helmet.index == index)
-                {
-                    helmet.gameObject.SetActive(true);
-                }
-                else
-                {
-                    helmet.gameObject.SetActive(false);
-                }
+                helmet.gameObject.SetActive(false);
             }
-            
         }
     }
 
