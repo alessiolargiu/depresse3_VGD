@@ -14,7 +14,7 @@ public class ChangeChest : MonoBehaviour
 
     public void ChangeEquipmentInfo(Equipment equip)
     {
-        equip.ChangeEquipment(equipSlot, equipName);
+        equip.ChangeEquipment(equipSlot, equipName, -1);
         foreach (ChestEquip chest in player.GetInventory().GetChests())
         {
             if (chest.index == index)

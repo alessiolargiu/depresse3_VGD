@@ -34,6 +34,8 @@ public class FirstPersonController : MonoBehaviour {
     private int currentHealth;
     private float maxStamina = 100;
     private float currentStamina;
+    private int staminaJump = 10;
+    private int staminaAttack = 20;
 
     //rifermineto per l'inventario
     private Inventory inventory;
@@ -172,16 +174,20 @@ public class FirstPersonController : MonoBehaviour {
 
             if (!infiniteStamina)
             {
-                if (currentStamina < maxStamina)
+                if (!shift)
                 {
-                    currentStamina += 6 * Time.deltaTime;
-                }
-                if (currentStamina > maxStamina)
-                {
-                    currentStamina = maxStamina;
-                }
+                    if (currentStamina < maxStamina)
+                    {
+                        currentStamina += 6 * Time.deltaTime;
+                    }
+                    if (currentStamina > maxStamina)
+                    {
+                        currentStamina = maxStamina;
+                    }
 
-                staminaBar.SetStamina(currentStamina);
+                    staminaBar.SetStamina(currentStamina);
+                }
+                
             }
 
         }
@@ -360,7 +366,7 @@ public class FirstPersonController : MonoBehaviour {
     private void Movement(){
         //definizione del vettore di movimento;
         move = transform.right * horizontalMovement + transform.forward * verticalMovement;
-        if((shift) && (verticalMovement!=0f || horizontalMovement!=0f) && controller.isGrounded || momentum!=0f){
+        if((shift) && currentStamina > 0 && (verticalMovement!=0f || horizontalMovement!=0f) && controller.isGrounded || momentum!=0f){
             
             if(horizontalMovement+verticalMovement==2 || horizontalMovement+verticalMovement==-2){
                 transform.Rotate(Vector3.up * horizontalMovement*0.6f);
@@ -381,7 +387,7 @@ public class FirstPersonController : MonoBehaviour {
 
             if (!infiniteStamina)
             {
-                currentStamina -= 10 * Time.deltaTime;
+                currentStamina -= 3 * Time.deltaTime;
                 staminaBar.SetStamina(currentStamina);
             }
 
@@ -414,7 +420,7 @@ public class FirstPersonController : MonoBehaviour {
             fastJump=false;
             slowJump=false;
             anim.SetFloat("jumping", 0);
-            if(jump /*&& verticalMovement==1*/  && verticalMovement>0 && (!anim.GetCurrentAnimatorStateInfo(0).IsName("landing") && !anim.GetCurrentAnimatorStateInfo(0).IsName("fall")) && shift==true){
+            if(jump /*&& verticalMovement==1*/ && currentStamina >= staminaJump && verticalMovement>0 && (!anim.GetCurrentAnimatorStateInfo(0).IsName("landing") && !anim.GetCurrentAnimatorStateInfo(0).IsName("fall")) && shift==true){
                 shift=true;
                 slowJump=false;
                 fastJump=true;
@@ -433,12 +439,12 @@ public class FirstPersonController : MonoBehaviour {
                 anim.SetTrigger("jumpTrigger");
                 if (!infiniteStamina)
                 {
-                    currentStamina -= 20;
+                    currentStamina -= staminaJump;
                     staminaBar.SetStamina(currentStamina);
                 }
 
 
-            } else if(jump /*&& verticalMovement!=-1 && !(horizontalMovement!=0 && verticalMovement==0) */  && verticalMovement>=0 && (!anim.GetCurrentAnimatorStateInfo(0).IsName("landing") && !anim.GetCurrentAnimatorStateInfo(0).IsName("fall")) ){
+            } else if(jump /*&& verticalMovement!=-1 && !(horizontalMovement!=0 && verticalMovement==0) */ && currentStamina >= staminaJump && verticalMovement>=0 && (!anim.GetCurrentAnimatorStateInfo(0).IsName("landing") && !anim.GetCurrentAnimatorStateInfo(0).IsName("fall")) ){
                 shift=true;
                 fastJump=false;
                 slowJump=true;
@@ -456,7 +462,7 @@ public class FirstPersonController : MonoBehaviour {
                 anim.SetTrigger("jumpTrigger");
                 if (!infiniteStamina)
                 {
-                    currentStamina -= 20;
+                    currentStamina -= staminaJump;
                     staminaBar.SetStamina(currentStamina);
                 }
 
@@ -470,37 +476,43 @@ public class FirstPersonController : MonoBehaviour {
     }
 
     private void AttackType(){
-        if(((punchingKey) && pugnoAir.isPlaying==false) && controller.isGrounded && (anim.GetCurrentAnimatorStateInfo(0).IsName("kick")==false)){
+        if(((punchingKey) && currentStamina >= staminaAttack && pugnoAir.isPlaying==false) && controller.isGrounded && (anim.GetCurrentAnimatorStateInfo(0).IsName("kick")==false)){
             switch(noWeaponCycle){
                 case 0:
-                StartCoroutine(OnTimeSound(pugnoAir, airleft, 1f, 0f));
-                StartCoroutine(Attack(leftHand, 20, 0.1f));
-                anim.SetBool("altPunching", true);
-                anim.SetTrigger("punching");
-                noWeaponCycle++;
-                break;
+                    StartCoroutine(OnTimeSound(pugnoAir, airleft, 1f, 0f));
+                    StartCoroutine(Attack(leftHand, 20, 0.1f));
+                    anim.SetBool("altPunching", true);
+                    anim.SetTrigger("punching");
+                    currentStamina -= staminaAttack;
+                    staminaBar.SetStamina(currentStamina);
+                    noWeaponCycle++;
+                    break;
                 
                 case 1:
-                StartCoroutine(OnTimeSound(pugnoAir, airright, 1f, 0f));
-                StartCoroutine(Attack(rightHand, 20, 0.1f));
-                anim.SetBool("altPunching", false);
-                anim.SetTrigger("punching");
-                noWeaponCycle++;
-                break;
+                    StartCoroutine(OnTimeSound(pugnoAir, airright, 1f, 0f));
+                    StartCoroutine(Attack(rightHand, 20, 0.1f));
+                    anim.SetBool("altPunching", false);
+                    anim.SetTrigger("punching");
+                    currentStamina -= staminaAttack;
+                    staminaBar.SetStamina(currentStamina);
+                    noWeaponCycle++;
+                    break;
 
                 case 2:
-                StartCoroutine(OnTimeSound(pugnoAir, airleft, 1f, 0.5f));
-                int rand = UnityEngine.Random.Range(0, 2);
-                if(rand==1){
-                    anim.SetBool("altPunching", false);
-                    StartCoroutine(Attack(legR, 40, 0.5f));
-                } else {
-                    anim.SetBool("altPunching", true);
-                    StartCoroutine(Attack(legL, 40, 0.5f));
-                }
-                anim.SetTrigger("kicking");
-                noWeaponCycle=0;
-                break;
+                    StartCoroutine(OnTimeSound(pugnoAir, airleft, 1f, 0.5f));
+                    int rand = UnityEngine.Random.Range(0, 2);
+                    if(rand==1){
+                        anim.SetBool("altPunching", false);
+                        StartCoroutine(Attack(legR, 40, 0.5f));
+                    } else {
+                        anim.SetBool("altPunching", true);
+                        StartCoroutine(Attack(legL, 40, 0.5f));
+                    }
+                    anim.SetTrigger("kicking");
+                    currentStamina -= staminaAttack;
+                    staminaBar.SetStamina(currentStamina);
+                    noWeaponCycle =0;
+                    break;
             
             }
             
