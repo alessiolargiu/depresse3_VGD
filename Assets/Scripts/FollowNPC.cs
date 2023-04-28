@@ -31,7 +31,6 @@ public class FollowNPC : MonoBehaviour
     private void Update(){
         distPlayer = Vector3.Distance(player.position, transform.position);
         distPunto = Vector3.Distance(puntoArrivo.position, transform.position);
-        Debug.Log(distPunto);
         GoToTarget();
     }
 
