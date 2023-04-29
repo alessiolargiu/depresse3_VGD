@@ -2,11 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GetAllEquipment : MonoBehaviour
+public class Cheats : MonoBehaviour
 {
 
     public bool getAllEquip;
-    public GameObject player;
+    public bool infiniteStamina;
+
+    public FirstPersonController player;
+    public GameObject playerModel;
     public List<HelmetEquip> helmetList;
     public List<ChestEquip> chestList;
     public List<WeaponEquip> weaponList;
@@ -16,6 +19,9 @@ public class GetAllEquipment : MonoBehaviour
 
     private void Update()
     {
+
+        player.infiniteStamina = this.infiniteStamina;
+
         if (getAllEquip)
         {
             foreach(HelmetEquip item in helmetList)

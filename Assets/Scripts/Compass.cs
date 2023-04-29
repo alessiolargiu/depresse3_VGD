@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class Compass : MonoBehaviour
 {
-
+    
     public float compassUnit;
     public RawImage compassImage;
     public Transform player;
@@ -57,5 +57,5 @@ public class Compass : MonoBehaviour
 
         return new Vector2(compassUnit * angle, 0);
     }
-
+    
 }

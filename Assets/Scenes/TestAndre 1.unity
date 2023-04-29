@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028305, g: 0.22571313, b: 0.3069213, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028352, g: 0.22571376, b: 0.30692244, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -198,129 +198,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!1001 &19520138
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 526373499}
-    m_Modifications:
-    - target: {fileID: -8679921383154817045, guid: b55831c7c002b144cb9a000eaf7c9822, type: 3}
-      propertyPath: m_RootOrder
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: b55831c7c002b144cb9a000eaf7c9822, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 0.009999999
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: b55831c7c002b144cb9a000eaf7c9822, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 0.009999998
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: b55831c7c002b144cb9a000eaf7c9822, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 0.01
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: b55831c7c002b144cb9a000eaf7c9822, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0.00001
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: b55831c7c002b144cb9a000eaf7c9822, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -0.01485
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: b55831c7c002b144cb9a000eaf7c9822, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0.00052
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: b55831c7c002b144cb9a000eaf7c9822, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: b55831c7c002b144cb9a000eaf7c9822, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: b55831c7c002b144cb9a000eaf7c9822, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: b55831c7c002b144cb9a000eaf7c9822, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: b55831c7c002b144cb9a000eaf7c9822, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 180
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: b55831c7c002b144cb9a000eaf7c9822, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: b55831c7c002b144cb9a000eaf7c9822, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: b55831c7c002b144cb9a000eaf7c9822, type: 3}
-      propertyPath: m_ConstrainProportionsScale
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: -8642135358000617275, guid: b55831c7c002b144cb9a000eaf7c9822, type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: e68ae7a94fdcea845a15c3980da37c4c, type: 2}
-    - target: {fileID: 919132149155446097, guid: b55831c7c002b144cb9a000eaf7c9822, type: 3}
-      propertyPath: m_Name
-      value: elmo_base_in_player
-      objectReference: {fileID: 0}
-    - target: {fileID: 919132149155446097, guid: b55831c7c002b144cb9a000eaf7c9822, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: b55831c7c002b144cb9a000eaf7c9822, type: 3}
---- !u!4 &19520139 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: b55831c7c002b144cb9a000eaf7c9822, type: 3}
-  m_PrefabInstance: {fileID: 19520138}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &19520140 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: b55831c7c002b144cb9a000eaf7c9822, type: 3}
-  m_PrefabInstance: {fileID: 19520138}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &19520141
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 19520140}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3c75cee318c5d8f4c95113f48b456bfa, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  player: {fileID: 1895729727}
-  index: 0
-  nomeEquip: Elmo Base
-  armorValue: 0.15
-  sprite: {fileID: 21300000, guid: 44163ca3bda2fc24395835b13357294f, type: 3}
-  hudHelmet: {fileID: 1078616590}
-  helmetInPlayer: {fileID: 0}
---- !u!65 &19520142
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 19520140}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &23793423
 GameObject:
   m_ObjectHideFlags: 0
@@ -1598,8 +1475,8 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 1599978265}
   - {fileID: 1312502453}
+  - {fileID: 979167810}
   - {fileID: 1130106032}
   - {fileID: 1617160965}
   - {fileID: 2075734290}
@@ -2061,6 +1938,95 @@ Transform:
   m_Father: {fileID: 1417813098}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &163599276
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 526373499}
+    m_Modifications:
+    - target: {fileID: -8679921383154817045, guid: 6ec59d78c9c419f448c6ac0262f98440, type: 3}
+      propertyPath: m_RootOrder
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 6ec59d78c9c419f448c6ac0262f98440, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.18
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 6ec59d78c9c419f448c6ac0262f98440, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.18
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 6ec59d78c9c419f448c6ac0262f98440, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.22
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 6ec59d78c9c419f448c6ac0262f98440, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 6ec59d78c9c419f448c6ac0262f98440, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.00125
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 6ec59d78c9c419f448c6ac0262f98440, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.00017
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 6ec59d78c9c419f448c6ac0262f98440, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.0036118478
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 6ec59d78c9c419f448c6ac0262f98440, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.9999935
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 6ec59d78c9c419f448c6ac0262f98440, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.00000006178252
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 6ec59d78c9c419f448c6ac0262f98440, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0.00000025932005
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 6ec59d78c9c419f448c6ac0262f98440, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 6ec59d78c9c419f448c6ac0262f98440, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 6ec59d78c9c419f448c6ac0262f98440, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 6ec59d78c9c419f448c6ac0262f98440, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -1538091683683695469, guid: 6ec59d78c9c419f448c6ac0262f98440, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 084d142ef371ab647b4af4a34032018a, type: 2}
+    - target: {fileID: -969900065236817345, guid: 6ec59d78c9c419f448c6ac0262f98440, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 084d142ef371ab647b4af4a34032018a, type: 2}
+    - target: {fileID: 919132149155446097, guid: 6ec59d78c9c419f448c6ac0262f98440, type: 3}
+      propertyPath: m_Name
+      value: elmo_avanzato_in_player
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 6ec59d78c9c419f448c6ac0262f98440, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8985534361068402170, guid: 6ec59d78c9c419f448c6ac0262f98440, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 084d142ef371ab647b4af4a34032018a, type: 2}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 6ec59d78c9c419f448c6ac0262f98440, type: 3}
 --- !u!1 &164712690
 GameObject:
   m_ObjectHideFlags: 0
@@ -3358,6 +3324,89 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
+--- !u!1 &253606974
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 253606975}
+  - component: {fileID: 253606978}
+  - component: {fileID: 253606977}
+  m_Layer: 11
+  m_Name: Capsule
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &253606975
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 253606974}
+  m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
+  m_LocalPosition: {x: 0, y: -0, z: 1.87}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 981353551}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
+--- !u!23 &253606977
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 253606974}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: 3bc4ebdf10b7dda4fad0e3c8f52d043e, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
+--- !u!33 &253606978
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 253606974}
+  m_Mesh: {fileID: 10208, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!1 &253933544
 GameObject:
   m_ObjectHideFlags: 0
@@ -4067,7 +4116,7 @@ MonoBehaviour:
   nomeEquip: Lancia
   damage: 40
   stamina: 45
-  sprite: {fileID: 21300000, guid: 6d6e2c55b40e4d74fa15cbe10fc73fe0, type: 3}
+  sprite: {fileID: 21300000, guid: 0e1d6c42054dd3a4fbe8a1a873f60dd4, type: 3}
   hudWeapon: {fileID: 1092316022}
   weaponInPlayer: {fileID: 1669022936}
 --- !u!65 &275762715
@@ -5952,16 +6001,28 @@ PrefabInstance:
       value: 11
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 4f5f8deeb016a4d8c81f2595ba750f34, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 13
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 4f5f8deeb016a4d8c81f2595ba750f34, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 52.097706
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 4f5f8deeb016a4d8c81f2595ba750f34, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 120.88754
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 4f5f8deeb016a4d8c81f2595ba750f34, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0
+      value: -0.01
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 4f5f8deeb016a4d8c81f2595ba750f34, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0
+      value: 11.76
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 4f5f8deeb016a4d8c81f2595ba750f34, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.13
+      value: 0.12
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 4f5f8deeb016a4d8c81f2595ba750f34, type: 3}
       propertyPath: m_LocalRotation.w
@@ -5990,6 +6051,10 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 4f5f8deeb016a4d8c81f2595ba750f34, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 90
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 4f5f8deeb016a4d8c81f2595ba750f34, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: -7511558181221131132, guid: 4f5f8deeb016a4d8c81f2595ba750f34, type: 3}
       propertyPath: m_CastShadows
@@ -7094,7 +7159,7 @@ MonoBehaviour:
   index: 0
   nomeEquip: Armatura Centurione
   armorValue: 0.5
-  sprite: {fileID: 21300000, guid: 8a5ac5e70063da14d90a116dc2929a6f, type: 3}
+  sprite: {fileID: 21300000, guid: ca91ca1fb5e97d94ebb53b8fcea46d65, type: 3}
   hudChest: {fileID: 88715097}
   chestInPlayer: {fileID: 0}
 --- !u!65 &493311187
@@ -7446,7 +7511,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   compassUnit: 0
   compassImage: {fileID: 509100095}
-  player: {fileID: 823395406}
+  player: {fileID: 1870857668}
   iconPrefab: {fileID: 6155904296657460708, guid: 18d7030835ee3924185ab3a55f837d48, type: 3}
   test: {fileID: 981353552}
   maxDistance: 200
@@ -7485,129 +7550,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 509100092}
   m_CullTransparentMesh: 1
---- !u!1001 &513920859
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 526373499}
-    m_Modifications:
-    - target: {fileID: -8679921383154817045, guid: 532fe2a0f094ebc43a2389b8aa161457, type: 3}
-      propertyPath: m_RootOrder
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 532fe2a0f094ebc43a2389b8aa161457, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 0.18
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 532fe2a0f094ebc43a2389b8aa161457, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 0.18
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 532fe2a0f094ebc43a2389b8aa161457, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 0.21
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 532fe2a0f094ebc43a2389b8aa161457, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 532fe2a0f094ebc43a2389b8aa161457, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0.00123
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 532fe2a0f094ebc43a2389b8aa161457, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -0.0001
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 532fe2a0f094ebc43a2389b8aa161457, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: -0.0061431667
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 532fe2a0f094ebc43a2389b8aa161457, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0.99998116
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 532fe2a0f094ebc43a2389b8aa161457, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0.000000058969672
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 532fe2a0f094ebc43a2389b8aa161457, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0.00000026198813
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 532fe2a0f094ebc43a2389b8aa161457, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 180.704
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 532fe2a0f094ebc43a2389b8aa161457, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 532fe2a0f094ebc43a2389b8aa161457, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 532fe2a0f094ebc43a2389b8aa161457, type: 3}
-      propertyPath: m_ConstrainProportionsScale
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 919132149155446097, guid: 532fe2a0f094ebc43a2389b8aa161457, type: 3}
-      propertyPath: m_Name
-      value: elmo_avanzato_in_player
-      objectReference: {fileID: 0}
-    - target: {fileID: 919132149155446097, guid: 532fe2a0f094ebc43a2389b8aa161457, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 919132149155446097, guid: 532fe2a0f094ebc43a2389b8aa161457, type: 3}
-      propertyPath: m_TagString
-      value: pickup
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 532fe2a0f094ebc43a2389b8aa161457, type: 3}
---- !u!4 &513920860 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 532fe2a0f094ebc43a2389b8aa161457, type: 3}
-  m_PrefabInstance: {fileID: 513920859}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &513920861 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 532fe2a0f094ebc43a2389b8aa161457, type: 3}
-  m_PrefabInstance: {fileID: 513920859}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &513920862
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 513920861}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3c75cee318c5d8f4c95113f48b456bfa, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  player: {fileID: 1895729727}
-  index: 0
-  nomeEquip: Elmo Avanzato
-  armorValue: 0.3
-  sprite: {fileID: 21300000, guid: 44163ca3bda2fc24395835b13357294f, type: 3}
-  hudHelmet: {fileID: 1078616590}
-  helmetInPlayer: {fileID: 0}
---- !u!65 &513920863
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 513920861}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.02, y: 0.02, z: 0.02}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &516409064
 GameObject:
   m_ObjectHideFlags: 0
@@ -7734,8 +7676,8 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1871011860}
-  - {fileID: 19520139}
-  - {fileID: 513920860}
+  - {fileID: 1104707199}
+  - {fileID: 1291985750}
   - {fileID: 536478761}
   m_Father: {fileID: 1192008409}
   m_RootOrder: 0
@@ -8017,7 +7959,7 @@ MonoBehaviour:
   index: 0
   nomeEquip: Elmo Centurione
   armorValue: 0.45
-  sprite: {fileID: 21300000, guid: 44163ca3bda2fc24395835b13357294f, type: 3}
+  sprite: {fileID: 21300000, guid: e9c0115a9d02d5f40826cd30a0a6085e, type: 3}
   hudHelmet: {fileID: 1078616590}
   helmetInPlayer: {fileID: 0}
 --- !u!65 &536478764
@@ -8273,7 +8215,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 547228948}
   m_LocalRotation: {x: 0.645569, y: 0.00082866574, z: -0.0009803035, w: 0.7637009}
-  m_LocalPosition: {x: 0.002088675, y: 7.640007, z: 1.7483586}
+  m_LocalPosition: {x: -0.01, y: 20.89, z: -0.5}
   m_LocalScale: {x: 1, y: 1.4379128, z: 0.69545275}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -9163,7 +9105,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &624666095
 GameObject:
@@ -11972,6 +11914,95 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1001 &834010082
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 526373499}
+    m_Modifications:
+    - target: {fileID: -8679921383154817045, guid: 532fe2a0f094ebc43a2389b8aa161457, type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 532fe2a0f094ebc43a2389b8aa161457, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.01
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 532fe2a0f094ebc43a2389b8aa161457, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.010000056
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 532fe2a0f094ebc43a2389b8aa161457, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.01
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 532fe2a0f094ebc43a2389b8aa161457, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.00001
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 532fe2a0f094ebc43a2389b8aa161457, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.01487
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 532fe2a0f094ebc43a2389b8aa161457, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.00065
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 532fe2a0f094ebc43a2389b8aa161457, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.004561425
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 532fe2a0f094ebc43a2389b8aa161457, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.9999846
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 532fe2a0f094ebc43a2389b8aa161457, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.0007104004
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 532fe2a0f094ebc43a2389b8aa161457, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0.0030747366
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 532fe2a0f094ebc43a2389b8aa161457, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 532fe2a0f094ebc43a2389b8aa161457, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 532fe2a0f094ebc43a2389b8aa161457, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 532fe2a0f094ebc43a2389b8aa161457, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -8642135358000617275, guid: 532fe2a0f094ebc43a2389b8aa161457, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: b7bb71b554495b9458a8df4edf95335a, type: 2}
+    - target: {fileID: -1974720176939309350, guid: 532fe2a0f094ebc43a2389b8aa161457, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: b7bb71b554495b9458a8df4edf95335a, type: 2}
+    - target: {fileID: 919132149155446097, guid: 532fe2a0f094ebc43a2389b8aa161457, type: 3}
+      propertyPath: m_Name
+      value: elmo_base_in_player
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 532fe2a0f094ebc43a2389b8aa161457, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 532fe2a0f094ebc43a2389b8aa161457, type: 3}
+      propertyPath: m_TagString
+      value: pickup
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 532fe2a0f094ebc43a2389b8aa161457, type: 3}
 --- !u!1 &838277857
 GameObject:
   m_ObjectHideFlags: 0
@@ -13003,7 +13034,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1895729730}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &885123287
 BoxCollider:
@@ -13858,7 +13889,7 @@ MonoBehaviour:
   nomeEquip: Scudo Base
   shieldValue: 0.2
   stamina: 15
-  sprite: {fileID: 21300000, guid: e52ca4d413e6dac49bda0ecc6699b35e, type: 3}
+  sprite: {fileID: 21300000, guid: 7272a43a5d6326e4999f094f9987acd9, type: 3}
   hudShield: {fileID: 788238111}
   shieldInPlayer: {fileID: 0}
 --- !u!65 &915551295
@@ -14283,7 +14314,7 @@ MonoBehaviour:
   nomeEquip: Scudo Base
   shieldValue: 0.2
   stamina: 15
-  sprite: {fileID: 21300000, guid: e52ca4d413e6dac49bda0ecc6699b35e, type: 3}
+  sprite: {fileID: 21300000, guid: 7272a43a5d6326e4999f094f9987acd9, type: 3}
   hudShield: {fileID: 788238111}
   shieldInPlayer: {fileID: 915551294}
 --- !u!65 &939198259
@@ -14492,7 +14523,7 @@ MonoBehaviour:
   nomeEquip: Scudo a Torre
   shieldValue: 0.75
   stamina: 60
-  sprite: {fileID: 21300000, guid: e52ca4d413e6dac49bda0ecc6699b35e, type: 3}
+  sprite: {fileID: 21300000, guid: 11a6c530a2ea8fc4988f4963f866207f, type: 3}
   hudShield: {fileID: 788238111}
   shieldInPlayer: {fileID: 1592404608}
 --- !u!65 &952990617
@@ -14853,6 +14884,48 @@ Transform:
   m_Father: {fileID: 901349635}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &979167809 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 6ec59d78c9c419f448c6ac0262f98440, type: 3}
+  m_PrefabInstance: {fileID: 1449078465}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &979167810 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 6ec59d78c9c419f448c6ac0262f98440, type: 3}
+  m_PrefabInstance: {fileID: 1449078465}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &979167811
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 979167809}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3c75cee318c5d8f4c95113f48b456bfa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 1895729727}
+  index: 0
+  nomeEquip: Elmo Avanzato
+  armorValue: 0.3
+  sprite: {fileID: 21300000, guid: 5d7dce88282691144ae42d28ab9fd57a, type: 3}
+  hudHelmet: {fileID: 1078616590}
+  helmetInPlayer: {fileID: 1291985751}
+--- !u!65 &979167812
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 979167809}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.05, y: 0.05, z: 0.05}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &981353547
 GameObject:
   m_ObjectHideFlags: 0
@@ -14864,28 +14937,14 @@ GameObject:
   - component: {fileID: 981353551}
   - component: {fileID: 981353550}
   - component: {fileID: 981353549}
-  - component: {fileID: 981353548}
   - component: {fileID: 981353552}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: QuestMarker
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!135 &981353548
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 981353547}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.5
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!23 &981353549
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -14906,7 +14965,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 3bc4ebdf10b7dda4fad0e3c8f52d043e, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -14943,13 +15002,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 981353547}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.96, y: -6, z: -5.9}
+  m_LocalRotation: {x: -0.0000000088475645, y: -2.3283064e-10, z: 3.1036507e-10, w: 1}
+  m_LocalPosition: {x: 5.37, y: 10.7, z: -5.89991}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 253606975}
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &981353552
 MonoBehaviour:
@@ -15468,7 +15528,7 @@ MonoBehaviour:
   cureValue: 15
   potionNumber: 0
   isEquiped: 0
-  sprite: {fileID: 21300000, guid: 82259db9e617ea34887a2b6d13ea8018, type: 3}
+  sprite: {fileID: 21300000, guid: f66779981056e014ca411f2fa6f6f7d0, type: 3}
   hudPotion: {fileID: 532549876}
 --- !u!65 &1007046498
 BoxCollider:
@@ -16118,7 +16178,7 @@ MonoBehaviour:
   nomeEquip: Spada Corta
   damage: 25
   stamina: 10
-  sprite: {fileID: 21300000, guid: 6d6e2c55b40e4d74fa15cbe10fc73fe0, type: 3}
+  sprite: {fileID: 21300000, guid: eb919e1f9c59e4e46a3062f13c6f2d34, type: 3}
   hudWeapon: {fileID: 1092316022}
   weaponInPlayer: {fileID: 1614042138}
 --- !u!65 &1086972227
@@ -16460,6 +16520,48 @@ Transform:
   m_Father: {fileID: 2142488518}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1104707198 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 532fe2a0f094ebc43a2389b8aa161457, type: 3}
+  m_PrefabInstance: {fileID: 834010082}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &1104707199 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 532fe2a0f094ebc43a2389b8aa161457, type: 3}
+  m_PrefabInstance: {fileID: 834010082}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1104707200
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1104707198}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3c75cee318c5d8f4c95113f48b456bfa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 1895729727}
+  index: 0
+  nomeEquip: Elmo Base
+  armorValue: 0.15
+  sprite: {fileID: 21300000, guid: c9dd9cda8726af646ab075546c5c2f7d, type: 3}
+  hudHelmet: {fileID: 1078616590}
+  helmetInPlayer: {fileID: 0}
+--- !u!65 &1104707201
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1104707198}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.5, y: 1.5, z: 0.5}
+  m_Center: {x: 0, y: -1, z: 0}
 --- !u!1 &1108745706
 GameObject:
   m_ObjectHideFlags: 0
@@ -16493,7 +16595,7 @@ Transform:
   - {fileID: 1724072298}
   - {fileID: 1706712629}
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1114352735
 GameObject:
@@ -16833,7 +16935,7 @@ MonoBehaviour:
   index: 0
   nomeEquip: Elmo Centurione
   armorValue: 0.45
-  sprite: {fileID: 21300000, guid: 44163ca3bda2fc24395835b13357294f, type: 3}
+  sprite: {fileID: 21300000, guid: e9c0115a9d02d5f40826cd30a0a6085e, type: 3}
   hudHelmet: {fileID: 1078616590}
   helmetInPlayer: {fileID: 536478763}
 --- !u!65 &1130106031
@@ -16912,7 +17014,7 @@ MonoBehaviour:
   index: 0
   nomeEquip: Armatura Base
   armorValue: 0.15
-  sprite: {fileID: 21300000, guid: 8a5ac5e70063da14d90a116dc2929a6f, type: 3}
+  sprite: {fileID: 21300000, guid: 1266314287a844a4595b39a227895ce2, type: 3}
   hudChest: {fileID: 88715097}
   chestInPlayer: {fileID: 0}
 --- !u!65 &1140730876
@@ -17720,7 +17822,7 @@ MonoBehaviour:
   cureValue: 30
   potionNumber: 0
   isEquiped: 0
-  sprite: {fileID: 21300000, guid: 82259db9e617ea34887a2b6d13ea8018, type: 3}
+  sprite: {fileID: 21300000, guid: 1d19527e9781c4d4bbea57ccd10d9c4c, type: 3}
   hudPotion: {fileID: 532549876}
 --- !u!4 &1176949376 stripped
 Transform:
@@ -17796,8 +17898,8 @@ RectTransform:
   - {fileID: 1593589547}
   - {fileID: 475199876}
   - {fileID: 1918142387}
-  m_Father: {fileID: 1895729730}
-  m_RootOrder: 0
+  m_Father: {fileID: 0}
+  m_RootOrder: 16
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -18225,7 +18327,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1205074171}
-  m_LocalRotation: {x: -0, y: -0, z: 1.0913936e-11, w: 1}
+  m_LocalRotation: {x: -0, y: 5.820767e-11, z: -4.365575e-11, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1.421021, z: 1.0168928}
   m_ConstrainProportionsScale: 0
@@ -19609,7 +19711,7 @@ MonoBehaviour:
   cureValue: 60
   potionNumber: 0
   isEquiped: 0
-  sprite: {fileID: 21300000, guid: 82259db9e617ea34887a2b6d13ea8018, type: 3}
+  sprite: {fileID: 21300000, guid: aedb40497a7f7cc4eabdeb284c63a027, type: 3}
   hudPotion: {fileID: 532549876}
 --- !u!65 &1289807052
 BoxCollider:
@@ -19623,6 +19725,48 @@ BoxCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 0.03, y: 0.03, z: 0.03}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!1 &1291985749 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 6ec59d78c9c419f448c6ac0262f98440, type: 3}
+  m_PrefabInstance: {fileID: 163599276}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &1291985750 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 6ec59d78c9c419f448c6ac0262f98440, type: 3}
+  m_PrefabInstance: {fileID: 163599276}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1291985751
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1291985749}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3c75cee318c5d8f4c95113f48b456bfa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 1895729727}
+  index: 0
+  nomeEquip: Elmo Avanzato
+  armorValue: 0.3
+  sprite: {fileID: 21300000, guid: 5d7dce88282691144ae42d28ab9fd57a, type: 3}
+  hudHelmet: {fileID: 1078616590}
+  helmetInPlayer: {fileID: 0}
+--- !u!65 &1291985752
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1291985749}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.05, y: 0.05, z: 0.05}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1292613982
 GameObject:
@@ -19896,19 +20040,19 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 532fe2a0f094ebc43a2389b8aa161457, type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 532fe2a0f094ebc43a2389b8aa161457, type: 3}
       propertyPath: m_LocalScale.x
-      value: 30
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 532fe2a0f094ebc43a2389b8aa161457, type: 3}
       propertyPath: m_LocalScale.y
-      value: 30
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 532fe2a0f094ebc43a2389b8aa161457, type: 3}
       propertyPath: m_LocalScale.z
-      value: 30
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 532fe2a0f094ebc43a2389b8aa161457, type: 3}
       propertyPath: m_LocalPosition.x
@@ -19916,7 +20060,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 532fe2a0f094ebc43a2389b8aa161457, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.78074217
+      value: -1.81
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 532fe2a0f094ebc43a2389b8aa161457, type: 3}
       propertyPath: m_LocalPosition.z
@@ -19950,9 +20094,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 532fe2a0f094ebc43a2389b8aa161457, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -8642135358000617275, guid: 532fe2a0f094ebc43a2389b8aa161457, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: b7bb71b554495b9458a8df4edf95335a, type: 2}
+    - target: {fileID: -1974720176939309350, guid: 532fe2a0f094ebc43a2389b8aa161457, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: b7bb71b554495b9458a8df4edf95335a, type: 2}
     - target: {fileID: 919132149155446097, guid: 532fe2a0f094ebc43a2389b8aa161457, type: 3}
       propertyPath: m_Name
-      value: elmo_avanzato
+      value: elmo_base
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 532fe2a0f094ebc43a2389b8aa161457, type: 3}
       propertyPath: m_TagString
@@ -19979,11 +20135,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 1895729727}
   index: 0
-  nomeEquip: Elmo Avanzato
-  armorValue: 0.3
-  sprite: {fileID: 21300000, guid: 44163ca3bda2fc24395835b13357294f, type: 3}
+  nomeEquip: Elmo Base
+  armorValue: 0.15
+  sprite: {fileID: 21300000, guid: c9dd9cda8726af646ab075546c5c2f7d, type: 3}
   hudHelmet: {fileID: 1078616590}
-  helmetInPlayer: {fileID: 513920862}
+  helmetInPlayer: {fileID: 1104707200}
 --- !u!65 &1312502452
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -19995,8 +20151,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.02, y: 0.02, z: 0.02}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 0.5, y: 1.5, z: 0.5}
+  m_Center: {x: 0, y: -1, z: 0}
 --- !u!4 &1312502453 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 532fe2a0f094ebc43a2389b8aa161457, type: 3}
@@ -20690,7 +20846,7 @@ MonoBehaviour:
   index: 0
   nomeEquip: Armatura Centurione
   armorValue: 0.5
-  sprite: {fileID: 21300000, guid: 8a5ac5e70063da14d90a116dc2929a6f, type: 3}
+  sprite: {fileID: 21300000, guid: ca91ca1fb5e97d94ebb53b8fcea46d65, type: 3}
   hudChest: {fileID: 88715097}
   chestInPlayer: {fileID: 493311186}
 --- !u!65 &1379419253
@@ -21189,6 +21345,91 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1001 &1449078465
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 110435528}
+    m_Modifications:
+    - target: {fileID: -8679921383154817045, guid: 6ec59d78c9c419f448c6ac0262f98440, type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 6ec59d78c9c419f448c6ac0262f98440, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 35
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 6ec59d78c9c419f448c6ac0262f98440, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 35
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 6ec59d78c9c419f448c6ac0262f98440, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 35
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 6ec59d78c9c419f448c6ac0262f98440, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -22.150002
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 6ec59d78c9c419f448c6ac0262f98440, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.0699999
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 6ec59d78c9c419f448c6ac0262f98440, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 10.360001
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 6ec59d78c9c419f448c6ac0262f98440, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.0000000754979
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 6ec59d78c9c419f448c6ac0262f98440, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 6ec59d78c9c419f448c6ac0262f98440, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 6ec59d78c9c419f448c6ac0262f98440, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 6ec59d78c9c419f448c6ac0262f98440, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 6ec59d78c9c419f448c6ac0262f98440, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 6ec59d78c9c419f448c6ac0262f98440, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 6ec59d78c9c419f448c6ac0262f98440, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -1538091683683695469, guid: 6ec59d78c9c419f448c6ac0262f98440, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 084d142ef371ab647b4af4a34032018a, type: 2}
+    - target: {fileID: -969900065236817345, guid: 6ec59d78c9c419f448c6ac0262f98440, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 084d142ef371ab647b4af4a34032018a, type: 2}
+    - target: {fileID: 919132149155446097, guid: 6ec59d78c9c419f448c6ac0262f98440, type: 3}
+      propertyPath: m_Name
+      value: elmo_avanzato
+      objectReference: {fileID: 0}
+    - target: {fileID: 8985534361068402170, guid: 6ec59d78c9c419f448c6ac0262f98440, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 084d142ef371ab647b4af4a34032018a, type: 2}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 6ec59d78c9c419f448c6ac0262f98440, type: 3}
 --- !u!1 &1456825331 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 3c02cd885cb94a748a8a52ce0eb7f443, type: 3}
@@ -22083,7 +22324,7 @@ MonoBehaviour:
   nomeEquip: Scudo Avanzato
   shieldValue: 0.4
   stamina: 25
-  sprite: {fileID: 21300000, guid: e52ca4d413e6dac49bda0ecc6699b35e, type: 3}
+  sprite: {fileID: 21300000, guid: 77f409f03b13d264599e4fc0c375b2a1, type: 3}
   hudShield: {fileID: 788238111}
   shieldInPlayer: {fileID: 1967423923}
 --- !u!65 &1519960295
@@ -27042,7 +27283,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1895729730}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
 --- !u!1 &1563193132
 GameObject:
@@ -27345,7 +27586,7 @@ MonoBehaviour:
   index: 0
   nomeEquip: Armatura Avanzata
   armorValue: 0.35
-  sprite: {fileID: 21300000, guid: 8a5ac5e70063da14d90a116dc2929a6f, type: 3}
+  sprite: {fileID: 21300000, guid: 253a397ad611abc4a9fcc20f35901108, type: 3}
   hudChest: {fileID: 88715097}
   chestInPlayer: {fileID: 0}
 --- !u!65 &1574487397
@@ -27633,7 +27874,7 @@ MonoBehaviour:
   nomeEquip: Scudo a Torre
   shieldValue: 0.75
   stamina: 60
-  sprite: {fileID: 21300000, guid: e52ca4d413e6dac49bda0ecc6699b35e, type: 3}
+  sprite: {fileID: 21300000, guid: 11a6c530a2ea8fc4988f4963f866207f, type: 3}
   hudShield: {fileID: 788238111}
   shieldInPlayer: {fileID: 0}
 --- !u!65 &1592404609
@@ -27776,6 +28017,18 @@ PrefabInstance:
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 21300000, guid: 9ea1a16c70826b74b808c4cbc790b513, type: 3}
+    - target: {fileID: 4239365561882518631, guid: 51821c87e28608b4fa0f14e0ed461a70, type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4239365561882518631, guid: 51821c87e28608b4fa0f14e0ed461a70, type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4239365561882518631, guid: 51821c87e28608b4fa0f14e0ed461a70, type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4568393099576709755, guid: 51821c87e28608b4fa0f14e0ed461a70, type: 3}
       propertyPath: m_Name
       value: Slot Helmet
@@ -28072,129 +28325,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!1001 &1599978261
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 110435528}
-    m_Modifications:
-    - target: {fileID: -8679921383154817045, guid: b55831c7c002b144cb9a000eaf7c9822, type: 3}
-      propertyPath: m_RootOrder
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: b55831c7c002b144cb9a000eaf7c9822, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 1.5
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: b55831c7c002b144cb9a000eaf7c9822, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 1.5
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: b55831c7c002b144cb9a000eaf7c9822, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 1.5
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: b55831c7c002b144cb9a000eaf7c9822, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -20.149021
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: b55831c7c002b144cb9a000eaf7c9822, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -1.1370001
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: b55831c7c002b144cb9a000eaf7c9822, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 10.516727
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: b55831c7c002b144cb9a000eaf7c9822, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 0.0000000754979
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: b55831c7c002b144cb9a000eaf7c9822, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: b55831c7c002b144cb9a000eaf7c9822, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: b55831c7c002b144cb9a000eaf7c9822, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: b55831c7c002b144cb9a000eaf7c9822, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: b55831c7c002b144cb9a000eaf7c9822, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: b55831c7c002b144cb9a000eaf7c9822, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: b55831c7c002b144cb9a000eaf7c9822, type: 3}
-      propertyPath: m_ConstrainProportionsScale
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: -8642135358000617275, guid: b55831c7c002b144cb9a000eaf7c9822, type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: e68ae7a94fdcea845a15c3980da37c4c, type: 2}
-    - target: {fileID: 919132149155446097, guid: b55831c7c002b144cb9a000eaf7c9822, type: 3}
-      propertyPath: m_Name
-      value: elmo_base
-      objectReference: {fileID: 0}
-    - target: {fileID: 919132149155446097, guid: b55831c7c002b144cb9a000eaf7c9822, type: 3}
-      propertyPath: m_TagString
-      value: pickup
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: b55831c7c002b144cb9a000eaf7c9822, type: 3}
---- !u!1 &1599978262 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: b55831c7c002b144cb9a000eaf7c9822, type: 3}
-  m_PrefabInstance: {fileID: 1599978261}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1599978263
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1599978262}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3c75cee318c5d8f4c95113f48b456bfa, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  player: {fileID: 1895729727}
-  index: 0
-  nomeEquip: Elmo Base
-  armorValue: 0.15
-  sprite: {fileID: 21300000, guid: 44163ca3bda2fc24395835b13357294f, type: 3}
-  hudHelmet: {fileID: 1078616590}
-  helmetInPlayer: {fileID: 19520141}
---- !u!65 &1599978264
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1599978262}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.6, y: 2.02, z: 0.6}
-  m_Center: {x: 0, y: -0.84, z: 0}
---- !u!4 &1599978265 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: b55831c7c002b144cb9a000eaf7c9822, type: 3}
-  m_PrefabInstance: {fileID: 1599978261}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1604162331
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -28511,7 +28641,7 @@ MonoBehaviour:
   nomeEquip: Spada Corta
   damage: 25
   stamina: 10
-  sprite: {fileID: 21300000, guid: 6d6e2c55b40e4d74fa15cbe10fc73fe0, type: 3}
+  sprite: {fileID: 21300000, guid: eb919e1f9c59e4e46a3062f13c6f2d34, type: 3}
   hudWeapon: {fileID: 1092316022}
   weaponInPlayer: {fileID: 0}
 --- !u!1 &1616447304
@@ -28593,7 +28723,7 @@ MonoBehaviour:
   index: 0
   nomeEquip: Armatura Base
   armorValue: 0.15
-  sprite: {fileID: 21300000, guid: 8a5ac5e70063da14d90a116dc2929a6f, type: 3}
+  sprite: {fileID: 21300000, guid: 1266314287a844a4595b39a227895ce2, type: 3}
   hudChest: {fileID: 88715097}
   chestInPlayer: {fileID: 1140730875}
 --- !u!65 &1617160967
@@ -29165,7 +29295,7 @@ MonoBehaviour:
   nomeEquip: Lancia
   damage: 40
   stamina: 45
-  sprite: {fileID: 21300000, guid: 6d6e2c55b40e4d74fa15cbe10fc73fe0, type: 3}
+  sprite: {fileID: 21300000, guid: 0e1d6c42054dd3a4fbe8a1a873f60dd4, type: 3}
   hudWeapon: {fileID: 1092316022}
   weaponInPlayer: {fileID: 0}
 --- !u!1 &1672337230 stripped
@@ -32081,7 +32211,7 @@ Transform:
   - {fileID: 1717340808}
   - {fileID: 124340550}
   m_Father: {fileID: 1895729730}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1845928143
 GameObject:
@@ -32435,7 +32565,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1870857667}
-  m_LocalRotation: {x: 0.082583964, y: -0.0005218077, z: 0.00074316724, w: 0.9965837}
+  m_LocalRotation: {x: 0.08258397, y: -0.00052180776, z: 0.0007431673, w: 0.9965837}
   m_LocalPosition: {x: -0.005223889, y: 1.0973897, z: -3.0049212}
   m_LocalScale: {x: 1, y: 0.7037194, z: 0.9833877}
   m_ConstrainProportionsScale: 0
@@ -32443,7 +32573,7 @@ Transform:
   - {fileID: 884263351}
   - {fileID: 1205074172}
   m_Father: {fileID: 1895729730}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1870857669
 MonoBehaviour:
@@ -33134,6 +33264,9 @@ MonoBehaviour:
   hudInvPotion: {fileID: 532549876}
   hudInvHelmet: {fileID: 1078616590}
   hudInvChest: {fileID: 88715097}
+  numPozioniSlot1: {fileID: 1325190453}
+  numPozioniSlot2: {fileID: 1307031751}
+  numPozioniSlot3: {fileID: 1563193134}
   running: {fileID: 170465406}
   salto: {fileID: 104622673}
   altsalto: {fileID: 8300000, guid: 57848611684ee49529c2b22576a57a1a, type: 3}
@@ -33227,13 +33360,12 @@ Transform:
   m_LocalScale: {x: 1, y: 1.4379146, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 1184457442}
   - {fileID: 1559249010}
   - {fileID: 885123286}
   - {fileID: 1870857668}
   - {fileID: 1843741603}
   m_Father: {fileID: 0}
-  m_RootOrder: 16
+  m_RootOrder: 17
   m_LocalEulerAnglesHint: {x: 0.109, y: 0.353, z: -0.08}
 --- !u!114 &1895729731
 MonoBehaviour:
@@ -33248,10 +33380,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   getAllEquip: 1
-  player: {fileID: 1843741602}
+  infiniteStamina: 1
+  player: {fileID: 1895729727}
+  playerModel: {fileID: 1843741602}
   helmetList:
-  - {fileID: 1599978263}
   - {fileID: 1312502451}
+  - {fileID: 979167811}
   - {fileID: 1130106030}
   chestList:
   - {fileID: 1617160966}
@@ -33859,7 +33993,7 @@ MonoBehaviour:
   nomeEquip: Spada Lunga
   damage: 45
   stamina: 30
-  sprite: {fileID: 21300000, guid: 6d6e2c55b40e4d74fa15cbe10fc73fe0, type: 3}
+  sprite: {fileID: 21300000, guid: 8699a717f9d0a4544b8cbf66afde3642, type: 3}
   hudWeapon: {fileID: 1092316022}
   weaponInPlayer: {fileID: 1980027646}
 --- !u!65 &1934382913
@@ -34461,7 +34595,7 @@ MonoBehaviour:
   nomeEquip: Scudo Avanzato
   shieldValue: 0.2
   stamina: 20
-  sprite: {fileID: 21300000, guid: e52ca4d413e6dac49bda0ecc6699b35e, type: 3}
+  sprite: {fileID: 21300000, guid: 77f409f03b13d264599e4fc0c375b2a1, type: 3}
   hudShield: {fileID: 788238111}
   shieldInPlayer: {fileID: 0}
 --- !u!65 &1967423924
@@ -34649,7 +34783,7 @@ MonoBehaviour:
   nomeEquip: Spada Lunga
   damage: 45
   stamina: 30
-  sprite: {fileID: 21300000, guid: 6d6e2c55b40e4d74fa15cbe10fc73fe0, type: 3}
+  sprite: {fileID: 21300000, guid: 8699a717f9d0a4544b8cbf66afde3642, type: 3}
   hudWeapon: {fileID: 1092316022}
   weaponInPlayer: {fileID: 0}
 --- !u!1 &1982354028
@@ -35790,7 +35924,7 @@ MonoBehaviour:
   index: 0
   nomeEquip: Armatura Avanzata
   armorValue: 0.35
-  sprite: {fileID: 21300000, guid: 8a5ac5e70063da14d90a116dc2929a6f, type: 3}
+  sprite: {fileID: 21300000, guid: 253a397ad611abc4a9fcc20f35901108, type: 3}
   hudChest: {fileID: 88715097}
   chestInPlayer: {fileID: 1574487396}
 --- !u!65 &2075734292

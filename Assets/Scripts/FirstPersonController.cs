@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using TMPro;
 using UnityEngine;
 
 
@@ -44,8 +45,12 @@ public class FirstPersonController : MonoBehaviour {
     public HUDInventoryPotion hudInvPotion;
     public HUDInventoryHelmet hudInvHelmet;
     public HUDInventoryChest hudInvChest;
+    //riferimenti al numero di pozioni in HUD
+    public TMP_Text numPozioniSlot1;
+    public TMP_Text numPozioniSlot2;
+    public TMP_Text numPozioniSlot3;
 
-    
+
     //Parametri partita
     private int score = 0;
     
@@ -132,8 +137,9 @@ public class FirstPersonController : MonoBehaviour {
         Cursor.visible = false;
 
         //imposto la vita iniziale
-        currentHealth = maxHealth;
+        currentHealth = 80;
         healthBar.SetMaxHealth(maxHealth);
+        healthBar.SetHealth(currentHealth);
         currentStamina = maxStamina;
         staminaBar.SetMaxStamina(maxStamina);
         smooth = 0.5f;
@@ -345,6 +351,18 @@ public class FirstPersonController : MonoBehaviour {
                         }
                         healthBar.SetHealth(currentHealth);
                         potion.potionNumber--;
+                        switch (potion.index)
+                        {
+                            case 1:
+                                numPozioniSlot1.text = potion.potionNumber.ToString();
+                                break;
+                            case 2:
+                                numPozioniSlot2.text = potion.potionNumber.ToString();
+                                break;
+                            case 3:
+                                numPozioniSlot3.text = potion.potionNumber.ToString();
+                                break;
+                        }
                     }              
                 }
             }
@@ -483,8 +501,10 @@ public class FirstPersonController : MonoBehaviour {
                     StartCoroutine(Attack(leftHand, 20, 0.1f));
                     anim.SetBool("altPunching", true);
                     anim.SetTrigger("punching");
-                    currentStamina -= staminaAttack;
-                    staminaBar.SetStamina(currentStamina);
+                    if (!infiniteStamina){
+                        currentStamina -= staminaAttack;
+                        staminaBar.SetStamina(currentStamina);
+                    }
                     noWeaponCycle++;
                     break;
                 
@@ -493,8 +513,11 @@ public class FirstPersonController : MonoBehaviour {
                     StartCoroutine(Attack(rightHand, 20, 0.1f));
                     anim.SetBool("altPunching", false);
                     anim.SetTrigger("punching");
-                    currentStamina -= staminaAttack;
-                    staminaBar.SetStamina(currentStamina);
+                    if (!infiniteStamina)
+                    {
+                        currentStamina -= staminaAttack;
+                        staminaBar.SetStamina(currentStamina);
+                    }
                     noWeaponCycle++;
                     break;
 
@@ -509,8 +532,11 @@ public class FirstPersonController : MonoBehaviour {
                         StartCoroutine(Attack(legL, 40, 0.5f));
                     }
                     anim.SetTrigger("kicking");
-                    currentStamina -= staminaAttack;
-                    staminaBar.SetStamina(currentStamina);
+                    if (!infiniteStamina)
+                    {
+                        currentStamina -= staminaAttack;
+                        staminaBar.SetStamina(currentStamina);
+                    }
                     noWeaponCycle =0;
                     break;
             
