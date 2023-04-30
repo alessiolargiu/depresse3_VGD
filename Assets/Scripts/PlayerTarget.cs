@@ -193,6 +193,10 @@ public class PlayerTarget : MonoBehaviour
         enemy=enemyT;
     }
 
+    public bool GetAttackMode(){
+        return playerAttack;
+    }
+
     
 }
 

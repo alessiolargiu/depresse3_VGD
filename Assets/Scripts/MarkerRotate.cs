@@ -16,8 +16,11 @@ public class MarkerRotate : MonoBehaviour
     void Update()
     {
         Vector3 eulerRotation = new Vector3(transform.eulerAngles.x, hips.eulerAngles.y, transform.eulerAngles.z);
+        //var eulerRotation = Quaternion.Euler(transform.eulerAngles.x, hips.eulerAngles.y, transform.eulerAngles.z);
  
         transform.rotation = Quaternion.Euler(eulerRotation);
+
+        //transform.rotation = Quaternion.Lerp(transform.rotation, eulerRotation, Time.deltaTime);
 
         
     }

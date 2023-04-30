@@ -131,6 +131,13 @@ public class FirstPersonController : MonoBehaviour {
     bool potionKey;
     bool crouchKey;
 
+    private float lastH;
+    private float lastV;
+
+
+
+    public Transform playerModel;
+
     void Start(){   
         controller = GetComponent<CharacterController>();
         Cursor.lockState = CursorLockMode.Locked;
@@ -304,11 +311,7 @@ public class FirstPersonController : MonoBehaviour {
     
     private void InputGet(){
         horizontalMovement = Input.GetAxis("Horizontal");
-        if(fastJump==true){
-            verticalMovement=1f;
-        } else if(slowJump==true){
-            verticalMovement=1.2f;
-        } else if(anim.GetBool("crouching")==false){
+        if(anim.GetBool("crouching")==false){
             verticalMovement = Input.GetAxis("Vertical");
         } else verticalMovement = 0;
 
@@ -382,63 +385,71 @@ public class FirstPersonController : MonoBehaviour {
     }
 
     private void Movement(){
-        //definizione del vettore di movimento;
-        move = transform.right * horizontalMovement + transform.forward * verticalMovement;
-        if((shift) && currentStamina > 0 && (verticalMovement!=0f || horizontalMovement!=0f) && controller.isGrounded || momentum!=0f){
-            
-            if(horizontalMovement+verticalMovement==2 || horizontalMovement+verticalMovement==-2){
-                transform.Rotate(Vector3.up * horizontalMovement*0.6f);
-            } else transform.Rotate(Vector3.up * horizontalMovement*1f);
-            
+        float asinHor = 0;
 
-            if(smooth<=1){
-                smooth+=0.005f;
-            } else {
-                if(controller.isGrounded){
-                running.enabled=true;
-                walking.enabled=false;
-            }
-            }
-            move*=movementRunSpeed*smooth;
-            anim.SetFloat("walking", verticalMovement, 1f, Time.deltaTime * 10f );
-            anim.SetFloat("strafing", horizontalMovement, 1f, Time.deltaTime * 10f );
-
-            if (!infiniteStamina)
-            {
-                currentStamina -= 3 * Time.deltaTime;
-                staminaBar.SetStamina(currentStamina);
-            }
-
+        //QUESTA SEZIONE DI CODICE E' SCRITTA CON IL CULO, MA NON SI CAMBIA ASSOLUTAMENTE
+        //CI HO MESSO 3 GIORNI A FARLA FUNZIONARE E ORA CHE FUNZIONA NON SI TOCCA PER DUE MOTIVI:
+        // - HO PAURA DI ROMPERE QUALCOSA
+        // - VA LASCIATA COSI' A TESTAMENTO DI QUANTO MI SONO TRITURATO I COGLIONI
+        // alessio 30/04/23
+        if (horizontalMovement != 0.0f || verticalMovement != 0.0f) {
+            asinHor =   followTransform.eulerAngles.y + Mathf.Atan2(horizontalMovement, verticalMovement) * Mathf.Rad2Deg;
+            lastH=horizontalMovement;
+            lastV=verticalMovement;
         } else {
-            if(smooth>=0.5){
-                smooth-=0.010f;
-            } 
-            
-            running.enabled=false;
-             if((horizontalMovement!=0 || verticalMovement!=0) && controller.isGrounded){
-                walking.enabled=true;
-            } else walking.enabled=false;
-            transform.Rotate(Vector3.up * horizontalMovement*0.1f);
-            move*=movementSpeed*smooth;
-            anim.SetFloat("walking", verticalMovement* smooth);
-            anim.SetFloat("strafing", horizontalMovement*0.5f,  1f, Time.deltaTime * 10f );
+            asinHor =   followTransform.eulerAngles.y + Mathf.Atan2(horizontalMovement, verticalMovement) * Mathf.Rad2Deg;
+            //asinHor =  Mathf.Atan2(lastH, lastV) * Mathf.Rad2Deg;
         }
+        Vector3 eulerRotation = new Vector3(transform.eulerAngles.x, asinHor ,  transform.eulerAngles.z);
+        float newEuler = Mathf.Round(followTransform.eulerAngles.y * 100f) / 100f;
+        float newOld = Mathf.Round(transform.eulerAngles.y * 100f) / 100f;
+        float model = Mathf.Round(playerModel.eulerAngles.y * 100f) / 100f;
+        if(newEuler==newOld && (verticalMovement!=0 || horizontalMovement!=0) && followTransform.GetComponent<PlayerTarget>().GetAttackMode()==false){
+            playerModel.rotation = Quaternion.Euler(eulerRotation);
+        }
+        
+        //followTransform.rotation = Quaternion.Euler(eulerRotation);
+        
 
         if(horizontalMovement!=0 || verticalMovement!=0){
             transform.Rotate(Vector3.up * rightHorizontal*verticalMovement);
             transform.Rotate(Vector3.up * mouseX*verticalMovement);
-            controller.Move(move * Time.deltaTime);
         }
+
+
+        if((shift) && currentStamina > 0 && (verticalMovement!=0f || horizontalMovement!=0f) && controller.isGrounded || momentum!=0f){
+
+            move = transform.right * horizontalMovement + transform.forward * verticalMovement;
+            move *= movementRunSpeed;
+            if(verticalMovement>0){
+                anim.SetFloat("walking", verticalMovement,  1f, Time.deltaTime * 10f);
+            } else anim.SetFloat("walking", verticalMovement*-1, 1f, Time.deltaTime * 10f );
+            if(horizontalMovement>0){
+                anim.SetFloat("strafing", horizontalMovement, 1f, Time.deltaTime * 10f );
+            } else anim.SetFloat("strafing", horizontalMovement*-1,  1f, Time.deltaTime * 10f );
+        
+        } else {
+            move = transform.right * horizontalMovement + transform.forward * verticalMovement;
+            move *= movementSpeed;
+            if(verticalMovement>0){
+                anim.SetFloat("walking", verticalMovement * 0.5f,  1f, Time.deltaTime * 10f);
+            } else anim.SetFloat("walking", verticalMovement*-1 *0.5f, 1f, Time.deltaTime * 10f );
+            if(horizontalMovement>0){
+                anim.SetFloat("strafing", horizontalMovement * 0.5f, 1f, Time.deltaTime * 10f );
+            } else anim.SetFloat("strafing", horizontalMovement*-1 * 0.5f,  1f, Time.deltaTime * 10f );
+        }
+
+
+        
+        
+        controller.Move(move * Time.deltaTime);
         controller.Move(velocity * Time.deltaTime);
-        rotation = Mathf.Clamp(rotation, -30f, 15f);
     }
 
     private void Jumping(){
         if(controller.isGrounded){
-            fastJump=false;
-            slowJump=false;
             anim.SetFloat("jumping", 0);
-            if(jump /*&& verticalMovement==1*/ && currentStamina >= staminaJump && verticalMovement>0 && (!anim.GetCurrentAnimatorStateInfo(0).IsName("landing") && !anim.GetCurrentAnimatorStateInfo(0).IsName("fall")) && shift==true){
+            if(jump /*&& verticalMovement==1*/ && currentStamina >= staminaJump  && shift==true){
                 shift=true;
                 slowJump=false;
                 fastJump=true;
@@ -462,7 +473,7 @@ public class FirstPersonController : MonoBehaviour {
                 }
 
 
-            } else if(jump /*&& verticalMovement!=-1 && !(horizontalMovement!=0 && verticalMovement==0) */ && currentStamina >= staminaJump && verticalMovement>=0 && (!anim.GetCurrentAnimatorStateInfo(0).IsName("landing") && !anim.GetCurrentAnimatorStateInfo(0).IsName("fall")) ){
+            } else if(jump /*&& verticalMovement!=-1 && !(horizontalMovement!=0 && verticalMovement==0) */ && currentStamina >= staminaJump ){
                 shift=true;
                 fastJump=false;
                 slowJump=true;
@@ -476,7 +487,7 @@ public class FirstPersonController : MonoBehaviour {
                 salto.PlayOneShot(salto.clip, 1f);
                 velocity.y=jumpForce*0.8f;
                 controller.Move(velocity * Time.deltaTime);
-                controller.Move(move * Time.deltaTime);
+                //controller.Move(move * Time.deltaTime);
                 anim.SetTrigger("jumpTrigger");
                 if (!infiniteStamina)
                 {
@@ -554,11 +565,26 @@ public class FirstPersonController : MonoBehaviour {
     }
 
     private void AdjustCamera(){
-        Vector3 eulerRotation = new Vector3(transform.eulerAngles.x, followTransform.eulerAngles.y, transform.eulerAngles.z);
-        Vector3 oldRotation = new Vector3(transform.eulerAngles.x, transform.eulerAngles.y, transform.eulerAngles.z);
 
-        if(eulerRotation!=oldRotation && verticalMovement!=0 || horizontalMovement!=0){
-            transform.rotation = Quaternion.Euler(eulerRotation);
+        //NESSUNO SI AZZARDI A TOCCARE NESSUNA RIGA DI QUESTO METODO
+        //VI PRENDO A COLPI
+        Vector3 eulerRotation = new Vector3(transform.eulerAngles.x, followTransform.eulerAngles.y, transform.eulerAngles.z);
+        Vector3 oldRotation = new Vector3(transform.eulerAngles.x, transform.eulerAngles.y, transform.eulerAngles.z);        
+        float newEuler = Mathf.Round(followTransform.eulerAngles.y * 100f) / 100f;
+        float newOld = Mathf.Round(transform.eulerAngles.y * 100f) / 100f;
+        if(newEuler!=newOld && (verticalMovement!=0 || horizontalMovement!=0)){
+            Debug.Log("Sto in sta condizione");
+            float test = followTransform.eulerAngles.y;
+            float asinHor = Mathf.Atan2(horizontalMovement, verticalMovement) * Mathf.Rad2Deg;
+            Vector3 moveRot = new Vector3(transform.eulerAngles.x, test,  transform.eulerAngles.z);
+
+            if(followTransform.GetComponent<PlayerTarget>().GetAttackMode()==false){
+                Debug.Log("Sto in sta condizion diversa");
+                transform.rotation = Quaternion.Euler(eulerRotation);
+                playerModel.rotation = Quaternion.Euler(moveRot);
+            }
+            
+
         }
     }
 
@@ -598,8 +624,6 @@ public class FirstPersonController : MonoBehaviour {
 
         foreach(Collider gigante in hitGigante){
             float singleStep = 1 * Time.deltaTime;
-
-            Debug.Log("sto picchiando il gigante");
             float health = gigante.GetComponent<MaranzusGigante>().TakeDamage(dmg);
 
             pugno.PlayOneShot(pugno.clip, 1f);
