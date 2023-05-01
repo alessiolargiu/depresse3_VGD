@@ -7511,7 +7511,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   compassUnit: 0
   compassImage: {fileID: 509100095}
-  player: {fileID: 1870857668}
+  player: {fileID: 1895729730}
   iconPrefab: {fileID: 6155904296657460708, guid: 18d7030835ee3924185ab3a55f837d48, type: 3}
   test: {fileID: 981353552}
   maxDistance: 200

@@ -5,6 +5,14 @@ using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour
 {
+
+    public GameObject optionMenu;
+
+    private void Start()
+    {
+        
+    }
+
     public void NewGame()
     {
         Time.timeScale = 1f;
@@ -12,22 +20,18 @@ public class MainMenu : MonoBehaviour
         Cursor.visible = true;
         PauseMenu.setGameIsPaused(false);
         Debug.Log("Da modificare");
-        SceneManager.LoadScene("TestAndre");
+        SceneManager.LoadScene("TestAndre 1");
     }
 
     public void LoadGame()
     {
-        Time.timeScale = 1f;
-        Cursor.lockState = CursorLockMode.None;
-        Cursor.visible = true;
-        PauseMenu.setGameIsPaused(false);
-        Debug.Log("Da modificare");
-        SceneManager.LoadScene("TestAndre");
+        Debug.Log("Caricamento da fare");
     }
 
     public void Options()
     {
         Debug.Log("Opzioni da fare");
+        optionMenu.SetActive(true);
     }
 
     public void QuitGame()
