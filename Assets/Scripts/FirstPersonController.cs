@@ -485,7 +485,7 @@ public class FirstPersonController : MonoBehaviour {
         playerModel.rotation = Quaternion.Euler(eulerRotation);
 
         move = transform.right * horizontalMovement + transform.forward * verticalMovement;
-        move *= movementSpeed;
+        move *= movementSpeed * 0.5f;
 
         anim.SetFloat("combatWalk", verticalMovement * 0.5f,  1f, Time.deltaTime * 10f);
         anim.SetFloat("combatStrafe", horizontalMovement * 0.5f,  1f, Time.deltaTime * 10f);
