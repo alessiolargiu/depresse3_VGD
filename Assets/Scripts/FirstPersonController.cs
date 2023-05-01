@@ -354,7 +354,7 @@ public class FirstPersonController : MonoBehaviour {
             shift = Input.GetKey(KeyCode.LeftShift);
             jump = Input.GetKeyUp(KeyCode.Space); 
             punchingKey = Input.GetMouseButton(0);
-            inAtck = Input.GetKey(KeyCode.O);
+            inAtck = Input.GetMouseButton(1);
             //inAtck = Input.GetMouseButtonDown(2);
             //punchingKey = Input.GetKeyUp(KeyCode.F);
             crouchKey = Input.GetKey(KeyCode.H);
@@ -426,7 +426,6 @@ public class FirstPersonController : MonoBehaviour {
             lastH=horizontalMovement;
             lastV=verticalMovement;
         }
-
         /*
         if(followTransform.GetComponent<PlayerTarget>().GetAttackMode()){
             Transform prova = followTransform.GetComponent<PlayerTarget>().GetTarget();
@@ -441,13 +440,15 @@ public class FirstPersonController : MonoBehaviour {
         if(newEuler==newOld && (verticalMovement!=0 || horizontalMovement!=0)){
             playerModel.rotation = Quaternion.Euler(eulerRotation);
         }
-        
+        Debug.Log("MOVEMENTS Euler " + newEuler + " old " + newOld + " equals? " + (newEuler==newOld));
+
+
         //followTransform.rotation = Quaternion.Euler(eulerRotation);
         
 
         if(horizontalMovement!=0 || verticalMovement!=0){
-            transform.Rotate(Vector3.up * rightHorizontal*verticalMovement);
-            transform.Rotate(Vector3.up * mouseX*verticalMovement);
+            transform.Rotate(Vector3.up * rightHorizontal);
+            transform.Rotate(Vector3.up * mouseX);
         }
 
 
@@ -624,7 +625,12 @@ public class FirstPersonController : MonoBehaviour {
         Vector3 oldRotation = new Vector3(transform.eulerAngles.x, transform.eulerAngles.y, transform.eulerAngles.z);        
         float newEuler = Mathf.Round(followTransform.eulerAngles.y * 100f) / 100f;
         float newOld = Mathf.Round(transform.eulerAngles.y * 100f) / 100f;
-        if(newEuler!=newOld && (verticalMovement!=0 || horizontalMovement!=0 || punchingKey) && inAtck==false){
+
+        Debug.Log("ADJUSTCAMERA Euler " + newEuler + " old " + newOld + " equals? " + (newEuler==newOld));
+
+        if(newEuler!=newOld && (verticalMovement!=0 || horizontalMovement!=0 || punchingKey)){
+
+            Debug.Log("sto qua");
             float test = followTransform.eulerAngles.y;
             float asinHor = Mathf.Atan2(horizontalMovement, verticalMovement) * Mathf.Rad2Deg;
             Vector3 moveRot = new Vector3(transform.eulerAngles.x, test,  transform.eulerAngles.z);
