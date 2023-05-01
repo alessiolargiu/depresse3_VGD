@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using TMPro;
 using UnityEngine;
+using Cinemachine;
 
 
 [RequireComponent(typeof(AudioSource))]
@@ -121,6 +122,7 @@ public class FirstPersonController : MonoBehaviour {
 
     //inputs
     bool jump;
+    bool inAtck;
     bool shift;
     float mouseX;
     float mouseY;
@@ -133,6 +135,8 @@ public class FirstPersonController : MonoBehaviour {
 
     private float lastH;
     private float lastV;
+
+    public CinemachineVirtualCamera virtualCam;
 
 
 
@@ -182,12 +186,29 @@ public class FirstPersonController : MonoBehaviour {
             UsePotion();
             AudioEnvCheck();
             EnemyRangeCheck();
-            Movement();
+            Debug.Log("Valore di inAtck " + inAtck);
+            if(inAtck){
+                if(anim.GetBool("inCombat")==false){
+                    virtualCam.GetCinemachineComponent<Cinemachine3rdPersonFollow>().CameraDistance=2;
+                    virtualCam.GetCinemachineComponent<Cinemachine3rdPersonFollow>().ShoulderOffset = new(0, -1.80f, 0);
+                    anim.SetBool("inCombat", inAtck);
+                }
+                MovementAttacking();
+            } else {
+                if(anim.GetBool("inCombat")==true){
+                    virtualCam.GetCinemachineComponent<Cinemachine3rdPersonFollow>().CameraDistance=3;
+                    virtualCam.GetCinemachineComponent<Cinemachine3rdPersonFollow>().ShoulderOffset = new(0, -2f, 0);
+
+                    anim.SetBool("inCombat", inAtck);
+                }
+                anim.SetBool("inCombat", inAtck);
+                Movement();
+            }
             Jumping();
 
             if (!infiniteStamina)
             {
-                if (!shift)
+                /*if (!shift)
                 {
                     if (currentStamina < maxStamina)
                     {
@@ -199,7 +220,9 @@ public class FirstPersonController : MonoBehaviour {
                     }
 
                     staminaBar.SetStamina(currentStamina);
-                }
+                }*/
+
+                currentStamina=maxStamina;
                 
             }
 
@@ -322,6 +345,7 @@ public class FirstPersonController : MonoBehaviour {
 
         if(usingController){
             jump = Input.GetKeyUp(KeyCode.JoystickButton0);
+            inAtck = Input.GetKey(KeyCode.JoystickButton6);
             shift = Input.GetKey(KeyCode.JoystickButton1);
             punchingKey = Input.GetKeyUp(KeyCode.JoystickButton2);
             swordKey = Input.GetKeyUp(KeyCode.JoystickButton3);
@@ -329,7 +353,10 @@ public class FirstPersonController : MonoBehaviour {
         } else {
             shift = Input.GetKey(KeyCode.LeftShift);
             jump = Input.GetKeyUp(KeyCode.Space); 
-            punchingKey = Input.GetKeyUp(KeyCode.F);
+            punchingKey = Input.GetMouseButton(0);
+            inAtck = Input.GetKey(KeyCode.O);
+            //inAtck = Input.GetMouseButtonDown(2);
+            //punchingKey = Input.GetKeyUp(KeyCode.F);
             crouchKey = Input.GetKey(KeyCode.H);
             swordKey = Input.GetKeyUp(KeyCode.G);
             potionKey = Input.GetKeyUp(KeyCode.Q);
@@ -385,6 +412,8 @@ public class FirstPersonController : MonoBehaviour {
     }
 
     private void Movement(){
+
+        Debug.Log("sto in sta cosa");
         float asinHor = 0;
 
         //QUESTA SEZIONE DI CODICE E' SCRITTA CON IL CULO, MA NON SI CAMBIA ASSOLUTAMENTE
@@ -392,19 +421,24 @@ public class FirstPersonController : MonoBehaviour {
         // - HO PAURA DI ROMPERE QUALCOSA
         // - VA LASCIATA COSI' A TESTAMENTO DI QUANTO MI SONO TRITURATO I COGLIONI
         // alessio 30/04/23
-        if (horizontalMovement != 0.0f || verticalMovement != 0.0f) {
+        if ((horizontalMovement != 0.0f || verticalMovement != 0.0f)) {
             asinHor =   followTransform.eulerAngles.y + Mathf.Atan2(horizontalMovement, verticalMovement) * Mathf.Rad2Deg;
             lastH=horizontalMovement;
             lastV=verticalMovement;
-        } else {
-            asinHor =   followTransform.eulerAngles.y + Mathf.Atan2(horizontalMovement, verticalMovement) * Mathf.Rad2Deg;
-            //asinHor =  Mathf.Atan2(lastH, lastV) * Mathf.Rad2Deg;
         }
+
+        /*
+        if(followTransform.GetComponent<PlayerTarget>().GetAttackMode()){
+            Transform prova = followTransform.GetComponent<PlayerTarget>().GetTarget();
+            asinHor =  Mathf.Atan2(horizontalMovement, verticalMovement) * Mathf.Rad2Deg;
+        }*/ 
+
+
         Vector3 eulerRotation = new Vector3(transform.eulerAngles.x, asinHor ,  transform.eulerAngles.z);
         float newEuler = Mathf.Round(followTransform.eulerAngles.y * 100f) / 100f;
         float newOld = Mathf.Round(transform.eulerAngles.y * 100f) / 100f;
         float model = Mathf.Round(playerModel.eulerAngles.y * 100f) / 100f;
-        if(newEuler==newOld && (verticalMovement!=0 || horizontalMovement!=0) && followTransform.GetComponent<PlayerTarget>().GetAttackMode()==false){
+        if(newEuler==newOld && (verticalMovement!=0 || horizontalMovement!=0)){
             playerModel.rotation = Quaternion.Euler(eulerRotation);
         }
         
@@ -442,6 +476,24 @@ public class FirstPersonController : MonoBehaviour {
 
         
         
+        controller.Move(move * Time.deltaTime);
+        controller.Move(velocity * Time.deltaTime);
+    }
+
+    private void MovementAttacking(){
+        Vector3 eulerRotation = new Vector3(transform.eulerAngles.x, followTransform.eulerAngles.y ,  transform.eulerAngles.z);
+        playerModel.rotation = Quaternion.Euler(eulerRotation);
+
+        move = transform.right * horizontalMovement + transform.forward * verticalMovement;
+        move *= movementSpeed;
+
+        anim.SetFloat("combatWalk", verticalMovement * 0.5f,  1f, Time.deltaTime * 10f);
+        anim.SetFloat("combatStrafe", horizontalMovement * 0.5f,  1f, Time.deltaTime * 10f);
+        
+        
+        transform.Rotate(Vector3.up * horizontalMovement);
+        transform.Rotate(Vector3.up * mouseX);
+
         controller.Move(move * Time.deltaTime);
         controller.Move(velocity * Time.deltaTime);
     }
@@ -572,19 +624,18 @@ public class FirstPersonController : MonoBehaviour {
         Vector3 oldRotation = new Vector3(transform.eulerAngles.x, transform.eulerAngles.y, transform.eulerAngles.z);        
         float newEuler = Mathf.Round(followTransform.eulerAngles.y * 100f) / 100f;
         float newOld = Mathf.Round(transform.eulerAngles.y * 100f) / 100f;
-        if(newEuler!=newOld && (verticalMovement!=0 || horizontalMovement!=0)){
-            Debug.Log("Sto in sta condizione");
+        if(newEuler!=newOld && (verticalMovement!=0 || horizontalMovement!=0 || punchingKey) && inAtck==false){
             float test = followTransform.eulerAngles.y;
             float asinHor = Mathf.Atan2(horizontalMovement, verticalMovement) * Mathf.Rad2Deg;
             Vector3 moveRot = new Vector3(transform.eulerAngles.x, test,  transform.eulerAngles.z);
 
-            if(followTransform.GetComponent<PlayerTarget>().GetAttackMode()==false){
-                Debug.Log("Sto in sta condizion diversa");
-                transform.rotation = Quaternion.Euler(eulerRotation);
-                playerModel.rotation = Quaternion.Euler(moveRot);
-            }
-            
+            transform.rotation = Quaternion.Euler(eulerRotation);
+            playerModel.rotation = Quaternion.Euler(moveRot);
 
+        }
+
+        if(followTransform.GetComponent<PlayerTarget>().GetAttackMode()==true){
+            //transform.rotation = Quaternion.Euler(eulerRotation);
         }
     }
 

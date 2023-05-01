@@ -67,6 +67,10 @@ public class Maranzus : MonoBehaviour
 
     public LayerMask playerLayer;
 
+    public ConeOfView coneOfView;
+
+    private bool awareOfPlayer;
+
 
 
     private void Awake(){
@@ -97,9 +101,11 @@ public class Maranzus : MonoBehaviour
             if(bastardo){
                 if (!playerInSightRange && !playerInAttackRange) {
                     Patroling();
+                    awareOfPlayer=false;
                 }
-                if (playerInSightRange && !playerInAttackRange) {
+                if (playerInSightRange && !playerInAttackRange && (coneOfView.GetPlayerSight()==true || awareOfPlayer)) {
                     ChasePlayer();
+                    awareOfPlayer=true;
                 }
                 if (playerInAttackRange && playerInSightRange) AttackPlayer();
             } else {
@@ -108,9 +114,11 @@ public class Maranzus : MonoBehaviour
                         whoIsAttacking=null;
                     }
                     Patroling();
+                    awareOfPlayer=false;
                 }
-                if (playerInSightRange && !playerInAttackRange && (whoIsAttacking==null || whoIsAttacking==myself) ) {
+                if (playerInSightRange && !playerInAttackRange && (whoIsAttacking==null || whoIsAttacking==myself) && (coneOfView.GetPlayerSight()==true || awareOfPlayer)){
                     whoIsAttacking=myself;
+                    awareOfPlayer=true;
                     ChasePlayer();
                 }
                 if (playerInAttackRange && playerInSightRange && (whoIsAttacking==myself)) AttackPlayer();
@@ -213,6 +221,7 @@ public class Maranzus : MonoBehaviour
     }
 
     public float TakeDamage(int damage){
+        awareOfPlayer=true;
        if(health>0){
             anim.SetTrigger("gothit");
             self.Stop();

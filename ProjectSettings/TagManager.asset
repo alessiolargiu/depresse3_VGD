@@ -13,6 +13,7 @@ TagManager:
   - player
   - enemy
   - cittadino
+  - playermodel
   layers:
   - Default
   - TransparentFX

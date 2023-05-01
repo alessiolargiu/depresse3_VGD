@@ -33,6 +33,10 @@ public class PlayerTarget : MonoBehaviour
     public bool isThereGigante;
     public Transform gigante;
 
+
+    [Header("DEBUG")]
+    public bool usingCameraFancy;
+
     void Start(){
         Vector3 angles = transform.eulerAngles;
         x = angles.y;
@@ -41,6 +45,7 @@ public class PlayerTarget : MonoBehaviour
 
         isMovingForwards=true;
         isMovingSideways=true;
+        usingCameraFancy=false;
     }
 
     void LateUpdate(){
@@ -109,6 +114,8 @@ public class PlayerTarget : MonoBehaviour
             transform.rotation = Quaternion.LookRotation(-target.forward, target.up);*/
         }
 
+
+        if(usingCameraFancy){
         if(isThereGigante && gigante!=null){
             Vector3 playerForward = target.forward;
             playerForward = -playerForward + gigante.forward;
@@ -147,7 +154,7 @@ public class PlayerTarget : MonoBehaviour
             isThereGigante=false;
             gigante=null;
         }
-
+        }
         /*
             // Update the camera position based on the mouse input
             x += Input.GetAxis("Mouse X") * xSpeed * distance * Time.deltaTime;
@@ -195,6 +202,16 @@ public class PlayerTarget : MonoBehaviour
 
     public bool GetAttackMode(){
         return playerAttack;
+    }
+
+    public Transform GetTarget(){
+        if(enemy!=null){
+            return enemy;
+        }
+        if(gigante!=null){
+            return gigante;
+        } else return null;
+        
     }
 
     
