@@ -12,7 +12,17 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
+      name: Wolf3D_Body.001
+    second: {fileID: 2100000, guid: 24ff0c65e9ea643d5a31b7535e273a74, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
       name: Wolf3D_Eye
+    second: {fileID: 2100000, guid: 99d1c8bcbb2f54ff2b8779b7192cb840, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Wolf3D_Eye.001
     second: {fileID: 2100000, guid: 99d1c8bcbb2f54ff2b8779b7192cb840, type: 2}
   - first:
       type: UnityEngine:Material
@@ -22,7 +32,17 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
+      name: Wolf3D_Hair.001
+    second: {fileID: 2100000, guid: 8bf1964f204b540b7ac667f8adf09ef0, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
       name: Wolf3D_Outfit_Footwear
+    second: {fileID: 2100000, guid: 2a84ff17fd6984f82836b29f84d07ae0, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Wolf3D_Outfit_Footwear.001
     second: {fileID: 2100000, guid: 2a84ff17fd6984f82836b29f84d07ae0, type: 2}
   - first:
       type: UnityEngine:Material
@@ -32,12 +52,27 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
+      name: Wolf3D_Outfit_Top.001
+    second: {fileID: 2100000, guid: 1d98e338f229c404eb12633593054583, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
       name: Wolf3D_Skin
     second: {fileID: 2100000, guid: 2935f38c8940f431ca39a6f549881adc, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
+      name: Wolf3D_Skin.001
+    second: {fileID: 2100000, guid: 2935f38c8940f431ca39a6f549881adc, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
       name: Wolf3D_Teeth
+    second: {fileID: 2100000, guid: 4080c7da615d2454e86827e2acd852d4, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Wolf3D_Teeth.001
     second: {fileID: 2100000, guid: 4080c7da615d2454e86827e2acd852d4, type: 2}
   materials:
     materialImportMode: 2
