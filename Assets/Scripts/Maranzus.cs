@@ -71,6 +71,8 @@ public class Maranzus : MonoBehaviour
 
     private bool awareOfPlayer;
 
+    private bool stopThrow;
+
 
 
     private void Awake(){
@@ -84,6 +86,7 @@ public class Maranzus : MonoBehaviour
         outOfReach=true;
         imActive=true;
         readyToThrow=true;
+        stopThrow=true;
         //attackPoint=transform;
         myself = GetInstanceID().ToString();
     }
@@ -241,7 +244,15 @@ public class Maranzus : MonoBehaviour
     }
 
     private void ThrowSandalo(){
+        if(stopThrow){
+            anim.SetTrigger("throw");
+            StartCoroutine(SandaloLaunch(0.8f));
+        }
+    }
 
+    IEnumerator SandaloLaunch(float time){
+        stopThrow=false;
+        yield return new WaitForSeconds(time);
         self.PlayOneShot(sandaloSound, 1f);
         readyToThrow = false;
 
@@ -270,6 +281,7 @@ public class Maranzus : MonoBehaviour
 
         // implement throwCooldown
         Invoke(nameof(ResetThrow), throwCooldown);
+        stopThrow=true;
     }
 
     private void ResetThrow(){

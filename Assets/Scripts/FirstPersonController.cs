@@ -491,9 +491,8 @@ public class FirstPersonController : MonoBehaviour {
         anim.SetFloat("combatWalk", verticalMovement * 0.5f,  1f, Time.deltaTime * 10f);
         anim.SetFloat("combatStrafe", horizontalMovement * 0.5f,  1f, Time.deltaTime * 10f);
         
-        
-        transform.Rotate(Vector3.up * horizontalMovement);
-        transform.Rotate(Vector3.up * mouseX);
+        transform.Rotate(Vector3.up * horizontalMovement*0.2f);
+        transform.Rotate(Vector3.up * mouseX*0.2f);
 
         controller.Move(move * Time.deltaTime);
         controller.Move(velocity * Time.deltaTime);
