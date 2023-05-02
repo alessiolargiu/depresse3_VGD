@@ -344,7 +344,7 @@ public class FirstPersonController : MonoBehaviour {
         rightVertical = Input.GetAxis("RightStickVertical");
 
         if(usingController){
-            jump = Input.GetKeyUp(KeyCode.JoystickButton0);
+            jump = Input.GetKeyDown(KeyCode.JoystickButton0);
             inAtck = Input.GetKey(KeyCode.JoystickButton6);
             shift = Input.GetKey(KeyCode.JoystickButton1);
             punchingKey = Input.GetKeyUp(KeyCode.JoystickButton2);
@@ -352,7 +352,7 @@ public class FirstPersonController : MonoBehaviour {
             crouchKey = Input.GetKey(KeyCode.JoystickButton10);
         } else {
             shift = Input.GetKey(KeyCode.LeftShift);
-            jump = Input.GetKeyUp(KeyCode.Space); 
+            jump = Input.GetKeyDown(KeyCode.Space); 
             punchingKey = Input.GetMouseButton(0);
             inAtck = Input.GetMouseButton(1);
             //inAtck = Input.GetMouseButtonDown(2);
