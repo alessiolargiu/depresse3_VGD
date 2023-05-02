@@ -18,20 +18,21 @@ public class Cheats : MonoBehaviour
 
 
     private void Update()
-    {
+    {/*
 
         player.infiniteStamina = this.infiniteStamina;
+
 
         if (getAllEquip)
         {
             foreach(HelmetEquip item in helmetList)
             {
-                item.transform.position = player.transform.position;
+                //item.transform.position = player.transform.position;
             }
 
             foreach (ChestEquip item in chestList)
             {
-                item.transform.position = player.transform.position;
+                //item.transform.position = player.transform.position;
             }
 
             foreach (WeaponEquip item in weaponList)
@@ -48,7 +49,7 @@ public class Cheats : MonoBehaviour
             {
                 item.transform.position = player.transform.position;
             }
-        }
+        }*/
     }
 
 }
