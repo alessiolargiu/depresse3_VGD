@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -8,10 +9,11 @@ public class OptionMenu : MonoBehaviour
 
     public Toggle fullscreen;
     public Toggle vsync;
-    public Dropdown resolution;
+    public ResolutionDropdown resolutionDropdown;
     public Slider volume;
     public Slider sensibility;
-    public List<ResItem> resolutions = new List<ResItem>();
+
+    public GameManager gameManager;
 
     // Start is called before the first frame update
     void Start()
@@ -39,12 +41,22 @@ public class OptionMenu : MonoBehaviour
         {
             QualitySettings.vSyncCount = 0;
         }
-    }
-}
 
-[System.Serializable]
-public class ResItem
-{
-    public int horizontal;
-    public int vertical;
+        switch (resolutionDropdown.resIndex)
+        {
+            case 0:
+                Screen.SetResolution(2160, 1440, fullscreen);
+                break;
+            case 1:
+                Screen.SetResolution(1920, 1080, fullscreen);
+                break;
+            case 2:
+                Screen.SetResolution(1280, 720, fullscreen);
+                break;
+        }
+
+        gameManager.sensibilità = (int)sensibility.value;
+
+    }
+
 }
