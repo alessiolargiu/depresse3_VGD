@@ -5,13 +5,13 @@ using UnityEngine.AI;
 
 public class Cittadino : MonoBehaviour
 {
-    public NavMeshAgent agent;
+    private NavMeshAgent agent;
 
-    public Animator anim;
+    private Animator anim;
 
     public LayerMask whatIsGround;
 
-    public AudioSource self;
+    private AudioSource self;
 
     public AudioClip smettila;
 
@@ -20,8 +20,20 @@ public class Cittadino : MonoBehaviour
     bool walkPointSet;
     public float walkPointRange;
 
-    private void Awake(){
+    public bool pedIsDying;
+    public int shelfLife;
+
+    private void Start(){
         agent = GetComponent<NavMeshAgent>();
+        anim = GetComponent<Animator>();
+        self = GetComponent<AudioSource>();
+    }
+
+    private void Awake(){
+        if(pedIsDying){
+            StartCoroutine(CountToDeath());
+        }
+        
     }
 
     private void Update(){
@@ -65,6 +77,11 @@ public class Cittadino : MonoBehaviour
     IEnumerator OnTimeSound(AudioSource src, AudioClip clp, float volume, float delay){
         yield return new WaitForSeconds(delay);
         src.PlayOneShot(clp, volume);
+    }
+
+    IEnumerator CountToDeath(){
+        yield return new WaitForSeconds(shelfLife);
+        DestroyObject(gameObject);
     }
     
 }

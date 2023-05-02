@@ -324,7 +324,7 @@ public class FirstPersonController : MonoBehaviour {
             if(lastEnemy!=null){
             if(lastEnemy.GetComponent<Maranzus>().OutOfReach()){
                 lastEnemy=null;
-                lastEnemy.GetComponent<Maranzus>().setActiveEnemy(false);
+                //lastEnemy.GetComponent<Maranzus>().setActiveEnemy(false);
                 noWeaponCycle=0;
                 followTransform.GetComponent<PlayerTarget>().SetAttackMode(false, null);
             }
@@ -357,7 +357,7 @@ public class FirstPersonController : MonoBehaviour {
             inAtck = Input.GetMouseButton(1);
             //inAtck = Input.GetMouseButtonDown(2);
             //punchingKey = Input.GetKeyUp(KeyCode.F);
-            crouchKey = Input.GetKey(KeyCode.H);
+            crouchKey = Input.GetKey(KeyCode.C);
             swordKey = Input.GetKeyUp(KeyCode.G);
             potionKey = Input.GetKeyUp(KeyCode.Q);
         }
