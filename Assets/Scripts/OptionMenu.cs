@@ -76,7 +76,7 @@ public class OptionMenu : MonoBehaviour
         }
 
 
-        //gameManager.sensibilità = (int)sensibility.value;
+        //gameManager.sensibilitï¿½ = (int)sensibility.value;
 
         AudioListener.volume = volume.value;
 

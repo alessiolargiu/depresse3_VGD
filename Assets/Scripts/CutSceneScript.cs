@@ -2,41 +2,39 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-
-public enum cameras {
-    side1,
-    side2,
-    back1,
-    back2,
-    zoom
-}
 public class CutSceneScript : MonoBehaviour
 {
     private FirstPersonController player;
+    private GameObject playerContainer;
     private GameObject HUD;
     private GameObject cutscene;
     private GameObject mission;
 
     private AudioSource soundSource;
     private AudioClip [] audioClips;
-    private cameras [] cameraPosition;
+    private int [] cameraPosition;
     private GameObject [] camerasAvailable;
 
     public AudioSource soundSourceGet;
     public AudioClip [] audioClipsGet;
-    public cameras [] cameraPositionGet;
+    public int [] cameraPositionGet;
     public GameObject [] camerasAvailableGet;
     public FirstPersonController playerGet;
+    public GameObject playerContainerGet;
     public GameObject HUDGet;
     public GameObject cutsceneGet;
     public GameObject missionGet;
+    private MeshRenderer selfRender;
 
     private static bool hasStarted;
+    
 
     // Start is called before the first frame update
     void Start()
     {
+        selfRender = GetComponent<MeshRenderer>();
         player = playerGet;
+        playerContainer = playerContainerGet;
         HUD = HUDGet;
         cutscene = cutsceneGet;
         camerasAvailable = camerasAvailableGet;
@@ -50,14 +48,19 @@ public class CutSceneScript : MonoBehaviour
     void Update()
     {
     } 
-
+    public void DestroySelfCutscene(){
+        DestroyObject(gameObject);
+    }
     public IEnumerator cutsceneStart(System.Action<bool> callback){
         if(hasStarted==false){
+            selfRender.enabled=false;
             hasStarted=true;
-            player.SetActiveInternal(false);
+            
             //player.SetActive(false);
             HUD.SetActive(false);
             cutscene.SetActive(true);
+            player.SetActiveInternal(false);
+            playerContainer.SetActive(false);
 
             //
 
@@ -75,7 +78,7 @@ public class CutSceneScript : MonoBehaviour
                 soundSource.Play();
 
 
-                for(int j=0;j<4;j++){
+                for(int j=0;j<camerasAvailable.Length;j++){
                     if(j== ((int) cameraPosition[i])){
                         camerasAvailable[j].SetActive(true);
                     } else camerasAvailable[j].SetActive(false);
@@ -93,6 +96,7 @@ public class CutSceneScript : MonoBehaviour
                 
 
             }
+            playerContainer.SetActive(true);
             player.SetActiveInternal(true);
             callback(true);
             //player.SetActive(true);
@@ -101,6 +105,7 @@ public class CutSceneScript : MonoBehaviour
             cutscene.SetActive(false);
             hasStarted=false;
             //yield return "Finito";
+            DestroySelfCutscene();
         }
         yield return null;
     }
