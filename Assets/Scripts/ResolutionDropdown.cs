@@ -28,10 +28,15 @@ public class ResolutionDropdown : MonoBehaviour
             string newRes = Screen.width + " x " + Screen.height;
             List<string> list = new List<string>{newRes};
             dropdown.AddOptions(list);
+            dropdown.value = dropdown.options.Count - 1;
+        }
+        else
+        {
+            dropdown.value = 0;
         }
 
         currentResolution.text = Screen.width + " x " + Screen.height;
-        dropdown.value = dropdown.options.Count - 1;
+        
     }
 
     public void SetResolution(int index)

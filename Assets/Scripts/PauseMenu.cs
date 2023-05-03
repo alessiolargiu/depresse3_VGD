@@ -10,12 +10,6 @@ public class PauseMenu : MonoBehaviour
     public static bool gameIsPaused = false;
     public GameObject pauseMenuHUD;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
     // Update is called once per frame
     void Update()
     {
@@ -48,6 +42,11 @@ public class PauseMenu : MonoBehaviour
         pauseMenuHUD.SetActive(true);
         Time.timeScale = 0f;
         gameIsPaused = true;
+    }
+
+    public void Save()
+    {
+        Debug.Log("SALVATAGGIO DA FARE");
     }
 
     public void Options()

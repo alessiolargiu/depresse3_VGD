@@ -119,6 +119,7 @@ public class FirstPersonController : MonoBehaviour {
     //userflag
     public bool usingController;
     public bool infiniteStamina = false;
+    public bool infiniteHealth = false;
 
     //inputs
     bool jump;
@@ -148,11 +149,12 @@ public class FirstPersonController : MonoBehaviour {
         Cursor.visible = false;
 
         //imposto la vita iniziale
-        currentHealth = 80;
+        currentHealth = 100;
         healthBar.SetMaxHealth(maxHealth);
         healthBar.SetHealth(currentHealth);
         currentStamina = maxStamina;
         staminaBar.SetMaxStamina(maxStamina);
+        staminaBar.SetStamina(currentStamina);
         smooth = 0.5f;
         fastJump=false;
         slowJump=false;
@@ -206,25 +208,23 @@ public class FirstPersonController : MonoBehaviour {
             }
             Jumping();
 
-            if (!infiniteStamina)
+            
+            if(!shift)
             {
-                /*if (!shift)
+                if (currentStamina < maxStamina)
                 {
-                    if (currentStamina < maxStamina)
-                    {
-                        currentStamina += 6 * Time.deltaTime;
-                    }
-                    if (currentStamina > maxStamina)
-                    {
-                        currentStamina = maxStamina;
-                    }
+                    currentStamina +=  4 * Time.deltaTime;
+                }
+                if (currentStamina > maxStamina)
+                {
+                    currentStamina = maxStamina;
+                }
 
-                    staminaBar.SetStamina(currentStamina);
-                }*/
-
-                currentStamina=maxStamina;
-                
+                staminaBar.SetStamina(currentStamina);
             }
+
+                
+            
 
         }
 
@@ -267,7 +267,7 @@ public class FirstPersonController : MonoBehaviour {
     }
 
     public void TakeDamage(int damage, Transform enemyCurrent, int whoIs){ 
-        if (isActive){
+        if (isActive && !infiniteHealth){
             switch(whoIs){
                 case 1:
                     followTransform.GetComponent<PlayerTarget>().SetAttackMode(true, enemyCurrent);
@@ -453,6 +453,12 @@ public class FirstPersonController : MonoBehaviour {
 
 
         if((shift) && currentStamina > 0 && (verticalMovement!=0f || horizontalMovement!=0f) && controller.isGrounded || momentum!=0f){
+
+            if (!infiniteStamina)
+            {
+                currentStamina -= 2 * Time.deltaTime;
+                staminaBar.SetStamina(currentStamina);
+            }
 
             move = transform.right * horizontalMovement + transform.forward * verticalMovement;
             move *= movementRunSpeed;

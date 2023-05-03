@@ -13,11 +13,18 @@ public class OptionMenu : MonoBehaviour
     public Slider volume;
     public Slider sensibility;
 
-    public GameManager gameManager;
+    public Cheats cheat;
+
+    public Toggle vitaInfinitaToggle;
+    public Toggle staminaInfinitaToggle;
+    public Toggle fullEquipToggle;
+
+    private GameManager gameManager;
 
     // Start is called before the first frame update
     void Start()
     {
+        gameManager = FindObjectOfType<GameManager>();
         fullscreen.isOn = Screen.fullScreen;
         if(QualitySettings.vSyncCount == 0)
         {
@@ -45,17 +52,33 @@ public class OptionMenu : MonoBehaviour
         switch (resolutionDropdown.resIndex)
         {
             case 0:
-                Screen.SetResolution(2160, 1440, fullscreen);
+                Screen.SetResolution(2160, 1440, fullscreen.isOn);
                 break;
             case 1:
-                Screen.SetResolution(1920, 1080, fullscreen);
+                Screen.SetResolution(1920, 1080, fullscreen.isOn);
                 break;
             case 2:
-                Screen.SetResolution(1280, 720, fullscreen);
+                Screen.SetResolution(1280, 720, fullscreen.isOn);
                 break;
         }
 
-        gameManager.sensibilità = (int)sensibility.value;
+        if(cheat != null)
+        {
+            cheat.infiniteHealth = vitaInfinitaToggle.isOn;
+            cheat.infiniteStamina = staminaInfinitaToggle.isOn;
+            cheat.getAllEquip = fullEquipToggle.isOn;
+        }
+        else
+        {
+            gameManager.vitaInfinita = vitaInfinitaToggle.isOn;
+            gameManager.staminaInfinita = staminaInfinitaToggle.isOn;
+            gameManager.fullEquip = fullEquipToggle.isOn;
+        }
+
+
+        //gameManager.sensibilità = (int)sensibility.value;
+
+        AudioListener.volume = volume.value;
 
     }
 
