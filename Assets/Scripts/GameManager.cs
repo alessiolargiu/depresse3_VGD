@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class GameManager : MonoBehaviour
 {
 
-    public int sensibilit�;
+    public int sensibilita;
     public bool vitaInfinita;
     public bool staminaInfinita;
     public bool fullEquip;
