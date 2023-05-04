@@ -8,6 +8,8 @@ public class IncontroMaranza : MonoBehaviour
 
     public GameObject containerMissione;
     public GameObject [] maranzus;
+    public GameObject cutscenefinale;
+
     bool stop;
 
     void Start()
@@ -33,7 +35,8 @@ public class IncontroMaranza : MonoBehaviour
 
         if(stop){
             Debug.Log("Hai finito la missione");
-            DestroyObject(gameObject);
+            cutscenefinale.SetActive(true);
+            StartCoroutine(cutscenefinale.GetComponent<CutSceneScript>().cutsceneStart((paolino) => {if(paolino){DestroyObject(gameObject);}}));
         }
     }
 }

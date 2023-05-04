@@ -27,12 +27,17 @@ public class CutSceneScript : MonoBehaviour
     private MeshRenderer selfRender;
 
     private static bool hasStarted;
+
+
+    
     
 
     // Start is called before the first frame update
     void Start()
-    {
-        selfRender = GetComponent<MeshRenderer>();
+    {   if(GetComponent<MeshRenderer>()!=null){
+            selfRender = GetComponent<MeshRenderer>();
+        } else selfRender=null;
+        
         player = playerGet;
         playerContainer = playerContainerGet;
         HUD = HUDGet;
@@ -42,6 +47,8 @@ public class CutSceneScript : MonoBehaviour
         audioClips = audioClipsGet;
         cameraPosition = cameraPositionGet;
         mission=missionGet;
+
+        
     }
 
     // Update is called once per frame
@@ -53,10 +60,16 @@ public class CutSceneScript : MonoBehaviour
     }
     public IEnumerator cutsceneStart(System.Action<bool> callback){
         if(hasStarted==false){
-            selfRender.enabled=false;
+
+
+            if(selfRender!=null){
+                selfRender.enabled=false;
+            }
+
             hasStarted=true;
             
             //player.SetActive(false);
+            
             HUD.SetActive(false);
             cutscene.SetActive(true);
             player.SetActiveInternal(false);
