@@ -69,7 +69,7 @@ public class Maranzus : MonoBehaviour
 
     public ConeOfView coneOfView;
 
-    private bool awareOfPlayer;
+    public bool awareOfPlayer;
 
     private bool stopThrow;
 
