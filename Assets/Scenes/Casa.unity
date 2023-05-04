@@ -18559,6 +18559,7 @@ GameObject:
   - component: {fileID: 749978975}
   - component: {fileID: 749978976}
   - component: {fileID: 749978977}
+  - component: {fileID: 749978978}
   m_Layer: 0
   m_Name: protagonistaMODEL
   m_TagString: Untagged
@@ -18601,7 +18602,7 @@ Animator:
   m_GameObject: {fileID: 749978974}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: c326db859e2f3425f8a58c96208e517d, type: 3}
-  m_Controller: {fileID: 9100000, guid: 87cfbd5873c7e406399e498f306f50e6, type: 2}
+  m_Controller: {fileID: 9100000, guid: 60401d0b7684e416989aefdc12347e91, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -18707,6 +18708,22 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &749978978
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 749978974}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 37769bb1af9d04298bc2c7b83b7a4019, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cameras:
+  - {fileID: 1361562847}
+  - {fileID: 1098302010}
+  - {fileID: 1125370989}
 --- !u!1 &750193331
 GameObject:
   m_ObjectHideFlags: 0
