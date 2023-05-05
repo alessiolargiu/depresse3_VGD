@@ -35,6 +35,8 @@ public class CutSceneScript : MonoBehaviour
 
 
     public bool missionCheck;
+
+    private bool skippable=false;
     
     void Start(){
         
@@ -73,6 +75,7 @@ public class CutSceneScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
     } 
     public void DestroySelfCutscene(){
 
@@ -90,10 +93,16 @@ public class CutSceneScript : MonoBehaviour
         
         
     }
+
+    public IEnumerator countTimeToSkip(float time){
+        yield return new WaitForSeconds(time);
+        skippable=true;
+    }
+
     public IEnumerator cutsceneStart(System.Action<bool> callback){
         if(hasStarted==false){
 
-
+            StartCoroutine(countTimeToSkip(2));
             if(selfRender!=null){
                 selfRender.enabled=false;
             }
@@ -130,7 +139,7 @@ public class CutSceneScript : MonoBehaviour
                 }
 
                 while (soundSource.isPlaying){
-                    if(Input.anyKeyDown){
+                    if(Input.anyKeyDown && skippable){
                         i = audioClips.Length;
                         break;
                     }
