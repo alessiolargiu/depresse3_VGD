@@ -143,6 +143,8 @@ public class FirstPersonController : MonoBehaviour {
 
     public Transform playerModel;
 
+    bool isWalk;
+
     void Start(){   
         controller = GetComponent<CharacterController>();
         Cursor.lockState = CursorLockMode.Locked;
@@ -174,7 +176,8 @@ public class FirstPersonController : MonoBehaviour {
         hudInvPotion.SetInventory(inventory);
         hudInvHelmet.SetInventory(inventory);
         hudInvChest.SetInventory(inventory);
-        
+        running.enabled=false;
+        walking.enabled=false;
 
         verticalMovement=1;
     }
@@ -459,7 +462,6 @@ public class FirstPersonController : MonoBehaviour {
                 currentStamina -= 2 * Time.deltaTime;
                 staminaBar.SetStamina(currentStamina);
             }
-
             move = transform.right * horizontalMovement + transform.forward * verticalMovement;
             move *= movementRunSpeed;
             if(verticalMovement>0){
@@ -480,7 +482,20 @@ public class FirstPersonController : MonoBehaviour {
             } else anim.SetFloat("strafing", horizontalMovement*-1 * 0.5f,  1f, Time.deltaTime * 10f );
         }
 
-
+        if(verticalMovement!=0 || horizontalMovement!=0){
+            
+            if(shift){
+                walking.enabled=false;
+                running.enabled=true;
+            } else {
+                walking.enabled=true;
+                running.enabled=false;
+            }
+        } else {
+            walking.enabled=false;
+            running.enabled=false;
+        }
+            
         
         
         controller.Move(move * Time.deltaTime);
@@ -714,6 +729,10 @@ public class FirstPersonController : MonoBehaviour {
 
     public bool GetActiveInternal(){
         return isActive;
+    }
+
+    public GameObject GetGameObject(){
+        return gameObject;
     }
     
 }

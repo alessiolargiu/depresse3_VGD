@@ -35,6 +35,7 @@ public class IncontroMaranza : MonoBehaviour
 
         if(stop){
             Debug.Log("Hai finito la missione");
+            DestroyObject(containerMissione);
             cutscenefinale.SetActive(true);
             StartCoroutine(cutscenefinale.GetComponent<CutSceneScript>().cutsceneStart((paolino) => {if(paolino){DestroyObject(gameObject);}}));
         }

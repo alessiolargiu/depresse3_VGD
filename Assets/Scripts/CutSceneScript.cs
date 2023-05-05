@@ -29,11 +29,16 @@ public class CutSceneScript : MonoBehaviour
     private static bool hasStarted;
 
 
+    public bool changeSpawn;
+    public Transform playerT;
+    public Transform spawn;
+
+
     
     
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {   if(GetComponent<MeshRenderer>()!=null){
             selfRender = GetComponent<MeshRenderer>();
         } else selfRender=null;
@@ -56,7 +61,20 @@ public class CutSceneScript : MonoBehaviour
     {
     } 
     public void DestroySelfCutscene(){
-        DestroyObject(gameObject);
+
+        if(changeSpawn){
+            playerT.position=spawn.position;
+        }
+        
+        if(cutscene==gameObject){
+            DestroyObject(gameObject);
+        } else {
+            DestroyObject(cutscene);
+            DestroyObject(gameObject);
+        }
+
+        
+        
     }
     public IEnumerator cutsceneStart(System.Action<bool> callback){
         if(hasStarted==false){
