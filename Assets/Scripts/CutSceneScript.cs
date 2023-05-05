@@ -19,9 +19,9 @@ public class CutSceneScript : MonoBehaviour
     public AudioClip [] audioClipsGet;
     public int [] cameraPositionGet;
     public GameObject [] camerasAvailableGet;
-    public FirstPersonController playerGet;
-    public GameObject playerContainerGet;
-    public GameObject HUDGet;
+    private FirstPersonController playerGet;
+    private GameObject playerContainerGet;
+    private GameObject HUDGet;
     public GameObject cutsceneGet;
     public GameObject missionGet;
     private MeshRenderer selfRender;
@@ -34,15 +34,24 @@ public class CutSceneScript : MonoBehaviour
     public Transform spawn;
 
 
+    public bool missionCheck;
     
-    
-
+    void Start(){
+        
+    }
     // Start is called before the first frame update
     void Awake()
     {   if(GetComponent<MeshRenderer>()!=null){
             selfRender = GetComponent<MeshRenderer>();
         } else selfRender=null;
-        
+
+
+        playerGet = GameObject.Find("PlayerProtagonista").GetComponent<FirstPersonController>();
+        playerContainerGet = GameObject.Find("PlayerContainer");
+        playerT =  GameObject.Find("PlayerProtagonista").transform;
+        HUDGet = GameObject.Find("HUD");
+
+
         player = playerGet;
         playerContainer = playerContainerGet;
         HUD = HUDGet;
@@ -51,7 +60,12 @@ public class CutSceneScript : MonoBehaviour
         soundSource = soundSourceGet;
         audioClips = audioClipsGet;
         cameraPosition = cameraPositionGet;
-        mission=missionGet;
+
+        if(missionCheck){
+            mission=missionGet;
+        }
+        
+        
 
         
     }
@@ -132,7 +146,9 @@ public class CutSceneScript : MonoBehaviour
             callback(true);
             //player.SetActive(true);
             HUD.SetActive(true);
-            mission.SetActive(true);
+            if(missionCheck){
+                mission.SetActive(true);
+            }
             cutscene.SetActive(false);
             hasStarted=false;
             //yield return "Finito";

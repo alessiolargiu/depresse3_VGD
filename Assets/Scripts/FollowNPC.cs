@@ -20,9 +20,27 @@ public class FollowNPC : MonoBehaviour
 
     private float distPlayer;
     private float distPunto;
+
+    public bool hasAudio;
+    
+    public AudioClip dialog;
+    private AudioSource src;
+
+    bool actionFinaleCheck;
+    public GameObject actionFinale;
+
+    void Start(){
+        agent = GetComponent<NavMeshAgent>();
+        anim = GetComponent<Animator>();
+        player = GameObject.Find("PlayerProtagonista").transform;
+    }
     private void Awake(){
     
-        agent = GetComponent<NavMeshAgent>();
+        if(hasAudio){
+            src = GetComponent<AudioSource>();
+            src.clip = dialog;
+            src.Play();
+        }
         
         imActive=true;
 
@@ -32,6 +50,10 @@ public class FollowNPC : MonoBehaviour
         distPlayer = Vector3.Distance(player.position, transform.position);
         distPunto = Vector3.Distance(puntoArrivo.position, transform.position);
         GoToTarget();
+
+        if(distPunto<=1f && actionFinale){
+            actionFinale.SetActive(true);
+        }
     }
 
     private void SearchWalkPoint(){
@@ -39,7 +61,9 @@ public class FollowNPC : MonoBehaviour
 
     private void GoToTarget(){   
 
-        if(distPunto>=0.5f && distPlayer<=distMinima){
+        
+        if(distPunto>=1f && distPlayer<=distMinima){
+            Debug.Log("Son qui stronzi");
             agent.speed = 1.5f;
             anim.SetFloat("vertical", 0.5f,  1f, Time.deltaTime * 10f );  
             Vector3 targetDirection = puntoArrivo.position - transform.position;
@@ -47,6 +71,10 @@ public class FollowNPC : MonoBehaviour
             Vector3 newDirection = Vector3.RotateTowards(transform.forward, targetDirection, singleStep, 0.0f);
             transform.rotation = Quaternion.LookRotation(newDirection);
             agent.SetDestination(puntoArrivo.position);
+            if(hasAudio && src.isPlaying==false){
+                src.Play();
+            }
+            
         } else {
             agent.speed = 0f;
             anim.SetFloat("vertical", 0,  1f, Time.deltaTime * 10f );  
@@ -55,6 +83,9 @@ public class FollowNPC : MonoBehaviour
             Vector3 newDirection = Vector3.RotateTowards(transform.forward, targetDirection, singleStep, 0.0f);
             transform.rotation = Quaternion.LookRotation(newDirection);
             agent.SetDestination(puntoArrivo.position);
+            if(hasAudio){
+                src.Pause();
+            }
         }
         
 

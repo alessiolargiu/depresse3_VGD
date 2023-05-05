@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028352, g: 0.22571376, b: 0.30692244, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028305, g: 0.22571313, b: 0.3069213, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -399,9 +399,13 @@ MonoBehaviour:
   - {fileID: 1086925645}
   - {fileID: 1831946862}
   playerGet: {fileID: 0}
+  playerContainerGet: {fileID: 0}
   HUDGet: {fileID: 0}
   cutsceneGet: {fileID: 1805179324}
   missionGet: {fileID: 0}
+  changeSpawn: 0
+  playerT: {fileID: 0}
+  spawn: {fileID: 0}
 --- !u!65 &33722593
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -21816,7 +21820,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1205074171}
-  m_LocalRotation: {x: -0, y: 5.820767e-11, z: -4.365575e-11, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: 1.0913936e-11, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1.421021, z: 1.0168928}
   m_ConstrainProportionsScale: 0
@@ -37978,7 +37982,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1870857667}
-  m_LocalRotation: {x: 0.08258397, y: -0.00052180776, z: 0.0007431673, w: 0.9965837}
+  m_LocalRotation: {x: 0.082583964, y: -0.0005218077, z: 0.00074316724, w: 0.9965837}
   m_LocalPosition: {x: -0.005223889, y: 1.0973897, z: -3.0049212}
   m_LocalScale: {x: 1, y: 0.7037194, z: 0.9833877}
   m_ConstrainProportionsScale: 0
