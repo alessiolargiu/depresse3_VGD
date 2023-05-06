@@ -87,10 +87,8 @@ public class FirstPersonController : MonoBehaviour {
     public Transform rightHand;
     public Transform leftHand;
 
-    public GameObject sword;
 
-
-    public float attackRange = 0.5f;
+    //public float attackRange;
 
     public LayerMask enemyLayers;
     public LayerMask enemyGiganteLayers;
@@ -108,7 +106,7 @@ public class FirstPersonController : MonoBehaviour {
     public Transform legL;
     public Transform legR;
 
-    private int noWeaponCycle = 0;
+    private int noWeaponCycle;
 
 
     public GameObject bangFX;
@@ -145,6 +143,13 @@ public class FirstPersonController : MonoBehaviour {
 
     bool isWalk;
 
+    public GameObject weaponContainer;
+
+    private static bool attackFinished;
+
+
+    private Transform curposdebug;
+
     void Start(){   
         controller = GetComponent<CharacterController>();
         Cursor.lockState = CursorLockMode.Locked;
@@ -160,8 +165,8 @@ public class FirstPersonController : MonoBehaviour {
         smooth = 0.5f;
         fastJump=false;
         slowJump=false;
+        attackFinished=true;
         bangFX.SetActive(false);
-        sword.SetActive(false);
         verticalMovement=1;
     }
 
@@ -227,6 +232,7 @@ public class FirstPersonController : MonoBehaviour {
             }
 
                 
+            Debug.Log("atck" + attackFinished);
             
 
         }
@@ -328,7 +334,6 @@ public class FirstPersonController : MonoBehaviour {
             if(lastEnemy.GetComponent<Maranzus>().OutOfReach()){
                 lastEnemy=null;
                 //lastEnemy.GetComponent<Maranzus>().setActiveEnemy(false);
-                noWeaponCycle=0;
                 followTransform.GetComponent<PlayerTarget>().SetAttackMode(false, null);
             }
         }
@@ -416,7 +421,6 @@ public class FirstPersonController : MonoBehaviour {
 
     private void Movement(){
 
-        Debug.Log("sto in sta cosa");
         float asinHor = 0;
 
         //QUESTA SEZIONE DI CODICE E' SCRITTA CON IL CULO, MA NON SI CAMBIA ASSOLUTAMENTE
@@ -578,34 +582,59 @@ public class FirstPersonController : MonoBehaviour {
     }
 
     private void AttackType(){
-        if(((punchingKey) && currentStamina >= staminaAttack && pugnoAir.isPlaying==false) && controller.isGrounded && (anim.GetCurrentAnimatorStateInfo(0).IsName("kick")==false)){
-            switch(noWeaponCycle){
-                case 0:
-                    StartCoroutine(OnTimeSound(pugnoAir, airleft, 1f, 0f));
-                    StartCoroutine(Attack(leftHand, 20, 0.1f));
-                    anim.SetBool("altPunching", true);
-                    anim.SetTrigger("punching");
-                    if (!infiniteStamina){
-                        currentStamina -= staminaAttack;
-                        staminaBar.SetStamina(currentStamina);
-                    }
-                    noWeaponCycle++;
-                    break;
-                
-                case 1:
-                    StartCoroutine(OnTimeSound(pugnoAir, airright, 1f, 0f));
-                    StartCoroutine(Attack(rightHand, 20, 0.1f));
-                    anim.SetBool("altPunching", false);
-                    anim.SetTrigger("punching");
-                    if (!infiniteStamina)
-                    {
-                        currentStamina -= staminaAttack;
-                        staminaBar.SetStamina(currentStamina);
-                    }
-                    noWeaponCycle++;
-                    break;
 
-                case 2:
+        
+        WeaponEquip currentWeapon = new WeaponEquip();
+
+        if(((punchingKey) && currentStamina >= staminaAttack && pugnoAir.isPlaying==false) && controller.isGrounded && attackFinished){
+            
+            foreach (WeaponEquip weapon in inventory.GetWeapons())
+            {
+                if (weapon.gameObject.activeSelf)
+                {
+                    currentWeapon = weapon;
+                }
+            }
+
+            AnimatorClipInfo[] animatorinfo = this.anim.GetCurrentAnimatorClipInfo(0);
+            string current_animation = animatorinfo[0].clip.name;
+            Debug.Log("animazione corrente " + current_animation);
+
+            if(currentWeapon==null) {
+
+                if(noWeaponCycle==0){
+                    StartCoroutine(OnTimeSound(pugnoAir, airleft, 1f, 0f));
+                    StartCoroutine(Attack(leftHand, 20, 0.1f, 0.5f, 0.2f));
+                    anim.SetBool("altPunching", true);
+                    noWeaponCycle++;
+                } else if(noWeaponCycle==1) {
+                    StartCoroutine(OnTimeSound(pugnoAir, airright, 1f, 0f));
+                    StartCoroutine(Attack(rightHand, 20, 0.1f, 0.5f, 0.2f));
+                    anim.SetBool("altPunching", false);
+                    noWeaponCycle = 0;
+                }
+                anim.SetTrigger("punching");
+                
+                if (!infiniteStamina){
+                    currentStamina -= staminaAttack;
+                    staminaBar.SetStamina(currentStamina);
+                }
+                
+            } else if(currentWeapon!=null){
+                Transform sword = GameObject.Find("Equip Container Weapon/" + currentWeapon.name + "/Collider").transform;    
+                StartCoroutine(OnTimeSound(pugnoAir, airleft, 1f, 0.5f));
+                StartCoroutine(Attack(sword, currentWeapon.damage, 1f, currentWeapon.innerRange, currentWeapon.reloadTime));
+                anim.SetTrigger("swording");
+
+                if (!infiniteStamina){
+                    currentStamina -= currentWeapon.stamina;
+                    staminaBar.SetStamina(currentStamina);
+                }
+                
+            }
+            
+
+                /*case 2:
                     StartCoroutine(OnTimeSound(pugnoAir, airleft, 1f, 0.5f));
                     int rand = UnityEngine.Random.Range(0, 2);
                     if(rand==1){
@@ -622,18 +651,14 @@ public class FirstPersonController : MonoBehaviour {
                         staminaBar.SetStamina(currentStamina);
                     }
                     noWeaponCycle =0;
-                    break;
+                    break;*/
             
             }
             
-        }
-
+/*
         if(((swordKey) && pugnoAir.isPlaying==false) && controller.isGrounded && (anim.GetCurrentAnimatorStateInfo(0).IsName("swording")==false)){
-            sword.SetActive(true);
-            StartCoroutine(OnTimeSound(pugnoAir, airleft, 1f, 0.5f));
-            StartCoroutine(Attack(sword.transform, 60, 1f));
-            anim.SetTrigger("swording");
-        }
+            
+        }*/
 
     }
 
@@ -650,7 +675,6 @@ public class FirstPersonController : MonoBehaviour {
 
         if(newEuler!=newOld && (verticalMovement!=0 || horizontalMovement!=0 || punchingKey)){
 
-            Debug.Log("sto qua");
             float test = followTransform.eulerAngles.y;
             float asinHor = Mathf.Atan2(horizontalMovement, verticalMovement) * Mathf.Rad2Deg;
             Vector3 moveRot = new Vector3(transform.eulerAngles.x, test,  transform.eulerAngles.z);
@@ -666,12 +690,16 @@ public class FirstPersonController : MonoBehaviour {
     }
 
 
-    IEnumerator Attack(Transform attackPoint, int dmg, float time){
+    IEnumerator Attack(Transform attackPoint, int dmg, float time, float attackRange, float timeToReload){
+
+        curposdebug = attackPoint;
+        attackFinished=false;
         verticalMovement=0;
         yield return new WaitForSeconds(time);
         Collider[] hitEnemies = Physics.OverlapSphere(attackPoint.position, attackRange, enemyLayers);
         Collider[] hitGigante = Physics.OverlapSphere(attackPoint.position, attackRange*3, enemyGiganteLayers);
         Collider[] hitCittadino = Physics.OverlapSphere(attackPoint.position, attackRange, cittadinoLayers);
+
 
 
         foreach(Collider enemy in hitEnemies){
@@ -694,19 +722,21 @@ public class FirstPersonController : MonoBehaviour {
 
             bangFX.SetActive(true);
             bangFX.transform.position=attackPoint.position;
-            yield return new WaitForSeconds(4f);
+            yield return new WaitForSeconds(timeToReload);
             bangFX.SetActive(false);
 
         }
 
         foreach(Collider gigante in hitGigante){
+
+            
             float singleStep = 1 * Time.deltaTime;
             float health = gigante.GetComponent<MaranzusGigante>().TakeDamage(dmg);
 
             pugno.PlayOneShot(pugno.clip, 1f);
 
             bangFX.SetActive(true);
-            yield return new WaitForSeconds(4f);
+            yield return new WaitForSeconds(timeToReload);
             bangFX.SetActive(false);
 
         }
@@ -714,8 +744,8 @@ public class FirstPersonController : MonoBehaviour {
         foreach(Collider cittadino in hitCittadino){
             cittadino.GetComponent<Cittadino>().StopIt();
         }
-
-        sword.SetActive(false);
+        //yield return new WaitForSeconds(0.5f);
+        attackFinished=true;
     }
 
     IEnumerator OnTimeSound(AudioSource src, AudioClip clp, float volume, float delay){
@@ -733,6 +763,12 @@ public class FirstPersonController : MonoBehaviour {
 
     public GameObject GetGameObject(){
         return gameObject;
+    }
+
+    private void OnDrawGizmosSelected() {
+        Gizmos.color = Color.red;
+        //Use the same vars you use to draw your Overlap SPhere to draw your Wire Sphere.
+        //Gizmos.DrawWireSphere (transform.position + curposdebug.position, attackRange);
     }
     
 }

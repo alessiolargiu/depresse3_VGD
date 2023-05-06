@@ -15,6 +15,10 @@ public class WeaponEquip : MonoBehaviour
     public Sprite sprite;
     public HUDInventoryWeapon hudWeapon;
     public WeaponEquip weaponInPlayer;
+    public float innerRange;
+    public float reloadTime;
+
+    public bool colliding;
 
     private void OnTriggerEnter(Collider other)
     {
