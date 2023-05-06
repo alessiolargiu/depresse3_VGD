@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.0028582404, g: 0.003600263, b: 0.002219997, a: 1}
+  m_IndirectSpecularColor: {r: 0.008370369, g: 0.00971098, b: 0.008905714, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -3688,6 +3688,9 @@ MonoBehaviour:
   sprite: {fileID: 21300000, guid: 0e1d6c42054dd3a4fbe8a1a873f60dd4, type: 3}
   hudWeapon: {fileID: 1921779017}
   weaponInPlayer: {fileID: 0}
+  innerRange: 0
+  reloadTime: 0
+  colliding: 0
 --- !u!114 &195054937 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 7101991336796972048, guid: 51821c87e28608b4fa0f14e0ed461a70, type: 3}
@@ -3977,6 +3980,9 @@ MonoBehaviour:
   sprite: {fileID: 21300000, guid: 8699a717f9d0a4544b8cbf66afde3642, type: 3}
   hudWeapon: {fileID: 1921779017}
   weaponInPlayer: {fileID: 0}
+  innerRange: 0
+  reloadTime: 0
+  colliding: 0
 --- !u!1001 &213681123
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -17689,8 +17695,6 @@ MonoBehaviour:
   followTransform: {fileID: 0}
   rightHand: {fileID: 0}
   leftHand: {fileID: 0}
-  sword: {fileID: 0}
-  attackRange: 0.5
   enemyLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -19631,8 +19635,8 @@ MonoBehaviour:
   gravity: -9.81
   mouseSens: 200
   anim: {fileID: 888950426}
-  healthBar: {fileID: 0}
-  staminaBar: {fileID: 0}
+  healthBar: {fileID: 1047477370}
+  staminaBar: {fileID: 1852529683}
   hudInvWeapon: {fileID: 1921779017}
   hudInvShield: {fileID: 1498279902}
   hudInvPotion: {fileID: 276542566}
@@ -19656,8 +19660,6 @@ MonoBehaviour:
   followTransform: {fileID: 1745203387}
   rightHand: {fileID: 1083104479}
   leftHand: {fileID: 959206317}
-  sword: {fileID: 879253716}
-  attackRange: 0.8
   enemyLayers:
     serializedVersion: 2
     m_Bits: 128
@@ -20793,11 +20795,6 @@ Transform:
   m_Father: {fileID: 1159860034}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &879253716 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 3c02cd885cb94a748a8a52ce0eb7f443, type: 3}
-  m_PrefabInstance: {fileID: 843895720}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &879253717 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 3c02cd885cb94a748a8a52ce0eb7f443, type: 3}
@@ -21212,7 +21209,7 @@ Animator:
   m_GameObject: {fileID: 888950423}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: c326db859e2f3425f8a58c96208e517d, type: 3}
-  m_Controller: {fileID: 9100000, guid: 79a2912cb5a1343c88e9b9a65d84ac6b, type: 2}
+  m_Controller: {fileID: 9100000, guid: fa42a4070d03249b991a9b447b84b051, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -21504,7 +21501,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 896965369}
-  m_LocalRotation: {x: -0, y: -0, z: 4.0017763e-11, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: 3.6379785e-11, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1.421021, z: 1.0168928}
   m_ConstrainProportionsScale: 0
@@ -32750,8 +32747,6 @@ MonoBehaviour:
   followTransform: {fileID: 0}
   rightHand: {fileID: 0}
   leftHand: {fileID: 0}
-  sword: {fileID: 0}
-  attackRange: 0.5
   enemyLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -33779,7 +33774,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1645919729}
-  m_LocalRotation: {x: 0.08258372, y: -0.0005210293, z: 0.000744758, w: 0.9965837}
+  m_LocalRotation: {x: 0.08258371, y: -0.0005210293, z: 0.000744758, w: 0.9965837}
   m_LocalPosition: {x: -0.005224322, y: 1.0973892, z: -3.0049305}
   m_LocalScale: {x: 1, y: 0.7037194, z: 0.9833877}
   m_ConstrainProportionsScale: 0
@@ -37560,6 +37555,9 @@ MonoBehaviour:
   sprite: {fileID: 21300000, guid: eb919e1f9c59e4e46a3062f13c6f2d34, type: 3}
   hudWeapon: {fileID: 1921779017}
   weaponInPlayer: {fileID: 0}
+  innerRange: 0
+  reloadTime: 0
+  colliding: 0
 --- !u!1 &1885451902 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 889e3aea31a13594d82698b74bc073b7, type: 3}

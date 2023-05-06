@@ -143,8 +143,6 @@ public class FirstPersonController : MonoBehaviour {
 
     bool isWalk;
 
-    public GameObject weaponContainer;
-
     private static bool attackFinished;
 
 
@@ -507,6 +505,16 @@ public class FirstPersonController : MonoBehaviour {
     }
 
     private void MovementAttacking(){
+
+        if(verticalMovement!=0 || horizontalMovement!=0){
+            walking.enabled=true;
+            running.enabled=false;
+        } else {
+            walking.enabled=false;
+            running.enabled=false;
+        }
+
+
         Vector3 eulerRotation = new Vector3(transform.eulerAngles.x, followTransform.eulerAngles.y ,  transform.eulerAngles.z);
         playerModel.rotation = Quaternion.Euler(eulerRotation);
 
@@ -587,7 +595,6 @@ public class FirstPersonController : MonoBehaviour {
         WeaponEquip currentWeapon = new WeaponEquip();
 
         if(((punchingKey) && currentStamina >= staminaAttack && pugnoAir.isPlaying==false) && controller.isGrounded && attackFinished){
-            
             foreach (WeaponEquip weapon in inventory.GetWeapons())
             {
                 if (weapon.gameObject.activeSelf)
@@ -604,12 +611,12 @@ public class FirstPersonController : MonoBehaviour {
 
                 if(noWeaponCycle==0){
                     StartCoroutine(OnTimeSound(pugnoAir, airleft, 1f, 0f));
-                    StartCoroutine(Attack(leftHand, 20, 0.1f, 0.5f, 0.2f));
+                    StartCoroutine(Attack(leftHand, 5, 0.1f, 0.5f, 0.2f));
                     anim.SetBool("altPunching", true);
                     noWeaponCycle++;
                 } else if(noWeaponCycle==1) {
                     StartCoroutine(OnTimeSound(pugnoAir, airright, 1f, 0f));
-                    StartCoroutine(Attack(rightHand, 20, 0.1f, 0.5f, 0.2f));
+                    StartCoroutine(Attack(rightHand, 5, 0.1f, 0.5f, 0.2f));
                     anim.SetBool("altPunching", false);
                     noWeaponCycle = 0;
                 }
@@ -623,8 +630,24 @@ public class FirstPersonController : MonoBehaviour {
             } else if(currentWeapon!=null){
                 Transform sword = GameObject.Find("Equip Container Weapon/" + currentWeapon.name + "/Collider").transform;    
                 StartCoroutine(OnTimeSound(pugnoAir, airleft, 1f, 0.5f));
+
+                Debug.Log(currentWeapon.name);
+
+                if(currentWeapon.name=="lancia_in_player"){
+                    anim.SetTrigger("spear");
+                } else {
+                    if(noWeaponCycle==0){
+                        anim.SetBool("altPunching", true);
+                        noWeaponCycle++;
+                    } else {
+                        anim.SetBool("altPunching", false);
+                        noWeaponCycle=0;
+                    }
+                    anim.SetTrigger("swording");
+                }
+                
                 StartCoroutine(Attack(sword, currentWeapon.damage, 1f, currentWeapon.innerRange, currentWeapon.reloadTime));
-                anim.SetTrigger("swording");
+                
 
                 if (!infiniteStamina){
                     currentStamina -= currentWeapon.stamina;
@@ -632,8 +655,6 @@ public class FirstPersonController : MonoBehaviour {
                 }
                 
             }
-            
-
                 /*case 2:
                     StartCoroutine(OnTimeSound(pugnoAir, airleft, 1f, 0.5f));
                     int rand = UnityEngine.Random.Range(0, 2);
