@@ -23,10 +23,14 @@ public class Cittadino : MonoBehaviour
     public bool pedIsDying;
     public int shelfLife;
 
+    private Transform playerTrans;
+
+    public AudioClip [] randomPhrase;
     private void Start(){
         agent = GetComponent<NavMeshAgent>();
         anim = GetComponent<Animator>();
         self = GetComponent<AudioSource>();
+        playerTrans = GameObject.Find("PlayerProtagonista").transform;
     }
 
     private void Awake(){
@@ -65,23 +69,42 @@ public class Cittadino : MonoBehaviour
 
         if (Physics.Raycast(walkPoint, -transform.up, 2f, whatIsGround))
             walkPointSet = true;
+
+
+        
+        RandomThingToSay();
     }
 
     public void StopIt(){
         if(self.isPlaying==false){
             anim.SetTrigger("gothit");
-            StartCoroutine(OnTimeSound(self, smettila, 1f, 0f));   
+            StartCoroutine(OnTimeSound(self, smettila, 1f, 0f, false));   
         }
     }
 
-    IEnumerator OnTimeSound(AudioSource src, AudioClip clp, float volume, float delay){
-        yield return new WaitForSeconds(delay);
-        src.PlayOneShot(clp, volume);
+    IEnumerator OnTimeSound(AudioSource src, AudioClip clp, float volume, float delay, bool delayAfter){
+        if(delayAfter){
+            src.PlayOneShot(clp, volume);
+            yield return new WaitForSeconds(delay);
+        } else{
+            yield return new WaitForSeconds(delay);
+            src.PlayOneShot(clp, volume);
+        }
+        
+        
     }
 
     IEnumerator CountToDeath(){
         yield return new WaitForSeconds(shelfLife);
         DestroyObject(gameObject);
+    }
+    
+    public void RandomThingToSay(){
+        float dist = Vector3.Distance(playerTrans.position, transform.position);
+        if(dist<20 && self.isPlaying==false){
+            int n = Random.Range(0, randomPhrase.Length);
+            StartCoroutine(OnTimeSound(self, randomPhrase[n], 1f, 10f, true));  
+        }
     }
     
 }

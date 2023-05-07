@@ -62,10 +62,11 @@ public class FirstPersonController : MonoBehaviour {
     public AudioClip altsalto;
     public AudioClip oldsalto;
     public AudioSource walking;
-    public AudioSource waaa;
+    public AudioClip [] hitSounds;
     public AudioSource pickupsound;
     public AudioClip picksoundclip;
     public AudioSource pugno;
+    public AudioSource hitSource;
     public AudioSource pugnoAir;
     public AudioClip airleft;
     public AudioClip airright;
@@ -279,6 +280,12 @@ public class FirstPersonController : MonoBehaviour {
     }
 
     public void TakeDamage(int damage, Transform enemyCurrent, int whoIs){ 
+        int ranInt = UnityEngine.Random.Range(0, hitSounds.Length);
+        AudioClip ranClip = hitSounds[ranInt];
+        if(hitSource.isPlaying==false){
+            hitSource.PlayOneShot(ranClip, 1);
+        }
+        
         if (isActive && !infiniteHealth){
             switch(whoIs){
                 case 1:

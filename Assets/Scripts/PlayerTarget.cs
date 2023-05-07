@@ -35,6 +35,7 @@ public class PlayerTarget : MonoBehaviour
 
     bool inAtck;
     bool rotate;
+    bool rotateUp;
 
     Vector3 targetAngles;
 
@@ -57,7 +58,6 @@ public class PlayerTarget : MonoBehaviour
 
         inAtck = Input.GetMouseButton(1);
         rotate = Input.GetMouseButton(2);
-
         
 
 
@@ -204,6 +204,7 @@ public class PlayerTarget : MonoBehaviour
         if(rotate && !inAtck){
             transform.RotateAround (transform.position, transform.up, 180f);
         }
+        
 
 
     }

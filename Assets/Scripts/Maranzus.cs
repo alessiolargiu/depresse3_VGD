@@ -292,7 +292,7 @@ public class Maranzus : MonoBehaviour
     private void DestroyEnemy(){
         self.Stop();
         whoIsAttacking=null;
-        self.PlayOneShot(hitSound);
+        self.PlayOneShot(deathSound);
         anim.SetTrigger("dying");
     }
 

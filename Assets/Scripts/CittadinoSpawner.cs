@@ -22,11 +22,11 @@ public class CittadinoSpawner : MonoBehaviour
     // Update is called once per frame
     void Update(){
         float dist = Vector3.Distance(playerTrans.position, transform.position);
-        if(dist<10  && cycleStarted==false){
-            Debug.Log("SPAwNER Sono pronto a spawnare");
+        if(dist<10 && cycleStarted==false){
             cycleStarted=true;
             StartCoroutine(SpawnCittadino());
-        } else {
+            Debug.Log("SPAwNER Sono pronto a spawnare");
+        } else if(dist>10){
             Debug.Log("SPAwNER Non sono pronto a spawnare");
             cycleStarted=false;
         }        
@@ -34,13 +34,14 @@ public class CittadinoSpawner : MonoBehaviour
 
     IEnumerator SpawnCittadino(){
         int i=0;
-        while(cycleStarted && i<=20){
-            i++;
-            int whenToSpawn = Random.Range(5, 20);
-            yield return new WaitForSeconds(whenToSpawn);
+        int whenToSpawn;
+        while(true){
             int whoToSpawn = Random.Range(0, toSpawn.Length);
-            GameObject spawned = Instantiate(toSpawn[whoToSpawn], transform.position, transform.rotation);
+            Vector3 randPos = new Vector3(Random.Range(0,20),0,Random.Range(0,20));
+            GameObject spawned = Instantiate(toSpawn[whoToSpawn], transform.position + randPos, transform.rotation);
             spawned.SetActive(true);
+            whenToSpawn = Random.Range(10, 20);
+            yield return new WaitForSeconds(whenToSpawn);
         }
 
     }
