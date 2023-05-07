@@ -131,6 +131,7 @@ public class FirstPersonController : MonoBehaviour {
     bool swordKey;
     bool potionKey;
     bool crouchKey;
+    bool rotateKey;
 
     private float lastH;
     private float lastV;
@@ -199,6 +200,8 @@ public class FirstPersonController : MonoBehaviour {
                 if(anim.GetBool("inCombat")==false){
                     virtualCam.GetCinemachineComponent<Cinemachine3rdPersonFollow>().CameraDistance=2;
                     virtualCam.GetCinemachineComponent<Cinemachine3rdPersonFollow>().ShoulderOffset = new(0, -1.80f, 0);
+                    virtualCam.GetCinemachineComponent<CinemachineComposer>().m_TrackedObjectOffset = new(0.2f, 0.5f, 0);
+                    virtualCam.m_Lens.FieldOfView = 60;
                     anim.SetBool("inCombat", inAtck);
                 }
                 MovementAttacking();
@@ -206,12 +209,14 @@ public class FirstPersonController : MonoBehaviour {
                 if(anim.GetBool("inCombat")==true){
                     virtualCam.GetCinemachineComponent<Cinemachine3rdPersonFollow>().CameraDistance=3;
                     virtualCam.GetCinemachineComponent<Cinemachine3rdPersonFollow>().ShoulderOffset = new(0, -2f, 0);
+                    virtualCam.GetCinemachineComponent<CinemachineComposer>().m_TrackedObjectOffset = new(0f, 0.5f, 0);
 
                     anim.SetBool("inCombat", inAtck);
                 }
                 anim.SetBool("inCombat", inAtck);
                 Movement();
             }
+            
             Jumping();
 
             
@@ -361,6 +366,7 @@ public class FirstPersonController : MonoBehaviour {
             jump = Input.GetKeyDown(KeyCode.Space); 
             punchingKey = Input.GetMouseButton(0);
             inAtck = Input.GetMouseButton(1);
+            rotateKey = Input.GetMouseButton(2);
             //inAtck = Input.GetMouseButtonDown(2);
             //punchingKey = Input.GetKeyUp(KeyCode.F);
             crouchKey = Input.GetKey(KeyCode.C);
@@ -421,11 +427,20 @@ public class FirstPersonController : MonoBehaviour {
 
         float asinHor = 0;
 
+
+
         //QUESTA SEZIONE DI CODICE E' SCRITTA CON IL CULO, MA NON SI CAMBIA ASSOLUTAMENTE
         //CI HO MESSO 3 GIORNI A FARLA FUNZIONARE E ORA CHE FUNZIONA NON SI TOCCA PER DUE MOTIVI:
         // - HO PAURA DI ROMPERE QUALCOSA
         // - VA LASCIATA COSI' A TESTAMENTO DI QUANTO MI SONO TRITURATO I COGLIONI
         // alessio 30/04/23
+
+        if(rotateKey){
+            horizontalMovement=0;
+            if(verticalMovement<0){
+                verticalMovement=0;
+            }
+        }
         if ((horizontalMovement != 0.0f || verticalMovement != 0.0f)) {
             asinHor =   followTransform.eulerAngles.y + Mathf.Atan2(horizontalMovement, verticalMovement) * Mathf.Rad2Deg;
             lastH=horizontalMovement;
@@ -466,14 +481,23 @@ public class FirstPersonController : MonoBehaviour {
             }
             move = transform.right * horizontalMovement + transform.forward * verticalMovement;
             move *= movementRunSpeed;
+
+            if(virtualCam.m_Lens.FieldOfView<70){
+                virtualCam.m_Lens.FieldOfView += 10 * Time.deltaTime;
+            }
+            
             if(verticalMovement>0){
                 anim.SetFloat("walking", verticalMovement,  1f, Time.deltaTime * 10f);
             } else anim.SetFloat("walking", verticalMovement*-1, 1f, Time.deltaTime * 10f );
+
             if(horizontalMovement>0){
                 anim.SetFloat("strafing", horizontalMovement, 1f, Time.deltaTime * 10f );
             } else anim.SetFloat("strafing", horizontalMovement*-1,  1f, Time.deltaTime * 10f );
         
         } else {
+            if(virtualCam.m_Lens.FieldOfView>60){
+                virtualCam.m_Lens.FieldOfView -= 10 * Time.deltaTime;
+            }
             move = transform.right * horizontalMovement + transform.forward * verticalMovement;
             move *= movementSpeed;
             if(verticalMovement>0){
@@ -694,7 +718,7 @@ public class FirstPersonController : MonoBehaviour {
 
         Debug.Log("ADJUSTCAMERA Euler " + newEuler + " old " + newOld + " equals? " + (newEuler==newOld));
 
-        if(newEuler!=newOld && (verticalMovement!=0 || horizontalMovement!=0 || punchingKey)){
+        if(newEuler!=newOld && (verticalMovement!=0 || horizontalMovement!=0 || punchingKey) && !rotateKey){
 
             float test = followTransform.eulerAngles.y;
             float asinHor = Mathf.Atan2(horizontalMovement, verticalMovement) * Mathf.Rad2Deg;

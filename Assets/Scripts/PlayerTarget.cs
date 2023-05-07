@@ -33,6 +33,11 @@ public class PlayerTarget : MonoBehaviour
     public bool isThereGigante;
     public Transform gigante;
 
+    bool inAtck;
+    bool rotate;
+
+    Vector3 targetAngles;
+
 
     [Header("DEBUG")]
     public bool usingCameraFancy;
@@ -49,6 +54,13 @@ public class PlayerTarget : MonoBehaviour
     }
 
     void LateUpdate(){
+
+        inAtck = Input.GetMouseButton(1);
+        rotate = Input.GetMouseButton(2);
+
+        
+
+
         if (target){
 
         //horizontalMovement = Input.GetAxis("Horizontal");
@@ -64,16 +76,24 @@ public class PlayerTarget : MonoBehaviour
 
             // Update the camera position based on the mouse input
             x += Input.GetAxis("Mouse X") * xSpeed * 1 * Time.deltaTime;
-            y -= Input.GetAxis("Mouse Y") * ySpeed * Time.deltaTime;
+
+            if(inAtck==false){
+                y -= Input.GetAxis("Mouse Y") * ySpeed * Time.deltaTime;
+                y -= rightVertical * ySpeed * Time.deltaTime;
+
+            } else{
+                y=0;
+            }
+            
 
 
             x += rightHorizontal * xSpeed * 1 * Time.deltaTime;
-            y -= rightVertical * ySpeed * Time.deltaTime;
-
+            
 
             
 
             y = ClampAngle(y, yMinLimit, yMaxLimit);
+            
             Quaternion rotation = lockedRotation * Quaternion.Euler(y, x, 0);
 
             // Update the distance from the player based on the mouse scrollwheel input
@@ -179,6 +199,13 @@ public class PlayerTarget : MonoBehaviour
             transform.rotation = rotation;
             prevPos = transform.position;*/
         }
+
+
+        if(rotate && !inAtck){
+            transform.RotateAround (transform.position, transform.up, 180f);
+        }
+
+
     }
 
     // Helper function to clamp an angle between a minimum and maximum value

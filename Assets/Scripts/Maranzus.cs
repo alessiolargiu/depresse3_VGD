@@ -224,8 +224,9 @@ public class Maranzus : MonoBehaviour
     }
 
     public float TakeDamage(int damage){
+        bastardo=true;
         awareOfPlayer=true;
-       if(health>0){
+        if(health>0){
             anim.SetTrigger("gothit");
             self.Stop();
             self.PlayOneShot(hitSound);
