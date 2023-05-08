@@ -26,6 +26,7 @@ public class Cittadino : MonoBehaviour
     private Transform playerTrans;
 
     public AudioClip [] randomPhrase;
+    private bool justTalked;
     private void Start(){
         agent = GetComponent<NavMeshAgent>();
         anim = GetComponent<Animator>();
@@ -101,9 +102,19 @@ public class Cittadino : MonoBehaviour
     
     public void RandomThingToSay(){
         float dist = Vector3.Distance(playerTrans.position, transform.position);
-        if(dist<20 && self.isPlaying==false){
+
+        if(dist<20){
+            Debug.Log("distanza npc " + dist);
+        }
+        
+        if(dist<20 && self.isPlaying==false && justTalked==false){ 
             int n = Random.Range(0, randomPhrase.Length);
-            StartCoroutine(OnTimeSound(self, randomPhrase[n], 1f, 10f, true));  
+            StartCoroutine(OnTimeSound(self, randomPhrase[n], 1f, 3f, false)); 
+            justTalked=true; 
+        }
+
+        if(dist>20){
+            justTalked=false;
         }
     }
     
