@@ -3,7 +3,22 @@ guid: e8ce86419c3c367418a60b3b34b14528
 ModelImporter:
   serializedVersion: 21300
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: dark_green_leaf
+    second: {fileID: 2100000, guid: 7f742d1d96709474ea33be9bb45eb87f, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: light_green_leaf
+    second: {fileID: 2100000, guid: 7f742d1d96709474ea33be9bb45eb87f, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: tree_stem1
+    second: {fileID: 2100000, guid: 40b31b2c61f7d444fbddf84e5dcb4351, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0

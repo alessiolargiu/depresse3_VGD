@@ -17,15 +17,16 @@ public class CittadinoSpawner : MonoBehaviour
         
         player = GameObject.Find("protagonista");
         playerTrans = player.transform;
+        StartCoroutine(SpawnCittadinoStart());
     }
 
     // Update is called once per frame
     void Update(){
         float dist = Vector3.Distance(playerTrans.position, transform.position);
         if(dist<10 && cycleStarted==false){
-            cycleStarted=true;
             StartCoroutine(SpawnCittadino());
             Debug.Log("SPAwNER Sono pronto a spawnare");
+            cycleStarted=true;
         } else if(dist>10){
             Debug.Log("SPAwNER Non sono pronto a spawnare");
             cycleStarted=false;
@@ -35,14 +36,28 @@ public class CittadinoSpawner : MonoBehaviour
     IEnumerator SpawnCittadino(){
         int i=0;
         int whenToSpawn;
-        while(true){
+        while(cycleStarted==false){
+            int whoToSpawn = Random.Range(0, toSpawn.Length);
+            Vector3 randPos = new Vector3(Random.Range(0,20),0,Random.Range(0,20));
+            GameObject spawned = Instantiate(toSpawn[whoToSpawn], transform.position + randPos, transform.rotation);
+            spawned.SetActive(true);
+            whenToSpawn = Random.Range(10, 30);
+            yield return new WaitForSeconds(whenToSpawn);
+        }
+
+    }
+
+    IEnumerator SpawnCittadinoStart(){
+        int i=0;
+        int whenToSpawn;
+        while(i<3){
             int whoToSpawn = Random.Range(0, toSpawn.Length);
             Vector3 randPos = new Vector3(Random.Range(0,20),0,Random.Range(0,20));
             GameObject spawned = Instantiate(toSpawn[whoToSpawn], transform.position + randPos, transform.rotation);
             spawned.SetActive(true);
             whenToSpawn = Random.Range(10, 20);
-            yield return new WaitForSeconds(whenToSpawn);
+            i++;
         }
-
+        yield return null;
     }
 }

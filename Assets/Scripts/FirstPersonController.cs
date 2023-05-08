@@ -150,6 +150,10 @@ public class FirstPersonController : MonoBehaviour {
 
     private Transform curposdebug;
 
+    private Transform oldPosShield;
+
+    private bool shieldAvailable;
+
     void Start(){   
         controller = GetComponent<CharacterController>();
         Cursor.lockState = CursorLockMode.Locked;
@@ -183,7 +187,7 @@ public class FirstPersonController : MonoBehaviour {
         hudInvChest.SetInventory(inventory);
         running.enabled=false;
         walking.enabled=false;
-
+        shieldAvailable=true;
         verticalMovement=1;
     }
 
@@ -243,7 +247,7 @@ public class FirstPersonController : MonoBehaviour {
 
     }
 
-    public int DamageCalculation(int initialDamage)
+    public int DamageCalculation(float initialDamage)
     { 
         
         int damage = 0;
@@ -279,7 +283,39 @@ public class FirstPersonController : MonoBehaviour {
         return damage;
     }
 
-    public void TakeDamage(int damage, Transform enemyCurrent, int whoIs){ 
+    public void TakeDamage(float damage, Transform enemyCurrent, int whoIs){ 
+
+        ShieldEquip currentShield = new ShieldEquip();
+        float valoreProtezione = 1;
+        
+        foreach (ShieldEquip shield in inventory.GetShields()){
+                if (shield.gameObject.activeSelf)
+                {
+                    currentShield = shield;
+                }
+            }
+
+        if(inAtck && currentShield.shieldValue!=0 && shieldAvailable){
+
+            valoreProtezione=currentShield.shieldValue;
+        } else if(currentShield.shieldValue==0 && inAtck && shieldAvailable){
+            valoreProtezione=0.9f;
+        } 
+
+        AnimatorClipInfo[] animatorinfo = this.anim.GetCurrentAnimatorClipInfo(0);
+        String current_animation = animatorinfo[0].clip.name;
+
+        if(current_animation!="incazzato nero"){
+            valoreProtezione=1;
+        }
+
+        
+
+        Debug.Log("Sto difendendo "  + current_animation);
+        Debug.Log("Sto difendendo, il valore è " + valoreProtezione);
+        Debug.Log("Sto difendendo, il valore del danno è " + damage*valoreProtezione);
+
+        
         int ranInt = UnityEngine.Random.Range(0, hitSounds.Length);
         AudioClip ranClip = hitSounds[ranInt];
         if(hitSource.isPlaying==false){
@@ -291,17 +327,17 @@ public class FirstPersonController : MonoBehaviour {
                 case 1:
                     followTransform.GetComponent<PlayerTarget>().SetAttackMode(true, enemyCurrent);
                     enemyCurrent.GetComponent<Maranzus>().setActiveEnemy(true);
-                    currentHealth -= DamageCalculation(damage);
+                    currentHealth -= DamageCalculation(damage*valoreProtezione);
                     anim.SetTrigger("gothit");
                     healthBar.SetHealth(currentHealth);
                     break;
                 case 2:
-                    currentHealth -= DamageCalculation(damage);
+                    currentHealth -= DamageCalculation(damage*valoreProtezione);
                     anim.SetTrigger("gothit");
                     healthBar.SetHealth(currentHealth);
                     break;
                 case 3:
-                    currentHealth -= DamageCalculation(damage);
+                    currentHealth -= DamageCalculation(damage*valoreProtezione);
                     anim.SetTrigger("gothit");
                     healthBar.SetHealth(currentHealth);
                     break;
@@ -394,6 +430,7 @@ public class FirstPersonController : MonoBehaviour {
                 {
                     if(potion.isEquiped && potion.potionNumber > 0 && currentHealth < 100)
                     {
+                        anim.SetTrigger("potion");
                         currentHealth += potion.cureValue;
                         if(currentHealth > 100) { 
                             currentHealth = 100; 
@@ -536,6 +573,23 @@ public class FirstPersonController : MonoBehaviour {
     }
 
     private void MovementAttacking(){
+        
+        
+        ShieldEquip currentShield = new ShieldEquip();
+        GameObject shieldGO;
+        foreach (ShieldEquip shield in inventory.GetShields()){
+                if (shield.gameObject.activeSelf){
+                    currentShield = shield;
+                }
+            }
+            
+            if(currentShield==null){
+                shieldGO=null;
+            }
+        else shieldGO = GameObject.Find("Equip Container Shield/" + currentShield.name );  
+
+        //shieldGO.transform.Rotate(10,10,10);
+
 
         if(verticalMovement!=0 || horizontalMovement!=0){
             walking.enabled=true;
@@ -624,15 +678,32 @@ public class FirstPersonController : MonoBehaviour {
 
         
         WeaponEquip currentWeapon = new WeaponEquip();
+        ShieldEquip currentShield = new ShieldEquip();
+
+        GameObject shieldGO;
 
         if(((punchingKey) && currentStamina >= staminaAttack && pugnoAir.isPlaying==false) && controller.isGrounded && attackFinished){
             foreach (WeaponEquip weapon in inventory.GetWeapons())
-            {
+            { 
                 if (weapon.gameObject.activeSelf)
                 {
                     currentWeapon = weapon;
                 }
             }
+
+            foreach (ShieldEquip shield in inventory.GetShields())
+            {
+                if (shield.gameObject.activeSelf)
+                {
+                    currentShield = shield;
+                }
+            }
+            
+            if(currentShield==null){
+                shieldGO=null;
+            }
+            else shieldGO = GameObject.Find("Equip Container Shield/" + currentShield.name );  
+
 
             AnimatorClipInfo[] animatorinfo = this.anim.GetCurrentAnimatorClipInfo(0);
             string current_animation = animatorinfo[0].clip.name;
@@ -642,12 +713,12 @@ public class FirstPersonController : MonoBehaviour {
 
                 if(noWeaponCycle==0){
                     StartCoroutine(OnTimeSound(pugnoAir, airleft, 1f, 0f));
-                    StartCoroutine(Attack(leftHand, 5, 0.1f, 0.5f, 0.2f));
+                    StartCoroutine(Attack(leftHand, 5, 0.1f, 0.5f, 0.2f, shieldGO));
                     anim.SetBool("altPunching", true);
                     noWeaponCycle++;
                 } else if(noWeaponCycle==1) {
                     StartCoroutine(OnTimeSound(pugnoAir, airright, 1f, 0f));
-                    StartCoroutine(Attack(rightHand, 5, 0.1f, 0.5f, 0.2f));
+                    StartCoroutine(Attack(rightHand, 5, 0.1f, 0.5f, 0.2f, shieldGO));
                     anim.SetBool("altPunching", false);
                     noWeaponCycle = 0;
                 }
@@ -677,7 +748,7 @@ public class FirstPersonController : MonoBehaviour {
                     anim.SetTrigger("swording");
                 }
                 
-                StartCoroutine(Attack(sword, currentWeapon.damage, 1f, currentWeapon.innerRange, currentWeapon.reloadTime));
+                StartCoroutine(Attack(sword, currentWeapon.damage, 1f, currentWeapon.innerRange, currentWeapon.reloadTime, shieldGO));
                 
 
                 if (!infiniteStamina){
@@ -742,8 +813,12 @@ public class FirstPersonController : MonoBehaviour {
     }
 
 
-    IEnumerator Attack(Transform attackPoint, int dmg, float time, float attackRange, float timeToReload){
-
+    IEnumerator Attack(Transform attackPoint, int dmg, float time, float attackRange, float timeToReload, GameObject sh){
+        shieldAvailable=false;
+        if(sh!=null){ 
+            meshDisabler(sh.transform);
+        }
+        
         curposdebug = attackPoint;
         attackFinished=false;
         verticalMovement=0;
@@ -798,12 +873,20 @@ public class FirstPersonController : MonoBehaviour {
         }
         //yield return new WaitForSeconds(0.5f);
         attackFinished=true;
+
+        if(sh!=null){
+            meshEnabler(sh.transform);
+            //sh.SetActive(true);
+        }
+        shieldAvailable=true;
+        
     }
 
     IEnumerator OnTimeSound(AudioSource src, AudioClip clp, float volume, float delay){
         yield return new WaitForSeconds(delay);
         src.PlayOneShot(clp, volume);
     }
+
 
     public void SetActiveInternal(bool what){
         isActive=what;
@@ -822,5 +905,28 @@ public class FirstPersonController : MonoBehaviour {
         //Use the same vars you use to draw your Overlap SPhere to draw your Wire Sphere.
         //Gizmos.DrawWireSphere (transform.position + curposdebug.position, attackRange);
     }
-    
+
+
+    private void meshDisabler(Transform t) {
+        if (t.childCount > 0) {
+            foreach (Transform child in t) {
+                meshDisabler(child);
+            }
+        }
+        if(t.gameObject.GetComponent<Renderer>()!=null){
+            t.gameObject.GetComponent<Renderer>().enabled = false;
+        }
+    }
+
+    private void meshEnabler(Transform t) {
+        if (t.childCount > 0) {
+            foreach (Transform child in t) {
+                meshEnabler(child);
+            }
+        }
+        if(t.gameObject.GetComponent<Renderer>()!=null){
+            t.gameObject.GetComponent<Renderer>().enabled = true;
+        }
+        
+    }
 }
