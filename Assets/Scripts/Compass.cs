@@ -12,15 +12,13 @@ public class Compass : MonoBehaviour
     public GameObject iconPrefab;
     List<QuestMarker> questMarkers = new List<QuestMarker>();
 
-    public QuestMarker test;
-
     public float maxDistance = 200f;
 
     // Start is called before the first frame update
     void Start()
     {
         compassUnit = compassImage.rectTransform.rect.width / 360;
-        AddQuestMarker(test);
+        //AddQuestMarker(test);
     }
 
     // Update is called once per frame

@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class IncontroMaranza : MonoBehaviour
@@ -10,11 +11,16 @@ public class IncontroMaranza : MonoBehaviour
     public GameObject [] maranzus;
     public GameObject cutscenefinale;
 
+    private TMP_Text missionText;
+
     bool stop;
 
     void Start()
     {
         stop = false;
+        missionText = GameObject.Find("Mission Text").GetComponentInChildren<TMP_Text>();
+        missionText.gameObject.SetActive(true); 
+        missionText.text = "Hai iniziato la prima missione. Uccidi i maranzus.";
         Debug.Log("Hai iniziato la missione");
         containerMissione.SetActive(true);
     }
@@ -35,6 +41,7 @@ public class IncontroMaranza : MonoBehaviour
 
         if(stop){
             Debug.Log("Hai finito la missione");
+            missionText.gameObject.SetActive(false);
             DestroyObject(containerMissione);
             cutscenefinale.SetActive(true);
             StartCoroutine(cutscenefinale.GetComponent<CutSceneScript>().cutsceneStart((paolino) => {if(paolino){DestroyObject(gameObject);}}));
