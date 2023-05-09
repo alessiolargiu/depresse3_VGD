@@ -154,6 +154,8 @@ public class FirstPersonController : MonoBehaviour {
 
     private bool shieldAvailable;
 
+    private bool dontMove;
+
     void Start(){   
         controller = GetComponent<CharacterController>();
         Cursor.lockState = CursorLockMode.Locked;
@@ -175,6 +177,7 @@ public class FirstPersonController : MonoBehaviour {
     }
 
     private void Awake(){
+        dontMove=false;
         inventory = new Inventory();
         inventory.player = this;
         //inserisco gli elementi di base dell'inventario
@@ -201,6 +204,7 @@ public class FirstPersonController : MonoBehaviour {
             AudioEnvCheck();
             EnemyRangeCheck();
             Debug.Log("Valore di inAtck " + inAtck);
+
             if(inAtck){
                 if(anim.GetBool("inCombat")==false){
                     virtualCam.GetCinemachineComponent<Cinemachine3rdPersonFollow>().CameraDistance=2;
@@ -567,8 +571,9 @@ public class FirstPersonController : MonoBehaviour {
         }
             
         
-        
-        controller.Move(move * Time.deltaTime);
+        if(dontMove==false){
+            controller.Move(move * Time.deltaTime);
+        }
         controller.Move(velocity * Time.deltaTime);
     }
 
@@ -612,7 +617,10 @@ public class FirstPersonController : MonoBehaviour {
         transform.Rotate(Vector3.up * horizontalMovement*0.2f);
         transform.Rotate(Vector3.up * mouseX*0.2f);
 
-        controller.Move(move * Time.deltaTime);
+        if(dontMove==false){
+            controller.Move(move * Time.deltaTime);
+        }
+        
         controller.Move(velocity * Time.deltaTime);
     }
 
@@ -710,19 +718,38 @@ public class FirstPersonController : MonoBehaviour {
             Debug.Log("animazione corrente " + current_animation);
 
             if(currentWeapon==null) {
-
-                if(noWeaponCycle==0){
+                switch(noWeaponCycle){
+                    case 0:
                     StartCoroutine(OnTimeSound(pugnoAir, airleft, 1f, 0f));
-                    StartCoroutine(Attack(leftHand, 5, 0.1f, 0.5f, 0.2f, shieldGO));
+                    StartCoroutine(Attack(leftHand, 5, 0.1f, 0.5f, 0.2f, shieldGO, false));
                     anim.SetBool("altPunching", true);
+                    anim.SetTrigger("punching");
                     noWeaponCycle++;
-                } else if(noWeaponCycle==1) {
+                    break;
+                    
+                    case 1:
                     StartCoroutine(OnTimeSound(pugnoAir, airright, 1f, 0f));
-                    StartCoroutine(Attack(rightHand, 5, 0.1f, 0.5f, 0.2f, shieldGO));
+                    StartCoroutine(Attack(rightHand, 5, 0.1f, 0.5f, 0.2f, shieldGO, false));
                     anim.SetBool("altPunching", false);
-                    noWeaponCycle = 0;
+                    anim.SetTrigger("punching");
+                    noWeaponCycle++;
+                    break;
+
+                    case 2:
+                    StartCoroutine(OnTimeSound(pugnoAir, airleft, 1f, 0.5f));
+                    int rand = UnityEngine.Random.Range(0, 2);
+                    if(rand==1){
+                        anim.SetBool("altPunching", false);
+                        StartCoroutine(Attack(legR, 10, 0.5f, 0.5f, 0.8f, shieldGO, true));
+                    } else {
+                        anim.SetBool("altPunching", true);
+                        StartCoroutine(Attack(legL, 10, 0.5f, 0.5f, 0.8f, shieldGO, true));
+                    }
+                    anim.SetTrigger("kicking");
+                    noWeaponCycle =0;
+                    break;
+
                 }
-                anim.SetTrigger("punching");
                 
                 if (!infiniteStamina){
                     currentStamina -= staminaAttack;
@@ -738,17 +765,35 @@ public class FirstPersonController : MonoBehaviour {
                 if(currentWeapon.name=="lancia_in_player"){
                     anim.SetTrigger("spear");
                 } else {
-                    if(noWeaponCycle==0){
+
+                    switch(noWeaponCycle){
+                        case 0:
                         anim.SetBool("altPunching", true);
+                        anim.SetTrigger("swording");
+                        StartCoroutine(Attack(sword, currentWeapon.damage, 1f, currentWeapon.innerRange, currentWeapon.reloadTime, shieldGO, false));
                         noWeaponCycle++;
-                    } else {
+                        break;
+
+
+                        case 1:
                         anim.SetBool("altPunching", false);
+                        anim.SetTrigger("swording");
+                        StartCoroutine(Attack(sword, currentWeapon.damage, 1f, currentWeapon.innerRange, currentWeapon.reloadTime, shieldGO, false));
+                        noWeaponCycle++;
+                        break;
+
+                        case 2:
+                        anim.SetTrigger("swordpesante");
+                        StartCoroutine(Attack(sword, currentWeapon.damage, 1f, currentWeapon.innerRange, currentWeapon.reloadTime, shieldGO, true));
                         noWeaponCycle=0;
+                        break;
+
+
                     }
-                    anim.SetTrigger("swording");
+                    
                 }
                 
-                StartCoroutine(Attack(sword, currentWeapon.damage, 1f, currentWeapon.innerRange, currentWeapon.reloadTime, shieldGO));
+                
                 
 
                 if (!infiniteStamina){
@@ -813,7 +858,11 @@ public class FirstPersonController : MonoBehaviour {
     }
 
 
-    IEnumerator Attack(Transform attackPoint, int dmg, float time, float attackRange, float timeToReload, GameObject sh){
+    IEnumerator Attack(Transform attackPoint, int dmg, float time, float attackRange, float timeToReload, GameObject sh, bool blockMove){
+
+        if(blockMove){
+            dontMove=true;
+        }
         shieldAvailable=false;
         if(sh!=null){ 
             meshDisabler(sh.transform);
@@ -851,7 +900,7 @@ public class FirstPersonController : MonoBehaviour {
             bangFX.transform.position=attackPoint.position;
             yield return new WaitForSeconds(timeToReload);
             bangFX.SetActive(false);
-
+            dontMove=false;
         }
 
         foreach(Collider gigante in hitGigante){
@@ -879,6 +928,11 @@ public class FirstPersonController : MonoBehaviour {
             //sh.SetActive(true);
         }
         shieldAvailable=true;
+
+        if(blockMove){
+            yield return new WaitForSeconds(time);
+            dontMove=false;
+        }
         
     }
 
