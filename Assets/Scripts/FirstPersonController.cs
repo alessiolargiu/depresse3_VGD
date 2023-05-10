@@ -94,6 +94,7 @@ public class FirstPersonController : MonoBehaviour {
     public LayerMask enemyLayers;
     public LayerMask enemyGiganteLayers;
     public LayerMask cittadinoLayers;
+    public LayerMask acqua;
 
     private Collider prevCol;
 
@@ -367,7 +368,20 @@ public class FirstPersonController : MonoBehaviour {
 
         } 
 
+        if(other.gameObject.layer == acqua){
+            Debug.Log("sto toccando acqua");
+            TakeDamage(100, transform, 0);
+        }
+
     }
+
+    void OnCollisionEnter(Collision collision){
+        if(collision.gameObject.layer == acqua){
+            Debug.Log("sto toccando acqua");
+            TakeDamage(100, transform, 0);
+        }
+     }
+
 
     private void AudioEnvCheck(){
         if(controller.isGrounded==false){
