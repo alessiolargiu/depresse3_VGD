@@ -8,6 +8,7 @@ public class HUDInventoryShield : MonoBehaviour
 {
 
     private Inventory inventory;
+    private List<int> availableShields;
     public GameObject invObject1;
     public Image objectImage1;
     public TMP_Text objectText1;
@@ -18,33 +19,65 @@ public class HUDInventoryShield : MonoBehaviour
     public Image objectImage3;
     public TMP_Text objectText3;
 
-    public void SetInventory(Inventory inventory)
+    public void SetInventory(Inventory inventory, List<int> availableShields)
     {
         this.inventory = inventory;
+        this.availableShields = availableShields;
         RefreshInventoryItems();
     }
 
-    private void RefreshInventoryItems()
+    public void RefreshInventoryItems()
     {
         foreach (ShieldEquip shield in inventory.GetShields())
         {
-            switch (shield.index)
+            if (!GameObject.Find("GameManager").GetComponent<GameManager>().fullEquip)
             {
-                case 1:
-                    invObject1.SetActive(true);
-                    objectImage1.sprite = shield.sprite;
-                    objectText1.text = shield.nomeEquip;
-                    break;
-                case 2:
-                    invObject2.SetActive(true);
-                    objectImage2.sprite = shield.sprite;
-                    objectText2.text = shield.nomeEquip;
-                    break;
-                case 3:
-                    invObject3.SetActive(true);
-                    objectImage3.sprite = shield.sprite;
-                    objectText3.text = shield.nomeEquip;
-                    break;
+                foreach (int i in availableShields)
+                {
+                    //se un'elmo è disponbile allora lo mostro in HUD
+                    if (shield.index == i)
+                    {
+                        switch (shield.index)
+                        {
+                            case 1:
+                                invObject1.SetActive(true);
+                                objectImage1.sprite = shield.sprite;
+                                objectText1.text = shield.nomeEquip;
+                                break;
+                            case 2:
+                                invObject2.SetActive(true);
+                                objectImage2.sprite = shield.sprite;
+                                objectText2.text = shield.nomeEquip;
+                                break;
+                            case 3:
+                                invObject3.SetActive(true);
+                                objectImage3.sprite = shield.sprite;
+                                objectText3.text = shield.nomeEquip;
+                                break;
+                        }
+                    }
+                }
+            }
+            else
+            {
+                switch (shield.index)
+                {
+                    case 1:
+                        invObject1.SetActive(true);
+                        objectImage1.sprite = shield.sprite;
+                        objectText1.text = shield.nomeEquip;
+                        break;
+                    case 2:
+                        invObject2.SetActive(true);
+                        objectImage2.sprite = shield.sprite;
+                        objectText2.text = shield.nomeEquip;
+                        break;
+                    case 3:
+                        invObject3.SetActive(true);
+                        objectImage3.sprite = shield.sprite;
+                        objectText3.text = shield.nomeEquip;
+                        break;
+                }
             }
         }
     }

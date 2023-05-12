@@ -9,9 +9,6 @@ using Cinemachine;
 
 [RequireComponent(typeof(AudioSource))]
 public class FirstPersonController : MonoBehaviour {
-    
-
-    
 
     public bool isActive = true;
     //Component utili
@@ -46,11 +43,25 @@ public class FirstPersonController : MonoBehaviour {
     public HUDInventoryPotion hudInvPotion;
     public HUDInventoryHelmet hudInvHelmet;
     public HUDInventoryChest hudInvChest;
+
+    public List<WeaponEquip> weapons;
+    public List<ShieldEquip> shields;
+    public List<PotionEquip> potions;
+    public List<HelmetEquip> helmets;
+    public List<ChestEquip> chests;
+
+    private List<int> availableWeapons = new List<int>();
+    private List<int> availableShields = new List<int>();
+    private List<int> availableChests = new List<int>();
+    private List<int> availableHelmets = new List<int>();
+    private List<int> availablePotions = new List<int>();
+
     //riferimenti al numero di pozioni in HUD
     public TMP_Text numPozioniSlot1;
     public TMP_Text numPozioniSlot2;
     public TMP_Text numPozioniSlot3;
 
+    private GameManager gameManager;
 
     //Parametri partita
     private int score = 0;
@@ -118,8 +129,6 @@ public class FirstPersonController : MonoBehaviour {
 
     //userflag
     public bool usingController;
-    public bool infiniteStamina = false;
-    public bool infiniteHealth = false;
 
     //inputs
     bool jump;
@@ -181,14 +190,37 @@ public class FirstPersonController : MonoBehaviour {
         dontMove=false;
         inventory = new Inventory();
         inventory.player = this;
-        //inserisco gli elementi di base dell'inventario
+
+        foreach(HelmetEquip h in helmets)
+        {
+            inventory.AddHelmet(h);
+        }
+        foreach (ChestEquip c in chests)
+        {
+            inventory.AddChest(c);
+        }
+        foreach (WeaponEquip w in weapons)
+        {
+            inventory.AddWeapon(w);
+        }
+        foreach (ShieldEquip s in shields)
+        {
+            inventory.AddShield(s);
+        }
+        /*foreach (PotionEquip p in potions)
+        {
+            inventory.AddPotion(p);
+        }*/
 
         //imposto l'HUD per l'inventario
-        hudInvWeapon.SetInventory(inventory);
-        hudInvShield.SetInventory(inventory);
-        hudInvPotion.SetInventory(inventory);
-        hudInvHelmet.SetInventory(inventory);
-        hudInvChest.SetInventory(inventory);
+        hudInvWeapon.SetInventory(inventory, availableWeapons);
+        hudInvShield.SetInventory(inventory, availableShields);
+        hudInvPotion.SetInventory(inventory, availablePotions);
+        hudInvHelmet.SetInventory(inventory, availableHelmets);
+        hudInvChest.SetInventory(inventory, availableChests);
+
+        gameManager = FindObjectOfType<GameManager>();
+
         running.enabled=false;
         walking.enabled=false;
         shieldAvailable=true;
@@ -327,7 +359,7 @@ public class FirstPersonController : MonoBehaviour {
             hitSource.PlayOneShot(ranClip, 1);
         }
         
-        if (isActive && !infiniteHealth){
+        if (isActive && !gameManager.vitaInfinita){
             switch(whoIs){
                 case 1:
                     followTransform.GetComponent<PlayerTarget>().SetAttackMode(true, enemyCurrent);
@@ -536,7 +568,7 @@ public class FirstPersonController : MonoBehaviour {
 
         if((shift) && currentStamina > 0 && (verticalMovement!=0f || horizontalMovement!=0f) && controller.isGrounded || momentum!=0f){
 
-            if (!infiniteStamina)
+            if (!gameManager.staminaInfinita)
             {
                 currentStamina -= 2 * Time.deltaTime;
                 staminaBar.SetStamina(currentStamina);
@@ -658,7 +690,7 @@ public class FirstPersonController : MonoBehaviour {
                 controller.Move(velocity * Time.deltaTime);
                 controller.Move(move * Time.deltaTime);
                 anim.SetTrigger("jumpTrigger");
-                if (!infiniteStamina)
+                if (!gameManager.staminaInfinita)
                 {
                     currentStamina -= staminaJump;
                     staminaBar.SetStamina(currentStamina);
@@ -681,7 +713,7 @@ public class FirstPersonController : MonoBehaviour {
                 controller.Move(velocity * Time.deltaTime);
                 //controller.Move(move * Time.deltaTime);
                 anim.SetTrigger("jumpTrigger");
-                if (!infiniteStamina)
+                if (!gameManager.staminaInfinita)
                 {
                     currentStamina -= staminaJump;
                     staminaBar.SetStamina(currentStamina);
@@ -765,7 +797,7 @@ public class FirstPersonController : MonoBehaviour {
 
                 }
                 
-                if (!infiniteStamina){
+                if (!gameManager.staminaInfinita){
                     currentStamina -= staminaAttack;
                     staminaBar.SetStamina(currentStamina);
                 }
@@ -809,8 +841,8 @@ public class FirstPersonController : MonoBehaviour {
                 
                 
                 
-
-                if (!infiniteStamina){
+                    
+                if (!gameManager.staminaInfinita){
                     currentStamina -= currentWeapon.stamina;
                     staminaBar.SetStamina(currentStamina);
                 }
@@ -827,7 +859,7 @@ public class FirstPersonController : MonoBehaviour {
                         StartCoroutine(Attack(legL, 40, 0.5f));
                     }
                     anim.SetTrigger("kicking");
-                    if (!infiniteStamina)
+                    if (!infiniteHealth)
                     {
                         currentStamina -= staminaAttack;
                         staminaBar.SetStamina(currentStamina);
@@ -996,5 +1028,27 @@ public class FirstPersonController : MonoBehaviour {
             t.gameObject.GetComponent<Renderer>().enabled = true;
         }
         
+    }
+
+    public List<int> GetAvailableHelmets()
+    {
+        return availableHelmets;
+    }
+
+    public List<int> GetAvailableChests()
+    {
+        return availableChests;
+    }
+    public List<int> GetAvailableWeapons()
+    {
+        return availableWeapons;
+    }
+    public List<int> GetAvailableShields()
+    {
+        return availableShields;
+    }
+    public List<int> GetAvailablePotions()
+    {
+        return availablePotions;
     }
 }

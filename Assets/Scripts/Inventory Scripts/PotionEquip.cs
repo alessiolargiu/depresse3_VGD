@@ -17,9 +17,11 @@ public class PotionEquip : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        this.gameObject.SetActive(false);
-        Inventory inv = player.GetInventory();
-        inv.AddPotion(this);
-        hudPotion.SetInventory(inv);
+        if (other.tag.Equals("player"))
+        {
+            this.gameObject.SetActive(false);
+            player.GetAvailablePotions().Add(this.index);
+            hudPotion.SetInventory(player.GetInventory(), player.GetAvailablePotions());
+        }
     }
 }

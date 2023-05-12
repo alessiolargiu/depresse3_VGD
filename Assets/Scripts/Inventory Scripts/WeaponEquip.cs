@@ -22,12 +22,20 @@ public class WeaponEquip : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        weaponInPlayer.index = weaponIndex;
-        weaponIndex++;
-        this.gameObject.SetActive(false);
-        Inventory inv = player.GetInventory();
-        inv.AddWeapon(weaponInPlayer);
-        hudWeapon.SetInventory(inv);
+        if (other.tag.Equals("player"))
+        {
+            if (weaponInPlayer.index != 0)
+            {
+                this.gameObject.SetActive(false);
+
+            }
+            else
+            {
+                this.GetComponent<BoxCollider>().isTrigger = false;
+            }
+            player.GetAvailableWeapons().Add(weaponInPlayer.index);
+            hudWeapon.SetInventory(player.GetInventory(), player.GetAvailableWeapons());
+        }
     }
 
 }

@@ -13,7 +13,11 @@ public class OptionMenu : MonoBehaviour
     public Slider volume;
     public Slider sensibility;
 
-    public Cheats cheat;
+    public HUDInventoryHelmet hudHelmet;
+    public HUDInventoryChest hudChest;
+    public HUDInventoryWeapon hudWeapon;
+    public HUDInventoryShield hudShield;
+    public HUDInventoryPotion hudPotion;
 
     public Toggle vitaInfinitaToggle;
     public Toggle staminaInfinitaToggle;
@@ -34,6 +38,7 @@ public class OptionMenu : MonoBehaviour
         {
             vsync.isOn = true;
         }
+        volume.value = AudioListener.volume * 100;
     }
 
     // Update is called once per frame
@@ -62,23 +67,23 @@ public class OptionMenu : MonoBehaviour
                 break;
         }
 
-        if(cheat != null)
+        gameManager.vitaInfinita = vitaInfinitaToggle.isOn;
+        gameManager.staminaInfinita = staminaInfinitaToggle.isOn;
+        gameManager.fullEquip = fullEquipToggle.isOn;
+        gameManager.sensibilita = (int)sensibility.value;
+
+        FindObjectOfType<FirstPersonController>().mouseSens = gameManager.sensibilita;
+
+        if (fullEquipToggle.isOn)
         {
-            cheat.infiniteHealth = vitaInfinitaToggle.isOn;
-            cheat.infiniteStamina = staminaInfinitaToggle.isOn;
-            cheat.getAllEquip = fullEquipToggle.isOn;
-        }
-        else
-        {
-            gameManager.vitaInfinita = vitaInfinitaToggle.isOn;
-            gameManager.staminaInfinita = staminaInfinitaToggle.isOn;
-            gameManager.fullEquip = fullEquipToggle.isOn;
+            hudHelmet.RefreshInventoryItems();
+            hudChest.RefreshInventoryItems();
+            hudWeapon.RefreshInventoryItems();
+            hudShield.RefreshInventoryItems();
+            hudPotion.RefreshInventoryItems();
         }
 
-
-        //gameManager.sensibilit� = (int)sensibility.value;
-
-        AudioListener.volume = volume.value;
+        AudioListener.volume = (volume.value / 100);
 
     }
 

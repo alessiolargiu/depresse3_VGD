@@ -5,7 +5,6 @@ using UnityEngine;
 public class ChestEquip : MonoBehaviour
 {
 
-    public static int chestIndex = 0;
     public FirstPersonController player;
     public int index;
     public string nomeEquip;
@@ -16,21 +15,20 @@ public class ChestEquip : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        chestInPlayer.index = chestIndex;
-
-        if (chestIndex != 0)
+        if (other.tag.Equals("player"))
         {
-            this.gameObject.SetActive(false);
+            if (chestInPlayer.index != 0)
+            {
+                this.gameObject.SetActive(false);
 
+            }
+            else
+            {
+                this.GetComponent<BoxCollider>().isTrigger = false;
+            }
+            player.GetAvailableChests().Add(chestInPlayer.index);
+            hudChest.SetInventory(player.GetInventory(), player.GetAvailableChests());
         }
-        else
-        {
-            this.GetComponent<BoxCollider>().isTrigger = false;
-        }
-        Inventory inv = player.GetInventory();
-        inv.AddChest(chestInPlayer);
-        hudChest.SetInventory(inv);
-        chestIndex++;
     }
 
 }

@@ -1,12 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class HelmetEquip : MonoBehaviour
 {
 
-    public static int helmetIndex = 0;
     public FirstPersonController player;
     public int index;
     public string nomeEquip;
@@ -17,21 +15,20 @@ public class HelmetEquip : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        helmetInPlayer.index = helmetIndex;
+        if (other.tag.Equals("player"))
+        {
+            if (helmetInPlayer.index != 0)
+            {
+                this.gameObject.SetActive(false);
 
-        if (helmetIndex != 0)
-        {
-            this.gameObject.SetActive(false);
-            
+            }
+            else
+            {
+                this.GetComponent<BoxCollider>().isTrigger = false;
+            }
+            player.GetAvailableHelmets().Add(helmetInPlayer.index);
+            hudHelmet.SetInventory(player.GetInventory(), player.GetAvailableHelmets());
         }
-        else
-        {
-            this.GetComponent<BoxCollider>().isTrigger = false;
-        }
-        Inventory inv = player.GetInventory();
-        inv.AddHelmet(helmetInPlayer);
-        hudHelmet.SetInventory(inv);
-        helmetIndex++;
     }
 
 }

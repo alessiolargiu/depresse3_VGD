@@ -9,7 +9,7 @@ public class oldFirstPersonController : MonoBehaviour {
     
 
     
-
+    /*
     public bool isActive = true;
     //Component utili
     private CharacterController controller;
@@ -409,7 +409,7 @@ public class oldFirstPersonController : MonoBehaviour {
                 momentum -= 0.1f;
                 verticalMovement=1f*momentum;
                 controller.Move(move *  Time.deltaTime);
-                */
+                
             }
             
         }
@@ -437,7 +437,7 @@ public class oldFirstPersonController : MonoBehaviour {
             } else if(lastEnemy.GetComponent<Maranzus>().OutOfReach()==false) {
                 followTransform.GetComponent<PlayerTarget>().SetAttackMode(true, lastEnemy.transform);
             }
-        }*/
+        }
         
 
         Debug.Log("il valore di outofreach è "+ outOfReach);
@@ -483,7 +483,7 @@ public class oldFirstPersonController : MonoBehaviour {
         if (other.gameObject.CompareTag("pickup")){
             Debug.Log("boia");
             /*pickupsound.enabled=false;
-            pickupsound.PlayOneShot(sound, 0.7F);*/
+            pickupsound.PlayOneShot(sound, 0.7F);
         } 
     }
 
@@ -537,6 +537,6 @@ public class oldFirstPersonController : MonoBehaviour {
     IEnumerator OnTimeSound(AudioSource src, AudioClip clp, float volume, float delay){
         yield return new WaitForSeconds(delay);
         src.PlayOneShot(clp, volume);
-    }
+    }*/
     
 }

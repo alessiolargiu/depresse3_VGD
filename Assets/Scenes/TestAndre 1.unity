@@ -5000,6 +5000,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: lancia
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 9b52c14212885114f9f537635bacf90b, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1678473493017327173, guid: 9b52c14212885114f9f537635bacf90b, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
@@ -6483,7 +6487,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Testo della missione attuale
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -6510,7 +6514,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 44.75
+  m_fontSize: 36
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -8826,7 +8830,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 1895729727}
-  index: 0
+  index: 3
   nomeEquip: Armatura Centurione
   armorValue: 0.5
   sprite: {fileID: 21300000, guid: ca91ca1fb5e97d94ebb53b8fcea46d65, type: 3}
@@ -9836,7 +9840,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 1895729727}
-  index: 0
+  index: 3
   nomeEquip: Elmo Centurione
   armorValue: 0.45
   sprite: {fileID: 21300000, guid: e9c0115a9d02d5f40826cd30a0a6085e, type: 3}
@@ -16594,7 +16598,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 1895729727}
-  index: 0
+  index: 1
   nomeEquip: Scudo Base
   shieldValue: 0.2
   stamina: 15
@@ -16869,7 +16873,7 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: 3f7b9a348cdfff343a52b4156a593d80, type: 2}
     - target: {fileID: 919132149155446097, guid: cd283f8b0c349aa419e1079052604cce, type: 3}
       propertyPath: m_Name
-      value: armatura_centurione (1)
+      value: armatura_centurione_in_player
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: cd283f8b0c349aa419e1079052604cce, type: 3}
       propertyPath: m_IsActive
@@ -16982,6 +16986,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 889e3aea31a13594d82698b74bc073b7, type: 3}
       propertyPath: m_Name
       value: scudo_base
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 889e3aea31a13594d82698b74bc073b7, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 889e3aea31a13594d82698b74bc073b7, type: 3}
       propertyPath: m_TagString
@@ -17203,6 +17211,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 09e3f294941357b48b9693589f6e5fad, type: 3}
       propertyPath: m_Name
       value: scudo_torre
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 09e3f294941357b48b9693589f6e5fad, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 09e3f294941357b48b9693589f6e5fad, type: 3}
       propertyPath: m_TagString
@@ -17942,7 +17954,7 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: a8f3d0c4a08fdb547b038dd6011a30b5, type: 2}
     - target: {fileID: 919132149155446097, guid: aea346ad17aae8240adaff1fecf3a5ed, type: 3}
       propertyPath: m_Name
-      value: armatura_base (1)
+      value: armatura_base_in_player
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: aea346ad17aae8240adaff1fecf3a5ed, type: 3}
       propertyPath: m_IsActive
@@ -18342,6 +18354,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 14bc0d2782b0f1d43aa804c8a100da81, type: 3}
       propertyPath: m_Name
       value: pozione_piccola
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 14bc0d2782b0f1d43aa804c8a100da81, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 14bc0d2782b0f1d43aa804c8a100da81, type: 3}
       propertyPath: m_TagString
@@ -18777,6 +18793,69 @@ MonoBehaviour:
   equipName: {fileID: 1595643185}
   index: 2
   player: {fileID: 1895729727}
+--- !u!1 &1075536181
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1075536184}
+  - component: {fileID: 1075536183}
+  - component: {fileID: 1075536182}
+  m_Layer: 0
+  m_Name: GameManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1075536182
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1075536181}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1c99e90dc83ee7e4f8d21f0908c69b13, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1075536183
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1075536181}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d15e2ad3cda9a784597ebf5dbe79b224, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sensibilita: 200
+  vitaInfinita: 0
+  staminaInfinita: 0
+  fullEquip: 0
+--- !u!4 &1075536184
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1075536181}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 666.9, y: 403.91223, z: 21.61339}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1184457442}
+  - {fileID: 1895729730}
+  m_Father: {fileID: 0}
+  m_RootOrder: 16
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1078616585 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2060142898591137083, guid: b454c26f0e38b5c40b8c55d00eae5fb2, type: 3}
@@ -19057,6 +19136,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 3c02cd885cb94a748a8a52ce0eb7f443, type: 3}
       propertyPath: m_Name
       value: spada_corta
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 3c02cd885cb94a748a8a52ce0eb7f443, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 3c02cd885cb94a748a8a52ce0eb7f443, type: 3}
       propertyPath: m_TagString
@@ -19877,7 +19960,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 1895729727}
-  index: 0
+  index: 1
   nomeEquip: Elmo Base
   armorValue: 0.15
   sprite: {fileID: 21300000, guid: c9dd9cda8726af646ab075546c5c2f7d, type: 3}
@@ -20599,7 +20682,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 1895729727}
-  index: 0
+  index: 1
   nomeEquip: Armatura Base
   armorValue: 0.15
   sprite: {fileID: 21300000, guid: 1266314287a844a4595b39a227895ce2, type: 3}
@@ -21449,6 +21532,10 @@ PrefabInstance:
       value: pozione_media
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 31a024d6a0bb54e4d974c30c5335fdad, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 31a024d6a0bb54e4d974c30c5335fdad, type: 3}
       propertyPath: m_TagString
       value: pickup
       objectReference: {fileID: 0}
@@ -21567,8 +21654,8 @@ RectTransform:
   - {fileID: 1593589547}
   - {fileID: 475199876}
   - {fileID: 854876150}
-  m_Father: {fileID: 0}
-  m_RootOrder: 16
+  m_Father: {fileID: 1075536184}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -22124,7 +22211,11 @@ MonoBehaviour:
   resolutionDropdown: {fileID: 1139802902}
   volume: {fileID: 1931224119}
   sensibility: {fileID: 37111442}
-  cheat: {fileID: 1895729731}
+  hudHelmet: {fileID: 1078616590}
+  hudChest: {fileID: 88715097}
+  hudWeapon: {fileID: 1092316022}
+  hudShield: {fileID: 788238111}
+  hudPotion: {fileID: 532549876}
   vitaInfinitaToggle: {fileID: 1857540301}
   staminaInfinitaToggle: {fileID: 1769732543}
   fullEquipToggle: {fileID: 1986826804}
@@ -23634,7 +23725,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 1895729727}
-  index: 0
+  index: 2
   nomeEquip: Elmo Avanzato
   armorValue: 0.3
   sprite: {fileID: 21300000, guid: 5d7dce88282691144ae42d28ab9fd57a, type: 3}
@@ -26733,6 +26824,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 43bfa83e745cab347a3d31eed4b7bd26, type: 3}
       propertyPath: m_Name
       value: scudo_avanzato
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 43bfa83e745cab347a3d31eed4b7bd26, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 43bfa83e745cab347a3d31eed4b7bd26, type: 3}
       propertyPath: m_TagString
@@ -32101,7 +32196,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 1895729727}
-  index: 0
+  index: 2
   nomeEquip: Armatura Avanzata
   armorValue: 0.35
   sprite: {fileID: 21300000, guid: 253a397ad611abc4a9fcc20f35901108, type: 3}
@@ -32429,7 +32524,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 1895729727}
-  index: 0
+  index: 3
   nomeEquip: Scudo a Torre
   shieldValue: 0.75
   stamina: 60
@@ -33330,7 +33425,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 1895729727}
-  index: 0
+  index: 1
   nomeEquip: Spada Corta
   damage: 25
   stamina: 10
@@ -33987,7 +34082,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 1895729727}
-  index: 0
+  index: 3
   nomeEquip: Lancia
   damage: 40
   stamina: 45
@@ -34127,7 +34222,7 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: 8c41863922e039049b240176ece8465b, type: 2}
     - target: {fileID: 919132149155446097, guid: fe284612af8b30942a565bd34f235d81, type: 3}
       propertyPath: m_Name
-      value: armatura_avanzata (1)
+      value: armatura_avanzata_in_player
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: fe284612af8b30942a565bd34f235d81, type: 3}
       propertyPath: m_IsActive
@@ -38160,7 +38255,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1870857667}
   m_LocalRotation: {x: 0.08258397, y: -0.00052180776, z: 0.0007431673, w: 0.9965837}
-  m_LocalPosition: {x: -0.005223889, y: 1.0973897, z: -3.0049212}
+  m_LocalPosition: {x: -0.0052124504, y: 1.0973923, z: -3.004921}
   m_LocalScale: {x: 1, y: 0.7037194, z: 0.9833877}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -38261,7 +38356,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1871011860
 Transform:
   m_ObjectHideFlags: 0
@@ -38475,6 +38570,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: e17d6f82eb75dec4f84d8158aa6ded28, type: 3}
       propertyPath: m_Name
       value: pozione_grande
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: e17d6f82eb75dec4f84d8158aa6ded28, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: e17d6f82eb75dec4f84d8158aa6ded28, type: 3}
       propertyPath: m_TagString
@@ -38770,7 +38869,6 @@ GameObject:
   - component: {fileID: 1895729726}
   - component: {fileID: 1895729725}
   - component: {fileID: 1895729724}
-  - component: {fileID: 1895729731}
   m_Layer: 6
   m_Name: PlayerProtagonista
   m_TagString: player
@@ -38934,6 +39032,26 @@ MonoBehaviour:
   hudInvPotion: {fileID: 532549876}
   hudInvHelmet: {fileID: 1078616590}
   hudInvChest: {fileID: 88715097}
+  weapons:
+  - {fileID: 1614042138}
+  - {fileID: 1980027646}
+  - {fileID: 1669022936}
+  shields:
+  - {fileID: 915551294}
+  - {fileID: 1967423923}
+  - {fileID: 1592404608}
+  potions:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  helmets:
+  - {fileID: 1104707200}
+  - {fileID: 1291985751}
+  - {fileID: 536478763}
+  chests:
+  - {fileID: 1140730875}
+  - {fileID: 1574487396}
+  - {fileID: 493311186}
   numPozioniSlot1: {fileID: 1325190453}
   numPozioniSlot2: {fileID: 1307031751}
   numPozioniSlot3: {fileID: 1563193134}
@@ -38962,12 +39080,13 @@ MonoBehaviour:
   cittadinoLayers:
     serializedVersion: 2
     m_Bits: 0
+  acqua:
+    serializedVersion: 2
+    m_Bits: 0
   legL: {fileID: 732464275}
   legR: {fileID: 458823490}
   bangFX: {fileID: 1559249007}
   usingController: 0
-  infiniteStamina: 0
-  infiniteHealth: 0
   virtualCam: {fileID: 1870857670}
   playerModel: {fileID: 1717340808}
 --- !u!23 &1895729728
@@ -39028,7 +39147,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1895729723}
   m_LocalRotation: {x: 0.00094958255, y: 0.0030770241, z: -0.00069935364, w: 0.9999946}
-  m_LocalPosition: {x: 35, y: 18, z: 11}
+  m_LocalPosition: {x: -631.9, y: -385.91223, z: -10.61339}
   m_LocalScale: {x: 1, y: 1.4379146, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -39037,46 +39156,9 @@ Transform:
   - {fileID: 795043466}
   - {fileID: 1870857668}
   - {fileID: 1843741603}
-  m_Father: {fileID: 0}
-  m_RootOrder: 17
+  m_Father: {fileID: 1075536184}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0.109, y: 0.353, z: -0.08}
---- !u!114 &1895729731
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1895729723}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9698fd162d2199840b5cfab781564d73, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  getAllEquip: 0
-  infiniteStamina: 0
-  infiniteHealth: 0
-  player: {fileID: 1895729727}
-  playerModel: {fileID: 1843741602}
-  helmetList:
-  - {fileID: 1312502451}
-  - {fileID: 979167811}
-  - {fileID: 1130106030}
-  chestList:
-  - {fileID: 1617160966}
-  - {fileID: 2075734291}
-  - {fileID: 1379419252}
-  weaponList:
-  - {fileID: 1086972226}
-  - {fileID: 1934382912}
-  - {fileID: 275762714}
-  shieldList:
-  - {fileID: 939198258}
-  - {fileID: 1519960294}
-  - {fileID: 952990616}
-  potionList:
-  - {fileID: 1007046497}
-  - {fileID: 1176949375}
-  - {fileID: 1289807051}
 --- !u!1 &1895912193
 GameObject:
   m_ObjectHideFlags: 0
@@ -39745,6 +39827,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 3fbc8b6af4dfea747884bc98c9d7a6bb, type: 3}
       propertyPath: m_Name
       value: spada_lunga
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 3fbc8b6af4dfea747884bc98c9d7a6bb, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 3fbc8b6af4dfea747884bc98c9d7a6bb, type: 3}
       propertyPath: m_TagString
@@ -40451,7 +40537,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 1895729727}
-  index: 0
+  index: 2
   nomeEquip: Scudo Avanzato
   shieldValue: 0.2
   stamina: 20
@@ -40639,7 +40725,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 1895729727}
-  index: 0
+  index: 2
   nomeEquip: Spada Lunga
   damage: 45
   stamina: 30

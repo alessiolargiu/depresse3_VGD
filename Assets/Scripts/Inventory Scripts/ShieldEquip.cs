@@ -17,12 +17,20 @@ public class ShieldEquip : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        shieldInPlayer.index = shieldIndex;
-        shieldIndex++;
-        this.gameObject.SetActive(false);
-        Inventory inv = player.GetInventory();
-        inv.AddShield(shieldInPlayer);
-        hudShield.SetInventory(inv);
+        if (other.tag.Equals("player"))
+        {
+            if (shieldInPlayer.index != 0)
+            {
+                this.gameObject.SetActive(false);
+
+            }
+            else
+            {
+                this.GetComponent<BoxCollider>().isTrigger = false;
+            }
+            player.GetAvailableShields().Add(shieldInPlayer.index);
+            hudShield.SetInventory(player.GetInventory(), player.GetAvailableShields());
+        }
     }
 
 }
