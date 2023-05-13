@@ -8,26 +8,23 @@ public class MainMenu : MonoBehaviour
 {
 
     public GameObject optionMenu;
-    public GameObject loadingScreen;
-    public Slider slider;
-    public GameObject HUD;
-    public GameObject player;
+    private LoadingScene ls;
+
+    private void Start()
+    {
+        ls = FindObjectOfType<LoadingScene>();
+    }
 
     public void NewGame()
     {
         Debug.Log("Da modificare");
-        StartCoroutine(LoadAsynchronously("TestGadorNuovo 1"));
+        StartCoroutine(ls.LoadAsynchronously("TestGadorNuovo 1"));
     }
 
     public void LoadGame()
     {
-        Time.timeScale = 1f;
-        Cursor.lockState = CursorLockMode.None;
-        Cursor.visible = true;
-        PauseMenu.setGameIsPaused(false);
-        player.SetActive(true);
-        HUD.SetActive(true);
         Debug.Log("Caricamento da fare");
+        StartCoroutine(ls.LoadAsynchronously("TestGadorNuovo 1"));
     }
 
     public void Options()
@@ -40,24 +37,6 @@ public class MainMenu : MonoBehaviour
         Application.Quit();
     }
 
-    IEnumerator LoadAsynchronously (string name)
-    {
-        AsyncOperation op = SceneManager.LoadSceneAsync(name);
-
-        loadingScreen.SetActive(true);
-        Time.timeScale = 1f;
-        Cursor.lockState = CursorLockMode.None;
-        Cursor.visible = true;
-        PauseMenu.setGameIsPaused(false);
-        HUD.SetActive(true);
-        player.SetActive(true);
-
-        while (!op.isDone)
-        {
-            float progress = Mathf.Clamp01(op.progress / .9f);
-            slider.value = progress;
-            yield return null;
-        }
-    }
+    
 
 }

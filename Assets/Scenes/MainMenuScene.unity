@@ -22531,10 +22531,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   optionMenu: {fileID: 246719313}
-  loadingScreen: {fileID: 1987475019}
-  slider: {fileID: 1018493252}
-  HUD: {fileID: 2069805770}
-  player: {fileID: 1679495266}
 --- !u!1 &916247883
 GameObject:
   m_ObjectHideFlags: 0
@@ -45580,6 +45576,7 @@ GameObject:
   - component: {fileID: 1775785024}
   - component: {fileID: 1775785023}
   - component: {fileID: 1775785022}
+  - component: {fileID: 1775785025}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -45632,6 +45629,22 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1775785025
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1775785021}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0d89263fb9b41754bae3ab07d9b35c51, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  loadingScreen: {fileID: 1987475019}
+  slider: {fileID: 1018493252}
+  HUD: {fileID: 2069805770}
+  player: {fileID: 1679495266}
 --- !u!1 &1781137311
 GameObject:
   m_ObjectHideFlags: 0
