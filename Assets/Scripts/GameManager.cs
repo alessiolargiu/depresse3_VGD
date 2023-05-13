@@ -11,16 +11,13 @@ public class GameManager : MonoBehaviour
     public bool staminaInfinita;
     public bool fullEquip;
 
-    // Start is called before the first frame update
-    void Start()
+    public void Save()
     {
-        
-    }
+        Debug.Log("DA FARE MOLTO BENE!!!!!");
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+        PlayerPrefs.SetInt("sensibilita", sensibilita);
+
+        PlayerPrefs.Save();
     }
 
 

@@ -44,16 +44,6 @@ public class PauseMenu : MonoBehaviour
         gameIsPaused = true;
     }
 
-    public void Save()
-    {
-        Debug.Log("SALVATAGGIO DA FARE");
-    }
-
-    public void Options()
-    {
-        Debug.Log("Opzioni da fare");
-    }
-
     public void Menu()
     {
         SceneManager.LoadScene("MainMenuScene");
