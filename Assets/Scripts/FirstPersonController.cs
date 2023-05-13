@@ -232,7 +232,6 @@ public class FirstPersonController : MonoBehaviour {
             InputGet();
             AdjustCamera();
             CrouchCheck();  
-            AttackType();
             UsePotion();
             AudioEnvCheck();
             EnemyRangeCheck();
@@ -260,6 +259,7 @@ public class FirstPersonController : MonoBehaviour {
             }
             
             Jumping();
+            AttackType();
 
             
             if(!shift)
@@ -281,7 +281,9 @@ public class FirstPersonController : MonoBehaviour {
             
 
         }
-
+        Transform prova = GetNearestEnemy();
+        Debug.Log("nearest enemy " + prova.name);
+        
     }
 
     public int DamageCalculation(float initialDamage)
@@ -730,6 +732,8 @@ public class FirstPersonController : MonoBehaviour {
 
     private void AttackType(){
 
+
+        
         
         WeaponEquip currentWeapon = new WeaponEquip();
         ShieldEquip currentShield = new ShieldEquip();
@@ -737,6 +741,11 @@ public class FirstPersonController : MonoBehaviour {
         GameObject shieldGO;
 
         if(((punchingKey) && currentStamina >= staminaAttack && pugnoAir.isPlaying==false) && controller.isGrounded && attackFinished){
+
+            Transform test = GetNearestEnemy();
+            transform.position = new Vector3(test.position.x, transform.position.y, test.position.z);
+
+
             foreach (WeaponEquip weapon in inventory.GetWeapons())
             { 
                 if (weapon.gameObject.activeSelf)
@@ -914,6 +923,9 @@ public class FirstPersonController : MonoBehaviour {
             meshDisabler(sh.transform);
         }
         
+
+
+
         curposdebug = attackPoint;
         attackFinished=false;
         verticalMovement=0;
@@ -1027,6 +1039,39 @@ public class FirstPersonController : MonoBehaviour {
         if(t.gameObject.GetComponent<Renderer>()!=null){
             t.gameObject.GetComponent<Renderer>().enabled = true;
         }
+        
+    }
+
+    private Transform GetNearestEnemy(){
+
+
+
+        GameObject [] enemiesGO = GameObject.FindGameObjectsWithTag("enemy");
+        Transform [] enemiesT = new Transform[enemiesGO.Length];;
+
+        for(int i = 0; i < enemiesGO.Length; i++){
+            enemiesT[i] = enemiesGO[i].transform;
+        }
+
+
+        if(enemiesT.Length!=0){
+            Transform tMin = null;
+            float minDist = Mathf.Infinity;
+            Vector3 currentPos = transform.position;
+            foreach (Transform t in enemiesT)
+            {
+                float dist = Vector3.Distance(t.position, currentPos);
+                if (dist < minDist)
+                {
+                    tMin = t;
+                    minDist = dist;
+                }
+            }
+            float distanza = Vector3.Distance(tMin.position, currentPos);
+            if(distanza>3){
+                return transform;
+            } else return tMin;
+        } else return transform;
         
     }
 
