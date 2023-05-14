@@ -10,6 +10,7 @@ public class Maranzus : MonoBehaviour
     public Animator anim;
 
     public Transform player;
+    private Transform stranglingPoint;
 
     public LayerMask whatIsGround, whatIsPlayer;
 
@@ -73,10 +74,13 @@ public class Maranzus : MonoBehaviour
 
     private bool stopThrow;
 
+    private bool strangled;
+
 
 
     private void Awake(){
         player = GameObject.Find("PlayerProtagonista").transform;
+        stranglingPoint = GameObject.Find("StranglingPoint").transform;
         markerColor = marker.GetComponent<Renderer>();
         markerColor.material.SetColor("_Color", Color.red);
         agent = GetComponent<NavMeshAgent>();
@@ -127,9 +131,20 @@ public class Maranzus : MonoBehaviour
                 if (playerInAttackRange && playerInSightRange && (whoIsAttacking==myself)) AttackPlayer();
             }
 
+
+            
         } else if (health <= 0 && isDead==false){ 
             DestroyEnemy(); 
             isDead=true;
+        }
+
+
+    }
+
+    private void FixedUpdate(){
+        if(strangled){
+                transform.rotation = stranglingPoint.rotation;
+                transform.position = stranglingPoint.position + new Vector3(0f, 0f, 0f);
         }
     }
 
@@ -164,6 +179,7 @@ public class Maranzus : MonoBehaviour
     }
 
     private void ChasePlayer(){   
+        awareOfPlayer=true;
         outOfReach=false;
         if(imActive) marker.SetActive(true);
         agent.speed = 6f;
@@ -336,6 +352,22 @@ public class Maranzus : MonoBehaviour
             stop = true;
         } else */ 
         //stop = false;
+    }
+
+    public bool GetAwareness(){
+        return awareOfPlayer;
+    }
+
+    public void BeingStrangled(){
+        anim.SetTrigger("strangled");
+        strangled=true;
+        StartCoroutine(DeathStrangled(10f));
+    }
+
+    IEnumerator DeathStrangled(float time){
+        yield return new WaitForSeconds(time);
+        player.GetComponent<FirstPersonController>().SetDontMove(false);
+        DestroyObject(gameObject);
     }
     
 }

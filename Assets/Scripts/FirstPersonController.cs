@@ -168,6 +168,7 @@ public class FirstPersonController : MonoBehaviour {
 
     private bool dontMove;
 
+
     void Start(){   
         controller = GetComponent<CharacterController>();
         Cursor.lockState = CursorLockMode.Locked;
@@ -447,9 +448,8 @@ public class FirstPersonController : MonoBehaviour {
     
     private void InputGet(){
         horizontalMovement = Input.GetAxis("Horizontal");
-        if(anim.GetBool("crouching")==false){
-            verticalMovement = Input.GetAxis("Vertical");
-        } else verticalMovement = 0;
+        verticalMovement = Input.GetAxis("Vertical");
+
 
         mouseX = Input.GetAxis("Mouse X") * mouseSens * Time.deltaTime;
         mouseY = Input.GetAxis("Mouse Y") * mouseSens * Time.deltaTime;
@@ -515,15 +515,16 @@ public class FirstPersonController : MonoBehaviour {
     }
 
     private void CrouchCheck(){
-        if(Input.anyKeyDown || Input.GetAxis("Horizontal")>0 || Input.GetAxis("Vertical")>0){
-            if (crouchKey){
+        if (crouchKey){
                 if(anim.GetBool("crouching")){
                     anim.SetBool("crouching", false);
                 } else anim.SetBool("crouching", true);
-            } else {
-                anim.SetBool("crouching", false);
-            }
         }
+
+        if(jump || inAtck || shift || swordKey){
+            anim.SetBool("crouching", false);
+        }
+
     }
 
     private void Movement(){
@@ -544,6 +545,7 @@ public class FirstPersonController : MonoBehaviour {
                 verticalMovement=0;
             }
         }
+        
         if ((horizontalMovement != 0.0f || verticalMovement != 0.0f)) {
             asinHor =   followTransform.eulerAngles.y + Mathf.Atan2(horizontalMovement, verticalMovement) * Mathf.Rad2Deg;
             lastH=horizontalMovement;
@@ -560,7 +562,7 @@ public class FirstPersonController : MonoBehaviour {
         float newEuler = Mathf.Round(followTransform.eulerAngles.y * 100f) / 100f;
         float newOld = Mathf.Round(transform.eulerAngles.y * 100f) / 100f;
         float model = Mathf.Round(playerModel.eulerAngles.y * 100f) / 100f;
-        if(newEuler==newOld && (verticalMovement!=0 || horizontalMovement!=0)){
+        if(newEuler==newOld && (verticalMovement!=0 || horizontalMovement!=0) && dontMove==false){
             playerModel.rotation = Quaternion.Euler(eulerRotation);
         }
         Debug.Log("MOVEMENTS Euler " + newEuler + " old " + newOld + " equals? " + (newEuler==newOld));
@@ -746,8 +748,22 @@ public class FirstPersonController : MonoBehaviour {
         ShieldEquip currentShield = new ShieldEquip();
 
         GameObject shieldGO;
+        
+        if(((((punchingKey) && currentStamina >= staminaAttack && pugnoAir.isPlaying==false) && controller.isGrounded && attackFinished) && anim.GetBool("crouching")) && anim.GetCurrentAnimatorStateInfo(0).IsName("strangling")==false){
+            Transform enemyClose = GetNearestEnemy();
+            float cacca = Vector3.Distance(enemyClose.position, transform.position);
+            Debug.Log("sto impazzendo per la distanza " + cacca);
+            if(enemyClose.position!=transform.position && cacca<=2f){
+                dontMove=true;
+                if(enemyClose.GetComponent<Maranzus>().GetAwareness()==false){
+                    anim.SetTrigger("strangling");
+                    enemyClose.GetComponent<Maranzus>().BeingStrangled();
+                }
+                
+            }
+            
 
-        if(((punchingKey) && currentStamina >= staminaAttack && pugnoAir.isPlaying==false) && controller.isGrounded && attackFinished){
+        } else if(((punchingKey) && currentStamina >= staminaAttack && pugnoAir.isPlaying==false) && controller.isGrounded && attackFinished  && anim.GetCurrentAnimatorStateInfo(0).IsName("strangling")==false){
 
             
             moveToEnemyYes=true;
@@ -917,7 +933,7 @@ public class FirstPersonController : MonoBehaviour {
 
         Debug.Log("ADJUSTCAMERA Euler " + newEuler + " old " + newOld + " equals? " + (newEuler==newOld));
 
-        if(newEuler!=newOld && (verticalMovement!=0 || horizontalMovement!=0) && !rotateKey){
+        if(newEuler!=newOld && (verticalMovement!=0 || horizontalMovement!=0) && !rotateKey && dontMove==false){
 
             float test = followTransform.eulerAngles.y;
             float asinHor = Mathf.Atan2(horizontalMovement, verticalMovement) * Mathf.Rad2Deg;
@@ -1094,6 +1110,10 @@ public class FirstPersonController : MonoBehaviour {
             } else return tMin;
         } else return transform;
         
+    }
+
+    public void SetDontMove(bool can){
+        dontMove = can;
     }
 
     public List<int> GetAvailableHelmets()
