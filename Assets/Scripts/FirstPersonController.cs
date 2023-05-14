@@ -126,6 +126,8 @@ public class FirstPersonController : MonoBehaviour {
 
     private Vector3 move;
 
+    private bool moveToEnemyYes;
+
 
     //userflag
     public bool usingController;
@@ -259,7 +261,7 @@ public class FirstPersonController : MonoBehaviour {
             }
             
             Jumping();
-            AttackType();
+            
 
             
             if(!shift)
@@ -278,11 +280,16 @@ public class FirstPersonController : MonoBehaviour {
 
                 
             Debug.Log("atck" + attackFinished);
-            
+            AttackType();
+            MoveToEnemy();
 
         }
         Transform prova = GetNearestEnemy();
         Debug.Log("nearest enemy " + prova.name);
+
+        
+        
+            
         
     }
 
@@ -742,8 +749,8 @@ public class FirstPersonController : MonoBehaviour {
 
         if(((punchingKey) && currentStamina >= staminaAttack && pugnoAir.isPlaying==false) && controller.isGrounded && attackFinished){
 
-            Transform test = GetNearestEnemy();
-            transform.position = new Vector3(test.position.x, transform.position.y, test.position.z);
+            
+            moveToEnemyYes=true;
 
 
             foreach (WeaponEquip weapon in inventory.GetWeapons())
@@ -885,6 +892,20 @@ public class FirstPersonController : MonoBehaviour {
 
     }
 
+    private void MoveToEnemy(){
+
+        if(moveToEnemyYes){
+            Transform test = GetNearestEnemy();
+            if(test!=transform){
+                transform.position = Vector3.Lerp(transform.position, test.position, 0.1f);
+            }
+            if(Vector3.Distance(transform.position, test.position)<=1.5f){
+                moveToEnemyYes=false;
+            }
+        }
+        
+    }
+
     private void AdjustCamera(){
 
         //NESSUNO SI AZZARDI A TOCCARE NESSUNA RIGA DI QUESTO METODO
@@ -896,7 +917,7 @@ public class FirstPersonController : MonoBehaviour {
 
         Debug.Log("ADJUSTCAMERA Euler " + newEuler + " old " + newOld + " equals? " + (newEuler==newOld));
 
-        if(newEuler!=newOld && (verticalMovement!=0 || horizontalMovement!=0 || punchingKey) && !rotateKey){
+        if(newEuler!=newOld && (verticalMovement!=0 || horizontalMovement!=0) && !rotateKey){
 
             float test = followTransform.eulerAngles.y;
             float asinHor = Mathf.Atan2(horizontalMovement, verticalMovement) * Mathf.Rad2Deg;
@@ -1068,7 +1089,7 @@ public class FirstPersonController : MonoBehaviour {
                 }
             }
             float distanza = Vector3.Distance(tMin.position, currentPos);
-            if(distanza>3){
+            if(distanza>4){
                 return transform;
             } else return tMin;
         } else return transform;

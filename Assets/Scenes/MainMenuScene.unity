@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 0.49
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.00000834663, g: 0.000000012628713, b: 0, a: 0.49}
+  m_IndirectSpecularColor: {r: 0.000008346618, g: 0.000000012628713, b: 0, a: 0.49}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -52465,7 +52465,7 @@ MonoBehaviour:
   m_LookAt: {fileID: 650543973}
   m_Follow: {fileID: 650543973}
   m_Lens:
-    FieldOfView: 65
+    FieldOfView: 59.8427
     OrthographicSize: 5
     NearClipPlane: 0.3
     FarClipPlane: 1000
