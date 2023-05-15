@@ -146,6 +146,7 @@ public class Maranzus : MonoBehaviour
                 transform.rotation = stranglingPoint.rotation;
                 transform.position = stranglingPoint.position + new Vector3(0f, 0f, 0f);
         }
+        
     }
 
     private void Patroling(){
@@ -200,6 +201,7 @@ public class Maranzus : MonoBehaviour
     }
 
     private void AttackPlayer(){
+        awareOfPlayer=true;
         if(imActive) marker.SetActive(true);
         //Make sure enemy doesn't move
         anim.SetFloat("vertical", 0,  1f, Time.deltaTime * 10f);
@@ -359,9 +361,11 @@ public class Maranzus : MonoBehaviour
     }
 
     public void BeingStrangled(){
-        anim.SetTrigger("strangled");
-        strangled=true;
-        StartCoroutine(DeathStrangled(10f));
+        if(awareOfPlayer==false){
+            anim.SetTrigger("strangled");
+            strangled=true;
+            StartCoroutine(DeathStrangled(10f));
+        }
     }
 
     IEnumerator DeathStrangled(float time){
