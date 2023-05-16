@@ -37,7 +37,6 @@ public class HUDInventoryPotion : MonoBehaviour
             {
                 foreach (int i in availablePotions)
                 {
-                    //se un'elmo è disponbile allora lo mostro in HUD
                     if (potion.index == i)
                     {
                         switch (potion.index)
@@ -46,16 +45,19 @@ public class HUDInventoryPotion : MonoBehaviour
                                 invObject1.SetActive(true);
                                 objectImage1.sprite = potion.sprite;
                                 objectText1.text = potion.nomeEquip;
+                                potionNumber1.text = potion.potionNumber.ToString();
                                 break;
                             case 2:
                                 invObject2.SetActive(true);
                                 objectImage2.sprite = potion.sprite;
                                 objectText2.text = potion.nomeEquip;
+                                potionNumber2.text = potion.potionNumber.ToString();
                                 break;
                             case 3:
                                 invObject3.SetActive(true);
                                 objectImage3.sprite = potion.sprite;
                                 objectText3.text = potion.nomeEquip;
+                                potionNumber3.text = potion.potionNumber.ToString();
                                 break;
                         }
                     }
@@ -69,16 +71,19 @@ public class HUDInventoryPotion : MonoBehaviour
                         invObject1.SetActive(true);
                         objectImage1.sprite = potion.sprite;
                         objectText1.text = potion.nomeEquip;
+                        potionNumber1.text = potion.potionNumber.ToString();
                         break;
                     case 2:
                         invObject2.SetActive(true);
                         objectImage2.sprite = potion.sprite;
                         objectText2.text = potion.nomeEquip;
+                        potionNumber2.text = potion.potionNumber.ToString();
                         break;
                     case 3:
                         invObject3.SetActive(true);
                         objectImage3.sprite = potion.sprite;
                         objectText3.text = potion.nomeEquip;
+                        potionNumber3.text = potion.potionNumber.ToString();
                         break;
                 }
             }

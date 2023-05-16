@@ -210,10 +210,11 @@ public class FirstPersonController : MonoBehaviour {
         {
             inventory.AddShield(s);
         }
-        /*foreach (PotionEquip p in potions)
+        foreach (PotionEquip p in potions)
         {
             inventory.AddPotion(p);
-        }*/
+            Debug.Log("Numero di pozioni: " + p.potionNumber);
+        }
 
         //imposto l'HUD per l'inventario
         hudInvWeapon.SetInventory(inventory, availableWeapons);
@@ -487,15 +488,24 @@ public class FirstPersonController : MonoBehaviour {
             {
                 foreach(PotionEquip potion in inventory.GetPotions())
                 {
-                    if(potion.isEquiped && potion.potionNumber > 0 && currentHealth < 100)
+                    if(potion.isEquiped && currentHealth < 100)
                     {
+                        if(!gameManager.fullEquip)
+                        {
+                            if(potion.potionNumber <= 0)
+                            {
+                                return;
+                            }
+                            potion.potionNumber--;
+
+                        }
+                        //DA AGGIUNGERE L'ANIMAZIONE DELLA POZIONE
                         anim.SetTrigger("potion");
                         currentHealth += potion.cureValue;
                         if(currentHealth > 100) { 
                             currentHealth = 100; 
                         }
                         healthBar.SetHealth(currentHealth);
-                        potion.potionNumber--;
                         switch (potion.index)
                         {
                             case 1:

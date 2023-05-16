@@ -18,13 +18,13 @@ public class MainMenu : MonoBehaviour
     public void NewGame()
     {
         Debug.Log("Da modificare");
-        StartCoroutine(ls.LoadAsynchronously("TestGadorNuovo 1"));
+        StartCoroutine(ls.LoadAsynchronously("TestALessioMappa"));
     }
 
     public void LoadGame()
     {
         Debug.Log("Caricamento da fare");
-        StartCoroutine(ls.LoadAsynchronously("TestGadorNuovo 1"));
+        StartCoroutine(ls.LoadAsynchronously("TestALessioMappa"));
     }
 
     public void Options()

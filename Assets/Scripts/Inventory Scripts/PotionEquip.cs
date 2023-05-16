@@ -25,7 +25,12 @@ public class PotionEquip : MonoBehaviour
         if (other.tag.Equals("player"))
         {
             this.gameObject.SetActive(false);
-            player.GetAvailablePotions().Add(this.index);
+            if (!player.GetAvailablePotions().Contains(this.index))
+            {
+                player.GetAvailablePotions().Add(this.index);
+            }
+            player.GetInventory().AddPotion(this);
+            Debug.Log("indice pozione: " + index);
             hudPotion.SetInventory(player.GetInventory(), player.GetAvailablePotions());
         }
     }
