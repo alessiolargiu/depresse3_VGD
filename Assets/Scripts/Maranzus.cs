@@ -201,7 +201,6 @@ public class Maranzus : MonoBehaviour
     }
 
     private void AttackPlayer(){
-        awareOfPlayer=true;
         if(imActive) marker.SetActive(true);
         //Make sure enemy doesn't move
         anim.SetFloat("vertical", 0,  1f, Time.deltaTime * 10f);
@@ -361,11 +360,9 @@ public class Maranzus : MonoBehaviour
     }
 
     public void BeingStrangled(){
-        if(awareOfPlayer==false){
-            anim.SetTrigger("strangled");
-            strangled=true;
-            StartCoroutine(DeathStrangled(10f));
-        }
+        anim.SetTrigger("strangled");
+        strangled=true;
+        StartCoroutine(DeathStrangled(10f));
     }
 
     IEnumerator DeathStrangled(float time){
