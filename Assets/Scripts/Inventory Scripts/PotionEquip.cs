@@ -31,6 +31,7 @@ public class PotionEquip : MonoBehaviour
             }
             player.GetInventory().AddPotion(this);
             Debug.Log("indice pozione: " + index);
+            //prova commit
             hudPotion.SetInventory(player.GetInventory(), player.GetAvailablePotions());
         }
     }
