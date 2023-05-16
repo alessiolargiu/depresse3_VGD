@@ -462,7 +462,7 @@ public class FirstPersonController : MonoBehaviour {
             shift = Input.GetKey(KeyCode.JoystickButton1);
             punchingKey = Input.GetKeyUp(KeyCode.JoystickButton2);
             swordKey = Input.GetKeyUp(KeyCode.JoystickButton3);
-            crouchKey = Input.GetKey(KeyCode.JoystickButton10);
+            crouchKey = Input.GetKeyUp(KeyCode.JoystickButton10);
         } else {
             shift = Input.GetKey(KeyCode.LeftShift);
             jump = Input.GetKeyDown(KeyCode.Space); 
@@ -471,7 +471,7 @@ public class FirstPersonController : MonoBehaviour {
             rotateKey = Input.GetMouseButton(2);
             //inAtck = Input.GetMouseButtonDown(2);
             //punchingKey = Input.GetKeyUp(KeyCode.F);
-            crouchKey = Input.GetKey(KeyCode.C);
+            crouchKey = Input.GetKeyUp(KeyCode.C);
             swordKey = Input.GetKeyUp(KeyCode.G);
             potionKey = Input.GetKeyUp(KeyCode.Q);
         }
@@ -765,9 +765,6 @@ public class FirstPersonController : MonoBehaviour {
 
         } else if(((punchingKey) && currentStamina >= staminaAttack && pugnoAir.isPlaying==false) && controller.isGrounded && attackFinished  && anim.GetCurrentAnimatorStateInfo(0).IsName("strangling")==false){
 
-            
-            moveToEnemyYes=true;
-
 
             foreach (WeaponEquip weapon in inventory.GetWeapons())
             { 
@@ -796,6 +793,7 @@ public class FirstPersonController : MonoBehaviour {
             Debug.Log("animazione corrente " + current_animation);
 
             if(currentWeapon==null) {
+                moveToEnemyYes=true;
                 switch(noWeaponCycle){
                     case 0:
                     StartCoroutine(OnTimeSound(pugnoAir, airleft, 1f, 0f));
@@ -842,7 +840,9 @@ public class FirstPersonController : MonoBehaviour {
 
                 if(currentWeapon.name=="lancia_in_player"){
                     anim.SetTrigger("spear");
-                } else {
+                    StartCoroutine(Attack(sword, currentWeapon.damage, 1f, currentWeapon.innerRange, currentWeapon.reloadTime, shieldGO, true));
+                } else if(currentWeapon.name!="lancia_in_player"){
+                    moveToEnemyYes=true;
 
                     switch(noWeaponCycle){
                         case 0:
@@ -978,6 +978,7 @@ public class FirstPersonController : MonoBehaviour {
 
             lastEnemy=enemy;
             
+            Debug.Log("Starei toccando un maranza");
             float health = enemy.GetComponent<Maranzus>().TakeDamage(dmg);
             
             if(health>0){
