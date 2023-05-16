@@ -5,13 +5,18 @@ using UnityEngine;
 public class ChestEquip : MonoBehaviour
 {
 
-    public FirstPersonController player;
+    private FirstPersonController player;
     public int index;
     public string nomeEquip;
     public float armorValue;
     public Sprite sprite;
     public HUDInventoryChest hudChest;
     public ChestEquip chestInPlayer;
+
+    private void Start()
+    {
+        player = FindObjectOfType<FirstPersonController>();
+    }
 
     private void OnTriggerEnter(Collider other)
     {

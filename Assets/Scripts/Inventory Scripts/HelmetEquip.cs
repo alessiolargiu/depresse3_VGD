@@ -5,13 +5,19 @@ using UnityEngine;
 public class HelmetEquip : MonoBehaviour
 {
 
-    public FirstPersonController player;
+    private FirstPersonController player;
     public int index;
     public string nomeEquip;
     public float armorValue;
     public Sprite sprite;
     public HUDInventoryHelmet hudHelmet;
     public HelmetEquip helmetInPlayer;
+
+
+    private void Start()
+    {
+        player = FindObjectOfType<FirstPersonController>();
+    }
 
     private void OnTriggerEnter(Collider other)
     {

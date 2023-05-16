@@ -7,7 +7,7 @@ public class WeaponEquip : MonoBehaviour
 {
 
     public static int weaponIndex = 1;
-    public FirstPersonController player;
+    private FirstPersonController player;
     public int index;
     public string nomeEquip;
     public int damage;
@@ -19,6 +19,11 @@ public class WeaponEquip : MonoBehaviour
     public float reloadTime;
 
     public bool colliding;
+
+    private void Start()
+    {
+        player = FindObjectOfType<FirstPersonController>();
+    }
 
     private void OnTriggerEnter(Collider other)
     {

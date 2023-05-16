@@ -30,7 +30,11 @@ public class OptionMenu : MonoBehaviour
     {
         gameManager = FindObjectOfType<GameManager>();
         fullscreen.isOn = Screen.fullScreen;
-        if(QualitySettings.vSyncCount == 0)
+        vitaInfinitaToggle.isOn = gameManager.vitaInfinita;
+        staminaInfinitaToggle.isOn = gameManager.staminaInfinita;
+        fullEquipToggle.isOn = gameManager.fullEquip;
+
+        if (QualitySettings.vSyncCount == 0)
         {
             vsync.isOn = false;
         }

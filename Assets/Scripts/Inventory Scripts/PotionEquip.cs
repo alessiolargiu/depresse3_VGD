@@ -6,7 +6,7 @@ public class PotionEquip : MonoBehaviour
 {
 
     public static int potionIndex = 1;
-    public FirstPersonController player;
+    private FirstPersonController player;
     public int index;
     public string nomeEquip;
     public int cureValue;
@@ -14,6 +14,11 @@ public class PotionEquip : MonoBehaviour
     public bool isEquiped = false;
     public Sprite sprite;
     public HUDInventoryPotion hudPotion;
+
+    private void Start()
+    {
+        player = FindObjectOfType<FirstPersonController>();
+    }
 
     private void OnTriggerEnter(Collider other)
     {

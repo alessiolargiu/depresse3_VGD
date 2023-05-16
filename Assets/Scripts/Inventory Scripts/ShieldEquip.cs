@@ -6,7 +6,7 @@ public class ShieldEquip : MonoBehaviour
 {
 
     public static int shieldIndex = 1;
-    public FirstPersonController player;
+    private FirstPersonController player;
     public int index;
     public string nomeEquip;
     public float shieldValue;
@@ -14,6 +14,11 @@ public class ShieldEquip : MonoBehaviour
     public Sprite sprite;
     public HUDInventoryShield hudShield;
     public ShieldEquip shieldInPlayer;
+
+    private void Start()
+    {
+        player = FindObjectOfType<FirstPersonController>();
+    }
 
     private void OnTriggerEnter(Collider other)
     {
