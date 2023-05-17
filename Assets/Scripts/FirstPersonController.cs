@@ -1148,4 +1148,42 @@ public class FirstPersonController : MonoBehaviour {
     {
         return availablePotions;
     }
+
+    public void SavePlayerData()
+    {
+        SavePlayerData playerData = new SavePlayerData()
+        {
+            position = transform.position,
+            rotation = transform.rotation,
+            scale = transform.localScale,
+            currentHealth = this.currentHealth,
+            currentStamina = this.currentStamina,
+            availableHelmets = this.availableHelmets,
+            availableChests = this.availableChests,
+            availableWeapons = this.availableWeapons,
+            availableShields = this.availableShields,
+            availablePotions = this.availablePotions
+        };
+
+        PlayerPrefs.SetString("playerData", JsonUtility.ToJson(playerData));
+
+    }
+
+    public void LoadPlayerData()
+    {
+
+        SavePlayerData savedPlayer = JsonUtility.FromJson<SavePlayerData>(PlayerPrefs.GetString("playerData"));
+        transform.position = savedPlayer.position;
+        transform.rotation = savedPlayer.rotation;
+        transform.localScale = savedPlayer.scale;
+        currentHealth = savedPlayer.currentHealth;
+        currentStamina = savedPlayer.currentStamina;
+        availableHelmets = savedPlayer.availableHelmets;
+        availableChests = savedPlayer.availableChests;
+        availableWeapons = savedPlayer.availableWeapons;
+        availableShields = savedPlayer.availableShields;
+        availablePotions = savedPlayer.availablePotions;
+
+    }
+
 }
