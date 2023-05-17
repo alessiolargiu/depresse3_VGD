@@ -15,6 +15,7 @@ TagManager:
   - cittadino
   - playermodel
   - acqua
+  - MovePoint
   layers:
   - Default
   - TransparentFX

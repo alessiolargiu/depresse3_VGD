@@ -43,6 +43,7 @@ public class Cittadino : MonoBehaviour
 
     private void Update(){
         Patroling();
+        RandomThingToSay();
     }
 
     private void Patroling(){
@@ -66,14 +67,42 @@ public class Cittadino : MonoBehaviour
         float randomZ = Random.Range(-walkPointRange, walkPointRange);
         float randomX = Random.Range(-walkPointRange, walkPointRange);
 
-        walkPoint = new Vector3(transform.position.x + randomX, transform.position.y, transform.position.z + randomZ);
+        //walkPoint = new Vector3(transform.position.x + randomX, transform.position.y, transform.position.z + randomZ);
+        Transform budino = SearchNearestMovePoint();
+        walkPoint = new Vector3(budino.position.x, transform.position.y, budino.position.z);
 
         if (Physics.Raycast(walkPoint, -transform.up, 2f, whatIsGround))
             walkPointSet = true;
 
+    }
 
-        
-        RandomThingToSay();
+    private Transform SearchNearestMovePoint(){
+        GameObject [] movePointsGO = GameObject.FindGameObjectsWithTag("MovePoint");
+        Transform [] movePointsT = new Transform[movePointsGO.Length];;
+
+        for(int i = 0; i < movePointsGO.Length; i++){
+            movePointsT[i] = movePointsGO[i].transform;
+        }
+
+
+        if(movePointsT.Length!=0){
+            Transform tMin = null;
+            float minDist = Mathf.Infinity;
+            Vector3 currentPos = transform.position;
+            foreach (Transform t in movePointsT)
+            {
+                float dist = Vector3.Distance(t.position, currentPos);
+                if (dist < minDist)
+                {
+                    tMin = t;
+                    minDist = dist;
+                }
+            }
+            float distanza = Vector3.Distance(tMin.position, currentPos);
+            if(distanza<4){
+                return transform;
+            } else return tMin;
+        } else return transform;
     }
 
     public void StopIt(){
