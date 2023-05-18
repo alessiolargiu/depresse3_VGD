@@ -10,6 +10,7 @@ public class PauseMenu : MonoBehaviour
     public static bool gameIsPaused = false;
     public GameObject pauseMenuHUD;
     public GameObject optionHUD;
+    public GameObject HUD;
 
     // Update is called once per frame
     void Update()
@@ -51,6 +52,15 @@ public class PauseMenu : MonoBehaviour
 
     public void Menu()
     {
+        FindObjectOfType<FirstPersonController>().gameObject.SetActive(false);
+        pauseMenuHUD.SetActive(false);
+        optionHUD.SetActive(false);
+        HUD.SetActive(false);
+
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
+        Time.timeScale = 1f;
+        gameIsPaused = false;
         SceneManager.LoadScene("MainMenuScene");
     }
 

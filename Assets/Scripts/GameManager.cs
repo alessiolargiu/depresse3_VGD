@@ -11,8 +11,25 @@ public class GameManager : MonoBehaviour
     public bool vitaInfinita;
     public bool staminaInfinita;
     public bool fullEquip;
-    private OptionMenu optionMenu;
+    public OptionMenu optionMenu;
+    public GameObject HUD;
     private FirstPersonController player;
+
+    [System.Serializable]
+    public class SavePlayerData
+    {
+        public Vector3 position;
+        public Quaternion rotation;
+        public Vector3 scale;
+        public int currentHealth;
+        public float currentStamina;
+        public List<int> availableWeapons = new List<int>();
+        public List<int> availableShields = new List<int>();
+        public List<int> availableChests = new List<int>();
+        public List<int> availableHelmets = new List<int>();
+        public List<int> availablePotions = new List<int>();
+
+    }
 
     private void Start()
     {
@@ -29,12 +46,26 @@ public class GameManager : MonoBehaviour
         PlayerPrefs.SetInt("staminaInfinita", boolToInt(staminaInfinita));
         PlayerPrefs.SetInt("fullEquip", boolToInt(fullEquip));
         PlayerPrefs.SetInt("currentScene", SceneManager.GetActiveScene().buildIndex);
-        PlayerPrefs.SetInt("fullscreen", boolToInt(optionMenu.fullscreen));
-        PlayerPrefs.SetInt("vsync", boolToInt(optionMenu.vsync));
+        PlayerPrefs.SetInt("fullscreen", boolToInt(optionMenu.fullscreen.isOn));
+        PlayerPrefs.SetInt("vsync", boolToInt(optionMenu.vsync.isOn));
         PlayerPrefs.SetInt("currentResolution", optionMenu.resolutionDropdown.resIndex);
         PlayerPrefs.SetFloat("volume",  optionMenu.volume.value);
 
-        player.SavePlayerData();
+        SavePlayerData playerData = new SavePlayerData()
+        {
+            position = transform.position,
+            rotation = transform.rotation,
+            scale = transform.localScale,
+            currentHealth = player.currentHealth,
+            currentStamina = player.currentStamina,
+            availableHelmets = player.availableHelmets,
+            availableChests = player.availableChests,
+            availableWeapons = player.availableWeapons,
+            availableShields = player.availableShields,
+            availablePotions = player.availablePotions
+        };
+
+        PlayerPrefs.SetString("playerData", JsonUtility.ToJson(playerData));
 
         PlayerPrefs.Save();
 
@@ -42,9 +73,10 @@ public class GameManager : MonoBehaviour
 
     public void Load()
     {
-        Debug.Log("DA FARE MOLTO BENE!!!!!");
-
-        SceneManager.LoadScene(PlayerPrefs.GetInt("currentScene"));
+        player.gameObject.SetActive(true);
+        HUD.SetActive(true);
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
 
         sensibilita = PlayerPrefs.GetInt("sensibilita");
         vitaInfinita = intToBool(PlayerPrefs.GetInt("vitaInfinita"));
@@ -56,7 +88,21 @@ public class GameManager : MonoBehaviour
         optionMenu.resolutionDropdown.resIndex = PlayerPrefs.GetInt("currentResolution");
         optionMenu.volume.value = PlayerPrefs.GetFloat("volume");
 
-        player.LoadPlayerData();
+        var savedPlayer = JsonUtility.FromJson<SavePlayerData>(PlayerPrefs.GetString("playerData"));
+        transform.position = savedPlayer.position;
+        transform.rotation = savedPlayer.rotation;
+        transform.localScale = savedPlayer.scale;
+        player.currentHealth = savedPlayer.currentHealth;
+        player.currentStamina = savedPlayer.currentStamina;
+        player.availableHelmets = savedPlayer.availableHelmets;
+        player.availableChests = savedPlayer.availableChests;
+        player.availableWeapons = savedPlayer.availableWeapons;
+        player.availableShields = savedPlayer.availableShields;
+        player.availablePotions = savedPlayer.availablePotions;
+
+        Debug.Log("DA FARE MOLTO BENE!!!!!");
+
+        SceneManager.LoadScene(PlayerPrefs.GetInt("currentScene"));
 
     }
 

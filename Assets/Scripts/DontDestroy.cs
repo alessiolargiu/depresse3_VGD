@@ -13,15 +13,8 @@ public class DontDestroy : MonoBehaviour
             if (Object.FindObjectsOfType<DontDestroy>()[i] != this)
             {
                 if (Object.FindObjectsOfType<DontDestroy>()[i].name == gameObject.name)
-                {
-                    if(SceneManager.GetActiveScene().name == "TestAndre 1" || SceneManager.GetActiveScene().name == "TestALessioMappa")
-                    {
-                        Destroy(Object.FindObjectsOfType<DontDestroy>()[i].gameObject);
-                    }
-                    else
-                    {
-                        Destroy(gameObject);
-                    }
+                { 
+                    Destroy(gameObject);
                 }
             }
         }

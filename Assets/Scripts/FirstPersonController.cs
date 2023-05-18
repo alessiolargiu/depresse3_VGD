@@ -30,9 +30,11 @@ public class FirstPersonController : MonoBehaviour {
     public HealthBar healthBar;
     public StaminaBar staminaBar;
     private int maxHealth = 100;
-    private int currentHealth;
+    [HideInInspector]
+    public int currentHealth;
     private float maxStamina = 100;
-    private float currentStamina;
+    [HideInInspector]
+    public float currentStamina;
     private int staminaJump = 10;
     private int staminaAttack = 20;
 
@@ -50,11 +52,16 @@ public class FirstPersonController : MonoBehaviour {
     public List<HelmetEquip> helmets;
     public List<ChestEquip> chests;
 
-    private List<int> availableWeapons = new List<int>();
-    private List<int> availableShields = new List<int>();
-    private List<int> availableChests = new List<int>();
-    private List<int> availableHelmets = new List<int>();
-    private List<int> availablePotions = new List<int>();
+    [HideInInspector]
+    public List<int> availableWeapons = new List<int>();
+    [HideInInspector]
+    public List<int> availableShields = new List<int>();
+    [HideInInspector]
+    public List<int> availableChests = new List<int>();
+    [HideInInspector]
+    public List<int> availableHelmets = new List<int>();
+    [HideInInspector]
+    public List<int> availablePotions = new List<int>();
 
     //riferimenti al numero di pozioni in HUD
     public TMP_Text numPozioniSlot1;
@@ -1151,38 +1158,14 @@ public class FirstPersonController : MonoBehaviour {
 
     public void SavePlayerData()
     {
-        SavePlayerData playerData = new SavePlayerData()
-        {
-            position = transform.position,
-            rotation = transform.rotation,
-            scale = transform.localScale,
-            currentHealth = this.currentHealth,
-            currentStamina = this.currentStamina,
-            availableHelmets = this.availableHelmets,
-            availableChests = this.availableChests,
-            availableWeapons = this.availableWeapons,
-            availableShields = this.availableShields,
-            availablePotions = this.availablePotions
-        };
-
-        PlayerPrefs.SetString("playerData", JsonUtility.ToJson(playerData));
+        
 
     }
 
     public void LoadPlayerData()
     {
 
-        SavePlayerData savedPlayer = JsonUtility.FromJson<SavePlayerData>(PlayerPrefs.GetString("playerData"));
-        transform.position = savedPlayer.position;
-        transform.rotation = savedPlayer.rotation;
-        transform.localScale = savedPlayer.scale;
-        currentHealth = savedPlayer.currentHealth;
-        currentStamina = savedPlayer.currentStamina;
-        availableHelmets = savedPlayer.availableHelmets;
-        availableChests = savedPlayer.availableChests;
-        availableWeapons = savedPlayer.availableWeapons;
-        availableShields = savedPlayer.availableShields;
-        availablePotions = savedPlayer.availablePotions;
+        
 
     }
 

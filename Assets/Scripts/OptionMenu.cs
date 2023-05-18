@@ -48,6 +48,7 @@ public class OptionMenu : MonoBehaviour
     // Update is called once per frame
     public void ApplySettings()
     {
+        Debug.Log("Sto applicando le opzioni");
         Screen.fullScreen = fullscreen.isOn;
         if(vsync.isOn)
         {
