@@ -67,9 +67,9 @@ public class Cittadino : MonoBehaviour
         float randomZ = Random.Range(-walkPointRange, walkPointRange);
         float randomX = Random.Range(-walkPointRange, walkPointRange);
 
-        //walkPoint = new Vector3(transform.position.x + randomX, transform.position.y, transform.position.z + randomZ);
-        Transform budino = SearchNearestMovePoint();
-        walkPoint = new Vector3(budino.position.x, transform.position.y, budino.position.z);
+        walkPoint = new Vector3(transform.position.x + randomX, transform.position.y, transform.position.z + randomZ);
+        //Transform budino = SearchNearestMovePoint();
+        //walkPoint = new Vector3(budino.position.x, transform.position.y, budino.position.z);
 
         if (Physics.Raycast(walkPoint, -transform.up, 2f, whatIsGround))
             walkPointSet = true;
