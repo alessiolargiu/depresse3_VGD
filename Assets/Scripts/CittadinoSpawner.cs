@@ -41,6 +41,7 @@ public class CittadinoSpawner : MonoBehaviour
             Vector3 randPos = new Vector3(Random.Range(0,20),0,Random.Range(0,20));
             GameObject spawned = Instantiate(toSpawn[whoToSpawn], transform.position + randPos, transform.rotation);
             spawned.SetActive(true);
+            toSpawn[i].GetComponent<UnityEngine.AI.NavMeshAgent>().Warp(transform.position+randPos);
             whenToSpawn = Random.Range(10, 30);
             yield return new WaitForSeconds(whenToSpawn);
         }
@@ -55,6 +56,7 @@ public class CittadinoSpawner : MonoBehaviour
             Vector3 randPos = new Vector3(Random.Range(0,20),0,Random.Range(0,20));
             GameObject spawned = Instantiate(toSpawn[whoToSpawn], transform.position + randPos, transform.rotation);
             spawned.SetActive(true);
+            toSpawn[i].GetComponent<UnityEngine.AI.NavMeshAgent>().Warp(transform.position+randPos);
             whenToSpawn = Random.Range(10, 20);
             i++;
         }

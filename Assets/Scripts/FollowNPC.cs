@@ -63,7 +63,6 @@ public class FollowNPC : MonoBehaviour
 
         
         if(distPunto>=1f && distPlayer<=distMinima){
-            Debug.Log("Son qui stronzi");
             agent.speed = 1.5f;
             anim.SetFloat("vertical", 0.5f,  1f, Time.deltaTime * 10f );  
             Vector3 targetDirection = puntoArrivo.position - transform.position;

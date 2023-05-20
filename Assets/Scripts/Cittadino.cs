@@ -9,6 +9,8 @@ public class Cittadino : MonoBehaviour
 
     private Animator anim;
 
+    public bool pathpnd;
+
     public LayerMask whatIsGround;
 
     private AudioSource self;
@@ -27,6 +29,10 @@ public class Cittadino : MonoBehaviour
 
     public AudioClip [] randomPhrase;
     private bool justTalked;
+
+    public bool debugTarget;
+
+    public float timer;
     private void Start(){
         agent = GetComponent<NavMeshAgent>();
         anim = GetComponent<Animator>();
@@ -38,12 +44,15 @@ public class Cittadino : MonoBehaviour
         if(pedIsDying){
             StartCoroutine(CountToDeath());
         }
-        
+
+        StartCoroutine(CheckIfCorrect());
     }
 
     private void Update(){
         Patroling();
         RandomThingToSay();
+
+        timer += Time.deltaTime;
     }
 
     private void Patroling(){
@@ -52,6 +61,10 @@ public class Cittadino : MonoBehaviour
 
         if (walkPointSet){
             agent.SetDestination(walkPoint);
+            if(agent.pathPending || timer >= 10){
+                SearchWalkPoint();
+                timer = 0;
+            }
             anim.SetFloat("vertical", 0.5f);
         }
 
@@ -67,12 +80,17 @@ public class Cittadino : MonoBehaviour
         float randomZ = Random.Range(-walkPointRange, walkPointRange);
         float randomX = Random.Range(-walkPointRange, walkPointRange);
 
+
+    
         walkPoint = new Vector3(transform.position.x + randomX, transform.position.y, transform.position.z + randomZ);
+
         //Transform budino = SearchNearestMovePoint();
         //walkPoint = new Vector3(budino.position.x, transform.position.y, budino.position.z);
-
-        if (Physics.Raycast(walkPoint, -transform.up, 2f, whatIsGround))
+        float distToPoint = Vector3.Distance(transform.position, walkPoint);
+        if (distToPoint>=10){
             walkPointSet = true;
+        }
+            
 
     }
 
@@ -128,6 +146,13 @@ public class Cittadino : MonoBehaviour
         yield return new WaitForSeconds(shelfLife);
         DestroyObject(gameObject);
     }
+
+    IEnumerator CheckIfCorrect(){
+        yield return new WaitForSeconds(1f);
+        if(agent.isOnNavMesh==false){
+            DestroyObject(gameObject);
+        }
+    }
     
     public void RandomThingToSay(){
         float dist = Vector3.Distance(playerTrans.position, transform.position);
@@ -144,6 +169,12 @@ public class Cittadino : MonoBehaviour
 
         if(dist>20){
             justTalked=false;
+        }
+    }
+
+    void OnTriggerStay(Collider collision){
+        if (collision.gameObject.tag == "NotAcceptableNavMeshArea"){
+            DestroyObject(gameObject);
         }
     }
     
