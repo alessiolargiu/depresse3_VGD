@@ -11,6 +11,9 @@ public class CittadinoSpawner : MonoBehaviour
 
     private bool cycleStarted;
 
+    public int minSpawnTime;
+    public int maxSpawnTime;
+
 
     // Start is called before the first frame update
     void Start(){
@@ -42,7 +45,7 @@ public class CittadinoSpawner : MonoBehaviour
             GameObject spawned = Instantiate(toSpawn[whoToSpawn], transform.position + randPos, transform.rotation);
             spawned.SetActive(true);
             toSpawn[i].GetComponent<UnityEngine.AI.NavMeshAgent>().Warp(transform.position+randPos);
-            whenToSpawn = Random.Range(10, 30);
+            whenToSpawn = Random.Range(minSpawnTime, maxSpawnTime);
             yield return new WaitForSeconds(whenToSpawn);
         }
 
@@ -51,7 +54,7 @@ public class CittadinoSpawner : MonoBehaviour
     IEnumerator SpawnCittadinoStart(){
         int i=0;
         int whenToSpawn;
-        while(i<3){
+        while(i<1){
             int whoToSpawn = Random.Range(0, toSpawn.Length);
             Vector3 randPos = new Vector3(Random.Range(0,20),0,Random.Range(0,20));
             GameObject spawned = Instantiate(toSpawn[whoToSpawn], transform.position + randPos, transform.rotation);

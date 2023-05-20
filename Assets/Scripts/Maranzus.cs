@@ -76,9 +76,19 @@ public class Maranzus : MonoBehaviour
 
     private bool strangled;
 
+    public float speedWalking;
+    public float speedRunning;
+
+
+
+    public bool enemyIsDying;
+    public int shelfLife;
 
 
     private void Awake(){
+        if(enemyIsDying){
+            StartCoroutine(CountToDeath());
+        }
         player = GameObject.Find("PlayerProtagonista").transform;
         stranglingPoint = GameObject.Find("StranglingPoint").transform;
         markerColor = marker.GetComponent<Renderer>();
@@ -152,12 +162,15 @@ public class Maranzus : MonoBehaviour
     private void Patroling(){
 
         outOfReach=true;
-        agent.speed=3f;
+        agent.speed=speedWalking;
         marker.SetActive(false);
         if (!walkPointSet) SearchWalkPoint();
 
         if (walkPointSet){
             agent.SetDestination(walkPoint);
+            if(agent.pathPending){
+                SearchWalkPoint();
+            }
             anim.SetFloat("vertical", 0.5f);
         }
 
@@ -183,7 +196,7 @@ public class Maranzus : MonoBehaviour
         awareOfPlayer=true;
         outOfReach=false;
         if(imActive) marker.SetActive(true);
-        agent.speed = 6f;
+        agent.speed = speedRunning;
         float dist = Vector3.Distance(player.position, transform.position);
 
         anim.SetFloat("vertical", 1,  1f, Time.deltaTime * 10f );  
@@ -371,4 +384,9 @@ public class Maranzus : MonoBehaviour
         DestroyObject(gameObject);
     }
     
+
+    IEnumerator CountToDeath(){
+        yield return new WaitForSeconds(shelfLife);
+        DestroyObject(gameObject);
+    }
 }

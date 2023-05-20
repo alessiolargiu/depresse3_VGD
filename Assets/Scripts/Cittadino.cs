@@ -50,7 +50,7 @@ public class Cittadino : MonoBehaviour
 
     private void Update(){
         Patroling();
-        RandomThingToSay();
+        //RandomThingToSay();
 
         timer += Time.deltaTime;
     }

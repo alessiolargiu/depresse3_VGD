@@ -16,6 +16,7 @@ TagManager:
   - playermodel
   - acqua
   - MovePoint
+  - NotAcceptableNavMeshArea
   layers:
   - Default
   - TransparentFX
