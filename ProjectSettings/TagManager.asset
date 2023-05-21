@@ -17,6 +17,8 @@ TagManager:
   - acqua
   - MovePoint
   - NotAcceptableNavMeshArea
+  - climbable
+  - negozio
   layers:
   - Default
   - TransparentFX

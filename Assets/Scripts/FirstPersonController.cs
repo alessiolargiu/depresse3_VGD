@@ -418,11 +418,43 @@ public class FirstPersonController : MonoBehaviour {
 
         } 
 
+        
+
         if(other.gameObject.layer == acqua){
             Debug.Log("sto toccando acqua");
             TakeDamage(100, transform, 0);
         }
 
+    }
+    
+    private void OnTriggerStay(Collider other){
+        if (other.gameObject.CompareTag("climbable")){
+            if(verticalMovement>0){
+                velocity.y=0.5f;
+                inAtck=false;
+                anim.SetBool("climbing",true);
+                controller.Move(velocity * Time.deltaTime);
+            }
+        } 
+
+
+        if (other.gameObject.CompareTag("negozio")){
+            if(Input.GetKeyUp(KeyCode.E) && currentHealth<100){
+                anim.SetTrigger("potion");
+                currentHealth = 100;
+                if(currentHealth > 100) { 
+                    currentHealth = 100; 
+                }
+                healthBar.SetHealth(currentHealth);
+            }
+        } 
+    }
+
+
+    private void OnTriggerExit(Collider other){
+        if (other.gameObject.CompareTag("climbable")){
+                anim.SetBool("climbing",false);   
+        } 
     }
 
     void OnCollisionEnter(Collision collision){
