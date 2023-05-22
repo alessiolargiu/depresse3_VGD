@@ -103,6 +103,7 @@ public class Maranzus : MonoBehaviour
         stopThrow=true;
         //attackPoint=transform;
         myself = GetInstanceID().ToString();
+        StartCoroutine(CheckIfCorrect());
     }
 
     private void Update(){
@@ -151,7 +152,7 @@ public class Maranzus : MonoBehaviour
 
     }
 
-    private void FixedUpdate(){
+    private void LateUpdate(){
         if(strangled){
                 transform.rotation = stranglingPoint.rotation;
                 transform.position = stranglingPoint.position + new Vector3(0f, 0f, 0f);
@@ -244,8 +245,9 @@ public class Maranzus : MonoBehaviour
 
         foreach(Collider playerIt in hitPlayer){
             float singleStep = 1 * Time.deltaTime;
-            
-            playerIt.GetComponentInParent<FirstPersonController>().TakeDamage(dmg, transform, 1);
+            if(strangled){
+                playerIt.GetComponentInParent<FirstPersonController>().TakeDamage(dmg*0.1f, transform, 1);
+            } else playerIt.GetComponentInParent<FirstPersonController>().TakeDamage(dmg, transform, 1);
         }
     }
 
@@ -390,5 +392,12 @@ public class Maranzus : MonoBehaviour
         if(awareOfPlayer==false){
             DestroyObject(gameObject);
         } else StartCoroutine(CountToDeath());
+    }
+
+    IEnumerator CheckIfCorrect(){
+        yield return new WaitForSeconds(1f);
+        if(agent.isOnNavMesh==false){
+            DestroyObject(gameObject);
+        }
     }
 }

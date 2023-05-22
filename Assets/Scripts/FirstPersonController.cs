@@ -982,7 +982,7 @@ public class FirstPersonController : MonoBehaviour {
 
         Debug.Log("ADJUSTCAMERA Euler " + newEuler + " old " + newOld + " equals? " + (newEuler==newOld));
 
-        if(newEuler!=newOld && (verticalMovement!=0 || horizontalMovement!=0) && !rotateKey && dontMove==false){
+        if(newEuler!=newOld && (verticalMovement!=0 || horizontalMovement!=0 || punchingKey) && !rotateKey && dontMove==false){
 
             float test = followTransform.eulerAngles.y;
             float asinHor = Mathf.Atan2(horizontalMovement, verticalMovement) * Mathf.Rad2Deg;
