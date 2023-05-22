@@ -15,6 +15,8 @@ public class EnemySpawner : MonoBehaviour
     public int minSpawnTime;
     public int maxSpawnTime;
 
+    public float distanza;
+
     // Start is called before the first frame update
     void Start(){
         
@@ -28,11 +30,11 @@ public class EnemySpawner : MonoBehaviour
     // Update is called once per frame
     void Update(){
         float dist = Vector3.Distance(playerTrans.position, transform.position);
-        if(dist<10 && cycleStarted==false){
+        if(dist<distanza && cycleStarted==false){
             StartCoroutine(SpawnEnemy());
             Debug.Log("SPAwNER Sono pronto a spawnare");
             cycleStarted=true;
-        } else if(dist>10){
+        } else if(dist>distanza){
             Debug.Log("SPAwNER Non sono pronto a spawnare");
             cycleStarted=false;
         }        

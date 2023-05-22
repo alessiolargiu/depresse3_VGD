@@ -387,6 +387,8 @@ public class Maranzus : MonoBehaviour
 
     IEnumerator CountToDeath(){
         yield return new WaitForSeconds(shelfLife);
-        DestroyObject(gameObject);
+        if(awareOfPlayer==false){
+            DestroyObject(gameObject);
+        } else StartCoroutine(CountToDeath());
     }
 }
