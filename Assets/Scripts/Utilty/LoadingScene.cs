@@ -12,7 +12,7 @@ public class LoadingScene : MonoBehaviour
     public GameObject HUD;
     public GameObject player;
 
-    public IEnumerator LoadAsynchronously(string name)
+    public IEnumerator LoadAsynchronously(string name, bool newLoad)
     {
         AsyncOperation op = SceneManager.LoadSceneAsync(name);
 
@@ -29,6 +29,24 @@ public class LoadingScene : MonoBehaviour
             float progress = Mathf.Clamp01(op.progress / .9f);
             slider.value = progress;
             yield return null;
+        }
+
+        Debug.Log("HO CARICATO LA SCENA");
+
+        if (newLoad)
+        {
+            Transform spawnPoint = null;
+            while (spawnPoint == null)
+            {
+                spawnPoint = GameObject.Find("SpawnPoint").GetComponent<Transform>();
+                yield return null;
+            }
+             
+            if(spawnPoint != null)
+            {
+                Debug.Log("Sto spawnando nello spawnpoint");
+                player.transform.position = spawnPoint.transform.position;
+            }
         }
     }
 }

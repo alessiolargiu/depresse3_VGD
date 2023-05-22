@@ -15,21 +15,7 @@ public class MainMenu : MonoBehaviour
     {
         ls = FindObjectOfType<LoadingScene>();
         gameManager = FindObjectOfType<GameManager>();
-    }
-
-    public void NewGame()
-    {
-        Debug.Log("Da modificare");
-        PlayerPrefs.DeleteAll();
-        StartCoroutine(ls.LoadAsynchronously("TestALessioMappa"));
-    }
-
-    public void LoadGame()
-    {
-        //Debug.Log("Caricamento da fare");
-        //StartCoroutine(ls.LoadAsynchronously("TestALessioMappa"));
-        gameManager.Load();
-    }
+    }  
 
     public void Options()
     {

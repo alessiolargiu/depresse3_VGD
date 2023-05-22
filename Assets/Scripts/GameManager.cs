@@ -14,6 +14,7 @@ public class GameManager : MonoBehaviour
     public OptionMenu optionMenu;
     public GameObject HUD;
     private FirstPersonController player;
+    private LoadingScene ls;
 
     [System.Serializable]
     public class SavePlayerData
@@ -35,6 +36,16 @@ public class GameManager : MonoBehaviour
     {
         optionMenu = FindObjectOfType<OptionMenu>();
         player = FindObjectOfType<FirstPersonController>();
+        ls = GetComponent<LoadingScene>();
+    }
+
+    private void Update()
+    {
+        if(optionMenu == null)
+        {
+            optionMenu = FindObjectOfType<OptionMenu>();
+        }
+
     }
 
     public void Save()
@@ -45,17 +56,22 @@ public class GameManager : MonoBehaviour
         PlayerPrefs.SetInt("vitaInfinita", boolToInt(vitaInfinita));
         PlayerPrefs.SetInt("staminaInfinita", boolToInt(staminaInfinita));
         PlayerPrefs.SetInt("fullEquip", boolToInt(fullEquip));
-        PlayerPrefs.SetInt("currentScene", SceneManager.GetActiveScene().buildIndex);
+        PlayerPrefs.SetString("currentScene", SceneManager.GetActiveScene().name);
         PlayerPrefs.SetInt("fullscreen", boolToInt(optionMenu.fullscreen.isOn));
         PlayerPrefs.SetInt("vsync", boolToInt(optionMenu.vsync.isOn));
         PlayerPrefs.SetInt("currentResolution", optionMenu.resolutionDropdown.resIndex);
         PlayerPrefs.SetFloat("volume",  optionMenu.volume.value);
 
+        if(player == null)
+        {
+            player = this.GetComponentInChildren<FirstPersonController>();
+        }
+
         SavePlayerData playerData = new SavePlayerData()
         {
-            position = transform.position,
-            rotation = transform.rotation,
-            scale = transform.localScale,
+            position = player.gameObject.transform.position,
+            rotation = player.gameObject.transform.rotation,
+            scale = player.gameObject.transform.localScale,
             currentHealth = player.currentHealth,
             currentStamina = player.currentStamina,
             availableHelmets = player.availableHelmets,
@@ -71,7 +87,7 @@ public class GameManager : MonoBehaviour
 
     }
 
-    public void Load()
+    public void LoadScene()
     {
         player.gameObject.SetActive(true);
         HUD.SetActive(true);
@@ -89,9 +105,9 @@ public class GameManager : MonoBehaviour
         optionMenu.volume.value = PlayerPrefs.GetFloat("volume");
 
         var savedPlayer = JsonUtility.FromJson<SavePlayerData>(PlayerPrefs.GetString("playerData"));
-        transform.position = savedPlayer.position;
-        transform.rotation = savedPlayer.rotation;
-        transform.localScale = savedPlayer.scale;
+        player.gameObject.transform.position = savedPlayer.position;
+        player.gameObject.transform.rotation = savedPlayer.rotation;
+        player.gameObject.transform.localScale = savedPlayer.scale;
         player.currentHealth = savedPlayer.currentHealth;
         player.currentStamina = savedPlayer.currentStamina;
         player.availableHelmets = savedPlayer.availableHelmets;
@@ -100,10 +116,15 @@ public class GameManager : MonoBehaviour
         player.availableShields = savedPlayer.availableShields;
         player.availablePotions = savedPlayer.availablePotions;
 
-        Debug.Log("DA FARE MOLTO BENE!!!!!");
+        StartCoroutine(ls.LoadAsynchronously(PlayerPrefs.GetString("currentScene"), false));
 
-        SceneManager.LoadScene(PlayerPrefs.GetInt("currentScene"));
+    }
 
+    public void NewGame()
+    {
+        Debug.Log("Da modificare");
+        PlayerPrefs.DeleteAll();
+        StartCoroutine(ls.LoadAsynchronously("Casa", true));
     }
 
     private int boolToInt(bool b)
