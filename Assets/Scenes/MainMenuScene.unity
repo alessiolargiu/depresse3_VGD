@@ -20310,6 +20310,7 @@ GameObject:
   - component: {fileID: 498419382}
   - component: {fileID: 498419381}
   - component: {fileID: 498419380}
+  - component: {fileID: 498419383}
   m_Layer: 5
   m_Name: Nuova partita
   m_TagString: Untagged
@@ -20432,6 +20433,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 498419378}
   m_CullTransparentMesh: 1
+--- !u!114 &498419383
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 498419378}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7ffd6ad863d29444da3d6e655e7bde42, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &499404712
 GameObject:
   m_ObjectHideFlags: 0
@@ -26487,6 +26500,7 @@ GameObject:
   - component: {fileID: 658952856}
   - component: {fileID: 658952855}
   - component: {fileID: 658952854}
+  - component: {fileID: 658952857}
   m_Layer: 5
   m_Name: Carica partita
   m_TagString: Untagged
@@ -26609,6 +26623,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 658952852}
   m_CullTransparentMesh: 1
+--- !u!114 &658952857
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 658952852}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 61ec516657fa29140831a2a098b80990, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &659218271
 GameObject:
   m_ObjectHideFlags: 0

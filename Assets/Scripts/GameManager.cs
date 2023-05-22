@@ -106,6 +106,7 @@ public class GameManager : MonoBehaviour
 
         var savedPlayer = JsonUtility.FromJson<SavePlayerData>(PlayerPrefs.GetString("playerData"));
         player.gameObject.transform.position = savedPlayer.position;
+        //player.gameObject.transform.position += new Vector3(0, 5f, 0);
         player.gameObject.transform.rotation = savedPlayer.rotation;
         player.gameObject.transform.localScale = savedPlayer.scale;
         player.currentHealth = savedPlayer.currentHealth;
@@ -116,7 +117,8 @@ public class GameManager : MonoBehaviour
         player.availableShields = savedPlayer.availableShields;
         player.availablePotions = savedPlayer.availablePotions;
 
-        StartCoroutine(ls.LoadAsynchronously(PlayerPrefs.GetString("currentScene"), false));
+        SceneManager.LoadScene(PlayerPrefs.GetString("currentScene"));
+        //StartCoroutine(ls.LoadAsynchronously(PlayerPrefs.GetString("currentScene"), false));
 
     }
 
@@ -125,6 +127,11 @@ public class GameManager : MonoBehaviour
         Debug.Log("Da modificare");
         PlayerPrefs.DeleteAll();
         StartCoroutine(ls.LoadAsynchronously("Casa", true));
+    }
+
+    public void StartLoading(string name, bool newLoad)
+    {
+        StartCoroutine(GetComponent<LoadingScene>().LoadAsynchronously(name, newLoad));
     }
 
     private int boolToInt(bool b)

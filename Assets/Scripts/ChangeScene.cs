@@ -20,7 +20,7 @@ public class ChangeScene : MonoBehaviour
 
     void OnTriggerEnter(Collider other){
         if(other.gameObject.CompareTag("player")){
-            SceneManager.LoadScene("TestALessioMappa");
+            GameObject.Find("GameManager").GetComponent<GameManager>().StartLoading("TestALessioMappa", true);
         }
     }
    

@@ -31,7 +31,10 @@ public class LoadingScene : MonoBehaviour
             yield return null;
         }
 
-        Debug.Log("HO CARICATO LA SCENA");
+        if (loadingScreen != null)
+        {
+            loadingScreen.SetActive(false);
+        }
 
         if (newLoad)
         {

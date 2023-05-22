@@ -14,12 +14,8 @@ public class DontDestroy : MonoBehaviour
             {
                 if (Object.FindObjectsOfType<DontDestroy>()[i].name == gameObject.name)
                 {
-                    
                     Destroy(gameObject);
-                    if(GameObject.Find("LoadingScreen") != null)
-                    {
-                        GameObject.Find("LoadingScreen").SetActive(false);
-                    }
+                    
                 }
             }
         }
