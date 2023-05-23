@@ -19,16 +19,10 @@ public class LoadingScene : MonoBehaviour
     {
         AsyncOperation op = SceneManager.LoadSceneAsync(name);
 
-        if (SceneManager.GetActiveScene().name == "MainMenuScene")
-        {
-            loadingScreen = GameObject.Find("LoadingScreenMenu").transform.GetChild(0).gameObject;
-        }
-        else
-        {
-            loadingScreen = GameObject.Find("LoadingScreen").transform.GetChild(0).gameObject;
-        }
-        loadingText = loadingScreen.transform.Find("Current Load").GetComponent<TMP_Text>();
-        slider = loadingScreen.GetComponentInChildren<Slider>();
+        
+        //loadingScreen = GameObject.Find("LoadingCanvas").transform.GetChild(0).gameObject;
+        //loadingText = loadingScreen.transform.Find("Current Load").GetComponent<TMP_Text>();
+        //slider = loadingScreen.GetComponentInChildren<Slider>();
 
         loadingScreen.SetActive(true);
         Time.timeScale = 1f;
@@ -42,7 +36,7 @@ public class LoadingScene : MonoBehaviour
         {
             float progress = Mathf.Clamp01(op.progress / .9f);
             slider.value = progress;
-            loadingText.text = slider.value.ToString() + "%";
+            loadingText.text = progress * 100f + "%";
             yield return null;
         }
 
