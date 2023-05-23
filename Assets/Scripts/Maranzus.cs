@@ -85,6 +85,9 @@ public class Maranzus : MonoBehaviour
     public int shelfLife;
 
 
+    public bool isCounting;
+
+
     private void Awake(){
         if(enemyIsDying){
             StartCoroutine(CountToDeath());
@@ -265,11 +268,11 @@ public class Maranzus : MonoBehaviour
             health -= damage;
         }
 
-        if(health>70 && health<100){
+        if(health>50 && health<100){
             markerColor.material.SetColor("_Color", Color.red);
-        } else if(health>40 && health<70){
+        } else if(health>5 && health<50){
             markerColor.material.SetColor("_Color", Color.yellow);
-        } else if(health>0 && health<40){
+        } else if(health>0 && health<5){
             markerColor.material.SetColor("_Color", Color.black);
         }
 
@@ -325,6 +328,9 @@ public class Maranzus : MonoBehaviour
         self.Stop();
         whoIsAttacking=null;
         self.PlayOneShot(deathSound);
+        if(isCounting){
+            GameObject.Find("MissionCounter").GetComponent<MissionCount>().addDeath();
+        }
         anim.SetTrigger("dying");
     }
 
@@ -383,6 +389,9 @@ public class Maranzus : MonoBehaviour
     IEnumerator DeathStrangled(float time){
         yield return new WaitForSeconds(time);
         player.GetComponent<FirstPersonController>().SetDontMove(false);
+        if(isCounting){
+            GameObject.Find("MissionCounter").GetComponent<MissionCount>().addDeath();
+        }
         DestroyObject(gameObject);
     }
     
@@ -390,6 +399,9 @@ public class Maranzus : MonoBehaviour
     IEnumerator CountToDeath(){
         yield return new WaitForSeconds(shelfLife);
         if(awareOfPlayer==false){
+            if(isCounting){
+                GameObject.Find("MissionCounter").GetComponent<MissionCount>().addDeath();
+            }
             DestroyObject(gameObject);
         } else StartCoroutine(CountToDeath());
     }
@@ -397,6 +409,9 @@ public class Maranzus : MonoBehaviour
     IEnumerator CheckIfCorrect(){
         yield return new WaitForSeconds(1f);
         if(agent.isOnNavMesh==false){
+            if(isCounting){
+                GameObject.Find("MissionCounter").GetComponent<MissionCount>().addDeath();
+            }
             DestroyObject(gameObject);
         }
     }

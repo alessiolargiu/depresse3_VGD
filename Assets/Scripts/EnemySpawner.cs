@@ -46,7 +46,7 @@ public class EnemySpawner : MonoBehaviour
                
     }
 
-    IEnumerator SpawnEnemy(){
+    private IEnumerator SpawnEnemy(){
         int i=0;
         int whenToSpawn;
         while(cycleStarted==false){
@@ -61,17 +61,18 @@ public class EnemySpawner : MonoBehaviour
 
     }
 
-    IEnumerator SpawnEnemyMission(){
+    private IEnumerator SpawnEnemyMission(){
         int i=0;
         int whenToSpawn;
-        while(i<=howManyEnemies){
+        while(i<howManyEnemies){
             int whoToSpawn = Random.Range(0, toSpawn.Length);
             Vector3 randPos = new Vector3(Random.Range(0,20),0,Random.Range(0,20));
             GameObject spawned = Instantiate(toSpawn[whoToSpawn], transform.position + randPos, transform.rotation);
             spawned.SetActive(true);
-            toSpawn[whoToSpawn].GetComponent<UnityEngine.AI.NavMeshAgent>().Warp(transform.position+randPos);
+            spawned.GetComponent<UnityEngine.AI.NavMeshAgent>().Warp(transform.position+randPos);
             whenToSpawn = Random.Range(minSpawnTime, maxSpawnTime);
             yield return new WaitForSeconds(whenToSpawn);
+            i++;
         }
 
         yield return null;

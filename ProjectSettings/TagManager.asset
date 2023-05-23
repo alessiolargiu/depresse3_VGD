@@ -20,6 +20,8 @@ TagManager:
   - climbable
   - negozio
   - PiazzaNemici
+  - checkpoint
+  - missioni
   layers:
   - Default
   - TransparentFX
