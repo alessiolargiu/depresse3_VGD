@@ -240,6 +240,9 @@ public class FirstPersonController : MonoBehaviour {
 
     private void Update(){
         if(isActive){
+
+            mouseSens = gameManager.sensibilita;
+
             InputGet();
             AdjustCamera();
             CrouchCheck();  

@@ -89,42 +89,46 @@ public class GameManager : MonoBehaviour
 
     public void LoadScene()
     {
-        player.gameObject.SetActive(true);
-        HUD.SetActive(true);
-        Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
+        //controllo se ho dei dati salvati
+        if(PlayerPrefs.GetInt("vitaInfinita", -1) != -1)
+        {
+            player.gameObject.SetActive(true);
+            HUD.SetActive(true);
+            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
 
-        sensibilita = PlayerPrefs.GetInt("sensibilita");
-        vitaInfinita = intToBool(PlayerPrefs.GetInt("vitaInfinita"));
-        staminaInfinita = intToBool(PlayerPrefs.GetInt("staminaInfinita"));
-        fullEquip = intToBool(PlayerPrefs.GetInt("fullEquip"));
-        optionMenu.fullscreen.isOn = intToBool(PlayerPrefs.GetInt("fullscreen"));
-        optionMenu.vsync.isOn = intToBool(PlayerPrefs.GetInt("vsync"));
-        optionMenu.fullscreen.isOn = intToBool(PlayerPrefs.GetInt("fullscreen"));
-        optionMenu.resolutionDropdown.resIndex = PlayerPrefs.GetInt("currentResolution");
-        optionMenu.volume.value = PlayerPrefs.GetFloat("volume");
+            sensibilita = PlayerPrefs.GetInt("sensibilita");
+            vitaInfinita = intToBool(PlayerPrefs.GetInt("vitaInfinita"));
+            staminaInfinita = intToBool(PlayerPrefs.GetInt("staminaInfinita"));
+            fullEquip = intToBool(PlayerPrefs.GetInt("fullEquip"));
+            optionMenu.fullscreen.isOn = intToBool(PlayerPrefs.GetInt("fullscreen"));
+            optionMenu.vsync.isOn = intToBool(PlayerPrefs.GetInt("vsync"));
+            optionMenu.fullscreen.isOn = intToBool(PlayerPrefs.GetInt("fullscreen"));
+            optionMenu.resolutionDropdown.resIndex = PlayerPrefs.GetInt("currentResolution");
+            optionMenu.volume.value = PlayerPrefs.GetFloat("volume");
 
-        var savedPlayer = JsonUtility.FromJson<SavePlayerData>(PlayerPrefs.GetString("playerData"));
-        player.gameObject.transform.position = savedPlayer.position;
-        //player.gameObject.transform.position += new Vector3(0, 5f, 0);
-        player.gameObject.transform.rotation = savedPlayer.rotation;
-        player.gameObject.transform.localScale = savedPlayer.scale;
-        player.currentHealth = savedPlayer.currentHealth;
-        player.currentStamina = savedPlayer.currentStamina;
-        player.availableHelmets = savedPlayer.availableHelmets;
-        player.availableChests = savedPlayer.availableChests;
-        player.availableWeapons = savedPlayer.availableWeapons;
-        player.availableShields = savedPlayer.availableShields;
-        player.availablePotions = savedPlayer.availablePotions;
+            var savedPlayer = JsonUtility.FromJson<SavePlayerData>(PlayerPrefs.GetString("playerData"));
+            player.gameObject.transform.position = savedPlayer.position;
+            //player.gameObject.transform.position += new Vector3(0, 5f, 0);
+            player.gameObject.transform.rotation = savedPlayer.rotation;
+            player.gameObject.transform.localScale = savedPlayer.scale;
+            player.currentHealth = savedPlayer.currentHealth;
+            player.currentStamina = savedPlayer.currentStamina;
+            player.availableHelmets = savedPlayer.availableHelmets;
+            player.availableChests = savedPlayer.availableChests;
+            player.availableWeapons = savedPlayer.availableWeapons;
+            player.availableShields = savedPlayer.availableShields;
+            player.availablePotions = savedPlayer.availablePotions;
 
-        SceneManager.LoadScene(PlayerPrefs.GetString("currentScene"));
-        //StartCoroutine(ls.LoadAsynchronously(PlayerPrefs.GetString("currentScene"), false));
+            //SceneManager.LoadScene(PlayerPrefs.GetString("currentScene"));
+            StartCoroutine(ls.LoadAsynchronously(PlayerPrefs.GetString("currentScene"), false));
+        }
 
     }
 
     public void NewGame()
     {
-        Debug.Log("Da modificare");
+        Debug.Log("STO FACENDO NEWGAME");
         PlayerPrefs.DeleteAll();
         StartCoroutine(ls.LoadAsynchronously("Casa", true));
     }

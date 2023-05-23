@@ -77,7 +77,9 @@ public class OptionMenu : MonoBehaviour
         gameManager.fullEquip = fullEquipToggle.isOn;
         gameManager.sensibilita = (int)sensibility.value;
 
-        FindObjectOfType<FirstPersonController>().mouseSens = gameManager.sensibilita;
+        //FindObjectOfType<FirstPersonController>().mouseSens = gameManager.sensibilita;
+        //FindObjectOfType<PlayerTarget>().xSpeed = gameManager.sensibilita;
+        //FindObjectOfType<PlayerTarget>().ySpeed = gameManager.sensibilita;
 
         if (fullEquipToggle.isOn)
         {
