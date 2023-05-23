@@ -19,6 +19,7 @@ TagManager:
   - NotAcceptableNavMeshArea
   - climbable
   - negozio
+  - PiazzaNemici
   layers:
   - Default
   - TransparentFX
@@ -35,7 +36,7 @@ TagManager:
   - marciapiede
   - edifici
   - PostProcessing
-  - 
+  - PiazzaNemici
   - 
   - 
   - 

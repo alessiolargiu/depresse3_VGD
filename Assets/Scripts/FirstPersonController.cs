@@ -578,6 +578,13 @@ public class FirstPersonController : MonoBehaviour {
 
     private void Movement(){
 
+        if(Input.GetKey(KeyCode.A) && Input.GetKey(KeyCode.D)){
+            horizontalMovement=0;
+        }
+
+        if(Input.GetKey(KeyCode.W) && Input.GetKey(KeyCode.S)){
+            verticalMovement=0;
+        }
         float asinHor = 0;
 
 

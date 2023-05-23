@@ -17,27 +17,33 @@ public class EnemySpawner : MonoBehaviour
 
     public float distanza;
 
+    public int howManyEnemies;
+
     // Start is called before the first frame update
     void Start(){
         
         player = GameObject.Find("protagonista");
         playerTrans = player.transform;
         if(spawnerForMission){
-            StartCoroutine(SpawnEnemyStart());
+            StartCoroutine(SpawnEnemyMission());
         }
     }
 
     // Update is called once per frame
     void Update(){
-        float dist = Vector3.Distance(playerTrans.position, transform.position);
-        if(dist<distanza && cycleStarted==false){
-            StartCoroutine(SpawnEnemy());
-            Debug.Log("SPAwNER Sono pronto a spawnare");
-            cycleStarted=true;
-        } else if(dist>distanza){
-            Debug.Log("SPAwNER Non sono pronto a spawnare");
-            cycleStarted=false;
-        }        
+
+        if(spawnerForMission==false){
+            float dist = Vector3.Distance(playerTrans.position, transform.position);
+            if(dist<distanza && cycleStarted==false){
+                StartCoroutine(SpawnEnemy());
+                Debug.Log("SPAwNER Sono pronto a spawnare");
+                cycleStarted=true;
+            } else if(dist>distanza){
+                Debug.Log("SPAwNER Non sono pronto a spawnare");
+                cycleStarted=false;
+            } 
+        }
+               
     }
 
     IEnumerator SpawnEnemy(){
@@ -48,25 +54,26 @@ public class EnemySpawner : MonoBehaviour
             Vector3 randPos = new Vector3(Random.Range(0,20),0,Random.Range(0,20));
             GameObject spawned = Instantiate(toSpawn[whoToSpawn], transform.position + randPos, transform.rotation);
             spawned.SetActive(true);
-            toSpawn[i].GetComponent<UnityEngine.AI.NavMeshAgent>().Warp(transform.position+randPos);
+            toSpawn[whoToSpawn].GetComponent<UnityEngine.AI.NavMeshAgent>().Warp(transform.position+randPos);
             whenToSpawn = Random.Range(minSpawnTime, maxSpawnTime);
             yield return new WaitForSeconds(whenToSpawn);
         }
 
     }
 
-    IEnumerator SpawnEnemyStart(){
+    IEnumerator SpawnEnemyMission(){
         int i=0;
         int whenToSpawn;
-        while(i<3){
+        while(i<=howManyEnemies){
             int whoToSpawn = Random.Range(0, toSpawn.Length);
             Vector3 randPos = new Vector3(Random.Range(0,20),0,Random.Range(0,20));
             GameObject spawned = Instantiate(toSpawn[whoToSpawn], transform.position + randPos, transform.rotation);
             spawned.SetActive(true);
-            toSpawn[i].GetComponent<UnityEngine.AI.NavMeshAgent>().Warp(transform.position+randPos);
-            whenToSpawn = Random.Range(10, 20);
-            i++;
+            toSpawn[whoToSpawn].GetComponent<UnityEngine.AI.NavMeshAgent>().Warp(transform.position+randPos);
+            whenToSpawn = Random.Range(minSpawnTime, maxSpawnTime);
+            yield return new WaitForSeconds(whenToSpawn);
         }
+
         yield return null;
     }
 }

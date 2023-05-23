@@ -54,7 +54,7 @@ public class PlayerTarget : MonoBehaviour
         usingCameraFancy=false;
     }
 
-    void LateUpdate(){
+    void Update(){
 
         inAtck = Input.GetMouseButton(1);
         rotate = Input.GetMouseButton(2);

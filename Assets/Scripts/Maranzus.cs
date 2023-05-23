@@ -125,7 +125,7 @@ public class Maranzus : MonoBehaviour
                     ChasePlayer();
                     awareOfPlayer=true;
                 }
-                if (playerInAttackRange && playerInSightRange) AttackPlayer();
+                if (playerInAttackRange && playerInSightRange && strangled==false) AttackPlayer();
             } else {
                 if (!playerInSightRange && !playerInAttackRange) {
                     if(whoIsAttacking==myself){
@@ -139,7 +139,7 @@ public class Maranzus : MonoBehaviour
                     awareOfPlayer=true;
                     ChasePlayer();
                 }
-                if (playerInAttackRange && playerInSightRange && (whoIsAttacking==myself)) AttackPlayer();
+                if (playerInAttackRange && playerInSightRange && (whoIsAttacking==myself) && strangled==false) AttackPlayer();
             }
 
 
