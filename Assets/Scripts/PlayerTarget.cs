@@ -59,8 +59,8 @@ public class PlayerTarget : MonoBehaviour
         inAtck = Input.GetMouseButton(1);
         rotate = Input.GetMouseButton(2);
 
-        xSpeed = FindObjectOfType<GameManager>().sensibilita;
-        ySpeed = FindObjectOfType<GameManager>().sensibilita;
+        xSpeed = FindObjectOfType<GameManager>().sensibilita / 2;
+        ySpeed = FindObjectOfType<GameManager>().sensibilita / 2;
 
 
 
