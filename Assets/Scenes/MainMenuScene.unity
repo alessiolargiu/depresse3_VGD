@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 0.49
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.00000834663, g: 0.000000012628713, b: 0, a: 0.49}
+  m_IndirectSpecularColor: {r: 0.000008346618, g: 0.000000012628713, b: 0, a: 0.49}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -6871,6 +6871,7 @@ GameObject:
   - component: {fileID: 260792315}
   - component: {fileID: 260792314}
   - component: {fileID: 260792313}
+  - component: {fileID: 260792317}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -6944,6 +6945,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &260792317
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 260792312}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e09041ba006de4c8692af9f220bcba4f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &261241346
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -24597,7 +24610,7 @@ MonoBehaviour:
   m_LookAt: {fileID: 1944080225}
   m_Follow: {fileID: 1944080225}
   m_Lens:
-    FieldOfView: 59.85823
+    FieldOfView: 59.78722
     OrthographicSize: 5
     NearClipPlane: 0.3
     FarClipPlane: 1000
