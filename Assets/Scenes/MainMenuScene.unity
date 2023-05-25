@@ -15275,7 +15275,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -5.2645874, y: -5.662903}
+  m_AnchoredPosition: {x: -5.2646484, y: -5.662903}
   m_SizeDelta: {x: -445.9014, y: -275.6103}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &571020873
@@ -24610,7 +24610,7 @@ MonoBehaviour:
   m_LookAt: {fileID: 1944080225}
   m_Follow: {fileID: 1944080225}
   m_Lens:
-    FieldOfView: 59.78722
+    FieldOfView: 59.82866
     OrthographicSize: 5
     NearClipPlane: 0.3
     FarClipPlane: 1000

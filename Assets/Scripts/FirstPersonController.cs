@@ -175,6 +175,8 @@ public class FirstPersonController : MonoBehaviour {
 
     private bool dontMove;
 
+    private bool zoomAtck;
+
 
     void Start(){   
         controller = GetComponent<CharacterController>();
@@ -290,7 +292,19 @@ public class FirstPersonController : MonoBehaviour {
                 staminaBar.SetStamina(currentStamina);
             }
 
+
+            if(zoomAtck && (int) virtualCam.m_Lens.FieldOfView>=45){
+                Debug.Log("cond1");
+                virtualCam.m_Lens.FieldOfView -= 60 * Time.deltaTime;
+            }
+
+            if(zoomAtck==false && Mathf.Round(virtualCam.m_Lens.FieldOfView)<60){
+                Debug.Log("cond2");
+                virtualCam.m_Lens.FieldOfView += 30 * Time.deltaTime;
+            }
                 
+            
+            
             Debug.Log("atck" + attackFinished);
             AttackType();
             MoveToEnemy();
@@ -1019,8 +1033,7 @@ public class FirstPersonController : MonoBehaviour {
             meshDisabler(sh.transform);
         }
         
-
-
+        zoomAtck=true;
 
         curposdebug = attackPoint;
         attackFinished=false;
@@ -1088,6 +1101,8 @@ public class FirstPersonController : MonoBehaviour {
             yield return new WaitForSeconds(time);
             dontMove=false;
         }
+
+        zoomAtck=false;
         
     }
 
@@ -1207,8 +1222,7 @@ public class FirstPersonController : MonoBehaviour {
     public void LoadPlayerData()
     {
 
-        
-
     }
+
 
 }

@@ -20,7 +20,10 @@ public class GetLatestMission : MonoBehaviour
 
     public void setCurrentMission(int crnt){
         currentMission=crnt;
-        missioni.GetComponent<MissionTracking>().setCurrentMission(currentMission);
+        if(missioni!=null){
+            missioni.GetComponent<MissionTracking>().setCurrentMission(currentMission);
+        }
+        
     }
 
 
