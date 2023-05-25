@@ -11,7 +11,7 @@ public class SetLoadGameButton : MonoBehaviour
     void Start()
     {
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
-        GetComponent<Button>().onClick.AddListener(gameManager.LoadScene);
+        GetComponent<Button>().onClick.AddListener(gameManager.LoadGame);
     }
 
     // Update is called once per frame
