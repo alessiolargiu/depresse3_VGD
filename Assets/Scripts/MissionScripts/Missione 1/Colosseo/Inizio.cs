@@ -9,13 +9,20 @@ public class Inizio : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
-        cutScene.SetActive(true);
-        StartCoroutine(cutScene.GetComponent<CutSceneScript>().cutsceneStart((paolino) => {if(paolino){oggettiGioco.SetActive(true); DestroyObject(gameObject);}}));
+        StartCoroutine(waitForGameManager());
     }
 
     // Update is called once per frame
     void Update()
     {
         
+    }
+
+    IEnumerator waitForGameManager(){
+        while(GameObject.Find("GameManager")==false){
+            yield return null;
+        }
+        cutScene.SetActive(true);
+        StartCoroutine(cutScene.GetComponent<CutSceneScript>().cutsceneStart((paolino) => {if(paolino){oggettiGioco.SetActive(true); DestroyObject(gameObject);}}));
     }
 }

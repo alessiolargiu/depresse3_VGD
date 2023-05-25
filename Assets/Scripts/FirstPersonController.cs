@@ -36,7 +36,7 @@ public class FirstPersonController : MonoBehaviour {
     [HideInInspector]
     public float currentStamina;
     private int staminaJump = 10;
-    private int staminaAttack = 20;
+    private int staminaAttack = 10;
 
     //rifermineto per l'inventario
     private Inventory inventory;
@@ -282,7 +282,7 @@ public class FirstPersonController : MonoBehaviour {
             {
                 if (currentStamina < maxStamina)
                 {
-                    currentStamina +=  4 * Time.deltaTime;
+                    currentStamina +=  8 * Time.deltaTime;
                 }
                 if (currentStamina > maxStamina)
                 {
@@ -293,7 +293,7 @@ public class FirstPersonController : MonoBehaviour {
             }
 
 
-            if(zoomAtck && (int) virtualCam.m_Lens.FieldOfView>=45){
+            if(zoomAtck && (int) virtualCam.m_Lens.FieldOfView>=55){
                 Debug.Log("cond1");
                 virtualCam.m_Lens.FieldOfView -= 60 * Time.deltaTime;
             }
@@ -870,7 +870,7 @@ public class FirstPersonController : MonoBehaviour {
                 switch(noWeaponCycle){
                     case 0:
                     StartCoroutine(OnTimeSound(pugnoAir, airleft, 1f, 0f));
-                    StartCoroutine(Attack(leftHand, 5, 0.1f, 0.5f, 0.2f, shieldGO, false));
+                    StartCoroutine(Attack(leftHand, 5, 0.1f, 0.5f, 0.2f, shieldGO, false, false));
                     anim.SetBool("altPunching", true);
                     anim.SetTrigger("punching");
                     noWeaponCycle++;
@@ -878,7 +878,7 @@ public class FirstPersonController : MonoBehaviour {
                     
                     case 1:
                     StartCoroutine(OnTimeSound(pugnoAir, airright, 1f, 0f));
-                    StartCoroutine(Attack(rightHand, 5, 0.1f, 0.5f, 0.2f, shieldGO, false));
+                    StartCoroutine(Attack(rightHand, 5, 0.1f, 0.5f, 0.2f, shieldGO, false, false));
                     anim.SetBool("altPunching", false);
                     anim.SetTrigger("punching");
                     noWeaponCycle++;
@@ -889,10 +889,10 @@ public class FirstPersonController : MonoBehaviour {
                     int rand = UnityEngine.Random.Range(0, 2);
                     if(rand==1){
                         anim.SetBool("altPunching", false);
-                        StartCoroutine(Attack(legR, 10, 0.5f, 0.5f, 0.8f, shieldGO, true));
+                        StartCoroutine(Attack(legR, 10, 0.5f, 0.5f, 0.8f, shieldGO, true, true));
                     } else {
                         anim.SetBool("altPunching", true);
-                        StartCoroutine(Attack(legL, 10, 0.5f, 0.5f, 0.8f, shieldGO, true));
+                        StartCoroutine(Attack(legL, 10, 0.5f, 0.5f, 0.8f, shieldGO, true, true));
                     }
                     anim.SetTrigger("kicking");
                     noWeaponCycle =0;
@@ -913,7 +913,7 @@ public class FirstPersonController : MonoBehaviour {
 
                 if(currentWeapon.name=="lancia_in_player"){
                     anim.SetTrigger("spear");
-                    StartCoroutine(Attack(sword, currentWeapon.damage, 1f, currentWeapon.innerRange, currentWeapon.reloadTime, shieldGO, true));
+                    StartCoroutine(Attack(sword, currentWeapon.damage, 1f, currentWeapon.innerRange, currentWeapon.reloadTime, shieldGO, true, false));
                 } else if(currentWeapon.name!="lancia_in_player"){
                     moveToEnemyYes=true;
 
@@ -921,7 +921,7 @@ public class FirstPersonController : MonoBehaviour {
                         case 0:
                         anim.SetBool("altPunching", true);
                         anim.SetTrigger("swording");
-                        StartCoroutine(Attack(sword, currentWeapon.damage, 1f, currentWeapon.innerRange, currentWeapon.reloadTime, shieldGO, false));
+                        StartCoroutine(Attack(sword, currentWeapon.damage, 1f, currentWeapon.innerRange, currentWeapon.reloadTime, shieldGO, false, false));
                         noWeaponCycle++;
                         break;
 
@@ -929,13 +929,13 @@ public class FirstPersonController : MonoBehaviour {
                         case 1:
                         anim.SetBool("altPunching", false);
                         anim.SetTrigger("swording");
-                        StartCoroutine(Attack(sword, currentWeapon.damage, 1f, currentWeapon.innerRange, currentWeapon.reloadTime, shieldGO, false));
+                        StartCoroutine(Attack(sword, currentWeapon.damage, 1f, currentWeapon.innerRange, currentWeapon.reloadTime, shieldGO, false, false));
                         noWeaponCycle++;
                         break;
 
                         case 2:
                         anim.SetTrigger("swordpesante");
-                        StartCoroutine(Attack(sword, currentWeapon.damage, 1f, currentWeapon.innerRange, currentWeapon.reloadTime, shieldGO, true));
+                        StartCoroutine(Attack(sword, currentWeapon.damage, 1f, currentWeapon.innerRange, currentWeapon.reloadTime, shieldGO, true, true));
                         noWeaponCycle=0;
                         break;
 
@@ -1023,7 +1023,7 @@ public class FirstPersonController : MonoBehaviour {
     }
 
 
-    IEnumerator Attack(Transform attackPoint, int dmg, float time, float attackRange, float timeToReload, GameObject sh, bool blockMove){
+    IEnumerator Attack(Transform attackPoint, int dmg, float time, float attackRange, float timeToReload, GameObject sh, bool blockMove, bool attaccoPesante){
 
         if(blockMove){
             dontMove=true;
@@ -1033,7 +1033,10 @@ public class FirstPersonController : MonoBehaviour {
             meshDisabler(sh.transform);
         }
         
-        zoomAtck=true;
+        if(attaccoPesante){
+            zoomAtck=true;
+        }
+        
 
         curposdebug = attackPoint;
         attackFinished=false;
@@ -1102,7 +1105,10 @@ public class FirstPersonController : MonoBehaviour {
             dontMove=false;
         }
 
-        zoomAtck=false;
+        if(attaccoPesante){
+            zoomAtck=false;
+        }
+        
         
     }
 

@@ -309,15 +309,15 @@ public class MaranzusGigante : MonoBehaviour{
     }
 
     IEnumerator Attack(Transform point, float time){
-        yield return new WaitForSeconds(time);
-        shake.ShakeCamera(shakeIntns, shakeTime);
+        /*yield return new WaitForSeconds(time);
+        //shake.ShakeCamera(shakeIntns, shakeTime);
         Collider[] hitPlayer = Physics.OverlapSphere(point.position, fistRange, playerLayer);
 
         foreach(Collider playerIt in hitPlayer){
             float singleStep = 1 * Time.deltaTime;
             
             playerIt.GetComponentInParent<FirstPersonController>().TakeDamage(dmg, transform, 3);
-        }
+        }*/
         self.PlayOneShot(pugnoSound, 1f);
         yield return new WaitForSeconds(timeBetweenAttacks);
         ResetAttack();
@@ -326,7 +326,7 @@ public class MaranzusGigante : MonoBehaviour{
 
     IEnumerator shakeRun(float ints, float timeshk, float time){
         yield return new WaitForSeconds(time);
-        shake.ShakeCamera(ints, timeshk);
+        //shake.ShakeCamera(ints, timeshk);
     }
     
 }
