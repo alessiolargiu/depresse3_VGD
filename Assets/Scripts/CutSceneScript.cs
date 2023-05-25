@@ -111,10 +111,8 @@ public class CutSceneScript : MonoBehaviour
             
             //player.SetActive(false);
             
-
-            cutscene.SetActive(true);
             HUD.SetActive(false);
-            
+            cutscene.SetActive(true);
             player.SetActiveInternal(false);
             playerContainer.SetActive(false);
 

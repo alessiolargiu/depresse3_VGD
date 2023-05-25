@@ -5,6 +5,9 @@ using UnityEngine.AI;
 
 public class MaranzusGigante : MonoBehaviour{
 
+    public GameObject cutsceneafter;
+
+
     public CameraShake shake;
     public float shakeIntns = 5;
     public float shakeTime = 1;
@@ -269,19 +272,21 @@ public class MaranzusGigante : MonoBehaviour{
     private void DestroyEnemy(){
         self.Stop();
         whoIsAttacking=null;
-        self.PlayOneShot(hitSound);
+        self.PlayOneShot(deathSound);
         StartCoroutine(shakeRun(10f, 2f, 6.5f));
         anim.SetTrigger("dying");
     }
 
     public void DeathDetect(string msg){
         if(msg=="finito"){
+            cutsceneafter.SetActive(true);
             DestroyObject(gameObject);
         }
     }
 
     public void Morte(int msg){
         if(msg==1){
+            cutsceneafter.SetActive(true);
             DestroyObject(gameObject);
         }
     }

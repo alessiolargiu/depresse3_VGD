@@ -16,13 +16,18 @@ public class MissionCount : MonoBehaviour
 
         if(deaths>=desiredDeaths && stop==false){
             stop=true;
-            cutScene.SetActive(true);
-            StartCoroutine(cutScene.GetComponent<CutSceneScript>().cutsceneStart((paolino) => {if(paolino){DestroyObject(gameObject);}}));
+            StartCoroutine(waitToDie());
         }
     }
 
     public void addDeath(){
         deaths++;
+    }
+
+    IEnumerator waitToDie(){
+        yield return new WaitForSeconds(3f);
+        cutScene.SetActive(true);
+        StartCoroutine(cutScene.GetComponent<CutSceneScript>().cutsceneStart((paolino) => {if(paolino){DestroyObject(gameObject);}}));
     }
 }
 
