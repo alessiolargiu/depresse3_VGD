@@ -4,6 +4,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using static GameManager;
 //using static GameManager;
 
 public class LoadingScene : MonoBehaviour
@@ -56,17 +57,22 @@ public class LoadingScene : MonoBehaviour
                 Debug.Log("Ho spawnato il player nello spawnpoint");
             }
         }
+        else
+        {
+            
+        }
 
         if (loadingScreen != null)
         {
             yield return new WaitForSeconds(1);
             loadingScreen.SetActive(false);
+            if (!newLoad)
+            {
+                var savedPlayer = JsonUtility.FromJson<SavePlayerData>(PlayerPrefs.GetString("playerData"));
+                Debug.Log("coordinate player" + savedPlayer.position);
+                player.gameObject.transform.position = savedPlayer.position + new Vector3(0, 10f, 0);
+            }
         }
 
-        /*else
-        {
-            var savedPlayer = JsonUtility.FromJson<SavePlayerData>(PlayerPrefs.GetString("playerData"));
-            player.gameObject.transform.position = savedPlayer.position;
-        }*/
     }
 }
