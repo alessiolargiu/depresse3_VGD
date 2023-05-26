@@ -57,13 +57,13 @@ public class LoadingScene : MonoBehaviour
                 Debug.Log("Ho spawnato il player nello spawnpoint");
             }
         }
-        else
+        while(GameObject.Find("Loading Container") == null){
+            Debug.Log("Non trovo la canvas");
+            yield return null;
+        } 
+        if (GameObject.Find("Loading Container") != null)
         {
-            
-        }
-
-        if (loadingScreen != null)
-        {
+            loadingScreen = GameObject.Find("Loading Container");
             yield return new WaitForSeconds(1);
             loadingScreen.SetActive(false);
             if (!newLoad)
@@ -77,4 +77,6 @@ public class LoadingScene : MonoBehaviour
         GetComponent<GameManager>().Save();
 
     }
+
+
 }

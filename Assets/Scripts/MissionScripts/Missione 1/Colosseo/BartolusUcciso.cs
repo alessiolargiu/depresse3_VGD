@@ -33,7 +33,7 @@ public class BartolusUcciso : MonoBehaviour
             yield return null;
         }
         GameManager = GameObject.Find("GameManager");
-        StartCoroutine(GameManager.GetComponent<LoadingScene>().LoadAsynchronously("MappaCutsceneFinale", false));
+        GameManager.GetComponent<GameManager>().StartLoading("MappaCutsceneFinale", false);
         yield return null;
     }
 }

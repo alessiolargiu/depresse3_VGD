@@ -21,7 +21,6 @@ public class ShieldEquip : MonoBehaviour
         {
             hudShield = GameObject.Find("Inv Shield").GetComponent<HUDInventoryShield>();
         }
-        hudShield = GameObject.Find("Inv Shield").GetComponent<HUDInventoryShield>();
     }
 
     private void OnTriggerEnter(Collider other)
