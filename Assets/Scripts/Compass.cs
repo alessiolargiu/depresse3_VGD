@@ -10,9 +10,9 @@ public class Compass : MonoBehaviour
     public RawImage compassImage;
     public Transform player;
     public GameObject iconPrefab;
-    List<QuestMarker> questMarkers = new List<QuestMarker>();
+    private List<QuestMarker> questMarkers = new List<QuestMarker>();
 
-    public float maxDistance = 200f;
+    public float maxDistance = 500f;
 
     // Start is called before the first frame update
     void Start()

@@ -13,18 +13,26 @@ public class ShieldEquip : MonoBehaviour
     public int stamina;
     public Sprite sprite;
     public HUDInventoryShield hudShield;
-    public ShieldEquip shieldInPlayer;
 
     private void Start()
     {
         player = FindObjectOfType<FirstPersonController>();
+        if (hudShield == null)
+        {
+            hudShield = GameObject.Find("Inv Shield").GetComponent<HUDInventoryShield>();
+        }
+        hudShield = GameObject.Find("Inv Shield").GetComponent<HUDInventoryShield>();
     }
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.tag.Equals("player"))
         {
-            if (shieldInPlayer.index != 0)
+            if (hudShield == null)
+            {
+                hudShield = GameObject.Find("Inv Shield").GetComponent<HUDInventoryShield>();
+            }
+            if (index != 0)
             {
                 this.gameObject.SetActive(false);
 
@@ -33,7 +41,7 @@ public class ShieldEquip : MonoBehaviour
             {
                 this.GetComponent<BoxCollider>().isTrigger = false;
             }
-            player.GetAvailableShields().Add(shieldInPlayer.index);
+            player.GetAvailableShields().Add(index);
             hudShield.SetInventory(player.GetInventory(), player.GetAvailableShields());
         }
     }

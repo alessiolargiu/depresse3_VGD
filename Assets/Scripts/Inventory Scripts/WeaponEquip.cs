@@ -14,7 +14,6 @@ public class WeaponEquip : MonoBehaviour
     public int stamina;
     public Sprite sprite;
     public HUDInventoryWeapon hudWeapon;
-    public WeaponEquip weaponInPlayer;
     public float innerRange;
     public float reloadTime;
 
@@ -23,13 +22,21 @@ public class WeaponEquip : MonoBehaviour
     private void Start()
     {
         player = FindObjectOfType<FirstPersonController>();
+        if (hudWeapon == null)
+        {
+            hudWeapon = GameObject.Find("Inv Weapon").GetComponent<HUDInventoryWeapon>();
+        }
     }
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.tag.Equals("player"))
         {
-            if (weaponInPlayer.index != 0)
+            if (hudWeapon == null)
+            {
+                hudWeapon = GameObject.Find("Inv Weapon").GetComponent<HUDInventoryWeapon>();
+            }
+            if (index != 0)
             {
                 this.gameObject.SetActive(false);
 
@@ -38,7 +45,7 @@ public class WeaponEquip : MonoBehaviour
             {
                 this.GetComponent<BoxCollider>().isTrigger = false;
             }
-            player.GetAvailableWeapons().Add(weaponInPlayer.index);
+            player.GetAvailableWeapons().Add(index);
             hudWeapon.SetInventory(player.GetInventory(), player.GetAvailableWeapons());
         }
     }

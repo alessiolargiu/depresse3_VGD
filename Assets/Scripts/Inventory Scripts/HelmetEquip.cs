@@ -11,19 +11,25 @@ public class HelmetEquip : MonoBehaviour
     public float armorValue;
     public Sprite sprite;
     public HUDInventoryHelmet hudHelmet;
-    public HelmetEquip helmetInPlayer;
-
 
     private void Start()
     {
         player = FindObjectOfType<FirstPersonController>();
+        if (hudHelmet == null)
+        {
+            hudHelmet = GameObject.Find("Inv Helmet").GetComponent<HUDInventoryHelmet>();
+        }
     }
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.tag.Equals("player"))
         {
-            if (helmetInPlayer.index != 0)
+            if (hudHelmet == null)
+            {
+                hudHelmet = GameObject.Find("Inv Helmet").GetComponent<HUDInventoryHelmet>();
+            }
+            if (index != 0)
             {
                 this.gameObject.SetActive(false);
 
@@ -32,7 +38,7 @@ public class HelmetEquip : MonoBehaviour
             {
                 this.GetComponent<BoxCollider>().isTrigger = false;
             }
-            player.GetAvailableHelmets().Add(helmetInPlayer.index);
+            player.GetAvailableHelmets().Add(index);
             hudHelmet.SetInventory(player.GetInventory(), player.GetAvailableHelmets());
         }
     }

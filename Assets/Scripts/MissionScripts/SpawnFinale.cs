@@ -17,7 +17,7 @@ public class SpawnFinale : MonoBehaviour
             yield return null;
         }
         GameManager = GameObject.Find("GameManager");
-        GameManager.GetComponent<GetLatestMission>().setCurrentMission(8);
+        GameManager.GetComponent<GetLatestMission>().SetCurrentMission(8);
         StartCoroutine(GameManager.GetComponent<LoadingScene>().LoadAsynchronously("TestALessioMappa", false));
         yield return null;
     }

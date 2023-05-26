@@ -11,18 +11,25 @@ public class ChestEquip : MonoBehaviour
     public float armorValue;
     public Sprite sprite;
     public HUDInventoryChest hudChest;
-    public ChestEquip chestInPlayer;
 
     private void Start()
     {
         player = FindObjectOfType<FirstPersonController>();
+        if (hudChest == null)
+        {
+            hudChest = GameObject.Find("Inv Chest").GetComponent<HUDInventoryChest>();
+        }
     }
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.tag.Equals("player"))
         {
-            if (chestInPlayer.index != 0)
+            if (hudChest == null)
+            {
+                hudChest = GameObject.Find("Inv Chest").GetComponent<HUDInventoryChest>();
+            }
+            if (index != 0)
             {
                 this.gameObject.SetActive(false);
 
@@ -31,7 +38,7 @@ public class ChestEquip : MonoBehaviour
             {
                 this.GetComponent<BoxCollider>().isTrigger = false;
             }
-            player.GetAvailableChests().Add(chestInPlayer.index);
+            player.GetAvailableChests().Add(index);
             hudChest.SetInventory(player.GetInventory(), player.GetAvailableChests());
         }
     }

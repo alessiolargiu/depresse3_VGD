@@ -18,12 +18,20 @@ public class PotionEquip : MonoBehaviour
     private void Start()
     {
         player = FindObjectOfType<FirstPersonController>();
+        if (hudPotion == null)
+        {
+            hudPotion = GameObject.Find("Inv Potion").GetComponent<HUDInventoryPotion>();
+        }
     }
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.tag.Equals("player"))
         {
+            if(hudPotion == null)
+            {
+                hudPotion = GameObject.Find("Inv Potion").GetComponent<HUDInventoryPotion>();
+            }
             this.gameObject.SetActive(false);
             if (!player.GetAvailablePotions().Contains(this.index))
             {
