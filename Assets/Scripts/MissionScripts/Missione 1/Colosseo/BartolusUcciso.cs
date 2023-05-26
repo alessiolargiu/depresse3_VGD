@@ -33,8 +33,7 @@ public class BartolusUcciso : MonoBehaviour
             yield return null;
         }
         GameManager = GameObject.Find("GameManager");
-        StartCoroutine(GameManager.GetComponent<LoadingScene>().LoadAsynchronously("TestALessioMappa", false));
-        GameManager.GetComponent<GetLatestMission>().SetCurrentMission(6);
+        StartCoroutine(GameManager.GetComponent<LoadingScene>().LoadAsynchronously("MappaCutsceneFinale", false));
         yield return null;
     }
 }
