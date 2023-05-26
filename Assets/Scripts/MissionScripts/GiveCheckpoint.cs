@@ -19,7 +19,7 @@ public class GiveCheckpoint : MonoBehaviour
             yield return null;
         }
         GameManager = GameObject.Find("GameManager");
-        GameManager.GetComponent<GetLatestMission>().setCurrentMission(missionNumber);
+        GameManager.GetComponent<GetLatestMission>().SetCurrentMission(missionNumber);
         yield return null;
     }
 }

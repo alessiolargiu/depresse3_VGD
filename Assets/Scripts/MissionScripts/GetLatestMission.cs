@@ -17,12 +17,17 @@ public class GetLatestMission : MonoBehaviour
         Debug.Log("Awake:" + SceneManager.GetActiveScene().name + " ---" + currentMission);
     }
 
-    public void setCurrentMission(int crnt){
+    public void SetCurrentMission(int crnt){
         currentMission=crnt;
         if(missioni!=null){
             missioni.GetComponent<MissionTracking>().setCurrentMission(currentMission);
         }
         
+    }
+
+    public int GetCurrentMission()
+    {
+        return currentMission;
     }
 
 

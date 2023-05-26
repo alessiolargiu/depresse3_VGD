@@ -6,6 +6,7 @@ using UnityEngine.UI;
 
 public class OptionMenu : MonoBehaviour
 {
+    public GameObject option;
 
     public Toggle fullscreen;
     public Toggle vsync;
@@ -91,6 +92,8 @@ public class OptionMenu : MonoBehaviour
         }
 
         AudioListener.volume = (volume.value / 100);
+
+        option.SetActive(false);
 
     }
 

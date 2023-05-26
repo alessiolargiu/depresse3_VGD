@@ -50,8 +50,7 @@ public class GameManager : MonoBehaviour
 
     public void Save()
     {
-        Debug.Log("DA FARE MOLTO BENE!!!!!");
-
+        Debug.Log("ho salvato");
         PlayerPrefs.SetInt("sensibilita", sensibilita);
         PlayerPrefs.SetInt("vitaInfinita", boolToInt(vitaInfinita));
         PlayerPrefs.SetInt("staminaInfinita", boolToInt(staminaInfinita));
@@ -61,6 +60,8 @@ public class GameManager : MonoBehaviour
         PlayerPrefs.SetInt("vsync", boolToInt(optionMenu.vsync.isOn));
         PlayerPrefs.SetInt("currentResolution", optionMenu.resolutionDropdown.resIndex);
         PlayerPrefs.SetFloat("volume",  optionMenu.volume.value);
+
+        PlayerPrefs.SetInt("currentMission", GetComponent<GetLatestMission>().GetCurrentMission());
 
         if(player == null)
         {
@@ -87,7 +88,7 @@ public class GameManager : MonoBehaviour
 
     }
 
-    public void LoadScene()
+    public void LoadGame()
     {
         //controllo se ho dei dati salvati
         if(PlayerPrefs.GetInt("vitaInfinita", -1) != -1)
@@ -107,6 +108,8 @@ public class GameManager : MonoBehaviour
             optionMenu.resolutionDropdown.resIndex = PlayerPrefs.GetInt("currentResolution");
             optionMenu.volume.value = PlayerPrefs.GetFloat("volume");
 
+            GetComponent<GetLatestMission>().SetCurrentMission(PlayerPrefs.GetInt("currentMission"));
+
             var savedPlayer = JsonUtility.FromJson<SavePlayerData>(PlayerPrefs.GetString("playerData"));
             player.gameObject.transform.position = savedPlayer.position;
             //player.gameObject.transform.position += new Vector3(0, 5f, 0);
@@ -114,12 +117,15 @@ public class GameManager : MonoBehaviour
             player.gameObject.transform.localScale = savedPlayer.scale;
             player.currentHealth = savedPlayer.currentHealth;
             player.currentStamina = savedPlayer.currentStamina;
-            player.availableHelmets = savedPlayer.availableHelmets;
-            player.availableChests = savedPlayer.availableChests;
-            player.availableWeapons = savedPlayer.availableWeapons;
-            player.availableShields = savedPlayer.availableShields;
-            player.availablePotions = savedPlayer.availablePotions;
-
+            if (GetComponent<GetLatestMission>().GetCurrentMission() != 1)
+            { 
+                player.availableHelmets = savedPlayer.availableHelmets;
+                player.availableChests = savedPlayer.availableChests;
+                player.availableWeapons = savedPlayer.availableWeapons;
+                player.availableShields = savedPlayer.availableShields;
+                player.availablePotions = savedPlayer.availablePotions;
+            }
+            
             //SceneManager.LoadScene(PlayerPrefs.GetString("currentScene"));
             StartCoroutine(ls.LoadAsynchronously(PlayerPrefs.GetString("currentScene"), false));
         }
@@ -128,7 +134,6 @@ public class GameManager : MonoBehaviour
 
     public void NewGame()
     {
-        Debug.Log("STO FACENDO NEWGAME");
         PlayerPrefs.DeleteAll();
         StartCoroutine(ls.LoadAsynchronously("Casa", true));
     }

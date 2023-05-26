@@ -27,6 +27,9 @@ public class MissionTracking : MonoBehaviour
         UpdateMissions();
     }
 
-
+    public static int getCurrentMission()
+    {
+        return currentMission;
+    }
 
 }

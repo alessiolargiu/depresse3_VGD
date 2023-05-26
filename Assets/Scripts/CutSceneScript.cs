@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class CutSceneScript : MonoBehaviour
@@ -97,6 +98,7 @@ public class CutSceneScript : MonoBehaviour
     public IEnumerator countTimeToSkip(float time){
         yield return new WaitForSeconds(time);
         skippable=true;
+        GameObject.Find("CutsceneCanvas").transform.GetChild(0).GetComponent<TMP_Text>().text = "Premi un tasto per saltare";
     }
 
     public IEnumerator cutsceneStart(System.Action<bool> callback){
@@ -115,7 +117,7 @@ public class CutSceneScript : MonoBehaviour
             cutscene.SetActive(true);
             player.SetActiveInternal(false);
             playerContainer.SetActive(false);
-
+            
             //
 
             /*for(int j=0;j<4;j++){
@@ -159,7 +161,8 @@ public class CutSceneScript : MonoBehaviour
                 mission.SetActive(true);
             }
             cutscene.SetActive(false);
-            hasStarted=false;
+            GameObject.Find("CutsceneCanvas").transform.GetChild(0).GetComponent<TMP_Text>().text = "";
+            hasStarted =false;
             //yield return "Finito";
             DestroySelfCutscene();
         }

@@ -74,5 +74,7 @@ public class LoadingScene : MonoBehaviour
             }
         }
 
+        GetComponent<GameManager>().Save();
+
     }
 }
