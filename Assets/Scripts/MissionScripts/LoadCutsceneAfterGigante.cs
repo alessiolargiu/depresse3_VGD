@@ -6,8 +6,9 @@ public class LoadCutsceneAfterGigante : MonoBehaviour
 {
     // Start is called before the first frame update
     public GameObject cutScene;
-
     
+
+
     void Awake()
     {
         cutScene.SetActive(true);

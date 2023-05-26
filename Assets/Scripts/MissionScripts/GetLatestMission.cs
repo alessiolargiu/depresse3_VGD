@@ -9,13 +9,12 @@ public class GetLatestMission : MonoBehaviour
     private static int currentMission=0;
     private GameObject missioni;
 
-
     void Awake(){
         StartCoroutine(findMissioni());
     }
 
     void Update(){
-        Debug.Log("Awake:" + SceneManager.GetActiveScene().name);
+        Debug.Log("Awake:" + SceneManager.GetActiveScene().name + " ---" + currentMission);
     }
 
     public void setCurrentMission(int crnt){
