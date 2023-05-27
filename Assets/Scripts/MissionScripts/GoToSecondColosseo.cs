@@ -16,7 +16,7 @@ public class GoToSecondColosseo : MonoBehaviour
             yield return null;
         }
         GameManager = GameObject.Find("GameManager");
-        StartCoroutine(GameManager.GetComponent<LoadingScene>().LoadAsynchronously("ArenaNight", false));
+        GameManager.GetComponent<GameManager>().StartLoading("ArenaNight", true);
         yield return null;
     }
 }

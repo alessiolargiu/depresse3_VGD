@@ -22,6 +22,8 @@ public class Maranzus : MonoBehaviour
     public static string whoIsAttacking = null;
     private string myself;
 
+    private bool dead;
+
 
     //Patroling
     public Vector3 walkPoint;
@@ -86,6 +88,8 @@ public class Maranzus : MonoBehaviour
 
 
     public bool isCounting;
+
+    public GameObject [] pozioni;
 
 
     private void Awake(){
@@ -279,6 +283,16 @@ public class Maranzus : MonoBehaviour
         return health;
     }
 
+    public void GivePozione(){
+        if(dead==false){
+            dead=true;
+            int nPozione = Random.Range(0, pozioni.Length);
+            GameObject pozioneToLaunch = Instantiate(pozioni[nPozione], attackPoint.position, transform.rotation);
+            pozioneToLaunch.SetActive(true);
+        }
+        
+    }
+
     private void ThrowSandalo(){
         if(stopThrow){
             anim.SetTrigger("throw");
@@ -342,6 +356,7 @@ public class Maranzus : MonoBehaviour
 
     public void Morte(int msg){
         if(msg==1){
+            GivePozione();
             DestroyObject(gameObject);
         }
     }
@@ -392,6 +407,7 @@ public class Maranzus : MonoBehaviour
         if(isCounting){
             GameObject.Find("MissionCounter").GetComponent<MissionCount>().addDeath();
         }
+        GivePozione();
         DestroyObject(gameObject);
     }
     
