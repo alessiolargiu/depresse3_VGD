@@ -20,15 +20,10 @@ public class LoadingScene : MonoBehaviour
     {
         AsyncOperation op = SceneManager.LoadSceneAsync(name);
 
-        
-        //loadingScreen = GameObject.Find("LoadingCanvas").transform.GetChild(0).gameObject;
-        //loadingText = loadingScreen.transform.Find("Current Load").GetComponent<TMP_Text>();
-        //slider = loadingScreen.GetComponentInChildren<Slider>();
-
         loadingScreen.SetActive(true);
         Time.timeScale = 1f;
-        Cursor.lockState = CursorLockMode.None;
-        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
         PauseMenu.setGameIsPaused(false);
         HUD.SetActive(true);
         player.SetActive(true);
@@ -52,24 +47,19 @@ public class LoadingScene : MonoBehaviour
              
             if(spawnPoint != null)
             {
-                Debug.Log("Sto spawnando nello spawnpoint");
                 player.transform.position = spawnPoint.position;
-                Debug.Log("Ho spawnato il player nello spawnpoint");
             }
         }
         while(GameObject.Find("Loading Container") == null){
-            Debug.Log("Non trovo la canvas");
             yield return null;
         } 
         if (GameObject.Find("Loading Container") != null)
         {
-            loadingScreen = GameObject.Find("Loading Container");
             yield return new WaitForSeconds(1);
             loadingScreen.SetActive(false);
             if (!newLoad)
             {
                 var savedPlayer = JsonUtility.FromJson<SavePlayerData>(PlayerPrefs.GetString("playerData"));
-                Debug.Log("coordinate player" + savedPlayer.position);
                 player.gameObject.transform.position = savedPlayer.position + new Vector3(0, 10f, 0);
             }
         }

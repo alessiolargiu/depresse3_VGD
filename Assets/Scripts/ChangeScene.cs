@@ -5,22 +5,21 @@ using UnityEngine.SceneManagement;
 
 public class ChangeScene : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
+    public string sceneName;
 
     void OnTriggerEnter(Collider other){
         if(other.gameObject.CompareTag("player")){
-            GameObject.Find("GameManager").GetComponent<GameManager>().StartLoading("TestALessioMappa", true);
+            if(sceneName == "TestALessioMappa")
+            {
+                GameObject.Find("GameManager").GetComponent<GameManager>().StartLoading(sceneName, true);
+            }
+            if(sceneName == "ArenaDay")
+            {
+                Time.timeScale = 0f;
+                Cursor.lockState = CursorLockMode.None;
+                Cursor.visible = true;
+                GameObject.Find("GoToArenaCanvas").transform.GetChild(0).gameObject.SetActive(true);
+            }
         }
     }
    

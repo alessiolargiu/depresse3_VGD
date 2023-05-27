@@ -2102,7 +2102,6 @@ MonoBehaviour:
   stamina: 60
   sprite: {fileID: 21300000, guid: 11a6c530a2ea8fc4988f4963f866207f, type: 3}
   hudShield: {fileID: 0}
-  shieldInPlayer: {fileID: 0}
 --- !u!1 &63769145
 GameObject:
   m_ObjectHideFlags: 0
@@ -2969,7 +2968,6 @@ MonoBehaviour:
   armorValue: 0.5
   sprite: {fileID: 21300000, guid: ca91ca1fb5e97d94ebb53b8fcea46d65, type: 3}
   hudChest: {fileID: 0}
-  chestInPlayer: {fileID: 0}
 --- !u!1 &87077527
 GameObject:
   m_ObjectHideFlags: 0
@@ -5471,7 +5469,6 @@ MonoBehaviour:
   stamina: 10
   sprite: {fileID: 21300000, guid: eb919e1f9c59e4e46a3062f13c6f2d34, type: 3}
   hudWeapon: {fileID: 0}
-  weaponInPlayer: {fileID: 0}
   innerRange: 1
   reloadTime: 1
   colliding: 0
@@ -15884,7 +15881,6 @@ MonoBehaviour:
   stamina: 45
   sprite: {fileID: 21300000, guid: 0e1d6c42054dd3a4fbe8a1a873f60dd4, type: 3}
   hudWeapon: {fileID: 0}
-  weaponInPlayer: {fileID: 0}
   innerRange: 1
   reloadTime: 1.5
   colliding: 0
@@ -20473,7 +20469,6 @@ MonoBehaviour:
   armorValue: 0.35
   sprite: {fileID: 21300000, guid: 253a397ad611abc4a9fcc20f35901108, type: 3}
   hudChest: {fileID: 0}
-  chestInPlayer: {fileID: 0}
 --- !u!1 &603312548
 GameObject:
   m_ObjectHideFlags: 0
@@ -24630,7 +24625,6 @@ MonoBehaviour:
   armorValue: 0.15
   sprite: {fileID: 21300000, guid: 1266314287a844a4595b39a227895ce2, type: 3}
   hudChest: {fileID: 0}
-  chestInPlayer: {fileID: 0}
 --- !u!1 &784047159
 GameObject:
   m_ObjectHideFlags: 0
@@ -29635,7 +29629,6 @@ MonoBehaviour:
   stamina: 30
   sprite: {fileID: 21300000, guid: 8699a717f9d0a4544b8cbf66afde3642, type: 3}
   hudWeapon: {fileID: 0}
-  weaponInPlayer: {fileID: 0}
   innerRange: 1.2
   reloadTime: 1.2
   colliding: 0
@@ -32509,7 +32502,6 @@ MonoBehaviour:
   stamina: 15
   sprite: {fileID: 21300000, guid: 7272a43a5d6326e4999f094f9987acd9, type: 3}
   hudShield: {fileID: 0}
-  shieldInPlayer: {fileID: 0}
 --- !u!1 &1143230627
 GameObject:
   m_ObjectHideFlags: 0
@@ -32700,6 +32692,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d45bfe99ece35b14687ee0cff24fdf5a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  option: {fileID: 0}
   fullscreen: {fileID: 2058582682}
   vsync: {fileID: 2046749248}
   resolutionDropdown: {fileID: 1265961228}
@@ -35894,7 +35887,6 @@ MonoBehaviour:
   armorValue: 0
   sprite: {fileID: 0}
   hudHelmet: {fileID: 0}
-  helmetInPlayer: {fileID: 1265227083}
 --- !u!65 &1265227084
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -38486,7 +38478,6 @@ MonoBehaviour:
   armorValue: 0.15
   sprite: {fileID: 21300000, guid: c9dd9cda8726af646ab075546c5c2f7d, type: 3}
   hudHelmet: {fileID: 0}
-  helmetInPlayer: {fileID: 0}
 --- !u!1 &1382404484
 GameObject:
   m_ObjectHideFlags: 0
@@ -44662,6 +44653,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 05c49cca0c998462cb6772928a8d71a6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sceneName: TestALessioMappa
 --- !u!1 &1661026458
 GameObject:
   m_ObjectHideFlags: 0
@@ -59800,7 +59792,6 @@ MonoBehaviour:
   armorValue: 0.45
   sprite: {fileID: 21300000, guid: e9c0115a9d02d5f40826cd30a0a6085e, type: 3}
   hudHelmet: {fileID: 0}
-  helmetInPlayer: {fileID: 0}
 --- !u!1 &2011062522
 GameObject:
   m_ObjectHideFlags: 0
@@ -60097,7 +60088,6 @@ MonoBehaviour:
   stamina: 20
   sprite: {fileID: 21300000, guid: 77f409f03b13d264599e4fc0c375b2a1, type: 3}
   hudShield: {fileID: 0}
-  shieldInPlayer: {fileID: 0}
 --- !u!1 &2022436818
 GameObject:
   m_ObjectHideFlags: 0
@@ -61399,7 +61389,6 @@ MonoBehaviour:
   armorValue: 0
   sprite: {fileID: 21300000, guid: 9ea1a16c70826b74b808c4cbc790b513, type: 3}
   hudChest: {fileID: 220948674}
-  chestInPlayer: {fileID: 2054428865}
 --- !u!65 &2054428866
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -62898,7 +62887,6 @@ MonoBehaviour:
   armorValue: 0.3
   sprite: {fileID: 21300000, guid: 5d7dce88282691144ae42d28ab9fd57a, type: 3}
   hudHelmet: {fileID: 0}
-  helmetInPlayer: {fileID: 0}
 --- !u!1 &2124761155
 GameObject:
   m_ObjectHideFlags: 0
