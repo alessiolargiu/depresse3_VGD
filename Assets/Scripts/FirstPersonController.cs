@@ -433,8 +433,12 @@ public class FirstPersonController : MonoBehaviour {
         }
 
         if (other.gameObject.CompareTag("pickup")){
-            pickupsound.enabled=true;
-            pickupsound.PlayOneShot(picksoundclip, 0.7F);
+            //pickupsound.PlayOneShot(picksoundclip, 0.7F);
+            if(pickupsound.isPlaying==false){
+                //pickupsound.enabled=true;
+                pickupsound.PlayOneShot(picksoundclip, 0.7F);
+            }
+            
 
         } 
 
