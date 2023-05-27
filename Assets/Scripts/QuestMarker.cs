@@ -8,6 +8,7 @@ public class QuestMarker : MonoBehaviour
 
     public Sprite icon;
     public Image image;
+    public GameObject compassMarker;
 
     public Vector2 position
     {
@@ -20,9 +21,4 @@ public class QuestMarker : MonoBehaviour
         FindObjectOfType<Compass>().AddQuestMarker(this);
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
 }

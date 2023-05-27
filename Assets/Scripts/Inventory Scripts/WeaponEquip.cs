@@ -45,6 +45,7 @@ public class WeaponEquip : MonoBehaviour
             {
                 this.GetComponent<BoxCollider>().isTrigger = false;
             }
+            GameObject.Find("Compass").GetComponent<Compass>().RemoveQuestMarker(GetComponent<QuestMarker>());
             player.GetAvailableWeapons().Add(index);
             hudWeapon.SetInventory(player.GetInventory(), player.GetAvailableWeapons());
         }

@@ -12,8 +12,12 @@ public class UpdatePotionNumber : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        //player = FindObjectOfType<FirstPersonController>();
-        //numeroPozioni = GameObject.Find("Number").GetComponent<TMP_Text>();
+        player = FindObjectOfType<FirstPersonController>();
+        if(numeroPozioni == null)
+        {
+            numeroPozioni = GameObject.Find("Number").GetComponent<TMP_Text>();
+        }
+        
     }
 
     // Update is called once per frame

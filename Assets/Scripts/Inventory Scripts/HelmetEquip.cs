@@ -38,6 +38,7 @@ public class HelmetEquip : MonoBehaviour
             {
                 this.GetComponent<BoxCollider>().isTrigger = false;
             }
+            GameObject.Find("Compass").GetComponent<Compass>().RemoveQuestMarker(GetComponent<QuestMarker>());
             player.GetAvailableHelmets().Add(index);
             hudHelmet.SetInventory(player.GetInventory(), player.GetAvailableHelmets());
         }

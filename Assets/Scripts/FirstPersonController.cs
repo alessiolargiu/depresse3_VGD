@@ -222,7 +222,6 @@ public class FirstPersonController : MonoBehaviour {
         foreach (PotionEquip p in potions)
         {
             inventory.AddPotion(p);
-            Debug.Log("Numero di pozioni: " + p.potionNumber);
         }
 
         //imposto l'HUD per l'inventario

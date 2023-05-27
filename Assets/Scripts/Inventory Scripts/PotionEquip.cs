@@ -38,6 +38,7 @@ public class PotionEquip : MonoBehaviour
                 player.GetAvailablePotions().Add(this.index);
             }
             player.GetInventory().AddPotion(this);
+            GameObject.Find("Compass").GetComponent<Compass>().RemoveQuestMarker(GetComponent<QuestMarker>());
             Debug.Log("indice pozione: " + index);
             //prova commit
             hudPotion.SetInventory(player.GetInventory(), player.GetAvailablePotions());

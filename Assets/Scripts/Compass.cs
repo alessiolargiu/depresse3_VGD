@@ -43,7 +43,15 @@ public class Compass : MonoBehaviour
         GameObject newMarker = Instantiate(iconPrefab, compassImage.transform);
         marker.image = newMarker.GetComponent<Image>();
         marker.image.sprite = marker.icon;
+        marker.compassMarker = newMarker;
+
         questMarkers.Add(marker);
+    }
+
+    public void RemoveQuestMarker(QuestMarker marker)
+    {
+        questMarkers.Remove(marker);
+        Destroy(marker.compassMarker);
     }
 
     Vector2 GetPosOnCompass(QuestMarker marker)

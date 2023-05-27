@@ -286,9 +286,13 @@ public class Maranzus : MonoBehaviour
     public void GivePozione(){
         if(dead==false){
             dead=true;
-            int nPozione = Random.Range(0, pozioni.Length);
-            GameObject pozioneToLaunch = Instantiate(pozioni[nPozione], attackPoint.position, transform.rotation);
-            pozioneToLaunch.SetActive(true);
+            if(pozioni.Length > 0)
+            {
+                int nPozione = Random.Range(0, pozioni.Length);
+                GameObject pozioneToLaunch = Instantiate(pozioni[nPozione], attackPoint.position, transform.rotation);
+                pozioneToLaunch.SetActive(true);
+            }
+            
         }
         
     }

@@ -40,6 +40,7 @@ public class ShieldEquip : MonoBehaviour
             {
                 this.GetComponent<BoxCollider>().isTrigger = false;
             }
+            GameObject.Find("Compass").GetComponent<Compass>().RemoveQuestMarker(GetComponent<QuestMarker>());
             player.GetAvailableShields().Add(index);
             hudShield.SetInventory(player.GetInventory(), player.GetAvailableShields());
         }

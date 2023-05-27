@@ -63,7 +63,7 @@ public class Inventory
         }
         item.index = PotionEquip.potionIndex;
         PotionEquip.potionIndex++;
-        item.potionNumber = 1;
+        item.potionNumber = 0;
         potions.Add(item);
         return null;
     }
