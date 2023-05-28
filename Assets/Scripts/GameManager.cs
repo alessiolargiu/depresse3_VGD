@@ -11,6 +11,7 @@ public class GameManager : MonoBehaviour
     public bool vitaInfinita;
     public bool staminaInfinita;
     public bool fullEquip;
+    public bool postProcessing;
     public OptionMenu optionMenu;
     public GameObject HUD;
     private FirstPersonController player;

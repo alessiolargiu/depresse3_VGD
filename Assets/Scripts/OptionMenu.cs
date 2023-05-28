@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -10,6 +11,8 @@ public class OptionMenu : MonoBehaviour
 
     public Toggle fullscreen;
     public Toggle vsync;
+    public Toggle postProcessing;
+    public GameObject blur;
     public ResolutionDropdown resolutionDropdown;
     public Slider volume;
     public Slider sensibility;
@@ -24,14 +27,21 @@ public class OptionMenu : MonoBehaviour
     public Toggle staminaInfinitaToggle;
     public Toggle fullEquipToggle;
 
+    public TMP_Text textCurrentMission;
+
     private GameManager gameManager;
 
     // Start is called before the first frame update
     void Start()
     {
         gameManager = FindObjectOfType<GameManager>();
+        if(blur == null)
+        {
+            blur = gameManager.transform.Find("Blur").gameObject;
+        }
         fullscreen.isOn = Screen.fullScreen;
         vitaInfinitaToggle.isOn = gameManager.vitaInfinita;
+        postProcessing.isOn = blur.activeSelf;
         staminaInfinitaToggle.isOn = gameManager.staminaInfinita;
         fullEquipToggle.isOn = gameManager.fullEquip;
 
@@ -77,6 +87,8 @@ public class OptionMenu : MonoBehaviour
         gameManager.staminaInfinita = staminaInfinitaToggle.isOn;
         gameManager.fullEquip = fullEquipToggle.isOn;
         gameManager.sensibilita = (int)sensibility.value;
+        gameManager.postProcessing = postProcessing.isOn;
+        blur.SetActive(postProcessing.isOn);
 
         //FindObjectOfType<FirstPersonController>().mouseSens = gameManager.sensibilita;
         //FindObjectOfType<PlayerTarget>().xSpeed = gameManager.sensibilita;
@@ -95,6 +107,16 @@ public class OptionMenu : MonoBehaviour
 
         option.SetActive(false);
 
+    }
+
+    public void SkipMission()
+    {
+        GetLatestMission glm = FindObjectOfType<GameManager>().GetComponent<GetLatestMission>();
+        if(glm.GetCurrentMission() < 7)
+        {
+            glm.SetCurrentMission(glm.GetCurrentMission() + 1);
+        }
+        textCurrentMission.text = "Missione Attuale: " + (glm.GetCurrentMission() + 1);
     }
 
 }
