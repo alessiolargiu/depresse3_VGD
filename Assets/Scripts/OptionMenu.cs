@@ -28,6 +28,7 @@ public class OptionMenu : MonoBehaviour
     public Toggle fullEquipToggle;
 
     public TMP_Text textCurrentMission;
+    public Toggle skipToBoss;
 
     private GameManager gameManager;
 
@@ -67,7 +68,6 @@ public class OptionMenu : MonoBehaviour
     // Update is called once per frame
     public void ApplySettings()
     {
-        Debug.Log("Sto applicando le opzioni");
         Screen.fullScreen = fullscreen.isOn;
         if(vsync.isOn)
         {
@@ -97,6 +97,11 @@ public class OptionMenu : MonoBehaviour
         gameManager.sensibilita = (int)sensibility.value;
         gameManager.postProcessing = postProcessing.isOn;
         blur.SetActive(postProcessing.isOn);
+
+        if (skipToBoss.isOn)
+        {
+            GameObject.Find("GoToArenaCanvas").transform.GetChild(0).gameObject.SetActive(true);
+        }
 
         //FindObjectOfType<FirstPersonController>().mouseSens = gameManager.sensibilita;
         //FindObjectOfType<PlayerTarget>().xSpeed = gameManager.sensibilita;

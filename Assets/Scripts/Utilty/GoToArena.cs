@@ -17,7 +17,7 @@ public class GoToArena : MonoBehaviour
         Time.timeScale = 1f;
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
-        FindObjectOfType<FirstPersonController>().gameObject.transform.position = GameObject.Find("SpawnFuoriArena").transform.position;
+        //FindObjectOfType<FirstPersonController>().gameObject.transform.position = GameObject.Find("SpawnFuoriArena").transform.position;
     }
 
 }
