@@ -55,7 +55,9 @@ public class MaranzusGigante : MonoBehaviour{
     //se è un bastardo ti attacca pure se qualcun altro ti sta attaccando
     public bool bastardo;
     public float health;
+    public float maxHealth;
     public int dmg;
+    public HealthBar healthBar;
 
     [Header("Gestione Sandalo")]
     public AudioClip sandaloSound;
@@ -91,6 +93,8 @@ public class MaranzusGigante : MonoBehaviour{
         readyToThrow=true;
         //attackPoint=transform;
         myself = GetInstanceID().ToString();
+        healthBar.slider.maxValue = maxHealth;
+        healthBar.slider.value = maxHealth;
     }
 
     private void Update(){
@@ -229,7 +233,15 @@ public class MaranzusGigante : MonoBehaviour{
         } else if(health>0 && health<40){
             markerColor.material.SetColor("_Color", Color.black);
         }
-
+        if(health > 0)
+        {
+            healthBar.SetHealth((int)health);
+        }
+        else
+        {
+            healthBar.SetHealth(0);
+        }
+        
         return health;
     }
 
