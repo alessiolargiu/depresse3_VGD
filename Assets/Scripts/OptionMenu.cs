@@ -31,11 +31,14 @@ public class OptionMenu : MonoBehaviour
 
     private GameManager gameManager;
 
+    private GetLatestMission glm;
+
     // Start is called before the first frame update
     void Start()
     {
         gameManager = FindObjectOfType<GameManager>();
-        if(blur == null)
+        glm = FindObjectOfType<GameManager>().GetComponent<GetLatestMission>();
+        if (blur == null)
         {
             blur = gameManager.transform.Find("Blur").gameObject;
         }
@@ -54,6 +57,11 @@ public class OptionMenu : MonoBehaviour
             vsync.isOn = true;
         }
         volume.value = AudioListener.volume * 100;
+    }
+
+    private void Update()
+    {
+        textCurrentMission.text = "Missione Attuale: " + (glm.GetCurrentMission() + 1);
     }
 
     // Update is called once per frame
@@ -116,7 +124,6 @@ public class OptionMenu : MonoBehaviour
         {
             glm.SetCurrentMission(glm.GetCurrentMission() + 1);
         }
-        textCurrentMission.text = "Missione Attuale: " + (glm.GetCurrentMission() + 1);
     }
 
 }
