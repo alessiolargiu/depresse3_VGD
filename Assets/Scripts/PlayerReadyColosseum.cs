@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class PlayerReadyColosseum : MonoBehaviour
 {
@@ -13,24 +14,59 @@ public class PlayerReadyColosseum : MonoBehaviour
     
     public GameObject trigger;
 
+    private int chestCounter;
+    private int shieldCounter;
+    private int helmetCounter;
+
     private int chestLen;
     private int shieldLen;
     private int helmetLen;
+
+    private TMP_Text contatore;
 
 
     void Start()
     {
         chestLen = chests.Length;
         shieldLen = shields.Length;
-        helmetLen = helmets.Length;  
+        helmetLen = helmets.Length; 
+        contatore = GameObject.Find("Contatore").GetComponent<TMP_Text>();
+        contatore.gameObject.SetActive(true);
     }
 
     // Update is called once per frame
     void Update(){
-        if(chests.Length<chestLen && shields.Length<shieldLen && helmets.Length<helmetLen){
+
+        chestCounter=0;
+        shieldCounter=0;
+        helmetCounter=0;
+
+        foreach(ChestEquip ch in chests){
+            if(ch.gameObject.activeSelf){
+                chestCounter++;
+            }
+        }
+
+        foreach(ShieldEquip sh in shields){
+            if(sh.gameObject.activeSelf){
+                shieldCounter++;
+            }
+        }
+
+        foreach(HelmetEquip he in helmets){
+            if(he.gameObject.activeSelf){
+                helmetCounter++;
+            }
+        }
+
+
+        if(chestCounter<chestLen && shieldCounter<shieldLen && helmetCounter<helmetLen){
             cutscenefinale.SetActive(true);
             trigger.SetActive(true);
             StartCoroutine(cutscenefinale.GetComponent<CutSceneScript>().cutsceneStart((paolino) => {if(paolino){DestroyObject(gameObject);}}));
         }
+
+        contatore.text = "Hai trovato\n" + (chestLen - chestCounter) + " - Busti su " + chestLen + "\n" + (shieldLen - shieldCounter) + " - Scudi su " + shieldLen + "\n" + (helmetLen - helmetCounter) + " - Elmi su " + helmetLen;
+
     }
 }

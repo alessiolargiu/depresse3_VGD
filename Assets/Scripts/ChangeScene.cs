@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using TMPro;
+
 
 public class ChangeScene : MonoBehaviour
 {
@@ -19,6 +21,7 @@ public class ChangeScene : MonoBehaviour
                 Cursor.lockState = CursorLockMode.None;
                 Cursor.visible = true;
                 GameObject.Find("GoToArenaCanvas").transform.GetChild(0).gameObject.SetActive(true);
+                GameObject.Find("Contatore").GetComponent<TMP_Text>().text="";
             }
         }
     }
