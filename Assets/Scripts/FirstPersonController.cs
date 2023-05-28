@@ -564,6 +564,7 @@ public class FirstPersonController : MonoBehaviour {
                         }
                         //DA AGGIUNGERE L'ANIMAZIONE DELLA POZIONE
                         anim.SetTrigger("potion");
+                        StartCoroutine(ShowPotion());
                         currentHealth += potion.cureValue;
                         if(currentHealth > 100) { 
                             currentHealth = 100; 
@@ -1117,6 +1118,35 @@ public class FirstPersonController : MonoBehaviour {
         }
         
         
+    }
+
+    IEnumerator ShowPotion()
+    {
+        PotionEquip potionEquiped = null;
+        WeaponEquip weaponEquiped = null;
+        foreach (PotionEquip p in inventory.GetPotions())
+        {
+            if (p.isEquiped)
+            {
+                potionEquiped = p;
+            }
+        }
+        foreach (WeaponEquip w in inventory.GetWeapons())
+        {
+            if (w.gameObject.activeSelf)
+            {
+                weaponEquiped = w;
+            }
+        }
+        if (potionEquiped != null)
+        {
+            weaponEquiped.gameObject.SetActive(false);
+            potionEquiped.gameObject.SetActive(true);
+            yield return new WaitForSeconds(1.5f);
+            weaponEquiped.gameObject.SetActive(true);
+            potionEquiped.gameObject.SetActive(false);
+        }
+
     }
 
     IEnumerator OnTimeSound(AudioSource src, AudioClip clp, float volume, float delay){
