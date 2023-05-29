@@ -90,6 +90,7 @@ public class Maranzus : MonoBehaviour
     public bool isCounting;
 
     public GameObject [] pozioni;
+    private float timer;
 
 
     private void Awake(){
@@ -111,9 +112,14 @@ public class Maranzus : MonoBehaviour
         //attackPoint=transform;
         myself = GetInstanceID().ToString();
         StartCoroutine(CheckIfCorrect());
+        Patroling();
     }
 
     private void Update(){
+
+        timer += Time.deltaTime;
+
+
         if(imActive==false){
             marker.SetActive(false);
         }
@@ -176,8 +182,9 @@ public class Maranzus : MonoBehaviour
 
         if (walkPointSet){
             agent.SetDestination(walkPoint);
-            if(agent.pathPending){
+            if(agent.pathPending || timer >= 10){
                 SearchWalkPoint();
+                timer=0;
             }
             anim.SetFloat("vertical", 0.5f);
         }
