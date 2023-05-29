@@ -63,7 +63,7 @@ public class FollowNPC : MonoBehaviour
 
         
         if(distPunto>=1f && distPlayer<=distMinima){
-            agent.speed = 1.5f;
+            agent.speed = 2.2f;
             anim.SetFloat("vertical", 0.5f,  1f, Time.deltaTime * 10f );  
             Vector3 targetDirection = puntoArrivo.position - transform.position;
             float singleStep = 1 * Time.deltaTime;

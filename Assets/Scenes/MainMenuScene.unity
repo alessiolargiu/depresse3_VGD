@@ -14235,7 +14235,7 @@ MonoBehaviour:
   m_LookAt: {fileID: 1042069332}
   m_Follow: {fileID: 1042069332}
   m_Lens:
-    FieldOfView: 65.60478
+    FieldOfView: 63.28794
     OrthographicSize: 5
     NearClipPlane: 0.3
     FarClipPlane: 1000
@@ -27461,6 +27461,7 @@ GameObject:
   - component: {fileID: 914421788}
   - component: {fileID: 914421792}
   - component: {fileID: 914421793}
+  - component: {fileID: 914421794}
   m_Layer: 5
   m_Name: Main Menu Canvas
   m_TagString: Untagged
@@ -27593,6 +27594,19 @@ MonoBehaviour:
   fullEquipToggle: {fileID: 1269935206}
   textCurrentMission: {fileID: 1346939969}
   skipToBoss: {fileID: 523474988}
+--- !u!114 &914421794
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 914421787}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 91832e27f67533c47bd65b44b5a6a842, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text: 
 --- !u!1 &917346029
 GameObject:
   m_ObjectHideFlags: 0
@@ -48978,7 +48992,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1551871172}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1

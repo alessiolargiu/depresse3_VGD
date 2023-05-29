@@ -18,7 +18,6 @@ public class IncontroMaranza : MonoBehaviour
     void Start()
     {
         stop = false;
-        missionText = GameObject.Find("Mission Text").GetComponentInChildren<TMP_Text>();
         //missionText.gameObject.SetActive(true); 
         //missionText.text = "Hai iniziato la prima missione. Uccidi i maranzus.";
         Debug.Log("Hai iniziato la missione");
