@@ -127,7 +127,14 @@ public class OptionMenu : MonoBehaviour
         GetLatestMission glm = FindObjectOfType<GameManager>().GetComponent<GetLatestMission>();
         if(glm.GetCurrentMission() < 7)
         {
-            glm.SetCurrentMission(glm.GetCurrentMission() + 1);
+            if(glm.GetCurrentMission() == 2) {
+                glm.SetCurrentMission(4);
+            }
+            else
+            {
+                glm.SetCurrentMission(glm.GetCurrentMission() + 1);
+            }
+            
         }
     }
 

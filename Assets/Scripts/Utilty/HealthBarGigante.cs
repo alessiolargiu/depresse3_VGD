@@ -10,11 +10,15 @@ public class HealthBarGigante : MonoBehaviour
 
     private void Update()
     {
-        float vitaGigante = FindObjectOfType<MaranzusGigante>().health;
-        float maxVitaGigante = FindObjectOfType<MaranzusGigante>().maxHealth;
-        if (vitaGigante > 0)
+        if(FindObjectOfType<MaranzusGigante>() != null)
         {
-            vitaGiganteText.text = vitaGigante + "/" + maxVitaGigante;
+            float vitaGigante = FindObjectOfType<MaranzusGigante>().health;
+            float maxVitaGigante = FindObjectOfType<MaranzusGigante>().maxHealth;
+            if (vitaGigante > 0)
+            {
+                vitaGiganteText.text = vitaGigante + "/" + maxVitaGigante;
+            }
         }
+        
     }
 }
