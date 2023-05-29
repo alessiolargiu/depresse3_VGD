@@ -13,6 +13,10 @@ public class ChangeScene : MonoBehaviour
         if(other.gameObject.CompareTag("player")){
             if(sceneName == "TestALessioMappa")
             {
+                if(GameObject.Find("Layer equip")==null && GameObject.Find("Minimap Background")==null){
+                    GameObject.Find("HUD").transform.Find("Layer equip").gameObject.SetActive(true);
+                    GameObject.Find("HUD").transform.Find("Minimap Backgruond").gameObject.SetActive(true);
+                }
                 GameObject.Find("GameManager").GetComponent<GameManager>().StartLoading(sceneName, true);
             }
             if(sceneName == "ArenaDay")
