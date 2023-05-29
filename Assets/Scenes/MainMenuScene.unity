@@ -1726,7 +1726,7 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0.76719666, y: 0}
   m_SizeDelta: {x: -12.466, y: -7.1015}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -2035,7 +2035,7 @@ Canvas:
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 25
   m_SortingLayerID: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 2
   m_TargetDisplay: 0
 --- !u!1 &67534506
 GameObject:
@@ -16175,7 +16175,7 @@ MonoBehaviour:
   onValueChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_IsOn: 1
+  m_IsOn: 0
 --- !u!224 &523474989
 RectTransform:
   m_ObjectHideFlags: 0
@@ -19137,7 +19137,7 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: -0.4039, y: 0}
   m_SizeDelta: {x: -19.5421, y: -5.9179}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -53267,7 +53267,7 @@ MonoBehaviour:
   onValueChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_IsOn: 1
+  m_IsOn: 0
 --- !u!1 &1718841516
 GameObject:
   m_ObjectHideFlags: 0
@@ -54319,8 +54319,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 292.55154, y: -460.7027}
-  m_SizeDelta: {x: 150.9132, y: 60.5946}
+  m_AnchoredPosition: {x: 240.96976, y: -460.7027}
+  m_SizeDelta: {x: 254.0768, y: 60.5946}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1741630166
 GameObject:
@@ -56129,7 +56129,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1793768101
 RectTransform:
   m_ObjectHideFlags: 0

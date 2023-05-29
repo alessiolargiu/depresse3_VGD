@@ -92,14 +92,21 @@ public class MaranzusGigante : MonoBehaviour{
         imActive=true;
         readyToThrow=true;
         //attackPoint=transform;
+
         myself = GetInstanceID().ToString();
-        healthBar.slider.maxValue = maxHealth;
-        healthBar.slider.value = maxHealth;
+        //healthBar.slider.maxValue = maxHealth;
+        //healthBar.slider.value = maxHealth;
     }
 
     private void Update(){
         if(imActive==false){
             marker.SetActive(false);
+        }
+        if(healthBar == null)
+        {
+            GameObject.Find("HUD").transform.Find("Health bar Boss").GetComponent<HealthBar>();
+            healthBar.slider.maxValue = maxHealth;
+            healthBar.slider.value = health;
         }
 
         playerInSightRange = Physics.CheckSphere(transform.position, sightRange, whatIsPlayer);
