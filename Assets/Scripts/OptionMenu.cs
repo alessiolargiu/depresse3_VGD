@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class OptionMenu : MonoBehaviour
@@ -128,6 +129,7 @@ public class OptionMenu : MonoBehaviour
         if(glm.GetCurrentMission() < 7)
         {
             if(glm.GetCurrentMission() == 2) {
+                FindObjectOfType<FirstPersonController>().availableWeapons.Add(1);
                 glm.SetCurrentMission(4);
             }
             else

@@ -18,7 +18,7 @@ public class QuestMarker : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        FindObjectOfType<Compass>().AddQuestMarker(this);
+        Resources.FindObjectsOfTypeAll<Compass>()[0].AddQuestMarker(this);
     }
 
 }

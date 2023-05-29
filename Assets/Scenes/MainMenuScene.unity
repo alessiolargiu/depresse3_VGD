@@ -11447,7 +11447,7 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 378096015}
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 0.03, y: 0.03, z: 0.03}
@@ -25087,7 +25087,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 200
+  m_text: 150
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8361dab0b0626d94b9601ab16577352b, type: 2}
   m_sharedMaterial: {fileID: 7875502761467376325, guid: 8361dab0b0626d94b9601ab16577352b, type: 2}
@@ -27584,11 +27584,11 @@ MonoBehaviour:
   resolutionDropdown: {fileID: 1722925749}
   volume: {fileID: 716156213}
   sensibility: {fileID: 950626271}
-  hudHelmet: {fileID: 0}
-  hudChest: {fileID: 0}
-  hudWeapon: {fileID: 0}
-  hudShield: {fileID: 0}
-  hudPotion: {fileID: 0}
+  hudHelmet: {fileID: 630426040}
+  hudChest: {fileID: 321163223}
+  hudWeapon: {fileID: 1767371341}
+  hudShield: {fileID: 2040231138}
+  hudPotion: {fileID: 882641292}
   vitaInfinitaToggle: {fileID: 1498829024}
   staminaInfinitaToggle: {fileID: 517444613}
   fullEquipToggle: {fileID: 1269935206}
@@ -27642,7 +27642,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: 0, y: 67.74097}
+  m_AnchoredPosition: {x: 0, y: 95}
   m_SizeDelta: {x: 925.1226, y: 135.4819}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &917346031
@@ -28263,7 +28263,7 @@ MonoBehaviour:
   m_MinValue: 50
   m_MaxValue: 300
   m_WholeNumbers: 1
-  m_Value: 200
+  m_Value: 150
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
@@ -36610,7 +36610,7 @@ MonoBehaviour:
   m_MinValue: 50
   m_MaxValue: 300
   m_WholeNumbers: 1
-  m_Value: 200
+  m_Value: 150
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
@@ -47452,7 +47452,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 200
+  m_text: 150
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8361dab0b0626d94b9601ab16577352b, type: 2}
   m_sharedMaterial: {fileID: 7875502761467376325, guid: 8361dab0b0626d94b9601ab16577352b, type: 2}
@@ -48527,7 +48527,7 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1530979236}
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 0.3, y: 0.3, z: 0.3}
@@ -58261,7 +58261,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d15e2ad3cda9a784597ebf5dbe79b224, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sensibilita: 200
+  sensibilita: 150
   vitaInfinita: 0
   staminaInfinita: 0
   fullEquip: 0
@@ -58426,7 +58426,7 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1891791717}
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 0.02, y: 0.02, z: 0.02}

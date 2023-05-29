@@ -17,7 +17,7 @@ public class HelmetEquip : MonoBehaviour
         player = FindObjectOfType<FirstPersonController>();
         if (hudHelmet == null)
         {
-            hudHelmet = GameObject.Find("Inv Helmet").GetComponent<HUDInventoryHelmet>();
+            hudHelmet = Resources.FindObjectsOfTypeAll<HUDInventoryHelmet>()[0];
         }
     }
 
@@ -27,7 +27,7 @@ public class HelmetEquip : MonoBehaviour
         {
             if (hudHelmet == null)
             {
-                hudHelmet = GameObject.Find("Inv Helmet").GetComponent<HUDInventoryHelmet>();
+                hudHelmet = Resources.FindObjectsOfTypeAll<HUDInventoryHelmet>()[0];
             }
             if (index != 0)
             {

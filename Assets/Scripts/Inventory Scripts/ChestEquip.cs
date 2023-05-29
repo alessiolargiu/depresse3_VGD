@@ -17,7 +17,7 @@ public class ChestEquip : MonoBehaviour
         player = FindObjectOfType<FirstPersonController>();
         if (hudChest == null)
         {
-            hudChest = GameObject.Find("Inv Chest").GetComponent<HUDInventoryChest>();
+            hudChest = Resources.FindObjectsOfTypeAll<HUDInventoryChest>()[0];
         }
     }
 
@@ -27,7 +27,7 @@ public class ChestEquip : MonoBehaviour
         {
             if (hudChest == null)
             {
-                hudChest = GameObject.Find("Inv Chest").GetComponent<HUDInventoryChest>();
+                hudChest = Resources.FindObjectsOfTypeAll<HUDInventoryChest>()[0];
             }
             if (index != 0)
             {

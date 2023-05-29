@@ -24,7 +24,7 @@ public class WeaponEquip : MonoBehaviour
         player = FindObjectOfType<FirstPersonController>();
         if (hudWeapon == null)
         {
-            hudWeapon = GameObject.Find("Inv Weapon").GetComponent<HUDInventoryWeapon>();
+            hudWeapon = Resources.FindObjectsOfTypeAll<HUDInventoryWeapon>()[0];
         }
     }
 
@@ -34,7 +34,7 @@ public class WeaponEquip : MonoBehaviour
         {
             if (hudWeapon == null)
             {
-                hudWeapon = GameObject.Find("Inv Weapon").GetComponent<HUDInventoryWeapon>();
+                hudWeapon = Resources.FindObjectsOfTypeAll<HUDInventoryWeapon>()[0];
             }
             if (index != 0)
             {
@@ -45,7 +45,7 @@ public class WeaponEquip : MonoBehaviour
             {
                 this.GetComponent<BoxCollider>().isTrigger = false;
             }
-            GameObject.Find("Compass").GetComponent<Compass>().RemoveQuestMarker(GetComponent<QuestMarker>());
+            FindObjectOfType<Compass>().RemoveQuestMarker(GetComponent<QuestMarker>());
             player.GetAvailableWeapons().Add(index);
             hudWeapon.SetInventory(player.GetInventory(), player.GetAvailableWeapons());
         }

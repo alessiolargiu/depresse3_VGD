@@ -18,6 +18,10 @@ public class HealthBarGigante : MonoBehaviour
             {
                 vitaGiganteText.text = vitaGigante + "/" + maxVitaGigante;
             }
+            else
+            {
+                vitaGiganteText.text = "0/" + maxVitaGigante;
+            }
         }
         
     }

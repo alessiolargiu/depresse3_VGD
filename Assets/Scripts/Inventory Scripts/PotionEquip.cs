@@ -20,7 +20,7 @@ public class PotionEquip : MonoBehaviour
         player = FindObjectOfType<FirstPersonController>();
         if (hudPotion == null)
         {
-            hudPotion = GameObject.Find("Inv Potion").GetComponent<HUDInventoryPotion>();
+            hudPotion = Resources.FindObjectsOfTypeAll<HUDInventoryPotion>()[0];
         }
     }
 
@@ -30,7 +30,7 @@ public class PotionEquip : MonoBehaviour
         {
             if(hudPotion == null)
             {
-                hudPotion = GameObject.Find("Inv Potion").GetComponent<HUDInventoryPotion>();
+                hudPotion = Resources.FindObjectsOfTypeAll<HUDInventoryPotion>()[0];
             }
             this.gameObject.SetActive(false);
             if (!player.GetAvailablePotions().Contains(this.index))

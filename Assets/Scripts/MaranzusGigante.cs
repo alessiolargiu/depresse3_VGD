@@ -102,9 +102,9 @@ public class MaranzusGigante : MonoBehaviour{
         if(imActive==false){
             marker.SetActive(false);
         }
-        if(GameObject.Find("HUD").transform.Find("Health bar Boss").GetComponent<HealthBar>() != null)
+        if(Resources.FindObjectsOfTypeAll<HealthBarGigante>()[0] != null)
         {
-            GameObject.Find("HUD").transform.Find("Health bar Boss").GetComponent<HealthBar>();
+            healthBar = Resources.FindObjectsOfTypeAll<HealthBarGigante>()[0].GetComponent<HealthBar>();
             healthBar.slider.maxValue = maxHealth;
             healthBar.slider.value = health;
         }

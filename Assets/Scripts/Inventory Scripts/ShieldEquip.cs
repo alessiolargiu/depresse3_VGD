@@ -19,7 +19,7 @@ public class ShieldEquip : MonoBehaviour
         player = FindObjectOfType<FirstPersonController>();
         if (hudShield == null)
         {
-            hudShield = GameObject.Find("Inv Shield").GetComponent<HUDInventoryShield>();
+            hudShield = Resources.FindObjectsOfTypeAll<HUDInventoryShield>()[0];
         }
     }
 
@@ -29,7 +29,7 @@ public class ShieldEquip : MonoBehaviour
         {
             if (hudShield == null)
             {
-                hudShield = GameObject.Find("Inv Shield").GetComponent<HUDInventoryShield>();
+                hudShield = Resources.FindObjectsOfTypeAll<HUDInventoryShield>()[0];
             }
             if (index != 0)
             {

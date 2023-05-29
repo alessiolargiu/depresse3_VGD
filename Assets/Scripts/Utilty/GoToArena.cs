@@ -14,9 +14,11 @@ public class GoToArena : MonoBehaviour
     public void StayInMap()
     {
         GameObject.Find("GoTo").SetActive(false);
-        Time.timeScale = 1f;
-        Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
+        if(FindObjectOfType<PauseMenu>() != null)
+        {
+            FindObjectOfType<PauseMenu>().ResumeGame();
+        }
+
         //FindObjectOfType<FirstPersonController>().gameObject.transform.position = GameObject.Find("SpawnFuoriArena").transform.position;
     }
 
