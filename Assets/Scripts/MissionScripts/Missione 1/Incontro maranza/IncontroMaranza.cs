@@ -10,6 +10,7 @@ public class IncontroMaranza : MonoBehaviour
     public GameObject containerMissione;
     public GameObject [] maranzus;
     public GameObject cutscenefinale;
+    public QuestMarker questMarker;
 
     private TMP_Text missionText;
 
@@ -43,6 +44,8 @@ public class IncontroMaranza : MonoBehaviour
             //missionText.gameObject.SetActive(false);
             DestroyObject(containerMissione);
             cutscenefinale.SetActive(true);
+            FindObjectOfType<Compass>().RemoveQuestMarker(questMarker);
+            Destroy(questMarker);
             StartCoroutine(cutscenefinale.GetComponent<CutSceneScript>().cutsceneStart((paolino) => {if(paolino){DestroyObject(gameObject);}}));
         }
     }

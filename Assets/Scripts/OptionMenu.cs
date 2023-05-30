@@ -136,6 +136,10 @@ public class OptionMenu : MonoBehaviour
             {
                 glm.SetCurrentMission(glm.GetCurrentMission() + 1);
             }
+            if(GameObject.Find("PlayerSpawnPoint") != null)
+            {
+                FindObjectOfType<FirstPersonController>().transform.position = GameObject.Find("PlayerSpawnPoint").transform.position;
+            }
             
         }
     }
