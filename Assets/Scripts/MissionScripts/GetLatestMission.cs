@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 public class GetLatestMission : MonoBehaviour
 {
 
-    private static int currentMission=0;
+    private static int currentMission;
     private GameObject missioni;
 
     void Awake(){
@@ -36,6 +36,7 @@ public class GetLatestMission : MonoBehaviour
             yield return null;
         }
         missioni = GameObject.Find("Missioni");
+        SetCurrentMission(currentMission);
         yield return null;
     }
 }

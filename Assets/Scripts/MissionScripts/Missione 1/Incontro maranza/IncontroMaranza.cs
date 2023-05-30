@@ -45,12 +45,12 @@ public class IncontroMaranza : MonoBehaviour
 
         if(stop){
             Debug.Log("Hai finito la missione");
+            contatore.text = " ";
             //missionText.gameObject.SetActive(false);
             DestroyObject(containerMissione);
             cutscenefinale.SetActive(true);
             FindObjectOfType<Compass>().RemoveQuestMarker(questMarker);
             Destroy(questMarker);
-            contatore.text = "";
             StartCoroutine(cutscenefinale.GetComponent<CutSceneScript>().cutsceneStart((paolino) => {if(paolino){DestroyObject(gameObject);}}));
         }
     }

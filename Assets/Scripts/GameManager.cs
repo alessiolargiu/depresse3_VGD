@@ -113,7 +113,7 @@ public class GameManager : MonoBehaviour
 
             var savedPlayer = JsonUtility.FromJson<SavePlayerData>(PlayerPrefs.GetString("playerData"));
             player.gameObject.transform.position = savedPlayer.position;
-            //player.gameObject.transform.position += new Vector3(0, 5f, 0);
+            //player.gameObject.transform.position += new Vector3(0, 10f, 0);
             player.gameObject.transform.rotation = savedPlayer.rotation;
             player.gameObject.transform.localScale = savedPlayer.scale;
             player.currentHealth = savedPlayer.currentHealth;
