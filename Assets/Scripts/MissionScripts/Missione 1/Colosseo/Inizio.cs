@@ -22,6 +22,8 @@ public class Inizio : MonoBehaviour
         while(GameObject.Find("GameManager")==false){
             yield return null;
         }
+
+        yield return new WaitForSeconds(2);
         cutScene.SetActive(true);
         StartCoroutine(cutScene.GetComponent<CutSceneScript>().cutsceneStart((paolino) => {if(paolino){oggettiGioco.SetActive(true); DestroyObject(gameObject);}}));
     }

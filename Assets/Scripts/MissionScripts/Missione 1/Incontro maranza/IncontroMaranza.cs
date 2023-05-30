@@ -12,6 +12,7 @@ public class IncontroMaranza : MonoBehaviour
     public GameObject cutscenefinale;
     public QuestMarker questMarker;
 
+    private TMP_Text contatore;
     private TMP_Text missionText;
 
     bool stop;
@@ -23,6 +24,8 @@ public class IncontroMaranza : MonoBehaviour
         //missionText.text = "Hai iniziato la prima missione. Uccidi i maranzus.";
         Debug.Log("Hai iniziato la missione");
         containerMissione.SetActive(true);
+        contatore = GameObject.Find("Contatore").GetComponent<TMP_Text>();
+        contatore.gameObject.SetActive(true);
     }
 
     // Update is called once per frame
@@ -35,6 +38,7 @@ public class IncontroMaranza : MonoBehaviour
                 scontrino++;
             }
         }
+        contatore.text = "Hai ucciso\n" + scontrino + " maranza su " + maranzus.Length;
         if(scontrino==maranzus.Length){
             stop=true;
         }
@@ -46,6 +50,7 @@ public class IncontroMaranza : MonoBehaviour
             cutscenefinale.SetActive(true);
             FindObjectOfType<Compass>().RemoveQuestMarker(questMarker);
             Destroy(questMarker);
+            contatore.text = "";
             StartCoroutine(cutscenefinale.GetComponent<CutSceneScript>().cutsceneStart((paolino) => {if(paolino){DestroyObject(gameObject);}}));
         }
     }
