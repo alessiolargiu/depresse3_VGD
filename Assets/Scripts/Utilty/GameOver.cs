@@ -86,11 +86,6 @@ public class GameOver : MonoBehaviour
         SceneManager.LoadScene("MainMenuScene");
     }
 
-    private int boolToInt(bool b)
-    {
-        return b ? 1 : 0;
-    }
-
     private bool intToBool(int b)
     {
         return b == 1;

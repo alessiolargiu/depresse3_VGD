@@ -17,13 +17,16 @@ public class PauseMenu : MonoBehaviour
     {
         if(Input.GetKeyUp(KeyCode.Escape))
         {
-            if (gameIsPaused)
+            if(FindObjectOfType<Tutorial>() != null && !FindObjectOfType<Tutorial>().tutorialShowing)
             {
-                ResumeGame();
-            }
-            else
-            {
-                PauseGame();
+                if (gameIsPaused)
+                {
+                    ResumeGame();
+                }
+                else
+                {
+                    PauseGame();
+                }
             }
         }
     }

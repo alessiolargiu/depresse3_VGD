@@ -130,18 +130,25 @@ public class OptionMenu : MonoBehaviour
         {
             if(glm.GetCurrentMission() == 2) {
                 FindObjectOfType<FirstPersonController>().availableWeapons.Add(1);
+                Resources.FindObjectsOfTypeAll<HUDInventoryWeapon>()[0].SetInventory(FindObjectOfType<FirstPersonController>().GetInventory(), FindObjectOfType<FirstPersonController>().GetAvailableWeapons());
                 glm.SetCurrentMission(4);
             }
             else
             {
                 glm.SetCurrentMission(glm.GetCurrentMission() + 1);
-            }
-            if(GameObject.Find("PlayerSpawnPoint") != null)
-            {
-                FindObjectOfType<FirstPersonController>().transform.position = GameObject.Find("PlayerSpawnPoint").transform.position;
-            }
+            } 
+            StartCoroutine(SearchSpawnPoint());
             
         }
+    }
+
+    IEnumerator SearchSpawnPoint()
+    {
+        while(GameObject.Find("PlayerSpawnPoint") == null)
+        {
+            yield return null;
+        }
+        FindObjectOfType<FirstPersonController>().transform.position = GameObject.Find("PlayerSpawnPoint").transform.position;
     }
 
 }

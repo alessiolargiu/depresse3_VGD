@@ -11,6 +11,8 @@ public class PrendiSpada : MonoBehaviour
         if(other.gameObject.CompareTag("player")){
             FindObjectOfType<Compass>().RemoveQuestMarker(questMarker);
             Destroy(questMarker);
+            FindObjectOfType<FirstPersonController>().GetAvailableWeapons().Add(1);
+            Resources.FindObjectsOfTypeAll<HUDInventoryWeapon>()[0].SetInventory(FindObjectOfType<FirstPersonController>().GetInventory(), FindObjectOfType<FirstPersonController>().GetAvailableWeapons());
             scenaCorrente.SetActive(false);
             prossimaScena.SetActive(true);
         }

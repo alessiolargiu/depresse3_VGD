@@ -55,7 +55,7 @@ public class LoadingScene : MonoBehaviour
         } 
         if (GameObject.Find("Loading Container") != null)
         {
-            yield return new WaitForSeconds(1);
+            yield return new WaitForSeconds(0.5f);
             loadingScreen.SetActive(false);
             if (!newLoad)
             {
