@@ -70,6 +70,7 @@ public class GameOver : MonoBehaviour
             GameObject.Find("GameOver").SetActive(false);
             StartCoroutine(ls.LoadAsynchronously(PlayerPrefs.GetString("currentScene"), false));
         }
+
     }
 
     public void Menu()
@@ -83,7 +84,8 @@ public class GameOver : MonoBehaviour
         Cursor.visible = true;
         Time.timeScale = 1f;
         PauseMenu.setGameIsPaused(false);
-        SceneManager.LoadScene("MainMenuScene");
+        GameObject.Find("GameOver").SetActive(false);
+        gameManager.StartLoading("MainMenuScene", false);
     }
 
     private bool intToBool(int b)

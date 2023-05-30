@@ -1322,7 +1322,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 48638733}
-  m_LocalRotation: {x: -0, y: -0, z: 1.0913936e-11, w: 1}
+  m_LocalRotation: {x: -0, y: 5.820767e-11, z: -4.365575e-11, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1.421021, z: 1.0168928}
   m_ConstrainProportionsScale: 0
@@ -1398,7 +1398,7 @@ Camera:
     height: 1
   near clip plane: 0.3
   far clip plane: 1000
-  field of view: 63.28794
+  field of view: 67.08189
   orthographic: 0
   orthographic size: 5
   m_Depth: 0
@@ -8480,6 +8480,10 @@ PrefabInstance:
       propertyPath: m_fontSize
       value: 36.15
       objectReference: {fileID: 0}
+    - target: {fileID: 5065672727171378814, guid: c2c3b72c98ce33640941826c393fa58f, type: 3}
+      propertyPath: m_text
+      value: Pozione
+      objectReference: {fileID: 0}
     - target: {fileID: 5300153469318421486, guid: c2c3b72c98ce33640941826c393fa58f, type: 3}
       propertyPath: m_Name
       value: Slot Potion
@@ -11401,43 +11405,43 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: e17d6f82eb75dec4f84d8158aa6ded28, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.00077
+      value: -0.00028
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: e17d6f82eb75dec4f84d8158aa6ded28, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.00114
+      value: 0.00084
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: e17d6f82eb75dec4f84d8158aa6ded28, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.0006
+      value: 0.00085
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: e17d6f82eb75dec4f84d8158aa6ded28, type: 3}
       propertyPath: m_LocalRotation.w
-      value: -0.43261024
+      value: -0.010260578
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: e17d6f82eb75dec4f84d8158aa6ded28, type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0.66472054
+      value: -0.18898109
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: e17d6f82eb75dec4f84d8158aa6ded28, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.54469234
+      value: -0.9262448
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: e17d6f82eb75dec4f84d8158aa6ded28, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.27258998
+      value: 0.32596254
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: e17d6f82eb75dec4f84d8158aa6ded28, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
-      value: 60.702
+      value: 37.425
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: e17d6f82eb75dec4f84d8158aa6ded28, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 167.143
+      value: 187.539
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: e17d6f82eb75dec4f84d8158aa6ded28, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 93.787
+      value: 25.62
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: e17d6f82eb75dec4f84d8158aa6ded28, type: 3}
       propertyPath: m_ConstrainProportionsScale
@@ -14053,7 +14057,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 453624913}
-  m_LocalRotation: {x: 0.082583964, y: -0.0005218077, z: 0.00074316724, w: 0.9965837}
+  m_LocalRotation: {x: 0.08258397, y: -0.00052180776, z: 0.0007431673, w: 0.9965837}
   m_LocalPosition: {x: -0.0052124504, y: 1.0973923, z: -3.004921}
   m_LocalScale: {x: 1, y: 0.7037194, z: 0.9833877}
   m_ConstrainProportionsScale: 0
@@ -22660,6 +22664,10 @@ PrefabInstance:
       propertyPath: m_fontSize
       value: 36.15
       objectReference: {fileID: 0}
+    - target: {fileID: 5065672727171378814, guid: c2c3b72c98ce33640941826c393fa58f, type: 3}
+      propertyPath: m_text
+      value: Arma
+      objectReference: {fileID: 0}
     - target: {fileID: 5300153469318421486, guid: c2c3b72c98ce33640941826c393fa58f, type: 3}
       propertyPath: m_Name
       value: Slot Weapon
@@ -27147,7 +27155,6 @@ GameObject:
   - component: {fileID: 914421788}
   - component: {fileID: 914421792}
   - component: {fileID: 914421793}
-  - component: {fileID: 914421794}
   m_Layer: 5
   m_Name: Main Menu Canvas
   m_TagString: Untagged
@@ -27280,19 +27287,6 @@ MonoBehaviour:
   fullEquipToggle: {fileID: 1269935206}
   textCurrentMission: {fileID: 1346939969}
   skipToBoss: {fileID: 523474988}
---- !u!114 &914421794
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 914421787}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 91832e27f67533c47bd65b44b5a6a842, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  text: 
 --- !u!1 &916709827
 GameObject:
   m_ObjectHideFlags: 0
@@ -35547,9 +35541,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7101991336796972048, guid: 51821c87e28608b4fa0f14e0ed461a70, type: 3}
       propertyPath: m_text
-      value: 'Chest
-
-'
+      value: Armatura
       objectReference: {fileID: 0}
     - target: {fileID: 7101991336796972048, guid: 51821c87e28608b4fa0f14e0ed461a70, type: 3}
       propertyPath: m_fontSize
@@ -38102,6 +38094,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4bc7040909ffefc4fb6eb16772103819, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  minimap: {fileID: 1317665558}
+  layerEquip: {fileID: 1042523568}
 --- !u!114 &1288061849
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -38161,7 +38155,7 @@ Canvas:
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 25
   m_SortingLayerID: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 2
   m_TargetDisplay: 0
 --- !u!1 &1293673567
 GameObject:
@@ -38792,6 +38786,10 @@ PrefabInstance:
       propertyPath: m_fontSize
       value: 36.15
       objectReference: {fileID: 0}
+    - target: {fileID: 5065672727171378814, guid: c2c3b72c98ce33640941826c393fa58f, type: 3}
+      propertyPath: m_text
+      value: Scudo
+      objectReference: {fileID: 0}
     - target: {fileID: 5300153469318421486, guid: c2c3b72c98ce33640941826c393fa58f, type: 3}
       propertyPath: m_Name
       value: Slot Shield
@@ -39164,7 +39162,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1319276508}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -49083,43 +49081,43 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 31a024d6a0bb54e4d974c30c5335fdad, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.00049
+      value: 0.0002
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 31a024d6a0bb54e4d974c30c5335fdad, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.00121
+      value: 0.00173
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 31a024d6a0bb54e4d974c30c5335fdad, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.00099
+      value: 0.00033
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 31a024d6a0bb54e4d974c30c5335fdad, type: 3}
       propertyPath: m_LocalRotation.w
-      value: -0.4764378
+      value: -0.07763129
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 31a024d6a0bb54e4d974c30c5335fdad, type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0.6340443
+      value: -0.24651939
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 31a024d6a0bb54e4d974c30c5335fdad, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.56183
+      value: -0.9283163
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 31a024d6a0bb54e4d974c30c5335fdad, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.23524861
+      value: 0.26726472
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 31a024d6a0bb54e4d974c30c5335fdad, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
-      value: 60.285
+      value: 32.309
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 31a024d6a0bb54e4d974c30c5335fdad, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 151.432
+      value: 179.162
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 31a024d6a0bb54e4d974c30c5335fdad, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 80.092
+      value: 29.501
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 31a024d6a0bb54e4d974c30c5335fdad, type: 3}
       propertyPath: m_ConstrainProportionsScale
@@ -49289,7 +49287,7 @@ Canvas:
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 25
   m_SortingLayerID: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 2
   m_TargetDisplay: 0
 --- !u!114 &1531078176
 MonoBehaviour:
@@ -58353,43 +58351,43 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 14bc0d2782b0f1d43aa804c8a100da81, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.00035
+      value: -0.0003499865
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 14bc0d2782b0f1d43aa804c8a100da81, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.00123
+      value: 0.0012300254
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 14bc0d2782b0f1d43aa804c8a100da81, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.00061
+      value: 0.0006099603
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 14bc0d2782b0f1d43aa804c8a100da81, type: 3}
       propertyPath: m_LocalRotation.w
-      value: -0.48042628
+      value: -0.034417886
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 14bc0d2782b0f1d43aa804c8a100da81, type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0.6298901
+      value: -0.20132008
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 14bc0d2782b0f1d43aa804c8a100da81, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.5659161
+      value: -0.9452363
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 14bc0d2782b0f1d43aa804c8a100da81, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.22840308
+      value: 0.25458604
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 14bc0d2782b0f1d43aa804c8a100da81, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
-      value: 59.74
+      value: 29.679
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 14bc0d2782b0f1d43aa804c8a100da81, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 149.465
+      value: 182.47
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 14bc0d2782b0f1d43aa804c8a100da81, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 78.306
+      value: 24.701
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 14bc0d2782b0f1d43aa804c8a100da81, type: 3}
       propertyPath: m_ConstrainProportionsScale
@@ -59750,9 +59748,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7101991336796972048, guid: 51821c87e28608b4fa0f14e0ed461a70, type: 3}
       propertyPath: m_text
-      value: 'Helmet
-
-'
+      value: Elmo
       objectReference: {fileID: 0}
     - target: {fileID: 7101991336796972048, guid: 51821c87e28608b4fa0f14e0ed461a70, type: 3}
       propertyPath: m_fontSize

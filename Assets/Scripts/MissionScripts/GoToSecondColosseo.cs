@@ -16,7 +16,7 @@ public class GoToSecondColosseo : MonoBehaviour
             yield return null;
         }
         GameManager = GameObject.Find("GameManager");
-        GameObject.Find("HealthBarBoss").transform.GetChild(0).gameObject.SetActive(true);
+        Resources.FindObjectsOfTypeAll<HealthBarGigante>()[0].gameObject.SetActive(true);
         GameObject.Find("Compass").SetActive(false);
         GameManager.GetComponent<GameManager>().StartLoading("ArenaNight", true);
         yield return null;

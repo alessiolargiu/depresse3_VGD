@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -17,7 +18,18 @@ public class PauseMenu : MonoBehaviour
     {
         if(Input.GetKeyUp(KeyCode.Escape))
         {
-            if(FindObjectOfType<Tutorial>() != null && !FindObjectOfType<Tutorial>().tutorialShowing)
+            if(FindObjectOfType<Tutorial>() == null)
+            {
+                if (gameIsPaused)
+                {
+                    ResumeGame();
+                }
+                else
+                {
+                    PauseGame();
+                }
+            }
+            else if (!FindObjectOfType<Tutorial>().tutorialShowing)
             {
                 if (gameIsPaused)
                 {
@@ -55,6 +67,7 @@ public class PauseMenu : MonoBehaviour
 
     public void Menu()
     {
+        GameObject.Find("TestoMissione").GetComponent<TMP_Text>().text = "";
         FindObjectOfType<FirstPersonController>().gameObject.SetActive(false);
         pauseMenuHUD.SetActive(false);
         optionHUD.SetActive(false);

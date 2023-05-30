@@ -144,7 +144,7 @@ public class OptionMenu : MonoBehaviour
 
     IEnumerator SearchSpawnPoint()
     {
-        while(GameObject.Find("PlayerSpawnPoint") == null)
+        while(PauseMenu.gameIsPaused)
         {
             yield return null;
         }

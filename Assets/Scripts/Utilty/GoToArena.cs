@@ -4,11 +4,16 @@ using UnityEngine;
 
 public class GoToArena : MonoBehaviour
 {
-    
+
+    public GameObject minimap;
+    public GameObject layerEquip;
+
     public void EnterArena()
     {
         GameObject.Find("GoTo").SetActive(false);
         FindObjectOfType<GameManager>().StartLoading("ArenaDay", true);
+        minimap.SetActive(true);
+        layerEquip.SetActive(true);
     }
 
     public void StayInMap()

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class MissionTracking : MonoBehaviour
 {
@@ -23,7 +24,12 @@ public class MissionTracking : MonoBehaviour
     }
 
     public void setCurrentMission(int n){
-        currentMission=n;
+        if (SceneManager.GetActiveScene().name == "TestALessioMappa")
+        {
+            GameObject crntMission = GameObject.Find("Missioni").transform.GetChild(currentMission).gameObject;
+            FindObjectOfType<Compass>().RemoveQuestMarker(crntMission.GetComponentInChildren<QuestMarker>());
+        }
+        currentMission =n;
         UpdateMissions();
     }
 

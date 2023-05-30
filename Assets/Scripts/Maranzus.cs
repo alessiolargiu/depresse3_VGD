@@ -297,6 +297,7 @@ public class Maranzus : MonoBehaviour
             {
                 int nPozione = Random.Range(0, pozioni.Length);
                 GameObject pozioneToLaunch = Instantiate(pozioni[nPozione], attackPoint.position, transform.rotation);
+                pozioneToLaunch.transform.Rotate(new Vector3(180f, 0f, 0f));
                 pozioneToLaunch.SetActive(true);
             }
             

@@ -55,12 +55,12 @@ public class LoadingScene : MonoBehaviour
         } 
         if (GameObject.Find("Loading Container") != null)
         {
-            yield return new WaitForSeconds(0.5f);
+            yield return new WaitForSeconds(1f);
             loadingScreen.SetActive(false);
             if (!newLoad)
             {
                 var savedPlayer = JsonUtility.FromJson<SavePlayerData>(PlayerPrefs.GetString("playerData"));
-                player.gameObject.transform.position = savedPlayer.position + new Vector3(0, 10f, 0);
+                player.gameObject.transform.position = savedPlayer.position/* + new Vector3(0, 10f, 0)*/;
             }
         }
 

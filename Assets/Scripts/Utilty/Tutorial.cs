@@ -12,7 +12,7 @@ public class Tutorial : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("player"))
+        if (other.gameObject.CompareTag("player"))
         {
             tutorialShowing = true;
             HUD = GameObject.Find("HUD");
@@ -27,7 +27,10 @@ public class Tutorial : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        Destroy(gameObject);
+        if (other.gameObject.CompareTag("player"))
+        {
+            Destroy(gameObject);
+        }
     }
 
     private void Update()
