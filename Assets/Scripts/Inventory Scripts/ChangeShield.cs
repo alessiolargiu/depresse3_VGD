@@ -15,6 +15,7 @@ public class ChangeShield : MonoBehaviour
 
     public void ChangeEquipmentInfo(Equipment equip)
     {
+        player = FindObjectOfType<FirstPersonController>();
         equip.ChangeEquipment(equipSlot, equipName, 1);
         foreach (ShieldEquip shield in player.GetInventory().GetShields())
         {

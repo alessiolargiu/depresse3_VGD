@@ -15,6 +15,7 @@ public class ChangePotion : MonoBehaviour
 
     public void ChangeEquipmentInfo(Equipment equip)
     {
+        player = FindObjectOfType<FirstPersonController>();
         foreach (PotionEquip potion in player.GetInventory().GetPotions())
         {
             if(index == 0)

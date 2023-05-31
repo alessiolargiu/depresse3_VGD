@@ -14,6 +14,7 @@ public class ChangeChest : MonoBehaviour
 
     public void ChangeEquipmentInfo(Equipment equip)
     {
+        player = FindObjectOfType<FirstPersonController>();
         equip.ChangeEquipment(equipSlot, equipName, -1);
         foreach (ChestEquip chest in player.GetInventory().GetChests())
         {

@@ -14,6 +14,7 @@ public class ChangeWeapon : MonoBehaviour
 
     public void ChangeEquipmentInfo(Equipment equip)
     {
+        player = FindObjectOfType<FirstPersonController>();
         equip.ChangeEquipment(equipSlot, equipName, 0);
         foreach (WeaponEquip weapon in player.GetInventory().GetWeapons())
         {

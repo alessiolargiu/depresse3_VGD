@@ -15,6 +15,7 @@ public class ChangeHelmet : MonoBehaviour
 
     public void ChangeEquipmentInfo(Equipment equip)
     {
+        player = FindObjectOfType<FirstPersonController>();
         equip.ChangeEquipment(equipSlot, equipName, -1);
         foreach(HelmetEquip helmet in player.GetInventory().GetHelmets())
         {
