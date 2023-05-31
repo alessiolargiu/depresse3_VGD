@@ -20924,6 +20924,7 @@ MonoBehaviour:
   postProcessing: 0
   optionMenu: {fileID: 270709766}
   HUD: {fileID: 562655542}
+  player: {fileID: 0}
 --- !u!4 &469906837
 Transform:
   m_ObjectHideFlags: 0
@@ -27717,6 +27718,7 @@ MonoBehaviour:
   anim: {fileID: 1545677332}
   healthBar: {fileID: 0}
   staminaBar: {fileID: 0}
+  maxHealth: 100
   currentHealth: 0
   currentStamina: 0
   hudInvWeapon: {fileID: 0}
@@ -32831,6 +32833,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4bc7040909ffefc4fb6eb16772103819, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  minimap: {fileID: 0}
+  layerEquip: {fileID: 0}
 --- !u!114 &900262973
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -39896,7 +39900,7 @@ GameObject:
   - component: {fileID: 1228255593}
   - component: {fileID: 1228255592}
   m_Layer: 0
-  m_Name: SpawnPoint
+  m_Name: PlayerSpawnPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -48796,6 +48800,7 @@ MonoBehaviour:
   anim: {fileID: 1342167953}
   healthBar: {fileID: 2121231528}
   staminaBar: {fileID: 1867399015}
+  maxHealth: 100
   currentHealth: 0
   currentStamina: 0
   hudInvWeapon: {fileID: 307240665}
@@ -49574,6 +49579,7 @@ MonoBehaviour:
   anim: {fileID: 1260394010}
   healthBar: {fileID: 0}
   staminaBar: {fileID: 0}
+  maxHealth: 100
   currentHealth: 0
   currentStamina: 0
   hudInvWeapon: {fileID: 0}

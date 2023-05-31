@@ -25,14 +25,25 @@ public class LoadingScene : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
         PauseMenu.setGameIsPaused(false);
-        HUD.SetActive(true);
-        player.SetActive(true);
+        if (GameObject.Find("Compass") != null)
+        {
+            while (GameObject.Find("Compass").transform.childCount > 0)
+            {
+                Destroy(GameObject.Find("Compass").transform.GetChild(0).gameObject);
+            }
+        }
+        if (name != "MainMenuScene")
+        {
+            HUD.SetActive(true);
+            player.SetActive(true);
+        }
+        
 
         while (!op.isDone)
         {
             float progress = Mathf.Clamp01(op.progress / .9f);
             slider.value = progress;
-            loadingText.text = progress * 100f + "%";
+            loadingText.text = (int)(progress * 100f) + "%";
             yield return null;
         }
 
@@ -41,7 +52,7 @@ public class LoadingScene : MonoBehaviour
             Transform spawnPoint = null;
             while (spawnPoint == null)
             {
-                spawnPoint = GameObject.Find("SpawnPoint").GetComponent<Transform>();
+                spawnPoint = GameObject.Find("PlayerSpawnPoint").GetComponent<Transform>();
                 yield return null;
             }
              
@@ -50,10 +61,10 @@ public class LoadingScene : MonoBehaviour
                 player.transform.position = spawnPoint.position;
             }
         }
-        while(GameObject.Find("Loading Container") == null){
-            yield return null;
+        while(loadingScreen == null){
+            loadingScreen = GameObject.Find("Loading Container");
         } 
-        if (GameObject.Find("Loading Container") != null)
+        if (loadingScreen != null)
         {
             yield return new WaitForSeconds(1f);
             loadingScreen.SetActive(false);

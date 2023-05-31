@@ -28,6 +28,19 @@ public class WeaponEquip : MonoBehaviour
         }
     }
 
+    private void Awake()
+    {
+        if (player == null)
+        {
+            player = FindObjectOfType<FirstPersonController>();
+        }
+        if (player.availableWeapons.Contains(index) && GetComponent<QuestMarker>().enabled)
+        {
+            GameObject.Find("Compass").GetComponent<Compass>().RemoveQuestMarker(GetComponent<QuestMarker>());
+            this.gameObject.SetActive(false);
+        }
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.tag.Equals("player"))
@@ -46,6 +59,7 @@ public class WeaponEquip : MonoBehaviour
                 this.GetComponent<BoxCollider>().isTrigger = false;
             }
             FindObjectOfType<Compass>().RemoveQuestMarker(GetComponent<QuestMarker>());
+            GetComponent<QuestMarker>().enabled = false;
             player.GetAvailableWeapons().Add(index);
             hudWeapon.SetInventory(player.GetInventory(), player.GetAvailableWeapons());
         }

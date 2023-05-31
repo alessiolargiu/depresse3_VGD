@@ -144,6 +144,11 @@ public class OptionMenu : MonoBehaviour
 
     IEnumerator SearchSpawnPoint()
     {
+        while(SceneManager.GetActiveScene().name != "TestALessioMappa")
+        {
+            yield return null;
+        }
+        yield return new WaitForSeconds(1);
         while(PauseMenu.gameIsPaused)
         {
             yield return null;

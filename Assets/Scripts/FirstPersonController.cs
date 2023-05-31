@@ -29,7 +29,8 @@ public class FirstPersonController : MonoBehaviour {
     //parametri vita del player
     public HealthBar healthBar;
     public StaminaBar staminaBar;
-    private int maxHealth = 100;
+    [HideInInspector]
+    public int maxHealth = 100;
     [HideInInspector]
     public int currentHealth;
     private float maxStamina = 100;
@@ -184,7 +185,7 @@ public class FirstPersonController : MonoBehaviour {
         Cursor.visible = false;
 
         //imposto la vita iniziale
-        currentHealth = 100;
+        currentHealth = maxHealth;
         healthBar.SetMaxHealth(maxHealth);
         healthBar.SetHealth(currentHealth);
         currentStamina = maxStamina;
@@ -277,6 +278,7 @@ public class FirstPersonController : MonoBehaviour {
 
             if (currentHealth <= 0)
             {
+                currentHealth++;
                 GameOver();
             }
 

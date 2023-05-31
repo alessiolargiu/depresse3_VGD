@@ -10,13 +10,14 @@ public class GameOver : MonoBehaviour
     public GameManager gameManager;
     public GameObject pauseMenuHUD;
     public GameObject optionHUD;
-    private FirstPersonController player;
-    private LoadingScene ls;
+    public FirstPersonController player;
+    public LoadingScene ls;
+    public GameObject gameOver;
 
     private void Start()
     {
-        player = FindObjectOfType<FirstPersonController>();
-        ls = GetComponent<LoadingScene>();
+        //player = FindObjectOfType<FirstPersonController>();
+        //ls = GetComponent<LoadingScene>();
     }
 
     private void Update()
@@ -79,12 +80,13 @@ public class GameOver : MonoBehaviour
         pauseMenuHUD.SetActive(false);
         optionHUD.SetActive(false);
         gameManager.HUD.SetActive(false);
+        gameOver.SetActive(false);
 
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
         Time.timeScale = 1f;
         PauseMenu.setGameIsPaused(false);
-        GameObject.Find("GameOver").SetActive(false);
+        
         gameManager.StartLoading("MainMenuScene", false);
     }
 

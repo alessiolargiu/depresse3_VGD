@@ -16,10 +16,27 @@ public class ShieldEquip : MonoBehaviour
 
     private void Start()
     {
+        if (player == null)
+        {
+            player = FindObjectOfType<FirstPersonController>();
+        }
         player = FindObjectOfType<FirstPersonController>();
         if (hudShield == null)
         {
             hudShield = Resources.FindObjectsOfTypeAll<HUDInventoryShield>()[0];
+        }
+    }
+
+    private void Awake()
+    {
+        if (player == null)
+        {
+            player = FindObjectOfType<FirstPersonController>();
+        }
+        if (player.availableShields.Contains(index) && GetComponent<QuestMarker>().enabled)
+        {
+            GameObject.Find("Compass").GetComponent<Compass>().RemoveQuestMarker(GetComponent<QuestMarker>());
+            this.gameObject.SetActive(false);
         }
     }
 

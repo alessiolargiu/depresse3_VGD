@@ -21,6 +21,19 @@ public class ChestEquip : MonoBehaviour
         }
     }
 
+    private void Awake()
+    {
+        if(player == null)
+        {
+            player = FindObjectOfType<FirstPersonController>();
+        }
+        if (player.availableChests.Contains(index) && index != 0 && GetComponent<QuestMarker>().enabled)
+        {
+            GameObject.Find("Compass").GetComponent<Compass>().RemoveQuestMarker(GetComponent<QuestMarker>());
+            this.gameObject.SetActive(false);
+        }
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.tag.Equals("player"))

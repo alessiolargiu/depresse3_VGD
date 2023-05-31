@@ -21,6 +21,19 @@ public class HelmetEquip : MonoBehaviour
         }
     }
 
+    private void Awake()
+    {
+        if (player == null)
+        {
+            player = FindObjectOfType<FirstPersonController>();
+        }
+        if (player.availableHelmets.Contains(index) && GetComponent<QuestMarker>().enabled)
+        {
+            GameObject.Find("Compass").GetComponent<Compass>().RemoveQuestMarker(GetComponent<QuestMarker>());
+            this.gameObject.SetActive(false);
+        }
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.tag.Equals("player"))

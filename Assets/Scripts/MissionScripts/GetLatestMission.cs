@@ -27,6 +27,7 @@ public class GetLatestMission : MonoBehaviour
                     spawner.GetComponent<EnemySpawner>().canSpawn=true;
                 }
             }
+            
             missioni.GetComponent<MissionTracking>().setCurrentMission(currentMission);
         }
         

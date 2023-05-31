@@ -71,6 +71,13 @@ public class PauseMenu : MonoBehaviour
         FindObjectOfType<FirstPersonController>().gameObject.SetActive(false);
         pauseMenuHUD.SetActive(false);
         optionHUD.SetActive(false);
+        if(GameObject.Find("Compass") != null)
+        {
+            while(GameObject.Find("Compass").transform.childCount > 0)
+            {
+                Destroy(GameObject.Find("Compass").transform.GetChild(0).gameObject);
+            }
+        }
         HUD.SetActive(false);
 
         Cursor.lockState = CursorLockMode.None;

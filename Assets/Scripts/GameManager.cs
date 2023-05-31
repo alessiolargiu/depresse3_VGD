@@ -14,7 +14,7 @@ public class GameManager : MonoBehaviour
     public bool postProcessing;
     public OptionMenu optionMenu;
     public GameObject HUD;
-    private FirstPersonController player;
+    public FirstPersonController player;
     private LoadingScene ls;
 
     [System.Serializable]
@@ -36,7 +36,7 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         optionMenu = FindObjectOfType<OptionMenu>();
-        player = FindObjectOfType<FirstPersonController>();
+        //player = FindObjectOfType<FirstPersonController>();
         ls = GetComponent<LoadingScene>();
     }
 
@@ -51,12 +51,18 @@ public class GameManager : MonoBehaviour
 
     public void Save()
     {
-        Debug.Log("ho salvato");
         PlayerPrefs.SetInt("sensibilita", sensibilita);
         PlayerPrefs.SetInt("vitaInfinita", boolToInt(vitaInfinita));
         PlayerPrefs.SetInt("staminaInfinita", boolToInt(staminaInfinita));
         PlayerPrefs.SetInt("fullEquip", boolToInt(fullEquip));
-        PlayerPrefs.SetString("currentScene", SceneManager.GetActiveScene().name);
+        if(SceneManager.GetActiveScene().name == "ArenaNight")
+        {
+            PlayerPrefs.SetString("currentScene", "ArenaDay");
+        }
+        else
+        {
+            PlayerPrefs.SetString("currentScene", SceneManager.GetActiveScene().name);
+        } 
         PlayerPrefs.SetInt("fullscreen", boolToInt(optionMenu.fullscreen.isOn));
         PlayerPrefs.SetInt("vsync", boolToInt(optionMenu.vsync.isOn));
         PlayerPrefs.SetInt("currentResolution", optionMenu.resolutionDropdown.resIndex);
@@ -136,6 +142,7 @@ public class GameManager : MonoBehaviour
     public void NewGame()
     {
         PlayerPrefs.DeleteAll();
+        player.currentHealth = player.maxHealth;
         StartCoroutine(ls.LoadAsynchronously("Casa", true));
     }
 

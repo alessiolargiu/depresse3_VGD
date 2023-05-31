@@ -2248,7 +2248,7 @@ Canvas:
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 25
   m_SortingLayerID: 0
-  m_SortingOrder: 2
+  m_SortingOrder: 3
   m_TargetDisplay: 0
 --- !u!1 &67534506
 GameObject:
@@ -6675,6 +6675,21 @@ MonoBehaviour:
   stamina: 20
   sprite: {fileID: 21300000, guid: 77f409f03b13d264599e4fc0c375b2a1, type: 3}
   hudShield: {fileID: 0}
+--- !u!114 &220950050
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 220950047}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f72eb93f5fd1ee946a3963cb22cb820f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  icon: {fileID: 0}
+  image: {fileID: 0}
+  compassMarker: {fileID: 0}
 --- !u!1 &224379894
 GameObject:
   m_ObjectHideFlags: 0
@@ -8766,7 +8781,8 @@ MonoBehaviour:
   anim: {fileID: 2097030238}
   healthBar: {fileID: 1128860193}
   staminaBar: {fileID: 548994977}
-  currentHealth: 0
+  maxHealth: 100
+  currentHealth: 100
   currentStamina: 0
   hudInvWeapon: {fileID: 1767371341}
   hudInvShield: {fileID: 2040231138}
@@ -9755,6 +9771,21 @@ MonoBehaviour:
   armorValue: 0.35
   sprite: {fileID: 21300000, guid: 253a397ad611abc4a9fcc20f35901108, type: 3}
   hudChest: {fileID: 0}
+--- !u!114 &321358172
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 321358169}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f72eb93f5fd1ee946a3963cb22cb820f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  icon: {fileID: 0}
+  image: {fileID: 0}
+  compassMarker: {fileID: 0}
 --- !u!1 &321559111
 GameObject:
   m_ObjectHideFlags: 0
@@ -17357,6 +17388,21 @@ MonoBehaviour:
   armorValue: 0.15
   sprite: {fileID: 21300000, guid: c9dd9cda8726af646ab075546c5c2f7d, type: 3}
   hudHelmet: {fileID: 0}
+--- !u!114 &560865891
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 560865888}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f72eb93f5fd1ee946a3963cb22cb820f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  icon: {fileID: 0}
+  image: {fileID: 0}
+  compassMarker: {fileID: 0}
 --- !u!4 &561743937 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: f220b74850aeb447f8dbeeda56740275, type: 3}
@@ -19665,6 +19711,21 @@ MonoBehaviour:
   armorValue: 0.5
   sprite: {fileID: 21300000, guid: ca91ca1fb5e97d94ebb53b8fcea46d65, type: 3}
   hudChest: {fileID: 0}
+--- !u!114 &642550280
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 642550277}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f72eb93f5fd1ee946a3963cb22cb820f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  icon: {fileID: 0}
+  image: {fileID: 0}
+  compassMarker: {fileID: 0}
 --- !u!1 &644846023
 GameObject:
   m_ObjectHideFlags: 0
@@ -25339,6 +25400,21 @@ MonoBehaviour:
   armorValue: 0.45
   sprite: {fileID: 21300000, guid: e9c0115a9d02d5f40826cd30a0a6085e, type: 3}
   hudHelmet: {fileID: 0}
+--- !u!114 &839969241
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 839969238}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f72eb93f5fd1ee946a3963cb22cb820f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  icon: {fileID: 0}
+  image: {fileID: 0}
+  compassMarker: {fileID: 0}
 --- !u!1 &840017433
 GameObject:
   m_ObjectHideFlags: 0
@@ -40231,6 +40307,21 @@ MonoBehaviour:
   stamina: 60
   sprite: {fileID: 21300000, guid: 11a6c530a2ea8fc4988f4963f866207f, type: 3}
   hudShield: {fileID: 0}
+--- !u!114 &1362264220
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1362264217}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f72eb93f5fd1ee946a3963cb22cb820f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  icon: {fileID: 0}
+  image: {fileID: 0}
+  compassMarker: {fileID: 0}
 --- !u!1 &1363474109
 GameObject:
   m_ObjectHideFlags: 0
@@ -40511,6 +40602,21 @@ MonoBehaviour:
   stamina: 15
   sprite: {fileID: 21300000, guid: 7272a43a5d6326e4999f094f9987acd9, type: 3}
   hudShield: {fileID: 0}
+--- !u!114 &1370149358
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1370149355}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f72eb93f5fd1ee946a3963cb22cb820f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  icon: {fileID: 0}
+  image: {fileID: 0}
+  compassMarker: {fileID: 0}
 --- !u!1 &1372438297
 GameObject:
   m_ObjectHideFlags: 0
@@ -49304,6 +49410,9 @@ MonoBehaviour:
   gameManager: {fileID: 1880740731}
   pauseMenuHUD: {fileID: 1776375385}
   optionHUD: {fileID: 31551609}
+  player: {fileID: 297403133}
+  ls: {fileID: 1880740729}
+  gameOver: {fileID: 560788772}
 --- !u!1 &1536180889
 GameObject:
   m_ObjectHideFlags: 0
@@ -49481,6 +49590,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1540250849}
   - component: {fileID: 1540250850}
+  - component: {fileID: 1540250851}
   m_Layer: 0
   m_Name: spada_corta_in_player
   m_TagString: pickup
@@ -49526,6 +49636,21 @@ MonoBehaviour:
   innerRange: 1
   reloadTime: 1
   colliding: 0
+--- !u!114 &1540250851
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1540250848}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f72eb93f5fd1ee946a3963cb22cb820f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  icon: {fileID: 0}
+  image: {fileID: 0}
+  compassMarker: {fileID: 0}
 --- !u!1 &1540503561
 GameObject:
   m_ObjectHideFlags: 0
@@ -52129,6 +52254,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1642024386}
   - component: {fileID: 1642024387}
+  - component: {fileID: 1642024388}
   m_Layer: 0
   m_Name: spada_lunga_in_player
   m_TagString: pickup
@@ -52174,6 +52300,21 @@ MonoBehaviour:
   innerRange: 1.2
   reloadTime: 1.2
   colliding: 0
+--- !u!114 &1642024388
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1642024385}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f72eb93f5fd1ee946a3963cb22cb820f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  icon: {fileID: 0}
+  image: {fileID: 0}
+  compassMarker: {fileID: 0}
 --- !u!1 &1645151555
 GameObject:
   m_ObjectHideFlags: 0
@@ -56392,6 +56533,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1802899359}
   - component: {fileID: 1802899360}
+  - component: {fileID: 1802899361}
   m_Layer: 0
   m_Name: lancia_in_player
   m_TagString: Untagged
@@ -56437,6 +56579,21 @@ MonoBehaviour:
   innerRange: 1
   reloadTime: 1.5
   colliding: 0
+--- !u!114 &1802899361
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1802899358}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f72eb93f5fd1ee946a3963cb22cb820f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  icon: {fileID: 0}
+  image: {fileID: 0}
+  compassMarker: {fileID: 0}
 --- !u!1 &1803906201
 GameObject:
   m_ObjectHideFlags: 0
@@ -58266,6 +58423,7 @@ MonoBehaviour:
   postProcessing: 0
   optionMenu: {fileID: 213460071}
   HUD: {fileID: 1793768100}
+  player: {fileID: 297403133}
 --- !u!4 &1880740732
 Transform:
   m_ObjectHideFlags: 0
@@ -61989,6 +62147,21 @@ MonoBehaviour:
   armorValue: 0.3
   sprite: {fileID: 21300000, guid: 5d7dce88282691144ae42d28ab9fd57a, type: 3}
   hudHelmet: {fileID: 0}
+--- !u!114 &2011427134
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2011427131}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f72eb93f5fd1ee946a3963cb22cb820f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  icon: {fileID: 0}
+  image: {fileID: 0}
+  compassMarker: {fileID: 0}
 --- !u!1001 &2012600352
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -64132,6 +64305,21 @@ MonoBehaviour:
   armorValue: 0.15
   sprite: {fileID: 21300000, guid: 1266314287a844a4595b39a227895ce2, type: 3}
   hudChest: {fileID: 0}
+--- !u!114 &2066073656
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2066073653}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f72eb93f5fd1ee946a3963cb22cb820f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  icon: {fileID: 0}
+  image: {fileID: 0}
+  compassMarker: {fileID: 0}
 --- !u!1 &2067379234
 GameObject:
   m_ObjectHideFlags: 0
