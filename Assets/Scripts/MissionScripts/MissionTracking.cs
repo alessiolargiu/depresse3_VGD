@@ -7,7 +7,7 @@ public class MissionTracking : MonoBehaviour
 {
     
     public GameObject [] missions;
-    private static int currentMission=0;
+    private static int currentMission = 0;
 
     void Awake(){
         UpdateMissions();
