@@ -45,7 +45,7 @@ public class PlayerReadyColosseum : MonoBehaviour
         }
         
         //Da ricontrollare
-        chestCounter = player.availableChests.Count - 1;
+        chestCounter = player.availableChests.Count  - 3;
         shieldCounter = player.availableShields.Count;
         helmetCounter = player.availableHelmets.Count;
 

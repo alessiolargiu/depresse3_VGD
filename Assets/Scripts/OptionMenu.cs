@@ -139,13 +139,15 @@ public class OptionMenu : MonoBehaviour
             } 
             if(SceneManager.GetActiveScene().name == "TestALessioMappa")
             {
-                StartCoroutine(SearchSpawnPoint());
+                //StartCoroutine(SearchSpawnPoint());
+                GameObject.Find("MissionSkipper").GetComponent<MissionSkipper>().MissionSkipperLaunch();
             }
             
             
         }
     }
 
+    /*
     IEnumerator SearchSpawnPoint()
     {
         while(SceneManager.GetActiveScene().name != "TestALessioMappa")
@@ -158,6 +160,6 @@ public class OptionMenu : MonoBehaviour
             yield return null;
         }
         FindObjectOfType<FirstPersonController>().transform.position = GameObject.Find("PlayerSpawnPoint").transform.position;
-    }
+    }*/
 
 }
