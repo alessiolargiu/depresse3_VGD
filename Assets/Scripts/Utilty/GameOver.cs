@@ -34,6 +34,7 @@ public class GameOver : MonoBehaviour
         //controllo se ho dei dati salvati
         if (PlayerPrefs.GetInt("vitaInfinita", -1) != -1)
         {
+            Time.timeScale = 1f;
             player.gameObject.SetActive(true);
             gameManager.HUD.SetActive(true);
             Cursor.lockState = CursorLockMode.Locked;
@@ -69,7 +70,7 @@ public class GameOver : MonoBehaviour
 
             //SceneManager.LoadScene(PlayerPrefs.GetString("currentScene"));
             //GameObject.Find("GameOver").SetActive(false);
-            StartCoroutine(ls.LoadAsynchronously(PlayerPrefs.GetString("currentScene"), false));
+            gameManager.StartLoading(PlayerPrefs.GetString("currentScene"), false);
         }
 
     }

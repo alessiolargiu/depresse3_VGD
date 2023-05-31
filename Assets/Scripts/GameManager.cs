@@ -141,7 +141,7 @@ public class GameManager : MonoBehaviour
 
     public void NewGame()
     {
-        GameObject.Find("GameManager").GetComponent<GetLatestMission>().SetCurrentMission(0);
+        GetComponent<GetLatestMission>().SetCurrentMission(0);
         PlayerPrefs.DeleteAll();
         player.currentHealth = player.maxHealth;
         player.healthBar.SetHealth(player.maxHealth);
