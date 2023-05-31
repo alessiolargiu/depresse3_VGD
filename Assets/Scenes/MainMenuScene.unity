@@ -8846,6 +8846,7 @@ MonoBehaviour:
   staminaBar: {fileID: 548994977}
   maxHealth: 100
   currentHealth: 100
+  maxStamina: 100
   currentStamina: 0
   hudInvWeapon: {fileID: 1767371341}
   hudInvShield: {fileID: 2040231138}
@@ -14196,7 +14197,7 @@ MonoBehaviour:
   m_LookAt: {fileID: 1042069332}
   m_Follow: {fileID: 1042069332}
   m_Lens:
-    FieldOfView: 66.96165
+    FieldOfView: 65.06424
     OrthographicSize: 5
     NearClipPlane: 0.3
     FarClipPlane: 1000
@@ -53756,7 +53757,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1880740732}
-  m_RootOrder: 0
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1707272187
 MonoBehaviour:
@@ -58783,6 +58784,7 @@ Transform:
   - {fileID: 182209900}
   - {fileID: 1288061847}
   - {fileID: 916709828}
+  - {fileID: 1707272186}
   m_Father: {fileID: 0}
   m_RootOrder: 15
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

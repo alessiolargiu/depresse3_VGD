@@ -16,6 +16,10 @@ public class GetLatestMission : MonoBehaviour
 
     void Update(){
         Debug.Log("Awake:" + SceneManager.GetActiveScene().name + " ---" + currentMission);
+
+        if(missioni==null){
+           StartCoroutine(findMissioni()); 
+        }
     }
 
     public void SetCurrentMission(int crnt){
@@ -27,8 +31,8 @@ public class GetLatestMission : MonoBehaviour
                     spawner.GetComponent<EnemySpawner>().canSpawn=true;
                 }
             }
-            
-            missioni.GetComponent<MissionTracking>().setCurrentMission(currentMission);
+                
+                missioni.GetComponent<MissionTracking>().setCurrentMission(currentMission);
         }
         
     }
