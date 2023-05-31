@@ -125,12 +125,13 @@ public class OptionMenu : MonoBehaviour
 
     public void SkipMission()
     {
+        FirstPersonController fpc = Resources.FindObjectsOfTypeAll<FirstPersonController>()[0];
         GetLatestMission glm = FindObjectOfType<GameManager>().GetComponent<GetLatestMission>();
         if(glm.GetCurrentMission() < 7)
         {
             if(glm.GetCurrentMission() == 2) {
-                Resources.FindObjectsOfTypeAll<FirstPersonController>()[0].availableWeapons.Add(1);
-                Resources.FindObjectsOfTypeAll<HUDInventoryWeapon>()[0].SetInventory(FindObjectOfType<FirstPersonController>().GetInventory(), FindObjectOfType<FirstPersonController>().GetAvailableWeapons());
+                fpc.availableWeapons.Add(1);
+                Resources.FindObjectsOfTypeAll<HUDInventoryWeapon>()[0].SetInventory(fpc.GetInventory(), fpc.GetAvailableWeapons());
                 glm.SetCurrentMission(4);
             }
             else

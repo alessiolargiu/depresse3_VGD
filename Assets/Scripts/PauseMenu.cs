@@ -71,11 +71,16 @@ public class PauseMenu : MonoBehaviour
         FindObjectOfType<FirstPersonController>().gameObject.SetActive(false);
         pauseMenuHUD.SetActive(false);
         optionHUD.SetActive(false);
-        if(GameObject.Find("Compass") != null)
-        {
-            while(GameObject.Find("Compass").transform.childCount > 0)
+        if(SceneManager.GetActiveScene().name == "TestALessioMappa") {
+            if (GameObject.Find("Oggetti Equipaggiamento") != null)
             {
-                Destroy(GameObject.Find("Compass").transform.GetChild(0).gameObject);
+                for(int i = 0; i < GameObject.Find("Oggetti Equipaggiamento").transform.childCount; i++)
+                {
+                    if(GameObject.Find("Oggetti Equipaggiamento").transform.GetChild(i).gameObject.activeSelf)
+                    {
+                        FindObjectOfType<Compass>().RemoveQuestMarker(GameObject.Find("Oggetti Equipaggiamento").transform.GetChild(i).GetComponent<QuestMarker>());
+                    }
+                }
             }
         }
         HUD.SetActive(false);

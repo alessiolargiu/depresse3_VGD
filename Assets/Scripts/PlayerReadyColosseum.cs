@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using System.Linq;
 
 public class PlayerReadyColosseum : MonoBehaviour
 {
@@ -45,9 +46,9 @@ public class PlayerReadyColosseum : MonoBehaviour
         }
         
         //Da ricontrollare
-        chestCounter = player.availableChests.Count  - 3;
-        shieldCounter = player.availableShields.Count;
-        helmetCounter = player.availableHelmets.Count;
+        chestCounter = player.availableChests.Distinct<int>().Count() - 1;
+        shieldCounter = player.availableShields.Distinct<int>().Count();
+        helmetCounter = player.availableHelmets.Distinct<int>().Count();
 
 
         if (chestCounter > 0 && shieldCounter > 0 && helmetCounter > 0){

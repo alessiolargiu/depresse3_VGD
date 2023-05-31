@@ -10,10 +10,10 @@ public class GoToArena : MonoBehaviour
 
     public void EnterArena()
     {
-        GameObject.Find("GoTo").SetActive(false);
-        FindObjectOfType<GameManager>().StartLoading("ArenaDay", true);
+        //FindObjectOfType<GameManager>().StartLoading("ArenaDay", true);
         minimap.SetActive(true);
         layerEquip.SetActive(true);
+        FindObjectOfType<GameManager>().StartLoading("ArenaDay", true);
     }
 
     public void StayInMap()

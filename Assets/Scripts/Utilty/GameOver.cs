@@ -77,6 +77,19 @@ public class GameOver : MonoBehaviour
     public void Menu()
     {
         FindObjectOfType<FirstPersonController>().gameObject.SetActive(false);
+        if (SceneManager.GetActiveScene().name == "TestALessioMappa")
+        {
+            if (GameObject.Find("Oggetti Equipaggiamento") != null)
+            {
+                for (int i = 0; i < GameObject.Find("Oggetti Equipaggiamento").transform.childCount; i++)
+                {
+                    if (GameObject.Find("Oggetti Equipaggiamento").transform.GetChild(i).gameObject.activeSelf)
+                    {
+                        FindObjectOfType<Compass>().RemoveQuestMarker(GameObject.Find("Oggetti Equipaggiamento").transform.GetChild(i).GetComponent<QuestMarker>());
+                    }
+                }
+            }
+        }
         pauseMenuHUD.SetActive(false);
         optionHUD.SetActive(false);
         gameManager.HUD.SetActive(false);

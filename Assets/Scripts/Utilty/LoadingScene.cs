@@ -25,17 +25,14 @@ public class LoadingScene : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
         PauseMenu.setGameIsPaused(false);
-        if (GameObject.Find("Compass") != null)
-        {
-            while (GameObject.Find("Compass").transform.childCount > 0)
-            {
-                Destroy(GameObject.Find("Compass").transform.GetChild(0).gameObject);
-            }
-        }
         if (name != "MainMenuScene")
         {
             HUD.SetActive(true);
             player.SetActive(true);
+        }
+        if (GameObject.Find("GoTo") != null)
+        {
+            GameObject.Find("GoTo").SetActive(false);
         }
         
 
@@ -66,7 +63,7 @@ public class LoadingScene : MonoBehaviour
         } 
         if (loadingScreen != null)
         {
-            yield return new WaitForSeconds(1f);
+            yield return new WaitForSeconds(1.5f);
             loadingScreen.SetActive(false);
             if (!newLoad)
             {
