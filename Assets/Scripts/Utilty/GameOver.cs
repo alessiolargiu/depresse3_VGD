@@ -68,7 +68,7 @@ public class GameOver : MonoBehaviour
             }
 
             //SceneManager.LoadScene(PlayerPrefs.GetString("currentScene"));
-            GameObject.Find("GameOver").SetActive(false);
+            //GameObject.Find("GameOver").SetActive(false);
             StartCoroutine(ls.LoadAsynchronously(PlayerPrefs.GetString("currentScene"), false));
         }
 

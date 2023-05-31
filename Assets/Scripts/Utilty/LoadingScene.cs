@@ -21,18 +21,22 @@ public class LoadingScene : MonoBehaviour
         AsyncOperation op = SceneManager.LoadSceneAsync(name);
 
         loadingScreen.SetActive(true);
-        Time.timeScale = 1f;
-        Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
         PauseMenu.setGameIsPaused(false);
         if (name != "MainMenuScene")
         {
+            Time.timeScale = 1f;
+            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
             HUD.SetActive(true);
             player.SetActive(true);
         }
         if (GameObject.Find("GoTo") != null)
         {
             GameObject.Find("GoTo").SetActive(false);
+        }
+        if(GameObject.Find("GameOver") != null)
+        {
+            GameObject.Find("GameOver").SetActive(false);
         }
         
 
