@@ -50,7 +50,11 @@ public class GameOver : MonoBehaviour
             gameManager.optionMenu.resolutionDropdown.resIndex = PlayerPrefs.GetInt("currentResolution");
             gameManager.optionMenu.volume.value = PlayerPrefs.GetFloat("volume");
 
-            GetComponent<GetLatestMission>().SetCurrentMission(PlayerPrefs.GetInt("currentMission"));
+            if(FindObjectOfType<GetLatestMission>()!=null){
+                Debug.Log("pisellocazzo" + PlayerPrefs.GetInt("currentMission"));
+            }
+            
+            FindObjectOfType<GetLatestMission>().SetCurrentMission(PlayerPrefs.GetInt("currentMission"));
 
             var savedPlayer = JsonUtility.FromJson<SavePlayerData>(PlayerPrefs.GetString("playerData"));
             player.gameObject.transform.position = savedPlayer.position;
@@ -59,7 +63,7 @@ public class GameOver : MonoBehaviour
             player.gameObject.transform.localScale = savedPlayer.scale;
             player.currentHealth = savedPlayer.currentHealth;
             player.currentStamina = savedPlayer.currentStamina;
-            if (GetComponent<GetLatestMission>().GetCurrentMission() != 1)
+            if (FindObjectOfType<GetLatestMission>().GetCurrentMission() != 1)
             {
                 player.availableHelmets = savedPlayer.availableHelmets;
                 player.availableChests = savedPlayer.availableChests;
