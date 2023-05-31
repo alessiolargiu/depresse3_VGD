@@ -31,7 +31,6 @@ public class FirstPersonController : MonoBehaviour {
     public StaminaBar staminaBar;
     [HideInInspector]
     public int maxHealth = 100;
-    [HideInInspector]
     public int currentHealth;
     [HideInInspector]
     public float maxStamina = 100;

@@ -58,7 +58,10 @@ public class GameOver : MonoBehaviour
             player.gameObject.transform.rotation = savedPlayer.rotation;
             player.gameObject.transform.localScale = savedPlayer.scale;
             player.currentHealth = savedPlayer.currentHealth;
+            player.healthBar.SetHealth(player.currentHealth);
             player.currentStamina = savedPlayer.currentStamina;
+            player.staminaBar.SetStamina(player.currentStamina);
+
             if (GetComponent<GetLatestMission>().GetCurrentMission() != 1)
             {
                 player.availableHelmets = savedPlayer.availableHelmets;
