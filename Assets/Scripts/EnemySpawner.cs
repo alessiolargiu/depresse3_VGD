@@ -8,6 +8,8 @@ public class EnemySpawner : MonoBehaviour
     private Transform playerTrans;
     public GameObject[] toSpawn;
 
+    public bool canSpawn;
+
     private bool cycleStarted;
 
     public bool spawnerForMission;
@@ -27,21 +29,26 @@ public class EnemySpawner : MonoBehaviour
         if(spawnerForMission){
             StartCoroutine(SpawnEnemyMission());
         }
+
     }
+
+
 
     // Update is called once per frame
     void Update(){
 
         if(spawnerForMission==false){
-            float dist = Vector3.Distance(playerTrans.position, transform.position);
-            if(dist<distanza && cycleStarted==false){
-                StartCoroutine(SpawnEnemy());
-                Debug.Log("SPAwNER Sono pronto a spawnare");
-                cycleStarted=true;
-            } else if(dist>distanza){
-                Debug.Log("SPAwNER Non sono pronto a spawnare");
-                cycleStarted=false;
-            } 
+            if(canSpawn){
+                float dist = Vector3.Distance(playerTrans.position, transform.position);
+                if(dist<distanza && cycleStarted==false){
+                    StartCoroutine(SpawnEnemy());
+                    Debug.Log("SPAwNER Sono pronto a spawnare");
+                    cycleStarted=true;
+                } else if(dist>distanza){
+                    Debug.Log("SPAwNER Non sono pronto a spawnare");
+                    cycleStarted=false;
+                }
+            }
         }
                
     }

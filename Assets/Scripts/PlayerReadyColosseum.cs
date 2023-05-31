@@ -5,11 +5,16 @@ using TMPro;
 
 public class PlayerReadyColosseum : MonoBehaviour
 {
+
+    private FirstPersonController player;
+    private Inventory inventory;
+
+
     public ChestEquip [] chests;
     public ShieldEquip [] shields;
     public HelmetEquip [] helmets;
 
-
+        
     public GameObject cutscenefinale;
     
     public GameObject trigger;
@@ -27,6 +32,7 @@ public class PlayerReadyColosseum : MonoBehaviour
 
     void Start()
     {
+        player = GameObject.Find("PlayerProtagonista").GetComponent<FirstPersonController>();
         chestLen = chests.Length;
         shieldLen = shields.Length;
         helmetLen = helmets.Length; 
@@ -41,9 +47,14 @@ public class PlayerReadyColosseum : MonoBehaviour
         shieldCounter=0;
         helmetCounter=0;
 
+        inventory = player.GetInventory();
+
         foreach(ChestEquip ch in chests){
-            if(ch.gameObject.activeSelf){
-                chestCounter++;
+            foreach(int chI in player.GetAvailableChests()){
+                if(ch.index == chI){
+                    ch.gameObject.SetActive(false);
+                    chestCounter++;
+                }
             }
         }
 

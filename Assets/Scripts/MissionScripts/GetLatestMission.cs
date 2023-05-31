@@ -8,6 +8,7 @@ public class GetLatestMission : MonoBehaviour
 
     private static int currentMission;
     private GameObject missioni;
+    private GameObject[] spawners;
 
     void Awake(){
         StartCoroutine(findMissioni());
@@ -20,6 +21,12 @@ public class GetLatestMission : MonoBehaviour
     public void SetCurrentMission(int crnt){
         currentMission =crnt;
         if(missioni!=null){
+            if(crnt>=6){
+                spawners = GameObject.FindGameObjectsWithTag("enemySpawner");
+                foreach(GameObject spawner in spawners){
+                    spawner.GetComponent<EnemySpawner>().canSpawn=true;
+                }
+            }
             missioni.GetComponent<MissionTracking>().setCurrentMission(currentMission);
         }
         

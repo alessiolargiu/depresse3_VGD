@@ -1256,6 +1256,7 @@ public class FirstPersonController : MonoBehaviour {
         return availablePotions;
     }
 
+
     public void GameOver(){
         GameObject.Find("GameOverCanvas").transform.GetChild(0).gameObject.SetActive(true);
         Cursor.lockState = CursorLockMode.None;
