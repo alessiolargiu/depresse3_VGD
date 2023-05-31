@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class endGame : MonoBehaviour
 {
@@ -30,7 +31,7 @@ public class endGame : MonoBehaviour
             yield return null;
         }
         GameManager = GameObject.Find("GameManager");
-        GameManager.GetComponent<GameManager>().StartLoading("MainMenuScene", false);
+        SceneManager.LoadScene("MainMenuScene");
         yield return null;
     }
 }

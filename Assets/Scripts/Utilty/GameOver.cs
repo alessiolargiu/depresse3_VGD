@@ -100,7 +100,7 @@ public class GameOver : MonoBehaviour
         Time.timeScale = 1f;
         PauseMenu.setGameIsPaused(false);
         
-        gameManager.StartLoading("MainMenuScene", false);
+        SceneManager.LoadScene("MainMenuScene");
     }
 
     private bool intToBool(int b)

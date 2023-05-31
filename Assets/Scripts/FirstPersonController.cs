@@ -33,7 +33,8 @@ public class FirstPersonController : MonoBehaviour {
     public int maxHealth = 100;
     [HideInInspector]
     public int currentHealth;
-    private float maxStamina = 100;
+    [HideInInspector]
+    public float maxStamina = 100;
     [HideInInspector]
     public float currentStamina;
     private int staminaJump = 10;
