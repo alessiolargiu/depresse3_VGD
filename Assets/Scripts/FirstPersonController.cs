@@ -486,7 +486,10 @@ public class FirstPersonController : MonoBehaviour {
             Debug.Log("sto toccando acqua");
             TakeDamage(100, transform, 0);
         }
-     }
+    
+    }
+
+
 
 
     private void AudioEnvCheck(){
