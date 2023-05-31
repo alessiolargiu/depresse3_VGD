@@ -13,6 +13,13 @@ public class endGame : MonoBehaviour
 
     void Awake(){
         StartCoroutine(findManager());
+        FindObjectOfType<FirstPersonController>().gameObject.SetActive(false);
+        GameObject.Find("HUD").SetActive(false);
+        //GameObject.Find("Panel Pause").SetActive(false);
+
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
+        Time.timeScale = 1f;
     }
 
 
