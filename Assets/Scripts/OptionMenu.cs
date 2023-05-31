@@ -129,7 +129,7 @@ public class OptionMenu : MonoBehaviour
         if(glm.GetCurrentMission() < 7)
         {
             if(glm.GetCurrentMission() == 2) {
-                FindObjectOfType<FirstPersonController>().availableWeapons.Add(1);
+                Resources.FindObjectsOfTypeAll<FirstPersonController>()[0].availableWeapons.Add(1);
                 Resources.FindObjectsOfTypeAll<HUDInventoryWeapon>()[0].SetInventory(FindObjectOfType<FirstPersonController>().GetInventory(), FindObjectOfType<FirstPersonController>().GetAvailableWeapons());
                 glm.SetCurrentMission(4);
             }
@@ -137,7 +137,11 @@ public class OptionMenu : MonoBehaviour
             {
                 glm.SetCurrentMission(glm.GetCurrentMission() + 1);
             } 
-            StartCoroutine(SearchSpawnPoint());
+            if(SceneManager.GetActiveScene().name == "TestALessioMappa")
+            {
+                StartCoroutine(SearchSpawnPoint());
+            }
+            
             
         }
     }

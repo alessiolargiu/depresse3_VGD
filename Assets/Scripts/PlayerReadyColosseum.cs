@@ -50,7 +50,7 @@ public class PlayerReadyColosseum : MonoBehaviour
         helmetCounter = player.availableHelmets.Count;
 
 
-        if (chestCounter > 1 && shieldCounter > 1 && helmetCounter > 1){
+        if (chestCounter > 0 && shieldCounter > 0 && helmetCounter > 0){
             cutscenefinale.SetActive(true);
             trigger.SetActive(true);
             StartCoroutine(cutscenefinale.GetComponent<CutSceneScript>().cutsceneStart((paolino) => {if(paolino){DestroyObject(gameObject);}}));
