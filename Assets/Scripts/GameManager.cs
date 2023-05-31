@@ -141,6 +141,7 @@ public class GameManager : MonoBehaviour
 
     public void NewGame()
     {
+        GameObject.Find("GameManager").GetComponent<GetLatestMission>().SetCurrentMission(0);
         PlayerPrefs.DeleteAll();
         player.currentHealth = player.maxHealth;
         StartCoroutine(ls.LoadAsynchronously("Casa", true));
