@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.009198316, g: 0.014271844, b: 0.008441805, a: 1}
+  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -17093,7 +17093,7 @@ MonoBehaviour:
   m_LookAt: {fileID: 58389319}
   m_Follow: {fileID: 58389319}
   m_Lens:
-    FieldOfView: 60.84177
+    FieldOfView: 59.98186
     OrthographicSize: 5
     NearClipPlane: 0.3
     FarClipPlane: 1000
@@ -39898,6 +39898,7 @@ GameObject:
   - component: {fileID: 1228255595}
   - component: {fileID: 1228255594}
   - component: {fileID: 1228255593}
+  - component: {fileID: 1228255596}
   - component: {fileID: 1228255592}
   m_Layer: 0
   m_Name: PlayerSpawnPoint
@@ -39984,6 +39985,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1228255596
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1228255591}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d36fd7c5881f040c78302ab16b65b47d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1235306390
 GameObject:
   m_ObjectHideFlags: 0
@@ -58254,7 +58267,7 @@ Camera:
     height: 1
   near clip plane: 0.3
   far clip plane: 1000
-  field of view: 60.84177
+  field of view: 59.98186
   orthographic: 0
   orthographic size: 5
   m_Depth: 0
