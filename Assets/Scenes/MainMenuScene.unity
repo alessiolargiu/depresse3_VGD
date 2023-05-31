@@ -36547,8 +36547,6 @@ MonoBehaviour:
       m_Image: {fileID: 0}
     - m_Text: 1920 x 1080
       m_Image: {fileID: 0}
-    - m_Text: 1280 x 720
-      m_Image: {fileID: 0}
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
@@ -54314,8 +54312,6 @@ MonoBehaviour:
     - m_Text: 2160 x 1440
       m_Image: {fileID: 0}
     - m_Text: 1920 x 1080
-      m_Image: {fileID: 0}
-    - m_Text: 1280 x 720
       m_Image: {fileID: 0}
   m_OnValueChanged:
     m_PersistentCalls:
