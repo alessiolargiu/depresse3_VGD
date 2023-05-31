@@ -50,7 +50,7 @@ public class GameOver : MonoBehaviour
             gameManager.optionMenu.resolutionDropdown.resIndex = PlayerPrefs.GetInt("currentResolution");
             gameManager.optionMenu.volume.value = PlayerPrefs.GetFloat("volume");
 
-            GetComponent<GetLatestMission>().SetCurrentMission(PlayerPrefs.GetInt("currentMission"));
+            FindObjectOfType<GetLatestMission>().SetCurrentMission(PlayerPrefs.GetInt("currentMission"));
 
             var savedPlayer = JsonUtility.FromJson<SavePlayerData>(PlayerPrefs.GetString("playerData"));
             player.gameObject.transform.position = savedPlayer.position;
@@ -62,7 +62,7 @@ public class GameOver : MonoBehaviour
             player.currentStamina = savedPlayer.currentStamina;
             player.staminaBar.SetStamina(player.currentStamina);
 
-            if (GetComponent<GetLatestMission>().GetCurrentMission() != 1)
+            if (FindObjectOfType<GetLatestMission>().GetCurrentMission() != 1)
             {
                 player.availableHelmets = savedPlayer.availableHelmets;
                 player.availableChests = savedPlayer.availableChests;
